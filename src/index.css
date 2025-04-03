@@ -3,6 +3,13 @@
   height: auto;
 }
 
+:root {
+  --primary-color:#ff9300;
+  --secondary-color:#02c5fa;
+  --white-color: #ffffff;
+  --black-color: #000000;
+}
+
 body{
   background: #f0f0f5;
 }
@@ -11,6 +18,7 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
 }
 
 
