@@ -1,0 +1,24 @@
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 40px;
+  }
+  
+  .button-square {
+    aspect-ratio: 1 / 1;
+    background-color: #f5f5dc; /* color hueso */
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    user-select: none;
+  }
+  
+h1{
+    color: var(--white-color);
+    font-size: 1.4rem;
+    margin: 1rem;
+}
