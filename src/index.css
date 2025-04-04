@@ -1,17 +1,22 @@
 #root, html, body{
-  width: 100vw;
+  width: 100%;
   height: auto;
 }
 
 :root {
   --primary-color:#ff9300;
-  --secondary-color:#02c5fa;
+  --secondary-color:#00aaff;
   --white-color: #ffffff;
   --black-color: #000000;
+  
 }
 
 body{
   background: #f0f0f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 * {
@@ -20,6 +25,4 @@ body{
   box-sizing: border-box;
   font-family: "Ubuntu", sans-serif;
 }
-
-
 

@@ -1,8 +1,15 @@
+import { Header } from "../components/header/header"
+import { NavBar } from "../components/navbar/navbar"
+
 export const Home = () => {
 
 
     return(
-        <p>Home</p>
+        <>
+            <Header></Header>
+            <NavBar></NavBar>
+            <p>Home</p>
+        </>
     )
 
 }
