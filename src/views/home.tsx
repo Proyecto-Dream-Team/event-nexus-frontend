@@ -7,8 +7,8 @@ export const Home = () => {
     return(
         <>
             <Header></Header>
+                <p>Modulos</p>
             <NavBar></NavBar>
-            <p>Home</p>
         </>
     )
 
