@@ -8,11 +8,12 @@
   --secondary-color:#00aaff;
   --white-color: #ffffff;
   --black-color: #000000;
-  
+  --backgraound-color:#2c2f33;
+  --bones-color:#f5f5dc;
 }
 
 body{
-  background: #f0f0f5;
+  background: var(--backgraound-color);
   display: flex;
   justify-content: center;
   align-items: center;
