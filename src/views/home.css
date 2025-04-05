@@ -7,7 +7,7 @@
   
   .button-square {
     aspect-ratio: 1 / 1;
-    background-color: #f5f5dc; /* color hueso */
+    background-color: var(--bones-color);
     border: 2px solid #ccc;
     border-radius: 15px;
     display: flex;
