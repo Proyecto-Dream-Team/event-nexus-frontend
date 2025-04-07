@@ -1,7 +1,15 @@
 import { InputApp } from "../input/input"
 import './profileFormulary.css'
+import { ButtonApp } from "./../buttons/button"
 
 export const ProfileFormulary = () => {
+
+    const acept = () => {
+        console.log('aceptar')
+    }
+    const cancel = () => {
+        console.log('cancelar')
+    }
 
 
 
@@ -13,6 +21,11 @@ export const ProfileFormulary = () => {
                 <InputApp label={'Telefono'} type={'number'} register={false}></InputApp>
                 <InputApp label={'E-Mail'} type={'mail'} register={false}></InputApp>
                 
+                <div className="buttons">
+                <ButtonApp label={'Aceptar'} method={acept}></ButtonApp>
+                <ButtonApp label={'Cancelar'} method={cancel}></ButtonApp>
+
+                </div>
 
             </form>
         </>
