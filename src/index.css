@@ -3,11 +3,15 @@
   height: 100%;
 }
 
+html {
+  font-size: 62.5%; /* 10px = 1rem */
+}
+
 :root {
   --primary-color:#7289DA;
   --white-color: #ffffff;
   --black-color: #000000;
-  --backgraound-color: linear-gradient(to top, #282B30, #424549);
+  --backgraound-color: linear-gradient(to bottom, #282B30, #424549);
   --font-color-in: #1E2124;/* es la fuente de adentro de los cuadros */
   --rrhh-color: #DA8A72;
   --event-color: #B6DA72;
