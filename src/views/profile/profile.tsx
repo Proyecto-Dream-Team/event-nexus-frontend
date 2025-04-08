@@ -8,7 +8,7 @@ import { datosForm, DatosForm } from '../../domain/datosForm';
 
 
 export const Profile = () => {
-    const [datos,setDatos] = useState<DatosForm>(datosForm);
+    const [datos, setDatos] = useState<DatosForm>(datosForm);
 
 
     useEffect(() => {
@@ -28,9 +28,7 @@ export const Profile = () => {
             <div className="profileOptins">
                 <h2 className='menuProfile'>Datos</h2>
             </div>
-
             <ProfileFormulary info={datos}></ProfileFormulary>
-
             <NavBar></NavBar>
         </>
 
