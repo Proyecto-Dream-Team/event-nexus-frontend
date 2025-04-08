@@ -1,8 +1,15 @@
 import { InputApp } from "../input/input"
 import './profileFormulary.css'
 import { ButtonApp } from "./../buttons/button"
+import { DatosForm } from "../../domain/datosForm"
 
-export const ProfileFormulary = () => {
+interface ProfileFormularyProps {
+    info: DatosForm
+}
+
+
+
+export const ProfileFormulary = ({ info }: ProfileFormularyProps) => {
 
     const acept = () => {
         console.log('aceptar')
