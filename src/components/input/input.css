@@ -6,14 +6,14 @@
 }
 
 .input-label{
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--white-color);
     text-align: start;
 }
 
 .input-type{
-    height: 5rem;
+    height: 4rem;
     border-radius: 1rem;
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }

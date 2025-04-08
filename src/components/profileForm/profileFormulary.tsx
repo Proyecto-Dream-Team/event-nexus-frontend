@@ -16,10 +16,11 @@ export const ProfileFormulary = () => {
     return (
         <>
             <form className='profileFormulary' action="">
-                <InputApp label={'Nombre'} type={'text'} register={false}></InputApp>
-                <InputApp label={'Apellido'} type={'text'} register={false}></InputApp>
-                <InputApp label={'Telefono'} type={'number'} register={false}></InputApp>
-                <InputApp label={'E-Mail'} type={'mail'} register={false}></InputApp>
+                <InputApp label={'Nombre'} type={'text'} register={false} readonly={true}></InputApp>
+                <InputApp label={'Apellido'} type={'text'} register={false} readonly={true}></InputApp>
+                <InputApp label={'Telefono'} type={'number'} register={false} readonly={false}></InputApp>
+                <InputApp label={'E-Mail'} type={'mail'} register={false} readonly={false}></InputApp>
+                <InputApp label={'Direccion'} type={'text'} register={false} readonly={false}></InputApp>
                 
                 <div className="buttons">
                 <ButtonApp label={'Aceptar'} method={acept}></ButtonApp>

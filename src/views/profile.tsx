@@ -15,7 +15,6 @@ export const Profile = () => {
             <Header></Header>
             <div className="profileOptins">
                 <a href="" className='menuProfile'>Datos</a>
-                <a href="Admin" className='menuProfile'>Admin</a>
             </div>
             <NavBar></NavBar>
             <ProfileFormulary></ProfileFormulary>
