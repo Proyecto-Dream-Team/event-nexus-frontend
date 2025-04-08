@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { InputApp } from '../components/input/input'
+import { ClassNames } from '@emotion/react'
+import './login.css'
 
 
 
@@ -11,17 +13,17 @@ export const Login = () => {
     const navigate = useNavigate()
 
     return(
-        <div style={{justifyContent:'center', alignItems: 'center', justifyItems:'center'}}>
-            <h1 style={{marginTop:'50px', marginBottom:'10px'}}>Event Nexus</h1>
-            <hr></hr>
+        <div className='page'>
+            <h1 className='title'>Event Nexus</h1>
+            <hr className='line'></hr>
 
-            <Box sx={{backgroundColor:'#7289DA', width:'90vmin', height:'100vmin', position:'relative', justifyContent:'center', alignItems: 'center', justifyItems:'center', margin:'5vmin', maxHeight:'500px', maxWidth:'500px', borderRadius:'10%'}}>
+            <div className='login-box'>
                 <br></br>
                 <InputApp label='usuario' type='text' register={true}></InputApp>
                 <InputApp label='contraseña' type='text' register={true}></InputApp>
 
                 <button>Iniciar Sesion</button>
-            </Box>
+            </div>
         </div>
     )
 

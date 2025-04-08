@@ -1,0 +1,32 @@
+.login-box{
+    background-color: #7289DA;
+    border-radius: 10%;
+    width: 90vmin;
+    height: 130vmin;
+    max-width: 400px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.page{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    display: flex;
+    flex-direction: column;
+}
+
+.line{
+    height: 1vmin;
+    width: 90%;
+    margin: 5vmin;
+}
+
+.title{
+    margin-top: 10vmin;
+    height: 10vmin;
+    height: auto;
+}
