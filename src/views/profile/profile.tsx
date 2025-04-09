@@ -25,7 +25,7 @@ export const Profile = () => {
 
         <>
             <Header></Header>
-            <div className="profileOptins">
+            <div className="profileOptions">
                 <h2 className='menuProfile'>Datos</h2>
             </div>
             <ProfileFormulary info={datos}></ProfileFormulary>

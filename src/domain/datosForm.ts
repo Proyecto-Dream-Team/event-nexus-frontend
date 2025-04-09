@@ -5,22 +5,22 @@ export class DatosForm {
     email: string;
     direccion: string;
 
-    constructor(any : any) {
-        this.nombre = any.nombre;
-        this.apellido = any.apellido;
-        this.telefono = any.telefono;
-        this.email = any.email;
-        this.direccion = any.direccion;
+    constructor(data : any) {
+        this.nombre = data.nombre;
+        this.apellido = data.apellido;
+        this.telefono = data.telefono;
+        this.email = data.email;
+        this.direccion = data.direccion;
     }
 
 
-    fromDto(any: any) {
+    fromDto(data: any) {
         return {
-            nombre: any.nombre,
-            apellido: any.apellido,
-            telefono: any.telefono,
-            email: any.email,
-            direccion: any.direccion
+            nombre: data.nombre,
+            apellido: data.apellido,
+            telefono: data.telefono,
+            email: data.email,
+            direccion: data.direccion
         };
     }
 }
