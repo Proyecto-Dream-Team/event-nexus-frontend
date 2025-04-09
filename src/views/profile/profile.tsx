@@ -1,6 +1,4 @@
-import { use, useEffect, useState } from 'react';
-import { Header } from '../../components/header/header';
-import { NavBar } from '../../components/navbar/navbar';
+import { useEffect, useState } from 'react';
 import { ProfileFormulary } from '../../components/profileForm/profileFormulary';
 import './profile.css';
 import { serviceUser } from '../../components/services/serviceUser';
@@ -24,12 +22,10 @@ export const Profile = () => {
     return (
 
         <>
-            <Header></Header>
             <div className="profileOptions">
                 <h2 className='menuProfile'>Datos</h2>
             </div>
             <ProfileFormulary info={datos}></ProfileFormulary>
-            <NavBar></NavBar>
         </>
 
 
