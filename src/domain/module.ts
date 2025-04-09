@@ -1,11 +1,13 @@
-export class ModuleCard {
+export class Module {
     constructor(
         public name : string,
         public img  : string
     ) {}
 } 
 
-export const moduleCard = new ModuleCard(
+export const moduleMock = new Module(
     'Eventos' ,
     "fotoEventosSinFondo.png"
 )   
+
+export const arrayModulMock : Module[] = [moduleMock,moduleMock]
