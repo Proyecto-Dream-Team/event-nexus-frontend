@@ -23,7 +23,7 @@ export class SesionStorage {
 export const sesionStorage = new SesionStorage(
     0,
     "Pedro",
-    "mcGeraghty",
+    "McGeraghty",
     "profileImage.png",
     "admin"
 ) 

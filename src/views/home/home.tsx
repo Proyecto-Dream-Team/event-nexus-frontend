@@ -1,3 +1,4 @@
+import { Module } from '../../components/module/module'
 import './home.css'
 export const Home = () => {
 
@@ -6,10 +7,10 @@ export const Home = () => {
             <h1>Modulos</h1>
 
             <main className="button-grid">
-                <div className="button-square"></div>
-                <div className="button-square"></div>
-                <div className="button-square"></div>
-                <div className="button-square"></div>
+                <Module></Module>
+                <Module></Module>
+                <Module></Module>
+                <Module></Module>
             </main>
         </>
     )

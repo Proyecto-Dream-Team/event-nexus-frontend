@@ -1,0 +1,15 @@
+.button-square {
+    width: 80%;
+    height: 15rem;
+    background-color: var(--bones-color);
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    img{
+        width: 15rem;
+        border-radius: 7px;
+    }
+}
