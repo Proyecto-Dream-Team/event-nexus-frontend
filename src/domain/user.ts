@@ -1,0 +1,29 @@
+export class User {
+    
+}
+
+export class SesionStorage {
+    
+    constructor(
+        public id: number,
+        public name: string,
+        public lastname: string,
+        public img: string,
+        public role: string
+    ) {
+        this.id = id
+        this.name = name
+        this.lastname = lastname
+        this.img = img
+        this.role = role
+    }
+
+}
+
+export const sesionStorage = new SesionStorage(
+    0,
+    "Pedro",
+    "mcGeraghty",
+    "profileImage.png",
+    "admin"
+) 

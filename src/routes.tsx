@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Login } from './views/login';
-import { Home } from './views/home';
+import { Home } from './views/home/home';
 import { ViewLayout } from './components/viewLayout/viewLayout';
 import { Profile } from './views/profile/profile';
 
