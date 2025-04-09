@@ -1,7 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Login } from './views/login';
 import { Home } from './views/home';
-import { Profile } from './views/profile';
+import { Profile } from './views/profile/profile';
+
 
 export const AppRouter = () => {
 

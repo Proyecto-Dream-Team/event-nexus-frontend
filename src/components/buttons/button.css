@@ -1,0 +1,14 @@
+.buttonApp{
+    width: 8rem;
+    height: 3.5rem;
+    border-radius: 0.6rem;
+    font-size: 1.5rem; 
+}
+
+.button-cancel{
+    background-color: #DA8A72;
+}
+
+.button-acept{
+    background-color: #B6DA72;
+}
