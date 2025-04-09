@@ -8,4 +8,4 @@ export class ModuleCard {
 export const moduleCard = new ModuleCard(
     'Eventos' ,
     "fotoEventosSinFondo.png"
-) 
+)   
