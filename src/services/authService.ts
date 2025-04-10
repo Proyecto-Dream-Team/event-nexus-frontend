@@ -5,7 +5,7 @@ import { LoginResponseDTO } from "../data/dtos/LoginResponseDTO";
 class AuthService {
 
     async loginClient(data: LoginRequestDTO) {
-        return axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/login`, data)
+        return axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/auth/login`, data)
     }
 
 }
