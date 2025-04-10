@@ -11,7 +11,7 @@ export const ButtonApp = ({label,method, isCancel} : ButtonProps) => {
     return (
         <>
             <button 
-            className={`buttonApp ${isCancel ? 'button-cancel' : 'button-acept'}`}>{label}</button>
+            className={`buttonApp ${isCancel ? 'button-cancel' : 'button-acept'}`} onClick={method}>{label}</button>
         </>
     );
 }

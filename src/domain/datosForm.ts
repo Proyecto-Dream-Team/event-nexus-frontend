@@ -25,6 +25,24 @@ export class DatosForm {
     }
 }
 
+export class LoginForm{
+    user: string;
+    password: string;
+
+    constructor(data : any) {
+        this.user = data.nombre;
+        this.password = data.apellido;
+    }
+
+
+    fromDto(data: any) {
+        return {
+            user: data.user,
+            password: data.password,
+        };
+    }
+}
+
 export const datosForm = new DatosForm({
     nombre: 'Diego',
     apellido: 'Lentz',
@@ -32,3 +50,8 @@ export const datosForm = new DatosForm({
     email: 'diegoolentz@gmail.com',
     direccion: 'artigas 5521'
 });
+
+export const loginForm = new LoginForm({
+    user: "",
+    password: ""
+})

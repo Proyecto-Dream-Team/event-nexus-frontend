@@ -3,6 +3,7 @@ import { Login } from './views/login';
 import { Home } from './views/home/home';
 import { ViewLayout } from './components/viewLayout/viewLayout';
 import { Profile } from './views/profile/profile';
+import { loginForm } from './domain/datosForm';
 
 
 export const AppRouter = () => {
@@ -10,8 +11,8 @@ export const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<Login /> } path='login'></Route>
-                <Route element={<Login /> } path='register'></Route>
+                <Route element={<Login info={loginForm} /> } path='login'></Route>
+                <Route element={<Login info={loginForm}/> } path='register'></Route>
                 <Route element={<ViewLayout></ViewLayout>}>
                     <Route element={<Home /> } path='home'></Route>
                     <Route element={<Profile /> } path='profile'></Route>
