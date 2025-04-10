@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ButtonApp } from "../../components/buttons/button";
@@ -7,40 +7,38 @@ import { Title } from "../../components/title/title";
 import { loginForm, LoginForm } from "../../domain/datosForm";
 import { authService } from "../../services/authService";
 import "./login.css";
+import { LoginRequestDTO } from "../../data/dtos/LoginRequestDTO";
 
 export const Login = () => {
   const [us, setUss] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm<LoginForm>({
+  const {register,handleSubmit,getValues,formState: { errors }, reset} = useForm<LoginForm>({
     mode: "all",
     defaultValues: loginForm,
   });
 
-  // para capturar los values del formulario
-  const { user, password } = getValues();
-
+  
   const handleNavigation = () => {
+    console.log("Login successful", us, pass);
     navigate("/home");
   };
-
+  
   const handleLogin = async () => {
+    const { user, password } = getValues(); // obtengo valores del formulario 
     setUss(user);
     setPass(password);
 
     try {
-      await authService.loginClient({ username: user, password });
+      const credentials = LoginRequestDTO.fromDto(user, password);
+      await authService.loginClient(credentials);
       handleNavigation();
     } catch (error) {
       console.log(error as string);
     }
   };
+
 
   return (
     <>

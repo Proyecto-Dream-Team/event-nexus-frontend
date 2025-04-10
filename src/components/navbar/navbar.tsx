@@ -18,7 +18,7 @@ export const NavBar = () => {
                     <AccountBoxIcon style={{ ...sxIcons, fontSize: 35 }}></AccountBoxIcon>
                 </NavLink>
                 <NavLink 
-                    to='/register' 
+                    to='/login' 
                     onClick={() => {
                         sessionStorage.clear();
                     }}
