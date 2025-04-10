@@ -5,11 +5,7 @@ import { useEffect, useState } from 'react'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
 
-const dividerStyles = {
-    backgroundColor: '#ffffff',
-    height: '2px',
-    margin: '2rem 4rem',
-  }
+
 
 export const Home = () => {
     
@@ -31,7 +27,7 @@ export const Home = () => {
     return(
         <>
             <h1>Modulos</h1>
-            <Divider style = { dividerStyles } />
+            {/* <Divider style = { dividerStyles } /> */}
             <main className="button-grid">
                 {
                     modules?.map(( item , index ) =>(

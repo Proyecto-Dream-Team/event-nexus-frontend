@@ -1,11 +1,21 @@
 import axios from "axios";
 import { URL_SERVIDOR_REST } from "../utils/config";
 import { LoginRequestDTO } from "../data/dtos/LoginRequestDTO";
-import { LoginResponseDTO } from "../data/dtos/LoginResponseDTO";
+import { loginResponseDTO, LoginResponseDTO } from "../data/dtos/LoginResponseDTO";
 class AuthService {
 
-    async loginClient(data: LoginRequestDTO) {
-        return axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/auth/login`, data)
+    async loginClient(data: LoginRequestDTO): Promise<boolean> {
+        try {
+            const res = await axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/auth/login`, data);
+            const userData = loginResponseDTO.fromDto(res.data);
+            sessionStorage.setItem("userId", userData.id.toString());
+            sessionStorage.setItem("userRole", userData.role);
+           
+            return res.status < 300;
+        } catch (error) {
+            console.error("Login failed:", error);
+            return false;
+        }
     }
 
 }
