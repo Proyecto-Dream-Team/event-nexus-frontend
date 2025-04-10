@@ -1,4 +1,4 @@
-import { DatosForm, datosForm } from "../../domain/datosForm";
+import { DatosForm, datosForm } from "../domain/datosForm";
 
 class ServiceUser {
   async getProfileDatos(id: number): Promise<DatosForm> {

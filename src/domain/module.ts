@@ -1,11 +1,7 @@
-export class ModuleCard {
+export class Module {
     constructor(
+        public id   : number,
         public name : string,
-        public img  : string
+        public image  : string
     ) {}
 } 
-
-export const moduleCard = new ModuleCard(
-    'Eventos' ,
-    "fotoEventosSinFondo.png"
-)   
