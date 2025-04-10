@@ -7,7 +7,7 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
         <>
             <article className="button-square">
                 <h2>{value.name}</h2>
-                <img src={value.img}  />
+                <img src={value.image}  />
             </article>
         </>
     )

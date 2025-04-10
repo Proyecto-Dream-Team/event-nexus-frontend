@@ -16,8 +16,12 @@ export const Home = () => {
     const [ modules , setModules ] = useState<Module[]>()
 
     const getModules = async () => {
-        const res = await moduleService.getModules()
-        setModules(res)
+        try{
+            const res = await moduleService.getModules()
+            setModules(res) 
+        } catch (e : unknown) {
+            console.log(e)
+        }
     }
 
     useEffect(() => {
