@@ -3,7 +3,7 @@ import { ModuleCard } from '../../components/module/module'
 import './home.css'
 import { useEffect, useState } from 'react'
 import { Module } from '../../domain/module'
-import { moduleService } from '../../components/services/moduleService'
+import { moduleService } from '../../services/moduleService'
 
 const dividerStyles = {
     backgroundColor: '#ffffff',
@@ -17,7 +17,7 @@ export const Home = () => {
 
     const getModules = async () => {
         try{
-            const res = await moduleService.getModules()
+            const res = await moduleService.getModules(1)
             setModules(res) 
         } catch (e : unknown) {
             console.log(e)
@@ -26,7 +26,7 @@ export const Home = () => {
 
     useEffect(() => {
         getModules()
-    })
+    },[])
 
     return(
         <>

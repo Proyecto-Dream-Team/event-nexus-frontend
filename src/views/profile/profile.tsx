@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ProfileFormulary } from '../../components/profileForm/profileFormulary';
 import './profile.css';
-import { serviceUser } from '../../components/services/serviceUser';
+import { serviceUser } from '../../services/serviceUser';
 import { datosForm, DatosForm } from '../../domain/datosForm';
 
 
