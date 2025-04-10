@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ButtonApp } from "../../components/buttons/button";
@@ -7,14 +7,14 @@ import { Title } from "../../components/title/title";
 import { loginForm, LoginForm } from "../../domain/datosForm";
 import { authService } from "../../services/authService";
 import "./login.css";
-import { LoginRequestDTO } from "../../data/dtos/LoginRequestDTO";
+import { LoginRequestDTO } from "../../domain/Login";
 
 export const Login = () => {
   const [us, setUss] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
 
-  const {register,handleSubmit,getValues,formState: { errors }, reset} = useForm<LoginForm>({
+  const {register,handleSubmit,getValues,formState: { errors }} = useForm<LoginForm>({
     mode: "all",
     defaultValues: loginForm,
   });

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { URL_SERVIDOR_REST } from "../utils/config";
-import { LoginRequestDTO } from "../data/dtos/LoginRequestDTO";
-import { loginResponseDTO, LoginResponseDTO } from "../data/dtos/LoginResponseDTO";
+import { LoginRequestDTO, loginResponseDTO, LoginResponseDTO } from "../domain/Login";
 class AuthService {
 
     async loginClient(data: LoginRequestDTO): Promise<boolean> {
