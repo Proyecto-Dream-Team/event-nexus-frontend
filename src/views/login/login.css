@@ -1,0 +1,21 @@
+
+.login-box{
+    background-color: var(--primary-color);
+    border-radius: 8%;
+    width: 90vw;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin : 0 auto; 
+}
+
+.buttonsLogin{
+    margin-top: 3rem;
+}
+
+.titleLogin{
+    margin-top: 8rem;
+    margin-bottom: 5rem;
+}

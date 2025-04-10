@@ -4,12 +4,9 @@ import './home.css'
 import { useEffect, useState } from 'react'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
+import { Title } from '../../components/title/title'
 
-const dividerStyles = {
-    backgroundColor: '#ffffff',
-    height: '2px',
-    margin: '2rem 4rem',
-  }
+
 
 export const Home = () => {
     
@@ -30,8 +27,7 @@ export const Home = () => {
 
     return(
         <>
-            <h1>Modulos</h1>
-            <Divider style = { dividerStyles } />
+            <Title title='Modulos'></Title>
             <main className="button-grid">
                 {
                     modules?.map(( item , index ) =>(

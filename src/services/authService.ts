@@ -1,11 +1,24 @@
 import axios from "axios";
 import { URL_SERVIDOR_REST } from "../utils/config";
 import { LoginRequestDTO } from "../data/dtos/LoginRequestDTO";
-import { LoginResponseDTO } from "../data/dtos/LoginResponseDTO";
+import { loginResponseDTO, LoginResponseDTO } from "../data/dtos/LoginResponseDTO";
 class AuthService {
 
-    async loginClient(data: LoginRequestDTO) {
-        return axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/login`, data)
+    async loginClient(data: LoginRequestDTO): Promise<boolean> {
+        try {
+            const res = await axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/auth/login`, data);
+            const userData = loginResponseDTO.fromDto(res.data);
+            sessionStorage.setItem("userId", userData.id.toString());
+            sessionStorage.setItem("userRole", userData.role.toUpperCase());
+            sessionStorage.setItem("img", "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png");
+            sessionStorage.setItem("name", "Falta back");
+            sessionStorage.setItem("lastname", "Falta back");
+
+            return res.status < 300;
+        } catch (error) {
+            console.error("Login failed:", error);
+            return false;
+        }
     }
 
 }

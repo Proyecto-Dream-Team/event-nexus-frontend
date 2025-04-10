@@ -3,32 +3,29 @@ import { ProfileFormulary } from '../../components/profileForm/profileFormulary'
 import './profile.css';
 import { serviceUser } from '../../services/serviceUser';
 import { datosForm, DatosForm } from '../../domain/datosForm';
-
+import { Title } from '../../components/title/title';
 
 export const Profile = () => {
-    const [datos, setDatos] = useState<DatosForm>(datosForm);
+  const [datos, setDatos] = useState<DatosForm>(datosForm);
+  const id = Number(sessionStorage.getItem('userId'));
 
+  const getProfile = async () => {
+    try {
+      const res = await serviceUser.getProfileDatos(id);
+      setDatos(res);
+    } catch (error) {
+      console.error("Error al obtener el perfil:", error);
+    }
+  };
 
-    useEffect(() => {
-        const getProfile = async () => {
-            const datos = await serviceUser.getProfileDatos(1);
-            setDatos(datos);
-            console.log(datos);
-        };
-        getProfile();
-    }, []);
+  useEffect(() => {
+    getProfile();
+  }, []);
 
-
-    return (
-
-        <>
-            <div className="profileOptions">
-                <h2 className='menuProfile'>Datos</h2>
-            </div>
-            <ProfileFormulary info={datos}></ProfileFormulary>
-        </>
-
-
-    )
-
-}
+  return (
+    <>
+      <Title title='Datos' />
+      <ProfileFormulary info={datos} />
+    </>
+  );
+};
