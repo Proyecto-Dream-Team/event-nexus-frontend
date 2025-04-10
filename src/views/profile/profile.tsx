@@ -3,6 +3,7 @@ import { ProfileFormulary } from '../../components/profileForm/profileFormulary'
 import './profile.css';
 import { serviceUser } from '../../services/serviceUser';
 import { datosForm, DatosForm } from '../../domain/datosForm';
+import { Title } from '../../components/title/title';
 
 
 export const Profile = () => {
@@ -22,9 +23,7 @@ export const Profile = () => {
     return (
 
         <>
-            <div className="profileOptions">
-                <h2 className='menuProfile'>Datos</h2>
-            </div>
+          <Title title='Datos'></Title>
             <ProfileFormulary info={datos}></ProfileFormulary>
         </>
 

@@ -44,8 +44,9 @@ export const Login = () => {
 
   return (
     <>
-      <div className="login-container">
-       <Title title ={"Event Nexus"}></Title>
+      <div className="titleLogin">
+        <Title title={"Event Nexus"}></Title>
+      </div>
 
         <div className="login-box">
           <form className="profileFormulary">
@@ -70,15 +71,14 @@ export const Login = () => {
             />
 
             <div className="buttonsLogin">
-            <ButtonApp
-              label="Ingresar"
-              method={handleSubmit(handleLogin)}
-              isCancel={false}
-            />
+              <ButtonApp
+                label="Ingresar"
+                method={handleSubmit(handleLogin)}
+                isCancel={false}
+              />
             </div>
           </form>
         </div>
-      </div>
     </>
   );
 };

@@ -4,6 +4,7 @@ import './home.css'
 import { useEffect, useState } from 'react'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
+import { Title } from '../../components/title/title'
 
 
 
@@ -26,8 +27,7 @@ export const Home = () => {
 
     return(
         <>
-            <h1>Modulos</h1>
-            {/* <Divider style = { dividerStyles } /> */}
+            <Title title='Modulos'></Title>
             <main className="button-grid">
                 {
                     modules?.map(( item , index ) =>(
