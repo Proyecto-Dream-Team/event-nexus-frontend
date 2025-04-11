@@ -9,10 +9,7 @@ class AuthService {
             const userData = loginResponseDTO.fromDto(res.data);
             sessionStorage.setItem("userId", userData.id.toString());
             sessionStorage.setItem("userRole", userData.role.toUpperCase());
-            sessionStorage.setItem("img", "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png");
-            sessionStorage.setItem("name", "Pedro");
-            sessionStorage.setItem("lastname", "McGeraghty");
-
+         
             return res.status < 300;
         } catch (error) {
             console.error("Login failed:", error);
