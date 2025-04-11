@@ -20,6 +20,22 @@ export class SesionStorage {
 
 }
 
+export class HeaderDto {
+    constructor(
+        public id: number,
+        public name: string,
+        public lastname: string,
+    ) {}
+
+    static fromDto(data : any): HeaderDto {
+        return new HeaderDto(
+            data.id,
+            data.name,
+            data.lastname,
+        )
+    }
+}
+
 export const sesionStorage = new SesionStorage(
     0,
     "Pedro",
