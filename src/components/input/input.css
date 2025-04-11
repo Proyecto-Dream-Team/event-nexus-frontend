@@ -1,0 +1,39 @@
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    width: 25rem; 
+    margin: 1rem
+}
+
+.input-label{
+    font-size: 1.8rem;
+    color: var(--white-color);
+    text-align: start;
+}
+
+.input-type{
+    height: 4rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: 2px solid #424549;
+    transition: border-color 0.3s ease;
+}
+
+.input-type:focus {
+    border-color: #7289da; /* Change to desired color on click/focus */
+    outline: none;
+}
+
+.error-message{
+    color: red;
+    font-size: 1.3rem;
+    font-weight: lighter;
+    margin-top: 0.5rem;
+}
+
+.error-container{
+    height: 0.2rem;
+    display: flex;
+    justify-content: end;
+}

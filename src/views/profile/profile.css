@@ -1,0 +1,13 @@
+.profileOptions{
+    margin: 1rem auto 0 auto;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid var(--white-color);
+}
+.menuProfile {
+    color: var(--white-color);
+    cursor: pointer;
+    font-size: 3.5rem;
+    text-decoration: none;
+}

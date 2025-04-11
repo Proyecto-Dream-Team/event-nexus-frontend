@@ -1,0 +1,16 @@
+.profileFormulary {
+    margin: 1rem auto;
+    width: 90vw;
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.buttons{
+    margin-top: 1.8rem;
+    display: flex;
+    width: 70vw;
+    justify-content: space-around;
+}

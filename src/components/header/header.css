@@ -1,12 +1,45 @@
 .header{
+    position: fixed;
+    top: 0;
     font-size: 2rem;
     font-weight: bold;
     background-color: var(--primary-color);
     color: var(--white-color);
     width: 100%;
-    padding: 2rem;
+    padding: 1.3rem;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    height: 8rem;
+}
+
+.data-profile{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.image {
+    width: 6rem;
+    height: 6rem;
+    border: 2px solid #282B30;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cargo {
+    font-size: 1.4rem;
+}
+
+.imgName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }

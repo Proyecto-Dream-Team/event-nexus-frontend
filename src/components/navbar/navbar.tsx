@@ -3,6 +3,7 @@ import './navbar.css'
 import HomeIcon from '@mui/icons-material/Home';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LogoutIcon from '@mui/icons-material/Logout';
+
 export const NavBar = () => {
 
     const sxIcons = { color: "white" };
@@ -13,10 +14,15 @@ export const NavBar = () => {
                 <NavLink to='/home'>
                     <HomeIcon style={{ ...sxIcons, fontSize: 35 }} />
                 </NavLink>
-                <NavLink to='/login'>
+                <NavLink to='/profile'>
                     <AccountBoxIcon style={{ ...sxIcons, fontSize: 35 }}></AccountBoxIcon>
                 </NavLink>
-                <NavLink to='/register'>
+                <NavLink 
+                    to='/login' 
+                    onClick={() => {
+                        sessionStorage.clear();
+                    }}
+                >
                     <LogoutIcon style={{ ...sxIcons, fontSize: 35 }}></LogoutIcon>
                 </NavLink>
             </nav>
