@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import { ProfileFormulary } from '../../components/profileForm/profileFormulary';
-import './profile.css';
-import { serviceUser } from '../../services/serviceUser';
-import { datosForm, DatosForm } from '../../domain/datosForm';
-import { Title } from '../../components/title/title';
+import { useEffect, useState } from "react";
+import { ProfileFormulary } from "../../components/profileForm/profileFormulary";
+import { Title } from "../../components/title/title";
+import { datosForm, DatosForm } from "../../domain/datosForm";
+import { serviceUser } from "../../services/serviceUser";
+import "./profile.css";
+import { ProfileImg } from "../../components/profileImg/profileImg";
 
 export const Profile = () => {
   const [datos, setDatos] = useState<DatosForm>(datosForm);
-  const id = Number(sessionStorage.getItem('userId'));
-
+  const id = Number(sessionStorage.getItem("userId"));
+  
   const getProfile = async () => {
     try {
       const res = await serviceUser.getProfileDatos(id);
@@ -24,7 +25,8 @@ export const Profile = () => {
 
   return (
     <>
-      <Title title='Datos' />
+      <Title title="Datos" />
+      <ProfileImg></ProfileImg>
       <ProfileFormulary info={datos} />
     </>
   );
