@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./header.css";
 import { serviceUser } from "../../services/serviceUser";
 import { HeaderDto } from "../../domain/user";
@@ -28,7 +28,7 @@ export const Header = () => {
     <>
       <header className="header">
         <div className="imgName">
-          <img src={img} className="image"></img>
+          <img src={img} className="image" alt="Profile"></img>
           <div className="data-profile">
             <p>{data.name}</p>
             <p> {data.lastname} </p>
