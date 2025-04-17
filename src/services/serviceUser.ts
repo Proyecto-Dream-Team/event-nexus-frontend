@@ -23,6 +23,13 @@ class ServiceUser {
     return entity;
   }
 
+  async updateImg(img: string): Promise<void> {
+    const id = Number(sessionStorage.getItem("userId"));
+    const update = { id, img };
+    const res = await axios.put(`${URL_SERVIDOR_REST}/user/img`,update);
+    console.log(res);
+  }
+
 }
 
 

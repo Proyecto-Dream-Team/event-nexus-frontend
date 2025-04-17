@@ -8,7 +8,7 @@ class CloudinaryService {
         this.uploadPreset = "eventNexus";
     }
 
-    async uploadImage(filePath: FormData): Promise<FormData> {
+    async uploadImage(filePath: FormData): Promise<any> {
         const res = await axios.post<FormData>(
             `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`,
             filePath

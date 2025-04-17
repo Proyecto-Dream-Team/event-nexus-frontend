@@ -21,7 +21,7 @@ export const Profile = () => {
 
   const changeImg = async (img: string) => {
     try {
-      // const res = await serviceUser.updateImg(id, img);
+      await serviceUser.updateImg(img);
     } catch (error) {
       console.error("Error al cambiar la imagen:", error);
     }

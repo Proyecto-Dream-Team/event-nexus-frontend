@@ -40,16 +40,23 @@ export const ProfileImg = ({ change }: PropsImg) => {
     setTimeout(() => setVisible(false), 300);
   };
 
-  const confirmation = () => {
+  const confirmation = async () => {
     if (previewImg) {
       const data = new FormData();
-      data.append("file", previewImg);
-      data.append("upload_preset", cloudinaryService.uploadPreset); // Cambia esto por tu preset de subida
-      cloudinaryService.uploadImage(data);
+      const blob = await fetch(previewImg).then((res) => res.blob());
+      data.append("file", blob);
+      data.append("upload_preset", cloudinaryService.uploadPreset);
 
-      setImg(previewImg);
-      change(previewImg);
-      cancel();
+      try {
+        const response = await cloudinaryService.uploadImage(data);
+        const newImgUrl = response.secure_url;
+
+        setImg(newImgUrl);
+        change(newImgUrl);
+        cancel();
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
     }
   };
 
