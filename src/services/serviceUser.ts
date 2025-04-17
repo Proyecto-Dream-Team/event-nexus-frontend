@@ -14,7 +14,6 @@ class ServiceUser {
   async getHeaderData(id : number): Promise<HeaderDto> {
     const response = await axios.get(`${URL_SERVIDOR_REST}/user/header/${id}`);
     const entity = response.data;
-    sessionStorage.setItem("img", entity.img.toString());
     return HeaderDto.fromDto(entity);
   }
 
