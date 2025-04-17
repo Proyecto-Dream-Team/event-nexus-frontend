@@ -18,6 +18,12 @@ class ServiceUser {
     return HeaderDto.fromDto(entity);
   }
 
+  async updateProfile(data: DatosForm): Promise<DatosForm> {
+    const response = await axios.put<DatosForm>(`${URL_SERVIDOR_REST}/user/profile`, data);
+    const entity = DatosForm.fromDto(response.data);
+    return entity;
+  }
+
 }
 
 

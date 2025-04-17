@@ -9,6 +9,8 @@ class AuthService {
             const userData = loginResponseDTO.fromDto(res.data);
             sessionStorage.setItem("userId", userData.id.toString());
             sessionStorage.setItem("userRole", userData.role.toUpperCase());
+            sessionStorage.setItem("img", userData.img);
+
          
             return res.status < 300;
         } catch (error) {

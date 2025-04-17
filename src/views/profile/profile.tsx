@@ -19,6 +19,24 @@ export const Profile = () => {
     }
   };
 
+  const changeImg = async (img: string) => {
+    try {
+      // const res = await serviceUser.updateImg(id, img);
+    } catch (error) {
+      console.error("Error al cambiar la imagen:", error);
+    }
+  }
+
+  const changeData = async (data: DatosForm) => {
+    try {
+      await serviceUser.updateProfile(data);
+      setDatos(data);
+      console.log("Datos actualizados:", data);
+    } catch (error) {
+      console.error("Error al actualizar los datos:", error);
+    }
+  }
+
   useEffect(() => {
     getProfile();
   }, []);
@@ -26,8 +44,8 @@ export const Profile = () => {
   return (
     <>
       <Title title="Datos" />
-      <ProfileImg></ProfileImg>
-      <ProfileFormulary info={datos} />
+      <ProfileImg change={changeImg}></ProfileImg>
+      <ProfileFormulary info={datos} uploadData={changeData}/>
     </>
   );
 };

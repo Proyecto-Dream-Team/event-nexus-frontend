@@ -10,19 +10,15 @@
 .profileImg{
     width: 13rem;
     height: 13rem;
-    
-    & img{
-        border : 2px solid var(--primary-color);
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
 }
 
 .imgProfile{
-    position: relative;
+    border : 2px solid var(--primary-color);
+    width: 13rem;
+    height: 13rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
-
 
 .customUploadLabel {
     display: flex;
@@ -40,7 +36,6 @@
     border: 2px solid black;
 }
 
-
 .inputImgProfile {
     display: none;
 }
@@ -55,6 +50,10 @@
     animation: fade-in 0.3s ease-in-out forwards;
 }
 
+.fade-out {
+    animation: fade-out 0.3s ease-in-out forwards;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -62,10 +61,6 @@
     to {
         opacity: 1;
     }
-}
-
-.fade-out {
-    animation: fade-out 0.3s ease-in-out forwards;
 }
 
 @keyframes fade-out {
