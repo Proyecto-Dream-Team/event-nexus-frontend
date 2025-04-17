@@ -10,7 +10,7 @@ class AuthService {
             const userData = loginResponseDTO.fromDto(res.data);
             sessionStorage.setItem("userId", userData.id.toString());
             sessionStorage.setItem("userRole", userData.role.toUpperCase());
-            sessionStorage.setItem("img", userData.img.toString()); 
+            sessionStorage.setItem("img", userData.img); 
             
             // guardar en context
             console.log("Login successful:", userData);

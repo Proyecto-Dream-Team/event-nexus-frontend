@@ -3,16 +3,16 @@ import FlipCameraIosOutlinedIcon from "@mui/icons-material/FlipCameraIosOutlined
 import "./profileImg.css";
 import { useState } from "react";
 import { useProfileImg } from "../../context/contextImg";
+import { cloudinaryService } from "../../services/cloudService";
 
 interface PropsImg {
   change: (img: string) => void;
 }
 
 export const ProfileImg = ({ change }: PropsImg) => {
-  
   const { img, setImg } = useProfileImg();
   const [previewImg, setPreviewImg] = useState<string>("");
-  
+
   const [confirm, setConfirm] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -21,7 +21,9 @@ export const ProfileImg = ({ change }: PropsImg) => {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setPreviewImg(reader.result as string); /* metodo preview para ver como qeda */
+        setPreviewImg(
+          reader.result as string
+        ); /* metodo preview para ver como qeda */
       };
       reader.readAsDataURL(file);
     }
@@ -40,8 +42,13 @@ export const ProfileImg = ({ change }: PropsImg) => {
 
   const confirmation = () => {
     if (previewImg) {
-      setImg(previewImg); 
-      change(previewImg); 
+      const data = new FormData();
+      data.append("file", previewImg);
+      data.append("upload_preset", cloudinaryService.uploadPreset); // Cambia esto por tu preset de subida
+      cloudinaryService.uploadImage(data);
+
+      setImg(previewImg);
+      change(previewImg);
       cancel();
     }
   };
@@ -49,7 +56,7 @@ export const ProfileImg = ({ change }: PropsImg) => {
   return (
     <div className="containerImg">
       <div className="profileImg">
-        <img className="imgProfile" src={previewImg || img } alt="" />
+        <img className="imgProfile" src={previewImg || img} alt="" />
         <label htmlFor="fileUpload" className="customUploadLabel">
           <FlipCameraIosOutlinedIcon
             style={{ fontSize: "2.5rem", fill: "black" }}
