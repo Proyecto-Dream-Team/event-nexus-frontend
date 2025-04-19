@@ -18,7 +18,7 @@ export const CreateEvent = () => {
         setTitle(title)
         setDate(date)
         setDescription(description)
-
+        //FALTA IMPLEMENTACION
 
     }
     
