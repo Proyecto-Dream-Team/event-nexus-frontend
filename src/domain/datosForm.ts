@@ -2,17 +2,17 @@ export class DatosForm {
     id: number;
     nombre: string;
     apellido: string;
-    telefono: string;
+    phone: string;
     email: string;
-    direccion: string;
+    address : string;
 
     constructor(data : any) {
         this.id = data.id;
         this.nombre = data.nombre;
         this.apellido = data.apellido;
-        this.telefono = data.telefono;
+        this.phone = data.phone;
         this.email = data.email;
-        this.direccion = data.direccion;
+        this.address  = data.address ;
     }
 
 
@@ -21,11 +21,12 @@ export class DatosForm {
             id: data.id,
             nombre: data.name,
             apellido: data.lastName,
-            telefono: data.phone,
+            phone: data.phone,
             email: data.email,
-            direccion: data.address,
+            address : data.address,
         };
     }
+
 }
 
 export class LoginForm{

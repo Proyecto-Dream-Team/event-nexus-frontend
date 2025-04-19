@@ -15,13 +15,12 @@ export class LoginRequestDTO {
 export class LoginResponseDTO {
   public id: number = 0;
   public role: string = "";
-  public img: string = "";
-  public name: string = "";
-  public lastname: string = "";
+  public img: string = "";  
 
-  constructor(id: number, role: string) {
+  constructor(id: number, role: string, img: string) {
     this.id = id;
     this.role = role;
+    this.img = img;
   }
 
   fromDto(data: any) {
@@ -29,11 +28,9 @@ export class LoginResponseDTO {
       id: data.id,
       role: data.role,
       img: data.img,
-      name: data.name,
-      lastname: data.lastname,
     };
   }
 
 }
 
-export const loginResponseDTO = new LoginResponseDTO(0, "");
+export const loginResponseDTO = new LoginResponseDTO(0, "", "");
