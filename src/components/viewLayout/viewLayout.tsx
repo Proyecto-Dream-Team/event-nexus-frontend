@@ -4,6 +4,7 @@ import { NavBar } from "../navbar/navbar";
 import "./viewLayout.css";
 
 export const ViewLayout = () => {
+
   return (
     <>
       <Header></Header>
