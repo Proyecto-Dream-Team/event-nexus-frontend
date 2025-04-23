@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 
 export const ModuleCard = ( {value} : {value : Module} ) => {
 
-    const mapRoutes = { "eventos":"events", "información":"noDefinido"}
+    const mapRoutes = { "eventos":"all-events", "información":"noDefinido"}
     const nav = useNavigate()
+   
     const navigate = () => {
         // quiero splitear y quedarme con la primer palabra del modulo
         const mapValue = value.name.split(" ")[0].toLowerCase()
