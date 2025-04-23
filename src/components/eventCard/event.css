@@ -1,8 +1,9 @@
 .bodyCard{
-   margin: 0 auto;
+    margin: 0 auto 2rem auto;
     width: 90%;
     background-color: bisque;
     border-radius: 1rem;
+
 }
 
 .active{

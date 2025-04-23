@@ -7,12 +7,15 @@ export const Events = () => {
   const isVisible = location.pathname === "/module-events/all-events";
 
   return isVisible ? (
-    <EventCard info={event}
-    
-    />
+    <>
+      <EventCard info={event} />
+      <EventCard info={event} />
+      <EventCard info={event} />
+    </>
   ) : (
-    <EventCard info={myEvent}
-    
-    />
+    <>
+      <EventCard info={myEvent} />
+      <EventCard info={myEvent} />
+    </>
   );
 };
