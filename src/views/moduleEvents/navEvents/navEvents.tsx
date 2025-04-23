@@ -16,14 +16,14 @@ export const NavEvents = () => {
         <>
             <nav className = "navegacion" >
                 <a 
-                    className= {location.pathname === '/module-events/events' ? 'activo' : ''}
+                    className= {location.pathname === '/module-events/all-events' ? 'activo' : ''}
                     onClick={() => navigate('/module-events/all-events')}
                 >
                     Eventos
                 </a>
 
                 <a 
-                    className = {location.pathname === '/module-events/participate' ? 'activo' : ''}
+                    className = {location.pathname === '/module-events/my-events' ? 'activo' : ''}
                     onClick={() => navigate('/module-events/my-events')}
                 >
                     Participo

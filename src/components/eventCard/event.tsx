@@ -1,25 +1,13 @@
 import { useState } from "react";
-import { SesionStorage } from "../../domain/user";
+import { EventDto } from "../../domain/createEvent";
 import { ButtonApp } from "../buttons/button";
 import "./event.css";
 
 interface EventProps {
-  user: SesionStorage;
-  time: string;
-  title: string;
-  description: string;
-  participants: number;
-  isActive: boolean;
+  info : EventDto;
 }
 
-export const Event = ({
-  user,
-  time,
-  title,
-  description,
-  participants,
-  isActive,
-}: EventProps) => {
+export const EventCard = ({info}: EventProps) => {
   const [isOpen, ChangeOpen] = useState(false);
 
   const HandleOpen = () => {
@@ -45,23 +33,23 @@ export const Event = ({
         ></img>
         <div className="title">
           <h3>
-            {user.name} {user.lastname}
+            {info.nombre} {info.apellido}
           </h3>
-          <h4>Fecha: {time}</h4>
-          <h4>Titulo: {title}</h4>
-          <h4>Participantes: {participants}</h4>
+          <h4>Fecha: {info.fecha.toLocaleDateString()}</h4>
+          <h4>Titulo: {info.title}</h4>
+          <h4>Participantes: {info.participates}</h4>
         </div>
         <img className="arrow" src={ArrowOpen()} onClick={HandleOpen}></img>
       </div>
 
       {isOpen && (
         <div className="descriptionCard">
-          <h4 className="description">{description}</h4>
+          <h4 className="description">{info.description}</h4>
           <div className="buttonCardEvent">
             <ButtonApp
-              label={isActive ? "Salir" : "Participar"}
+              label={info.isActive ? "Salir" : "Participar"}
               method={HandleOpen}
-              isCancel={isActive}
+              isCancel={info.isActive}
             />
           </div>
         </div>
