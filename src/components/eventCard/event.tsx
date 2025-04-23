@@ -23,7 +23,7 @@ export const EventCard = ({info}: EventProps) => {
   };
 
   return (
-    <div className="bodyCard">
+    <div className={`bodyCard ${!info.isActive ? "active" : ""}`}>
       <div className="user">
         <img
           className="profile"

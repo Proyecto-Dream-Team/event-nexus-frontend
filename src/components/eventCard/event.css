@@ -4,6 +4,10 @@
     background-color: bisque;
     border-radius: 1rem;
 }
+
+.active{
+    background-color: purple;
+}
 .user{
     display: flex;
     width: 100%;
