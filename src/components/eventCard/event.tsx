@@ -47,9 +47,9 @@ export const EventCard = ({info}: EventProps) => {
           <h4 className="description">{info.description}</h4>
           <div className="buttonCardEvent">
             <ButtonApp
-              label={info.isActive ? "Salir" : "Participar"}
+              label={!info.isActive ? "Salir" : "Participar"}
               method={HandleOpen}
-              isCancel={info.isActive}
+              isCancel={!info.isActive}
             />
           </div>
         </div>
