@@ -6,7 +6,6 @@ import { Profile } from './views/profile/profile';
 import { ModuleEvents } from './views/moduleEvents/moduleEvents';
 import { CreateEvent } from './views/moduleEvents/createEvent/createEvent';
 import { Events } from './views/moduleEvents/events/events';
-import { EventsCopy } from './views/moduleEvents/events copy/events';
 
 
 export const AppRouter = () => {
@@ -19,9 +18,9 @@ export const AppRouter = () => {
                     <Route element={<Home /> } path = 'home' ></Route>
                     <Route element={<Profile /> } path = 'profile' ></Route>
                     <Route element={<ModuleEvents/>} path = 'module-events'>
-                        <Route element= {<Events/>} path = 'events' ></Route>
-                        <Route element= {<EventsCopy/>} path = 'participate' ></Route>
-                        <Route element = {<CreateEvent/>} path = 'create' ></Route>
+                        <Route element= {<Events/>} path = 'all-events' ></Route>
+                        <Route element= {<Events/>} path = 'my-events' ></Route>
+                        <Route element = {<CreateEvent/>} path = 'create-event' ></Route>
                     </Route>
                 </Route>
                 <Route path="/" element={<Navigate to="/login" />}></Route>{/* por defecto me lleva al login */}
