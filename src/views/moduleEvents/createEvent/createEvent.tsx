@@ -15,7 +15,6 @@ export const CreateEvent = () => {
     const create = async () => {
         const { title , date , description } = getValues()
 
-
         const eventCreated  = new CreateEventDTO(userId,[],date,title,description)
         try {
             await moduleService.create(eventCreated)
