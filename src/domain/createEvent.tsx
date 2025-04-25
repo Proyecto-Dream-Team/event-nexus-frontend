@@ -24,35 +24,37 @@ export class EventDto{
     id: number
     creatorName:string
     creatorImage: string
+    creatorId: number
     dateFinished: Date
     title: string
     description: string
     isActive: boolean 
     numberOfParticipants: number
-    img: string
+    participantsIds: number[]
 
     constructor(
       id: number,
       creatorName:string,
       creatorImage: string,
+      creatorId: number,
       dateFinished: Date,
       title: string,
       description: string,
       isActive: boolean,
       participantsAmount: number,
-      img: string
+      participantsIds: number[],
     ) {
 
         this.id = id
         this.creatorName = creatorName
         this.creatorImage = creatorImage
+        this.creatorId = creatorId
         this.dateFinished = dateFinished
         this.title = title
         this.description = description
         this.isActive = isActive
         this.numberOfParticipants = participantsAmount
-        this.img = img
-
+        this.participantsIds = participantsIds
     }
 
 }

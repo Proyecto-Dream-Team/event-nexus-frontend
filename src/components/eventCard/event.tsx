@@ -10,6 +10,9 @@ import { moduleService } from "../../services/moduleService";
 
 export const EventCard = ({event}:{event:EventDto}) => {
   const [isOpen, ChangeOpen] = useState(false);
+  const userId = Number(sessionStorage.getItem("userId"));
+
+  const isCreator = event.creatorId === userId || event.participantsIds.includes(userId);
 
   const HandleOpen = () => {
     ChangeOpen(!isOpen);
@@ -58,17 +61,17 @@ export const EventCard = ({event}:{event:EventDto}) => {
         <div className="descriptionCard">
           <h4 className="description">{event.description}</h4>
           <div className="buttonCardEvent">
-            {event.isActive ? (
-              <ButtonApp
-                label="Participar"
-                method={joinEvent}
-                isCancel={false}
-              />
-            ) : (
+            {isCreator ? (
               <ButtonApp
                 label="Salir"
                 method={leaveEvent}
                 isCancel={true}
+              />
+            ) : (
+              <ButtonApp
+                label="Unirse"
+                method={joinEvent}
+                isCancel={false}
               />
             )}
           </div>
