@@ -25,22 +25,13 @@ class ModuleService {
 
     async joinEvent(eventId:number) {
         const employeeId = Number(sessionStorage.getItem('userId'))
-        const response = await axios.post(`${URL_SERVIDOR_REST}/event/join`,
-            {param:{
-                employeeId:employeeId,
-                eventId:eventId
-            }}
-        );
+        const response = await axios.post(`${URL_SERVIDOR_REST}/event/join?employeeId=${employeeId}&eventId=${eventId}`);
         return response.data
     }
 
     async leaveEvent(eventId:number) {
         const employeeId = Number(sessionStorage.getItem('userId'))
-        const response = await axios.post(
-            `${URL_SERVIDOR_REST}/event/leave`,
-            employeeId,
-            eventId
-        );
+        const response = await axios.post(`${URL_SERVIDOR_REST}/event/leave?employeeId=${employeeId}&eventId=${eventId}`);
         return response.data
     }
 }
