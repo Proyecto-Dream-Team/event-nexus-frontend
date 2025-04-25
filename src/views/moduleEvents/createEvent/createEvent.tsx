@@ -1,19 +1,28 @@
 import { useForm } from "react-hook-form";
 import { InputApp } from "../../../components/input/input"
-import { useState } from "react";
 import './createEvent.css'
 import { ButtonApp } from "../../../components/buttons/button";
 import { CreateEventDTO } from "../../../domain/createEvent";
+import { moduleService } from "../../../services/moduleService";
 export const CreateEvent = () => {
     
+    const userId = Number(sessionStorage.getItem('userId'))
+
     const {register,handleSubmit,getValues,formState: { errors }} = useForm({
         mode: "all",
     });
 
-    const create = () => {
+    const create = async () => {
         const { title , date , description } = getValues()
-        const eventCreated : CreateEventDTO = new CreateEventDTO(title,date,description)
 
+
+        const eventCreated  = new CreateEventDTO(userId,[],date,title,description)
+        try {
+            await moduleService.create(eventCreated)
+            console.log("creado con exito")
+        } catch(e : any){
+            console.log(e.message)
+        }
         
     }
     
@@ -31,7 +40,7 @@ export const CreateEvent = () => {
                 />
             <InputApp
                 label="Fecha"
-                type="date"
+                type="datetime-local"
                 register={register("date", {
                     required: "La fecha es obligatoria",
                 })}

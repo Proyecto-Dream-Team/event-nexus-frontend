@@ -1,13 +1,24 @@
 export class CreateEventDTO {
-    title : string
-    date  : Date
-    description: string
-    constructor(title : string , date : Date , description : string ){
-        this.title = title
-        this.date  = date
-        this.description = description
+    creatorId: number;
+    participantsIds: number[];
+    date: Date;
+    name: string;
+    description: string;
+  
+    constructor(
+      creatorId: number,
+      participantsIds: number[],
+      date: Date,
+      name: string,
+      description: string,
+    ) {
+      this.creatorId = creatorId;
+      this.participantsIds = participantsIds;
+      this.name = name;
+      this.description = description;
+      this.date = date;
     }
-}
+  }
 
 export class EventDto{
     id: number

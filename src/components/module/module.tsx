@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const ModuleCard = ( {value} : {value : Module} ) => {
 
-    const mapRoutes = { "eventos":"all-events", "información":"noDefinido"}
+    const mapRoutes = { "events":"all-events", "directives":"noDefinido"}
     const nav = useNavigate()
    
     const navigate = () => {
