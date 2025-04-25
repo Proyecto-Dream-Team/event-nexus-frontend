@@ -14,8 +14,20 @@ class ServiceUser {
   async getHeaderData(id : number): Promise<HeaderDto> {
     const response = await axios.get(`${URL_SERVIDOR_REST}/user/header/${id}`);
     const entity = response.data;
-    sessionStorage.setItem("img", entity.img.toString());
     return HeaderDto.fromDto(entity);
+  }
+
+  async updateProfile(data: DatosForm): Promise<DatosForm> {
+    const response = await axios.put<DatosForm>(`${URL_SERVIDOR_REST}/user/profile`, data);
+    const entity = DatosForm.fromDto(response.data);
+    return entity;
+  }
+
+  async updateImg(img: string): Promise<void> {
+    const id = Number(sessionStorage.getItem("userId"));
+    const update = { id, img };
+    const res = await axios.put(`${URL_SERVIDOR_REST}/user/img`,update);
+    console.log(res);
   }
 
 }

@@ -5,8 +5,13 @@ import { InputApp } from "../input/input";
 import { ButtonApp } from "./../buttons/button";
 import './profileFormulary.css';
 
-export const ProfileFormulary = ({ info }: { info: DatosForm }) => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+interface PropsFormulary {
+  info: DatosForm;
+  uploadData: (data: DatosForm) => void;
+}
+
+export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
+  const { register, handleSubmit, formState: { errors }, reset} = useForm({
     mode: "all",
     defaultValues: info,
   });
@@ -15,16 +20,22 @@ export const ProfileFormulary = ({ info }: { info: DatosForm }) => {
     reset(info);
   }, [info, reset]);
 
-  const acept = () => {
-    console.log('aceptar');
+  const onclick = (data: DatosForm) => {
+    
+    if (JSON.stringify(data) !== JSON.stringify(info)) {
+      uploadData(data);
+    } else {
+      console.log("No hay cambios en los datos.");
+    }
   };
 
   const cancel = () => {
-    console.log('cancelar');
+    reset(info);
   };
 
+
   return (
-    <form className='profileFormulary' onSubmit={handleSubmit(acept)}>
+    <form className='profileFormulary' >
       <InputApp
         label="Nombre"
         type="text"
@@ -44,7 +55,7 @@ export const ProfileFormulary = ({ info }: { info: DatosForm }) => {
       <InputApp
         label="Telefono"
         type="number"
-        register={register("telefono", {
+        register={register("phone", {
           required: "El teléfono es obligatorio",
           pattern: {
             value: /^[0-9]{10}$/,
@@ -52,7 +63,7 @@ export const ProfileFormulary = ({ info }: { info: DatosForm }) => {
           }
         })}
         readonly={false}
-        error={errors.telefono?.message || ""}
+        error={errors.phone?.message || ""}
       />
 
       <InputApp
@@ -72,7 +83,7 @@ export const ProfileFormulary = ({ info }: { info: DatosForm }) => {
       <InputApp
         label="Direccion"
         type="text"
-        register={register("direccion", {
+        register={register("address", {
           required: "La dirección es obligatoria",
           minLength: {
             value: 5,
@@ -80,12 +91,12 @@ export const ProfileFormulary = ({ info }: { info: DatosForm }) => {
           }
         })}
         readonly={false}
-        error={errors.direccion?.message || ""}
+        error={errors.address?.message || ""}
       />
 
       <div className="buttons">
-        <ButtonApp label="Cancelar" method={cancel} isCancel={true} />
-        <ButtonApp label="Aceptar" method={acept} isCancel={false} />
+        <ButtonApp label="Cancelar" method={handleSubmit(cancel)} isCancel={true} />
+        <ButtonApp label="Aceptar" method={handleSubmit(onclick)} isCancel={false} />
       </div>
     </form>
   );
