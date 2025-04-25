@@ -23,6 +23,7 @@ export class CreateEventDTO {
 export class EventDto{
     id: number
     creatorName:string
+    creatorImage: string
     dateFinished: Date
     title: string
     description: string
@@ -33,6 +34,7 @@ export class EventDto{
     constructor(
       id: number,
       creatorName:string,
+      creatorImage: string,
       dateFinished: Date,
       title: string,
       description: string,
@@ -43,6 +45,7 @@ export class EventDto{
 
         this.id = id
         this.creatorName = creatorName
+        this.creatorImage = creatorImage
         this.dateFinished = dateFinished
         this.title = title
         this.description = description

@@ -43,9 +43,7 @@ export const EventCard = ({event}:{event:EventDto}) => {
       <div className="user">
         <img
           className="profile"
-          src={
-            "https://www.giantbomb.com/a/uploads/square_medium/46/462814/3222927-6826564307-latest.jpg"
-          }
+          src={event.creatorImage}
         ></img>
         <div className="title">
           <h3>{event.creatorName}</h3>
@@ -60,13 +58,19 @@ export const EventCard = ({event}:{event:EventDto}) => {
         <div className="descriptionCard">
           <h4 className="description">{event.description}</h4>
           <div className="buttonCardEvent">
-            {/* <ButtonApp
-              label={!event.isActive ? "Salir" : "Participar"}
-              method={HandleOpen}
-              isCancel={!event.isActive}
-            /> */}
-            <button onClick={joinEvent}>Participar</button>
-            <button onClick={leaveEvent}>Abandonar</button>
+            {event.isActive ? (
+              <ButtonApp
+                label="Participar"
+                method={joinEvent}
+                isCancel={false}
+              />
+            ) : (
+              <ButtonApp
+                label="Salir"
+                method={leaveEvent}
+                isCancel={true}
+              />
+            )}
           </div>
         </div>
       )}
