@@ -2,17 +2,25 @@ import { useState } from "react";
 import { EventDto } from "../../domain/createEvent";
 import { ButtonApp } from "../buttons/button";
 import "./event.css";
+import { moduleService } from "../../services/moduleService";
 
-interface EventProps {
-  info : EventDto;
-}
+// interface EventProps {
+//   info : EventDto;
+// }
 
-export const EventCard = ({info}: EventProps) => {
+export const EventCard = ({event}:{event:EventDto}) => {
   const [isOpen, ChangeOpen] = useState(false);
 
   const HandleOpen = () => {
     ChangeOpen(!isOpen);
   };
+
+  function joinEvent(){
+    moduleService.joinEvent(event.id)
+  }
+  function leaveEvent(){
+    moduleService.leaveEvent(event.id)
+  }
 
   const ArrowOpen = () => {
     if (isOpen) {
@@ -22,8 +30,16 @@ export const EventCard = ({info}: EventProps) => {
     }
   };
 
+  function formatDate(dateToFormat:Date){
+    const splitedDate = dateToFormat.toString().split('T')
+    const date = splitedDate[0]
+    const time = splitedDate[1].split(':')
+    const hour = time[0]+':'+time[1]
+
+    return date + ' | ' + hour
+  }
   return (
-    <div className={`bodyCard ${!info.isActive ? "active" : ""}`}>
+    <div className={`bodyCard ${!event.isActive ? "active" : ""}`}>
       <div className="user">
         <img
           className="profile"
@@ -32,25 +48,25 @@ export const EventCard = ({info}: EventProps) => {
           }
         ></img>
         <div className="title">
-          <h3>
-            {info.nombre} {info.apellido}
-          </h3>
-          <h4>Fecha: {info.fecha.toLocaleDateString()}</h4>
-          <h4>Titulo: {info.title}</h4>
-          <h4>Participantes: {info.participates}</h4>
+          <h3>{event.creatorName}</h3>
+          <h4>Fecha: {formatDate(event.dateFinished)}</h4>
+          <h4>Titulo: {event.title}</h4>
+          <h4>Participantes: {event.numberOfParticipants}</h4>
         </div>
         <img className="arrow" src={ArrowOpen()} onClick={HandleOpen}></img>
       </div>
 
       {isOpen && (
         <div className="descriptionCard">
-          <h4 className="description">{info.description}</h4>
+          <h4 className="description">{event.description}</h4>
           <div className="buttonCardEvent">
-            <ButtonApp
-              label={!info.isActive ? "Salir" : "Participar"}
+            {/* <ButtonApp
+              label={!event.isActive ? "Salir" : "Participar"}
               method={HandleOpen}
-              isCancel={!info.isActive}
-            />
+              isCancel={!event.isActive}
+            /> */}
+            <button onClick={joinEvent}>Participar</button>
+            <button onClick={leaveEvent}>Abandonar</button>
           </div>
         </div>
       )}
