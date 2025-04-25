@@ -3,6 +3,7 @@ import { EventCard } from "../../../components/eventCard/event";
 import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
 import { useEffect, useState } from "react";
 import { moduleService } from "../../../services/moduleService";
+import { Title } from "../../../components/title/title";
 
 export const Events = () => {
   const location = useLocation();
@@ -30,45 +31,31 @@ export const Events = () => {
     getEvents();
   }, [showAllEvents]);
 
-  return <>
-    {showAllEvents ?
-      events?.map((event, index) => (
-        <EventCard
-          key={index}
-          event={event}>
-        </EventCard>
-      ))
-      :
-      <>
-        <h3>Eventos creados</h3>
-        {eventsEmployee?.createdEvents.map((event, index) => (
-          <EventCard key={index} event={event}/>
-        ))}
-        <h3>Eventos que me invitaron</h3>
-        {eventsEmployee?.invitedEvents.map((event, index) => (
-          <EventCard key={index} event={event}/>
-        ))}
-      </>
-    }
+  return (
+    <>
+      {showAllEvents ? (
+        <>
+          <Title title={"Todos los eventos"} />
+          {events?.map((event, index) => (
+            <EventCard
+              key={event.id || index}
+              event={event as EventDto}
+            />
+          ))}
+        </>
+      ) : (
+        <>
+          <Title title={"Eventos creados"} ></Title>
+          {eventsEmployee?.createdEvents.map((event, index) => (
+            <EventCard key={index} event={event}/>
+          ))}
 
-  </>
-
-  // return isVisible ? (
-  //   <>
-  //     {/* <EventCard info={event} />
-  //     <EventCard info={event} />
-  //     <EventCard info={event} /> */}
-  //     {events?.map((event, index) => (
-  //       <EventCard 
-  //         key={index} 
-  //         event={event}>
-  //       </EventCard>
-  //     ))}
-  //   </>
-  // ) : (
-  //   <>
-  //     <EventCard info={myEvent} />
-  //     <EventCard info={myEvent} />
-  //   </>
-  // );
+          <Title title={"Invitaciones"} ></Title>
+          {eventsEmployee?.invitedEvents.map((event, index) => (
+            <EventCard key={index} event={event}/>
+          ))}
+        </>
+      )}
+    </>
+  );
 };

@@ -21,9 +21,9 @@
 .profile{
     width: 8rem;
     height: 10rem;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    padding: 1rem;
+
+
 }
 .arrow{
     width: 5rem;
