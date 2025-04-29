@@ -35,18 +35,24 @@ export const Login = () => {
     const { user, password } = getValues(); 
     setUss(user);
     setPass(password);
-
+  
     try {
       const credentials = LoginRequestDTO.fromDto(user, password);
-      await authService.loginClient(credentials);
-      handleNavigation();
+      const loginSuccess = await authService.loginClient(credentials);
       
-      const img = sessionStorage.getItem("img") || ""; 
-      setImg(img);
+      if (loginSuccess) {
+        handleNavigation();
+        const img = sessionStorage.getItem("img") || ""; 
+        setImg(img);
+      } else {
+        console.error("Credenciales inválidas");
+        // Mostrar algún error al usuario si querés
+      }
     } catch (error) {
-      console.log(error as string);
+      console.log("Error al hacer login:", error);
     }
   };
+  
 
   return (
     <>

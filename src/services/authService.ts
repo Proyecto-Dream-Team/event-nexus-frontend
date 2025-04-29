@@ -8,11 +8,11 @@ class AuthService {
         try {
             const res = await axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/auth/login`, data);
             const userData = loginResponseDTO.fromDto(res.data);
+            console.log(res.status);
             sessionStorage.setItem("userId", userData.id.toString());
             sessionStorage.setItem("userRole", userData.role.toUpperCase());
             sessionStorage.setItem("img", userData.img);
-            
-            return res.status < 300;
+            return res.status === 200;
         } catch (error) {
             console.error("Login failed:", error);
             return false;
