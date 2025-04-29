@@ -60,7 +60,7 @@ export const Login = () => {
         {Array.from({ length: 40 }).map((_, index) => (
             <div
             key={index}
-            className="shooting_star"
+            className="hexagon"
             style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
