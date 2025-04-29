@@ -1,21 +1,31 @@
 
-.login-box{
-    background-color: var(--primary-color);
-    border-radius: 8%;
-    width: 90vw;
-    height: 55vh;
+.login-box {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin : 0 auto; 
+    margin: 0 auto;
+    z-index: 10;
+    position: relative; /* Importante para aplicar z-index */
+
+  }
+
+.loginFormulary {
+    width: 30rem;
+    height: 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    backdrop-filter: blur(5px); /* Efecto de difuminación */
+    background-color: var(--primary-color);
+    background-color: rgba(218, 226, 204, 0.363); /* Fondo semitransparente */
 }
 
 .buttonsLogin{
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
-.titleLogin{
-    margin-top: 8rem;
-    margin-bottom: 5rem;
-}
+

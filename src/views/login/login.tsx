@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ButtonApp } from "../../components/buttons/button";
@@ -32,17 +32,17 @@ export const Login = () => {
   };
 
   const handleLogin = async () => {
-    const { user, password } = getValues(); 
+    const { user, password } = getValues();
     setUss(user);
     setPass(password);
-  
+
     try {
       const credentials = LoginRequestDTO.fromDto(user, password);
       const loginSuccess = await authService.loginClient(credentials);
-      
+
       if (loginSuccess) {
         handleNavigation();
-        const img = sessionStorage.getItem("img") || ""; 
+        const img = sessionStorage.getItem("img") || "";
         setImg(img);
       } else {
         console.error("Credenciales inválidas");
@@ -52,16 +52,25 @@ export const Login = () => {
       console.log("Error al hacer login:", error);
     }
   };
-  
 
   return (
     <>
-      <div className="titleLogin">
-        <Title title={"Event Nexus"} />
-      </div>
-
       <div className="login-box">
-        <form className="profileFormulary">
+      <div className="nightFondo">
+        {Array.from({ length: 30 }).map((_, index) => (
+            <div
+            key={index}
+            className="shooting_star"
+            style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 5}s`,
+            }}
+            ></div>
+        ))}
+      </div>
+        <form className="loginFormulary">
+          <Title title={"Event Nexus"} />
           <InputApp
             label="Usuario"
             type="text"
