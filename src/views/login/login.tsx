@@ -53,18 +53,78 @@ export const Login = () => {
     }
   };
 
+  const hexPath = (cx: number, cy: number, size: number) => {
+    const angle_deg = 60;
+    const angle_rad = Math.PI / 180 * angle_deg;
+    const points = Array.from({ length: 6 }).map((_, i) => {
+      const x = cx + size * Math.cos(angle_rad * i);
+      const y = cy + size * Math.sin(angle_rad * i);
+      return `${x},${y}`;
+    });
+    return points.join(" ");
+  };
+
+  const size = 18;
+
+  // Coordenadas para la disposición deseada
+  const positions = [
+    { cx: 89, cy: 45 },   // Top hexagon
+    { cx: 59, cy: 60 },   // Bottom left
+    { cx: 90, cy: 78 },  // Bottom right
+    { cx: 60, cy: 93 },  // Final center-bottom
+  ];
+
   return (
     <>
       <div className="login-box">
+      {/* <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+      
+        {positions.map((pos, idx) => (
+          <polygon
+            key={idx}
+            points={hexPath(pos.cx, pos.cy, size)}
+            stroke="#0C2A4C"
+            strokeWidth="1"
+            fill="none"
+            className={`glow-polygon-${idx}`}
+            style={{ zIndex: 10, position: "relative" }}
+          />
+        ))}
+            </svg> */}
+            {/* <style>
+            {`
+            ${positions.map(
+            (_, idx) => `
+            .glow-polygon-${idx} {
+              animation: loaderAnimation-${idx} 0.5s linear ${idx *0.5}s forwards;
+              z-index: 4;
+            }
+
+            @keyframes loaderAnimation-${idx} {
+              0% {
+              stroke-dasharray: 1, 100;
+              }
+              50% {
+              stroke-dasharray: 50, 100;
+              }
+              100% {
+                stroke-dasharray: 1, 100;
+                fill: #0C2A4C;
+              }
+            }
+            `
+            ).join("\n")}
+            `}
+            </style> */}
       <div className="nightFondo">
-        {Array.from({ length: 40 }).map((_, index) => (
+        {Array.from({ length: 30 }).map((_, index) => (
             <div
             key={index}
             className="hexagon"
             style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 10}s`,
+            animationDelay: `${Math.random() * 5}s`,
             }}
             ></div>
         ))}
@@ -90,6 +150,8 @@ export const Login = () => {
             error={errors.password?.message || ""}
             readonly={false}
           />
+
+          <h2>Olvidaste tu contraseña?</h2>
 
           <div className="buttonsLogin">
             <ButtonApp

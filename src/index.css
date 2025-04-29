@@ -8,7 +8,7 @@ html {
 }
 
 :root {
-  --primary-color: #7289DA;
+  --primary-color: #6582b9;
   --white-color: #ffffff;
   --black-color: #000000;
   --background-color: linear-gradient(to bottom, #282B30, #424549);
@@ -60,13 +60,13 @@ body {
     7% 75%,
     7% 25%
   );
-  animation: fadeHex 4s ease-in-out infinite;
+  animation: fadeHex 3s ease-in-out infinite;
 }
 
 @keyframes fadeHex {
   0%, 100% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.5);
   }
   50% {
     opacity: 1;
