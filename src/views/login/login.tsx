@@ -57,14 +57,14 @@ export const Login = () => {
     <>
       <div className="login-box">
       <div className="nightFondo">
-        {Array.from({ length: 30 }).map((_, index) => (
+        {Array.from({ length: 40 }).map((_, index) => (
             <div
             key={index}
             className="shooting_star"
             style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
+            animationDelay: `${Math.random() * 10}s`,
             }}
             ></div>
         ))}
