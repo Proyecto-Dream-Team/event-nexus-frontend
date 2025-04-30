@@ -3,13 +3,11 @@ import React, { createContext, useContext, useState } from "react";
 import "./useLoader.css";
 
 type LoaderContextType = {
-  isLoading: boolean;
   setIsLoading: (val: boolean) => void;
 };
 
 // Creamos el contexto
 const LoaderContext = createContext<LoaderContextType>({
-  isLoading: false,
   setIsLoading: () => {},
 });
 
@@ -21,7 +19,7 @@ export const LoaderProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <LoaderContext.Provider value={{ isLoading, setIsLoading }}>
+    <LoaderContext.Provider value={{ setIsLoading }}>
       {isLoading && (
         <div className="borderCircular">
           <div className="glow-polygon-0" />
