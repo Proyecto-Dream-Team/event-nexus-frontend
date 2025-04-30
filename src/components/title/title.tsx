@@ -2,7 +2,7 @@ import { Divider } from "@mui/material";
 import "./title.css";
 
 export const dividerStyles = {
-    backgroundColor: "#ffffff",
+    backgroundColor: "var(--title-color)",
     height: "2px",
     margin: "0 4rem 2rem 4rem",
 };

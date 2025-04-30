@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ButtonApp } from "../../components/buttons/button";
+import { HexagonBackground } from "../../components/hexagonBackground/hexagonBackg";
 import { InputApp } from "../../components/input/input";
 import { Title } from "../../components/title/title";
-import { loginForm, LoginForm } from "../../domain/datosForm";
+import { useProfileImg } from "../../context/contextImg";
+import { LoginForm } from "../../domain/datosForm";
+import { LoginRequestDTO } from "../../domain/Login";
 import { authService } from "../../services/authService";
 import "./login.css";
-import { LoginRequestDTO } from "../../domain/Login";
-import { useProfileImg } from "../../context/contextImg";
+import { UseLoader } from "../../context/loader/useLoader";
 
 export const Login = () => {
   const [us, setUss] = useState("");
@@ -21,10 +23,13 @@ export const Login = () => {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors }, reset,
   } = useForm<LoginForm>({
     mode: "all",
-    defaultValues: loginForm,
+    defaultValues: {
+      user: "",
+      password: "",
+    },
   });
 
   const handleNavigation = () => {
@@ -32,30 +37,38 @@ export const Login = () => {
   };
 
   const handleLogin = async () => {
-    const { user, password } = getValues(); 
+    const { user, password } = getValues();
     setUss(user);
     setPass(password);
 
     try {
       const credentials = LoginRequestDTO.fromDto(user, password);
-      await authService.loginClient(credentials);
-      handleNavigation();
-      
-      const img = sessionStorage.getItem("img") || ""; 
-      setImg(img);
+      const loginSuccess = await authService.loginClient(credentials);
+
+      if (loginSuccess) {
+        const img = sessionStorage.getItem("img") || "";
+        setImg(img);
+        reset();
+        handleNavigation();
+      } else{
+        console.log("Error al hacer login: Credenciales incorrectas");
+        reset();
+      }
     } catch (error) {
-      console.log(error as string);
+      console.log("Error al hacer login:", error);
     }
   };
 
+  
+
   return (
     <>
-      <div className="titleLogin">
-        <Title title={"Event Nexus"} />
-      </div>
-
       <div className="login-box">
-        <form className="profileFormulary">
+    <UseLoader></UseLoader>
+    
+        <HexagonBackground></HexagonBackground>
+        <form className="loginFormulary">
+          <Title title={"Event Nexus"} />
           <InputApp
             label="Usuario"
             type="text"
@@ -75,6 +88,8 @@ export const Login = () => {
             error={errors.password?.message || ""}
             readonly={false}
           />
+
+          <h2>Olvidaste tu contraseña?</h2>
 
           <div className="buttonsLogin">
             <ButtonApp
