@@ -1,0 +1,100 @@
+/* loader.css */
+.glow-polygon-0 {
+    animation: loaderAnimation-0 2s linear 0s infinite;
+    z-index: 99;
+    rotate: -4deg;
+  }
+  
+  .glow-polygon-1 {
+    animation: loaderAnimation-1 2s linear 0.5s infinite;
+    z-index: 99;
+    rotate: -4deg;
+  }
+  
+  .glow-polygon-2 {
+    animation: loaderAnimation-2 2s linear 1s infinite;
+    z-index: 99;
+    rotate: -4deg;
+}
+
+.glow-polygon-3 {
+    animation: loaderAnimation-3 2s linear 1.5s infinite;
+    z-index: 99;
+    rotate: -4deg;
+  }
+
+  .borderCircular {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 5px solid #0C2A4C;
+    /* animation: rotate 2s linear infinite; */
+    rotate: 31deg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  @keyframes loaderAnimation-0 {
+    0% {
+      stroke-dasharray: 1, 100;
+    }
+    50% {
+      stroke-dasharray: 100, 1;
+    }
+    100% {
+      stroke-dasharray: 1, 100;
+      fill: #0C2A4C;
+    }
+  }
+  
+  @keyframes loaderAnimation-1 {
+    0% {
+      stroke-dasharray: 1, 100;
+    }
+    50% {
+      stroke-dasharray: 100, 1;
+    }
+    100% {
+      stroke-dasharray: 1, 100;
+      fill: #0C2A4C;
+    }
+  }
+  
+  @keyframes loaderAnimation-2 {
+    0% {
+      stroke-dasharray: 1, 100;
+    }
+    50% {
+      stroke-dasharray: 100, 1;
+    }
+    100% {
+      stroke-dasharray: 1, 100;
+      fill: #0C2A4C;
+    }
+  }
+  
+  @keyframes loaderAnimation-3 {
+    0% {
+      stroke-dasharray: 1, 100;
+    }
+    50% {
+      stroke-dasharray: 100, 1;
+    }
+    100% {
+      stroke-dasharray: 1, 100;
+      fill: #0C2A4C;
+    }
+  }
+  

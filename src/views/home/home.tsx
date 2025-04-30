@@ -1,9 +1,9 @@
-import { ModuleCard } from '../../components/module/module'
-import './home.css'
 import { useEffect, useState } from 'react'
+import { ModuleCard } from '../../components/module/module'
+import { Title } from '../../components/title/title'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
-import { Title } from '../../components/title/title'
+import './home.css'
 
 export const Home = () => {
     
