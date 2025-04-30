@@ -90,8 +90,8 @@ export const Login = () => {
             style={{ zIndex: 10, position: "relative" }}
           />
         ))}
-            </svg> */}
-            {/* <style>
+            </svg>
+            <style>
             {`
             ${positions.map(
             (_, idx) => `
