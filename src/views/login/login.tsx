@@ -10,7 +10,7 @@ import { LoginForm } from "../../domain/datosForm";
 import { LoginRequestDTO } from "../../domain/Login";
 import { authService } from "../../services/authService";
 import "./login.css";
-import { UseLoader } from "../../context/loader/useLoader";
+import { useLoader } from "../../context/loader/useLoader";
 
 export const Login = () => {
   const [us, setUss] = useState("");
@@ -18,13 +18,9 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { setImg } = useProfileImg();
+  const {setIsLoading} = useLoader();
 
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors }, reset,
-  } = useForm<LoginForm>({
+  const {register,handleSubmit,getValues,formState: { errors }, reset,} = useForm<LoginForm>({
     mode: "all",
     defaultValues: {
       user: "",
@@ -37,6 +33,7 @@ export const Login = () => {
   };
 
   const handleLogin = async () => {
+    setIsLoading(true);
     const { user, password } = getValues();
     setUss(user);
     setPass(password);
@@ -49,10 +46,16 @@ export const Login = () => {
         const img = sessionStorage.getItem("img") || "";
         setImg(img);
         reset();
-        handleNavigation();
-      } else{
+        setTimeout(() => {
+          setIsLoading(false);
+          handleNavigation();
+        }, 2000);
+      } else {
         console.log("Error al hacer login: Credenciales incorrectas");
-        reset();
+        setTimeout(() => {
+          setIsLoading(false);
+          reset();
+        }, 2000);
       }
     } catch (error) {
       console.log("Error al hacer login:", error);
@@ -64,7 +67,6 @@ export const Login = () => {
   return (
     <>
       <div className="login-box">
-    <UseLoader></UseLoader>
     
         <HexagonBackground></HexagonBackground>
         <form className="loginFormulary">
