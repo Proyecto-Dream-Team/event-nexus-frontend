@@ -1,6 +1,6 @@
 .glow-polygon-0 {
   background-color: black;
-  animation: loaderAnimation-0 1s linear 0s infinite;
+  animation: loaderAnimation-0 1s linear  infinite;
   position: absolute;
   top: 1.1rem;
   left: 0.9rem;
@@ -30,42 +30,11 @@
   }
 }
 
-.glow-polygon-1 {
-  background-color: beige;
-  position: absolute;
-  animation: loaderAnimation-1 1s linear 0.5s infinite;
-  bottom: 1.9rem;
-  left: 1.8rem;
-  width: 3.3rem;
-  height: 3.3rem;
-  rotate: -110deg;
-  z-index: 99;
-  clip-path: polygon(
-      50% 0%,
-      93% 25%,
-      93% 75%,
-      50% 100%,
-      7% 75%,
-      7% 25%
-      );
-}
-
-@keyframes loaderAnimation-1 {
-  0% {
-      background-color: beige;
-    }
-    50% {
-      background-color: black;
-    }
-    100% {
-      background-color: white;
-    }
-}
 
 .glow-polygon-2 {
   background-color: grey;
   position: absolute; 
-  animation: loaderAnimation-2 1s linear 1s infinite;
+  animation: loaderAnimation-2 1s linear  infinite;
   bottom: 4.4rem;
   right: 1.9rem;
   width: 3.3rem;
@@ -94,9 +63,42 @@
     }
 }
 
+.glow-polygon-1 {
+  background-color: beige;
+  position: absolute;
+  animation: loaderAnimation-1 1s linear  infinite;
+  bottom: 1.9rem;
+  left: 1.8rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  rotate: -110deg;
+  z-index: 99;
+  clip-path: polygon(
+      50% 0%,
+      93% 25%,
+      93% 75%,
+      50% 100%,
+      7% 75%,
+      7% 25%
+      );
+}
+
+@keyframes loaderAnimation-1 {
+  0% {
+      background-color: beige;
+    }
+    50% {
+      background-color: black;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+
 .glow-polygon-3 {
   background-color: white;
-  animation: loaderAnimation-3 1s linear 1.5s infinite;
+  animation: loaderAnimation-3 1s linear  infinite;
   position: absolute;
   width: 3.3rem;
   height: 3.3rem;
