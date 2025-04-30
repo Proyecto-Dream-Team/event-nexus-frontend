@@ -1,0 +1,37 @@
+.nightFondo {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  /* HEXÁGONOS */
+  .hexagon {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    background: rgb(83, 90, 104);
+    clip-path: polygon(
+      50% 0%,
+      93% 25%,
+      93% 75%,
+      50% 100%,
+      7% 75%,
+      7% 25%
+    );
+    animation: fadeHex 3s ease-in-out infinite;
+  }
+  
+  @keyframes fadeHex {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }

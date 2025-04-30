@@ -9,6 +9,7 @@ import { authService } from "../../services/authService";
 import "./login.css";
 import { LoginRequestDTO } from "../../domain/Login";
 import { useProfileImg } from "../../context/contextImg";
+import { HexagonBackground } from "../../components/hexagonBackground/hexagonBackg";
 
 export const Login = () => {
   const [us, setUss] = useState("");
@@ -21,10 +22,13 @@ export const Login = () => {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors }, reset,
   } = useForm<LoginForm>({
     mode: "all",
-    defaultValues: loginForm,
+    defaultValues: {
+      user: "",
+      password: "",
+    },
   });
 
   const handleNavigation = () => {
@@ -41,12 +45,13 @@ export const Login = () => {
       const loginSuccess = await authService.loginClient(credentials);
 
       if (loginSuccess) {
-        handleNavigation();
         const img = sessionStorage.getItem("img") || "";
         setImg(img);
-      } else {
-        console.error("Credenciales inválidas");
-        // Mostrar algún error al usuario si querés
+        reset();
+        handleNavigation();
+      } else{
+        console.log("Error al hacer login: Credenciales incorrectas");
+        reset();
       }
     } catch (error) {
       console.log("Error al hacer login:", error);
@@ -116,19 +121,7 @@ export const Login = () => {
             ).join("\n")}
             `}
             </style> */}
-      <div className="nightFondo">
-        {Array.from({ length: 30 }).map((_, index) => (
-            <div
-            key={index}
-            className="hexagon"
-            style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            }}
-            ></div>
-        ))}
-      </div>
+        <HexagonBackground></HexagonBackground>
         <form className="loginFormulary">
           <Title title={"Event Nexus"} />
           <InputApp
