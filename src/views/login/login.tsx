@@ -52,7 +52,10 @@ export const Login = () => {
         }, 2000);
       } else {
         console.log("Error al hacer login: Credenciales incorrectas");
-        reset();
+        setTimeout(() => {
+          setIsLoading(false);
+          reset();
+        }, 2000);
       }
     } catch (error) {
       console.log("Error al hacer login:", error);
