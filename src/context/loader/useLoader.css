@@ -1,100 +1,162 @@
-/* loader.css */
 .glow-polygon-0 {
-    animation: loaderAnimation-0 2s linear 0s infinite;
-    z-index: 99;
-    rotate: -4deg;
+  background-color: black;
+  animation: loaderAnimation-0 1s linear 0s infinite;
+  position: absolute;
+  top: 1.1rem;
+  left: 0.9rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  z-index: 99;
+  rotate: -110deg;
+  clip-path: polygon(
+    50% 0%,
+    93% 25%,
+    93% 75%,
+    50% 100%,
+    7% 75%,
+    7% 25%
+    );
+}   
+
+@keyframes loaderAnimation-0 {
+  0% {
+    background-color: black;
   }
-  
-  .glow-polygon-1 {
-    animation: loaderAnimation-1 2s linear 0.5s infinite;
-    z-index: 99;
-    rotate: -4deg;
+  50% {
+    background-color: grey;
   }
-  
-  .glow-polygon-2 {
-    animation: loaderAnimation-2 2s linear 1s infinite;
-    z-index: 99;
-    rotate: -4deg;
+  100% {
+    background-color: beige;
+  }
+}
+
+.glow-polygon-1 {
+  background-color: beige;
+  position: absolute;
+  animation: loaderAnimation-1 1s linear 0.5s infinite;
+  bottom: 1.9rem;
+  left: 1.8rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  rotate: -110deg;
+  z-index: 99;
+  clip-path: polygon(
+      50% 0%,
+      93% 25%,
+      93% 75%,
+      50% 100%,
+      7% 75%,
+      7% 25%
+      );
+}
+
+@keyframes loaderAnimation-1 {
+  0% {
+      background-color: beige;
+    }
+    50% {
+      background-color: black;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+.glow-polygon-2 {
+  background-color: grey;
+  position: absolute; 
+  animation: loaderAnimation-2 1s linear 1s infinite;
+  bottom: 4.4rem;
+  right: 1.9rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  rotate: -110deg;
+  z-index: 99;
+  clip-path: polygon(
+      50% 0%,
+      93% 25%,
+      93% 75%,
+      50% 100%,
+      7% 75%,
+      7% 25%
+      );
+}
+
+@keyframes loaderAnimation-2 {
+  0% {
+      background-color: grey;
+    }
+    50% {
+      background-color: white;
+    }
+    100% {
+      background-color: beige;
+    }
 }
 
 .glow-polygon-3 {
-    animation: loaderAnimation-3 2s linear 1.5s infinite;
-    z-index: 99;
-    rotate: -4deg;
-  }
+  background-color: white;
+  animation: loaderAnimation-3 1s linear 1.5s infinite;
+  position: absolute;
+  width: 3.3rem;
+  height: 3.3rem;
+  bottom: 1.2rem;
+  left: 4.9rem;
+  rotate: -110deg;
+  z-index: 99;
+  clip-path: polygon(
+      50% 0%,
+      93% 25%,
+      93% 75%,
+      50% 100%,
+      7% 75%,
+      7% 25%
+    );
+}
 
-  .borderCircular {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
-    border: 5px solid #0C2A4C;
-    /* animation: rotate 2s linear infinite; */
-    rotate: 31deg;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+@keyframes loaderAnimation-3 {
+  0% {
+      background-color: white;
+    }
+    50% {
+      background-color: beige;
+    }
+    100% {
+      background-color: black;
+    }
+}
 
-  
-  @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  
-  @keyframes loaderAnimation-0 {
-    0% {
-      stroke-dasharray: 1, 100;
-    }
-    50% {
-      stroke-dasharray: 100, 1;
-    }
-    100% {
-      stroke-dasharray: 1, 100;
-      fill: #0C2A4C;
-    }
-  }
-  
-  @keyframes loaderAnimation-1 {
-    0% {
-      stroke-dasharray: 1, 100;
-    }
-    50% {
-      stroke-dasharray: 100, 1;
-    }
-    100% {
-      stroke-dasharray: 1, 100;
-      fill: #0C2A4C;
-    }
-  }
-  
-  @keyframes loaderAnimation-2 {
-    0% {
-      stroke-dasharray: 1, 100;
-    }
-    50% {
-      stroke-dasharray: 100, 1;
-    }
-    100% {
-      stroke-dasharray: 1, 100;
-      fill: #0C2A4C;
-    }
-  }
-  
-  @keyframes loaderAnimation-3 {
-    0% {
-      stroke-dasharray: 1, 100;
-    }
-    50% {
-      stroke-dasharray: 100, 1;
-    }
-    100% {
-      stroke-dasharray: 1, 100;
-      fill: #0C2A4C;
-    }
-  }
-  
+.borderCircular {
+  position: fixed;
+  width: 12rem;
+  height: 12rem;
+  border: 15px solid #4d4e50;
+  border-radius: 50%;
+  transform: rotate(65deg);
+  backdrop-filter: blur(1rem);
+  z-index: 9999;
+}
+
+.borderCircular::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 10px solid #3982b3;
+  animation: l18 2s infinite linear;
+}
+@keyframes l18 {
+    0%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+}
+
+
+
+
+
+
+
+
