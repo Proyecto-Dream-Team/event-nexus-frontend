@@ -27,6 +27,7 @@ export const Home = () => {
         <>
             <Title title='Modulos'></Title>
             <main className="button-grid">
+                <div className='module-card'>
                 {
                     modules?.map(( item , index ) =>(
                         <ModuleCard 
@@ -35,6 +36,8 @@ export const Home = () => {
                         </ModuleCard>
                     ))
                 }
+
+                </div>
                 <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>
         </>
