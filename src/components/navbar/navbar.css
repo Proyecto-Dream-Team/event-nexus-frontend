@@ -14,6 +14,10 @@
 }
 
 
+.inactivo {
+    color : #505c72;
+}
+
 .nav a.inactivo svg {
     color: var(--gray-color); /* o el color que quieras por defecto */
 }
