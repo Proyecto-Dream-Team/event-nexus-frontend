@@ -19,9 +19,9 @@
 }
 
 .nav a.inactivo svg {
-    color: var(--gray-color); /* o el color que quieras por defecto */
+    color: var(--gray-color); 
 }
 
 .nav a.activo svg {
-    color: var(--white-color); /* blanco cuando está activo */
+    color: var(--white-color); 
 }
