@@ -26,7 +26,7 @@ export const Home = () => {
     return(
         <>
             <Title title='Modulos'></Title>
-            <main className="button-grid">
+            <main >
                 <div className='module-card'>
                 {
                     modules?.map(( item , index ) =>(
