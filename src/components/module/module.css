@@ -1,15 +1,19 @@
-.button-square {
+.card {
     width: 80%;
-    height: 15rem;
-    background-color: var(--bones-color);
-    border: 2px solid #ccc;
+    height: 14rem;
     border-radius: 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    gap: 2rem;
+}
 
+.contenido-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    padding: 1rem; /* padding: 2 (MUI usa 8px como unidad base) → 2 * 8 = 16px */
+    margin: 0.3rem;
     img{
-        width: 15rem;
+        width: 12rem;
         border-radius: 7px;
     }
-}
+  }
