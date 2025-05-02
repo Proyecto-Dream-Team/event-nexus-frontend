@@ -36,7 +36,6 @@ export const Home = () => {
                         </ModuleCard>
                     ))
                 }
-
                 </div>
                 <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>

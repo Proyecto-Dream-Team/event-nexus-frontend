@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: space-around;
     gap: 1rem;
-    padding: 1rem; /* padding: 2 (MUI usa 8px como unidad base) → 2 * 8 = 16px */
+    padding: 1rem;
     margin: 0.3rem;
     img{
         width: 12rem;
