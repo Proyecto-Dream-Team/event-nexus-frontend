@@ -35,7 +35,7 @@ export const Home = () => {
     return(
         <>
             <Title title='Modulos'></Title>
-            <main >
+            <main className='main' >
                 <div className='module-card'>
                 {
                     modulos?.map(( item , index ) =>(
