@@ -38,13 +38,16 @@ export const Home = () => {
             <main className='main' >
                 <div className='module-card'>
                 {
-                    modulos?.map(( item , index ) =>(
-                        <ModuleCard 
-                            key = { index } 
-                            value = { item as Module} >
-                        </ModuleCard>
+                    modulos?.map((item, index) => (
+                        <div
+                        key={index}
+                        style={{ animationDelay: `${index * 0.3}s` }}
+                        className="card-animated"
+                        >
+                        <ModuleCard value={item} />
+                        </div>
                     ))
-                }
+                }               
                 </div>
                 <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>
