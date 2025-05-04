@@ -9,6 +9,8 @@ h1{
     width: 30%;
 }
 
+
+
     /* Animación de entrada */
 @keyframes fadeInUp {
     from {
@@ -21,7 +23,6 @@ h1{
     }
   }
   
-  /* Aplica a cada contenedor de módulo */
 .module-card {
   display: flex;
   flex-direction: column;
@@ -31,7 +32,6 @@ h1{
   animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Imagen con animación */
 .image-home {
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;

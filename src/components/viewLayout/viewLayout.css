@@ -1,10 +1,14 @@
-.layout-rendering-area{
+.layout-rendering-area {
+    flex: 1;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    margin: 9rem auto 9rem auto;
-
+    padding: 9rem 0; /* espacio arriba y abajo para header/navbar */
+    overflow-y: auto;
 }
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }

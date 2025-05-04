@@ -29,7 +29,7 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
                         </div>
                         <Divider orientation="vertical" variant="middle" flexItem />                    
                         
-                        <img src='./icons/congrats.svg'/>
+                        <img src= {`./icons/${value.image}`}/>  
                                
                     </div>
                     <EastIcon fontSize="large" />
