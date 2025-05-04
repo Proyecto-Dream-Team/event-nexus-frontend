@@ -1,19 +1,31 @@
 .card {
     width: 80%;
-    height: 14rem;
+    height: auto;
     border-radius: 15px;
     gap: 2rem;
 }
 
 .contenido-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(2 , 40% 10% 40% );
     gap: 1rem;
     padding: 1rem;
     margin: 0.3rem;
+    
     img{
-        width: 12rem;
+        width: 50%;
+        grid-column: 3 / 4 ;
         border-radius: 7px;
+        justify-self: center;
+        align-self: center;
     }
   }
+
+.icono{
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    grid-column: 1 / 4;
+
+}

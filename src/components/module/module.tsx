@@ -22,7 +22,7 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
             <Card className="card" onClick={() => navigate()}>
 
                     <div className='contenido-card'>
-                        <div>
+                        <div className='text'>
                             <h2>{value.name}</h2>
                             <br/>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi officia porro numquam blanditiis itaque.</p>
@@ -31,8 +31,10 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
                         
                         <img src= {`./icons/${value.image}`}/>  
                                
+                        <div className='icono'>
+                            <EastIcon fontSize="large" />
+                        </div>
                     </div>
-                    <EastIcon fontSize="large" />
             </Card>
         
         </>
