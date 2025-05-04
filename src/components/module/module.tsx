@@ -1,7 +1,7 @@
 import './module.css'
 import {  Module } from '../../domain/module'
 import { useNavigate } from 'react-router-dom'
-import { Box, Card, Divider } from '@mui/material'
+import { Card, Divider } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
 
 export const ModuleCard = ( {value} : {value : Module} ) => {
@@ -29,11 +29,10 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
                         </div>
                         <Divider orientation="vertical" variant="middle" flexItem />                    
                         
-                        <img src={value.image}/>
+                        <img src='./icons/congrats.svg'/>
                                
                     </div>
                     <EastIcon fontSize="large" />
-                    
             </Card>
         
         </>
