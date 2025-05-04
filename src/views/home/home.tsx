@@ -11,7 +11,7 @@ export const Home = () => {
     const id = Number(sessionStorage.getItem("userId"));
 
 
-    const modulo1 = new Module( 0 , "Eventos" , "congrats.svg")
+    const modulo1 = new Module( 0 , "Events" , "congrats.svg")
     const modulo2 = new Module( 1 , "Directivas" , "preguntasFrecuentes.png")
     const modulo3 = new Module( 2 , "Reservar Espacio" , "reservarEspacio.png")
     const modulo4 = new Module( 3 , "pepe" , "reservarEspacio.png")

@@ -6,12 +6,12 @@ import EastIcon from '@mui/icons-material/East';
 
 export const ModuleCard = ( {value} : {value : Module} ) => {
 
-    const mapRoutes = { "events":"all-events", "directives":"noDefinido"}
+    const mapRoutes = { "Events":"all-events", "directives":"noDefinido"}
     const nav = useNavigate()
    
     const navigate = () => {
         // quiero splitear y quedarme con la primer palabra del modulo
-        const mapValue = value.name.split(" ")[0].toLowerCase()
+        const mapValue = value.name.split(" ")[0]
         const route = mapRoutes[mapValue as keyof typeof mapRoutes]
 
         nav(`/module-events/${route}`)
