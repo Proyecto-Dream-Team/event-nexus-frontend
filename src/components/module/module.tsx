@@ -6,7 +6,7 @@ import EastIcon from '@mui/icons-material/East';
 
 export const ModuleCard = ( {value} : {value : Module} ) => {
 
-    const mapRoutes = { "Events":"all-events", "directives":"noDefinido"}
+    const mapRoutes = { "Events":"all-events", "Directives":"noDefinido"}
     const nav = useNavigate()
    
     const navigate = () => {
