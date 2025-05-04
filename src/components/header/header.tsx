@@ -34,7 +34,8 @@ export const Header = () => {
             <p> {data.lastname} </p>
           </div>
         </div>
-        <p className="cargo">{role}</p>
+        <img  src="./icons/notification.svg" alt="" />
+        {/* <p className="cargo">{role}</p> */}
       </header>
     </>
   );

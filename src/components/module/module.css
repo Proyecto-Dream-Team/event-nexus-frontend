@@ -7,13 +7,13 @@
 
 .contenido-card {
     display: grid;
-    grid-template-columns: repeat(2 , 40% 10% 40% );
+    grid-template-columns: repeat(2 , 60% 1% 30% );
     gap: 1rem;
     padding: 1rem;
     margin: 0.3rem;
     
     img{
-        width: 50%;
+        /* width: 50%; */
         grid-column: 3 / 4 ;
         border-radius: 7px;
         justify-self: center;
@@ -22,8 +22,8 @@
   }
 
 .icono{
-    color: white;
-    background-color: var(--primary-color);
+    color: var(--white-color);
+    background-color: var(--title-color);
     border-radius: 5px;
     padding: 0.5rem;
     grid-column: 1 / 4;
