@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { ProfileFormulary } from "../../components/profileForm/profileFormulary";
-import { Title } from "../../components/title/title";
 import { datosForm, DatosForm } from "../../domain/datosForm";
 import { serviceUser } from "../../services/serviceUser";
 import "./profile.css";
+import "../../components/title/title.css"
 import { ProfileImg } from "../../components/profileImg/profileImg";
 
 export const Profile = () => {
@@ -43,8 +43,8 @@ export const Profile = () => {
 
   return (
     <>
-      <Title title="Datos" />
       <ProfileImg change={changeImg}></ProfileImg>
+      <h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
       <ProfileFormulary info={datos} uploadData={changeData}/>
     </>
   );

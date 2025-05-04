@@ -23,15 +23,9 @@ class ModuleService {
         return await axios.post(`${URL_SERVIDOR_REST}/event/create`,data)
     }
 
-    async joinEvent(eventId:number) {
+    async joinleaveEvent(eventId:number) {
         const employeeId = Number(sessionStorage.getItem('userId'))
-        const response = await axios.post(`${URL_SERVIDOR_REST}/event/join?employeeId=${employeeId}&eventId=${eventId}`);
-        return response.data
-    }
-
-    async leaveEvent(eventId:number) {
-        const employeeId = Number(sessionStorage.getItem('userId'))
-        const response = await axios.post(`${URL_SERVIDOR_REST}/event/leave?employeeId=${employeeId}&eventId=${eventId}`);
+        const response = await axios.post(`${URL_SERVIDOR_REST}/event/join-leave?employeeId=${employeeId}&eventId=${eventId}`);
         return response.data
     }
 }
