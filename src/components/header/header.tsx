@@ -30,12 +30,10 @@ export const Header = () => {
         <div className="imgName">
           <img src={img} className="image" alt="Profile"></img>
           <div className="data-profile">
-            <p>{data.name}</p>
-            <p> {data.lastname} </p>
+            <p>{data.name} {data.lastname} </p> 
           </div>
         </div>
         <img  src="./icons/notification.svg" alt="" />
-        {/* <p className="cargo">{role}</p> */}
       </header>
     </>
   );
