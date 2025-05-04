@@ -11,8 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 export const EventCard = ({event}:{event:EventDto}) => {
   const userId = Number(sessionStorage.getItem("userId"));
+  const navigate = useNavigate()
   const [isOpen, ChangeOpen] = useState(false);
-
+  const [itIsIn, ChangeIn] = useState(isIn())
 
   function isIn(){
     return event.creatorId === userId || event.participantsIds.includes(userId);
@@ -23,11 +24,13 @@ export const EventCard = ({event}:{event:EventDto}) => {
   };
 
   const handleReload = () => {
-    window.location.reload();
+    ChangeIn(!itIsIn)
+    navigate("/module-events/all-events")
   }
 
   async function joinleaveEvent(){
     await moduleService.joinleaveEvent(event.id)
+    HandleOpen()
     handleReload()
   }
 
@@ -67,7 +70,7 @@ export const EventCard = ({event}:{event:EventDto}) => {
         <div className="descriptionCard">
           <h4 className="description">{event.description}</h4>
           <div className="buttonCardEvent">
-            {isIn() ? (
+            {itIsIn ? (
               <ButtonApp
                 label="Salir"
                 method={joinleaveEvent}
