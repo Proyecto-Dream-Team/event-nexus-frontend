@@ -26,10 +26,10 @@ main{
     }
   }
   
-  .card-animated {
-    opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
-  }
+.card-animated {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
 
 .module-card {
   width: 80%;

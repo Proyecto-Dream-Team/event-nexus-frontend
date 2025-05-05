@@ -1,3 +1,4 @@
+
 .contenido-card {
     display: grid;
     grid-template-columns: repeat(2 , 60% 1% 30% );
@@ -12,6 +13,14 @@
         align-self: center;
     }
   }
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 
 .icono{
     color: var(--white-color);

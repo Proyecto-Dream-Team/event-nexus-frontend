@@ -19,7 +19,7 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
 
     return(
         <>
-            <Card onClick={() => navigate()}>
+            <Card className='card' onClick={() => navigate()}>
 
                     <div className='contenido-card'>
                         <div className='text'>
