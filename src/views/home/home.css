@@ -4,10 +4,7 @@ h1{
     margin: 1rem;
 }
 
-.image-home {
-    margin: 2rem    ;
-    width: 30%;
-}
+
 
 main{
   display: flex;
@@ -55,5 +52,5 @@ main{
   animation: fadeInUp 0.6s ease forwards;
   animation-delay: .8s;
   width: 10rem;
-  height: 10rem;
+  margin: 1rem;
 }
