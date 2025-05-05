@@ -1,5 +1,6 @@
 import { Divider } from "@mui/material";
 import "./title.css";
+import { Widgets } from "@mui/icons-material";
 
 export const dividerStyles = {
     backgroundColor: "var(--title-color)",
