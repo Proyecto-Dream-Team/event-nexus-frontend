@@ -33,10 +33,12 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
     reset(info);
   };
 
-
-  return (
-    <form className='profileFormulary' >
-      <InputApp
+  const HandleCancel = () => {
+    reset(info);
+  };
+  
+/*
+ <InputApp
         label="Nombre"
         type="text"
         register={register("nombre")}
@@ -51,6 +53,11 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
         readonly={true}
         error={errors.apellido?.message || ""}
       />
+*/
+
+  return (
+    <form className='profileFormulary' >
+     
 
       <InputApp
         label="Telefono"
@@ -95,7 +102,7 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
       />
 
       <div className="buttons">
-        <ButtonApp label="Cancelar" method={handleSubmit(cancel)} isCancel={true} />
+        <ButtonApp label="Cancelar" method={HandleCancel} isCancel={true} />
         <ButtonApp label="Aceptar" method={handleSubmit(onclick)} isCancel={false} />
       </div>
     </form>

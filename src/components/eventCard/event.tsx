@@ -3,26 +3,35 @@ import { EventDto } from "../../domain/createEvent";
 import { ButtonApp } from "../buttons/button";
 import "./event.css";
 import { moduleService } from "../../services/moduleService";
+import { useNavigate } from "react-router-dom";
 
 // interface EventProps {
 //   info : EventDto;
 // }
 
 export const EventCard = ({event}:{event:EventDto}) => {
-  const [isOpen, ChangeOpen] = useState(false);
   const userId = Number(sessionStorage.getItem("userId"));
+  const navigate = useNavigate()
+  const [isOpen, ChangeOpen] = useState(false);
+  const [itIsIn, ChangeIn] = useState(isIn())
 
-  const isCreator = event.creatorId === userId || event.participantsIds.includes(userId);
+  function isIn(){
+    return event.creatorId === userId || event.participantsIds.includes(userId);
+  }
 
   const HandleOpen = () => {
     ChangeOpen(!isOpen);
   };
 
-  function joinEvent(){
-    moduleService.joinEvent(event.id)
+  const handleReload = () => {
+    ChangeIn(!itIsIn)
+    navigate("/module-events/all-events")
   }
-  function leaveEvent(){
-    moduleService.leaveEvent(event.id)
+
+  async function joinleaveEvent(){
+    await moduleService.joinleaveEvent(event.id)
+    HandleOpen()
+    handleReload()
   }
 
   const ArrowOpen = () => {
@@ -61,16 +70,16 @@ export const EventCard = ({event}:{event:EventDto}) => {
         <div className="descriptionCard">
           <h4 className="description">{event.description}</h4>
           <div className="buttonCardEvent">
-            {isCreator ? (
+            {itIsIn ? (
               <ButtonApp
                 label="Salir"
-                method={leaveEvent}
+                method={joinleaveEvent}
                 isCancel={true}
               />
             ) : (
               <ButtonApp
                 label="Unirse"
-                method={joinEvent}
+                method={joinleaveEvent}
                 isCancel={false}
               />
             )}
