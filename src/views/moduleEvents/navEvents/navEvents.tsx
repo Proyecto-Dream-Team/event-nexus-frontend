@@ -36,7 +36,7 @@ export const NavEvents = () => {
                     Crear
                 </a>
             </nav>
-            <Divider style = { dividerStyles }/>
+            {/* <Divider style = { dividerStyles }/> */}
         </>
     )
 }

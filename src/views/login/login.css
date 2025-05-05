@@ -7,8 +7,9 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    gap: 2rem;
-
+    gap: 1rem;
+    padding: 1rem;
+    
     
 }
 
@@ -26,7 +27,7 @@
 }
 
 .buttonsLogin{
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 
 

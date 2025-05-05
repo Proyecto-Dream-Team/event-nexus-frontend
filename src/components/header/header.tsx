@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import "./header.css";
-import { serviceUser } from "../../services/serviceUser";
-import { HeaderDto } from "../../domain/user";
 import { useProfileImg } from "../../context/contextImg";
+import { HeaderDto } from "../../domain/user";
+import { serviceUser } from "../../services/serviceUser";
+import "./header.css";
 
 
 export const Header = () => {
