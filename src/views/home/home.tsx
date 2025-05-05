@@ -38,7 +38,7 @@ export const Home = () => {
             <main className='main' >
                 <div className='module-card'>
                 {
-                    modulos?.map((item, index) => (
+                    modules?.map((item, index) => (
                         <div
                         key={index}
                         style={{ animationDelay: `${index * 0.3}s` }}
