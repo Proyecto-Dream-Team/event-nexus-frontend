@@ -3,7 +3,7 @@
     bottom: 0; 
     left: 0;
     right: 0;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); 
     height: 6rem; 
     padding: 2.5rem 3rem; 
     border-top-left-radius: 10px;
@@ -13,3 +13,15 @@
     justify-content: space-between;
 }
 
+
+.inactivo {
+    color : #505c72;
+}
+
+.nav a.inactivo svg {
+    color: var(--gray-color); 
+}
+
+.nav a.activo svg {
+    color: var(--white-color); 
+}

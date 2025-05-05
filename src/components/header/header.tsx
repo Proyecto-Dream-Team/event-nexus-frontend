@@ -7,7 +7,7 @@ import { useProfileImg } from "../../context/contextImg";
 
 export const Header = () => {
   const id = Number(sessionStorage.getItem("userId"));
-  const role = sessionStorage.getItem("userRole")?.toString();
+  // const role = sessionStorage.getItem("userRole")?.toString(); DE MOMENTO NO SE USA
   const [data, setData] = useState<HeaderDto>(new HeaderDto(0, "", ""));
   const {img} = useProfileImg(); 
 
@@ -30,11 +30,10 @@ export const Header = () => {
         <div className="imgName">
           <img src={img} className="image" alt="Profile"></img>
           <div className="data-profile">
-            <p>{data.name}</p>
-            <p> {data.lastname} </p>
+            <p>{data.name} {data.lastname} </p> 
           </div>
         </div>
-        <p className="cargo">{role}</p>
+        <img  src="./icons/notification.svg" alt="" />
       </header>
     </>
   );

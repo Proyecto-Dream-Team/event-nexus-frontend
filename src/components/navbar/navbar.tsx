@@ -6,24 +6,31 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 export const NavBar = () => {
 
-    const sxIcons = { color: "white" };
+    // const sxIcons = { color: "white" };
 
     return(
         <>
             <nav className="nav">
-                <NavLink to='/home'>
-                    <HomeIcon style={{ ...sxIcons, fontSize: 35 }} />
+                <NavLink 
+                    to='/home'
+                    className={({ isActive }) => isActive ? 'activo' : 'inactivo'}
+                >
+                    <HomeIcon 
+                        style={{  fontSize: 35 }}
+                    />
                 </NavLink>
-                <NavLink to='/profile'>
-                    <AccountBoxIcon style={{ ...sxIcons, fontSize: 35 }}></AccountBoxIcon>
+                <NavLink 
+                    to='/profile'
+                    className={({ isActive }) => isActive ? 'activo' : 'inactivo'}
+                >
+                    <AccountBoxIcon style={{ fontSize: 35 }}/>
                 </NavLink>
                 <NavLink 
                     to='/login' 
-                    onClick={() => {
-                        sessionStorage.clear();
-                    }}
+                    onClick={() => {sessionStorage.clear();}}
+                    className={({ isActive }) => isActive ? 'activo' : 'inactivo'}
                 >
-                    <LogoutIcon style={{ ...sxIcons, fontSize: 35 }}></LogoutIcon>
+                    <LogoutIcon style={{  fontSize: 35 }}/>
                 </NavLink>
             </nav>
         </>

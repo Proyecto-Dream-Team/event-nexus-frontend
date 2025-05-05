@@ -24,6 +24,7 @@
     text-align: start;
     align-items: start;
     gap: 1rem;
+    font-size: 1.4rem;
 }
 
 .image {
@@ -34,13 +35,10 @@
     object-fit: cover;
 }
 
-.cargo {
-    font-size: 1.4rem;
-}
-
 .imgName {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
 }
+
