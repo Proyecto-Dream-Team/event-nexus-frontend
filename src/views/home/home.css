@@ -15,7 +15,6 @@ main{
   align-items: center;
 }
 
-    /* Animación de entrada */
 @keyframes fadeInUp {
     from {
       opacity: 0;

@@ -19,13 +19,13 @@ export const ModuleCard = ( {value} : {value : Module} ) => {
 
     return(
         <>
-            <Card className="card" onClick={() => navigate()}>
+            <Card onClick={() => navigate()}>
 
                     <div className='contenido-card'>
                         <div className='text'>
                             <h2>{value.name}</h2>
                             <br/>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi officia porro numquam blanditiis itaque.</p>
+                            <p>{value.description}</p>
                         </div>
                         <Divider orientation="vertical" variant="middle" flexItem />                    
                         

@@ -6,7 +6,6 @@
     margin: 0.3rem;
     
     img{
-        /* width: 50%; */
         grid-column: 3 / 4 ;
         border-radius: 7px;
         justify-self: center;

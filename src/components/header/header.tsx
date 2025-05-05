@@ -7,7 +7,7 @@ import { useProfileImg } from "../../context/contextImg";
 
 export const Header = () => {
   const id = Number(sessionStorage.getItem("userId"));
-  const role = sessionStorage.getItem("userRole")?.toString();
+  // const role = sessionStorage.getItem("userRole")?.toString(); DE MOMENTO NO SE USA
   const [data, setData] = useState<HeaderDto>(new HeaderDto(0, "", ""));
   const {img} = useProfileImg(); 
 

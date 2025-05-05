@@ -35,10 +35,6 @@
     object-fit: cover;
 }
 
-.cargo {
-    font-size: 1.4rem;
-}
-
 .imgName {
     display: flex;
     flex-direction: row;

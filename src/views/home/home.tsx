@@ -11,10 +11,10 @@ export const Home = () => {
     const id = Number(sessionStorage.getItem("userId"));
 
 
-    const modulo1 = new Module( 0 , "Events" , "congrats.svg")
-    const modulo2 = new Module( 1 , "Directivas" , "information.svg")
-    const modulo3 = new Module( 2 , "Reservar Espacio" , "reservarEspacio.png")
-    const modulo4 = new Module( 3 , "pepe" , "reservarEspacio.png")
+    const modulo1 = new Module( 0 , "Events" ,"Lorem ipsum dolor sit amet consectetur adipisicing elit.", "events.svg")
+    const modulo2 = new Module( 1 , "Directivas" ,"Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi officia porro numquam blanditiis itaque.", "information.svg")
+    const modulo3 = new Module( 2 , "Reservar Espacio", "Lorem ipsum dolor sit amet consectetur adipisicing elit." , "reservarEspacio.png")
+    const modulo4 = new Module( 3 , "pepe" ,"Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi officia porro numquam blanditiis itaque.", "reservarEspacio.png")
 
 
     const modulos = [ modulo1 , modulo2 , modulo3 , modulo4 ]
