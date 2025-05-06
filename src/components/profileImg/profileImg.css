@@ -4,7 +4,8 @@
     align-items: center;
     flex-direction: column;
     gap: 1.5rem;
-    height: 13rem;
+    min-height: 13rem;
+    max-height: 18rem;
     margin-top: 3rem;
     margin-bottom: 0;
 }
