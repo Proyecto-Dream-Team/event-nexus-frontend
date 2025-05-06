@@ -25,6 +25,8 @@ html {
   --faltante-color: #D9D9D9;
   --bones-color: #f5f5dc;
   --title-color : #1a3b7a;
+  --card-green: linear-gradient(-150deg, rgb(130, 206, 115), rgb(24, 78, 51));
+  --card-red: linear-gradient(-150deg, rgb(240, 98, 79), #441313bd);
 }
 
 body {
