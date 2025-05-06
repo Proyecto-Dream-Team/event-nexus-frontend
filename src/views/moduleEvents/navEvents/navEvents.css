@@ -1,19 +1,19 @@
 .navegacion {
     display: flex;
-    justify-content:space-around ;
+    justify-content: space-around;
     color: var(--title-color);
     font-size: 1.8rem;
-    font-size: 900;
     padding: 1rem;
     font-weight: bold;
 }
 
-.activo {
-    color: var(--primary-color);
+.nav-link {
+    color: var(--title-color);
     position: relative;
+    cursor: pointer;
 }
 
-.activo::before {
+.nav-link::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -21,19 +21,17 @@
     width: 0;
     height: 2px;
     background-color: var(--primary-color);
-    transition: width 0.5s ease, left 0.5s ease;
+    transition: width 0.4s ease, left 0.5s ease;
 }
 
-.activo:hover::before {
+/* Subrayado entrando desde el centro */
+.nav-link.activo::before {
     width: 100%;
     left: 0;
 }
 
-.activo:hover::before {
-    width: 100%;
+/* Subrayado saliendo hacia el centro */
+.nav-link.desactivo::before {
+    width: 0;
+    left: 50%;
 }
-
-/* .navegacion .activo:active {
-    opacity: 0.5;
-    transition: opacity 1 0.2s ease;
-} */
