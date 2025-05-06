@@ -21,6 +21,7 @@ export const NavEvents = () => {
     const links = [
         { path: '/module-events/all-events', label: 'Eventos' },
         { path: '/module-events/my-events', label: 'Participo' },
+        { path: '/module-events/created-events', label: 'Creadas' },
         { path: '/module-events/create-event', label: 'Crear' },
     ]
 

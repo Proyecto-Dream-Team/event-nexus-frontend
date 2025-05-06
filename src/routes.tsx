@@ -20,6 +20,7 @@ export const AppRouter = () => {
                     <Route element={<ModuleEvents/>} path = 'module-events'>
                         <Route element= {<Events/>} path = 'all-events' ></Route>
                         <Route element= {<Events/>} path = 'my-events' ></Route>
+                        <Route element = {<Events/>} path = 'created-events' ></Route>
                         <Route element = {<CreateEvent/>} path = 'create-event' ></Route>
                     </Route>
                 </Route>

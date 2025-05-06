@@ -1,61 +1,125 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { EventCard } from "../../../components/eventCard/event";
 import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
-import { useEffect, useState } from "react";
 import { moduleService } from "../../../services/moduleService";
-import { Title } from "../../../components/title/title";
+import "./events.css";
+import { set } from "react-hook-form";
 
 export const Events = () => {
   const location = useLocation();
-  const isVisible = location.pathname === "/module-events/all-events";
 
   const showAllEvents = location.pathname === "/module-events/all-events";
   const showMyEvents = location.pathname === "/module-events/my-events";
+  const showCreatedEvents =
+    location.pathname === "/module-events/created-events";
+  const id = Number(sessionStorage.getItem("userId"));
   const [events, setEvents] = useState<EventDto[]>();
   const [eventsEmployee, setEventsEmployee] = useState<EmployeeEvents>();
 
   const getEvents = async () => {
     if (showAllEvents) {
-      const allEvents: EventDto[] = await moduleService.getEvents()
+      const allEvents: EventDto[] = await moduleService.getEvents();
       setEvents(allEvents);
     }
     if (showMyEvents) {
       const id = Number(sessionStorage.getItem("userId"));
-      const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(id)
+      const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+        id
+      );
       setEventsEmployee(employeeEvents);
     }
-
+    if (showCreatedEvents) {
+      const id = Number(sessionStorage.getItem("userId"));
+      const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+        id
+      );
+      setEventsEmployee(employeeEvents);
+    }
   };
+
+  const joinleaveEvent = async (eventId: number) => {
+    await moduleService.joinleaveEvent(eventId);
+    setEventsEmployee((prevState) => {
+      if (prevState) {
+      return {
+        ...prevState,
+        invitedEvents: prevState.invitedEvents.filter(
+        (event) => event.id !== eventId
+        ),
+      };
+      }
+      return prevState;
+    });
+
+    setEvents((prevState) => {
+      if (prevState) {
+      return prevState.filter((event) => event.id !== eventId);
+      }
+      return prevState;
+    });
+  }
 
   useEffect(() => {
     getEvents();
   }, [showAllEvents]);
+  
 
   return (
-    <>
-      {showAllEvents ? (
-        <>
-          <Title title={"Todos los eventos"} />
-          {events?.map((event, index) => (
-            <EventCard
-              key={event.id || index}
-              event={event as EventDto}
-            />
-          ))}
-        </>
-      ) : (
-        <>
-          <Title title={"Eventos creados"} ></Title>
-          {eventsEmployee?.createdEvents.map((event, index) => (
-            <EventCard key={index} event={event}/>
-          ))}
-
-          <Title title={"Invitaciones"} ></Title>
-          {eventsEmployee?.invitedEvents.map((event, index) => (
-            <EventCard key={index} event={event}/>
-          ))}
-        </>
-      )}
-    </>
+    <div className="containerEvents">
+      <>
+        {showAllEvents && (
+            <>
+            {events?.filter(
+              (event) =>
+              event.creatorId !== id &&
+              !event?.participantsIds?.includes(id)
+            )?.length ? (
+              events
+              .filter(
+                (event) =>
+                event.creatorId !== id &&
+                !event?.participantsIds?.includes(id)
+              )
+              .map((event, index) => (
+                <EventCard
+                key={event.id || index}
+                event={event as EventDto}
+                method={joinleaveEvent}
+                />
+              ))
+            ) : (
+              <h2>No hay eventos</h2>
+            )}
+            </>
+        )}
+        {showCreatedEvents && (
+          <>
+            {eventsEmployee?.createdEvents.length ? (
+              eventsEmployee?.createdEvents.map((event, index) => (
+                <EventCard key={index} event={event} method={joinleaveEvent}/>
+              ))
+            ) : (
+              <h2>No hay eventos</h2>
+            )}
+          </>
+        )}
+        {showMyEvents && (
+          <>
+            {eventsEmployee?.invitedEvents.filter(
+              (event) => event.creatorId != id
+            ).length ? (
+              eventsEmployee?.invitedEvents
+                .filter((event) => event.creatorId != id)
+                .map((event, index) => (
+                  <EventCard key={index} event={event} method={joinleaveEvent}/>
+                ))
+            ) : (
+              <h2>No hay eventos</h2>
+            )}
+          </>
+        )}
+      </>
+    </div>
   );
 };
