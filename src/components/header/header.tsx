@@ -48,7 +48,7 @@ export const Header = () => {
             </div>
 
             <div className="header-center">
-              {!isHome() && <h2 >Eventos</h2>}
+              {!isHome() && <h2 className="header-title">Eventos</h2>}
             </div>
 
             <div className="header-right">
