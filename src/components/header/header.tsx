@@ -52,7 +52,7 @@ export const Header = () => {
             </div>
 
             <div className="header-right">
-              <img src="./icons/notification.svg" alt="Notificación" className="notificationIcon" />
+              <img src="/icons/notification.svg" alt="Notificación" className="notificationIcon" />
             </div>
           </header>
   );
