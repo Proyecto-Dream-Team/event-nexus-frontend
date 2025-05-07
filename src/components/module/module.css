@@ -10,6 +10,7 @@
         border-radius: 7px;
         justify-self: center;
         align-self: center;
+        width: 70%;
     }
   }
 
@@ -18,8 +19,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: .5rem;
+    h2{
+        margin-bottom: 0.7rem;
+    }
 }
 
 .icono{

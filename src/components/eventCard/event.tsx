@@ -43,10 +43,10 @@ export const EventCard = ({ event, method }: EventProps) => {
         <div className="title">
           <h4 className="titleEvent">{event.title}</h4>
           <h4>{formatDate(event.dateFinished)}</h4>
-          <h4>Participantes: {event.numberOfParticipants}</h4>
-          <h4>
+          <p>Participantes: {event.numberOfParticipants}</p>
+          <p>
             {event.description}
-          </h4>
+          </p>
         </div>
         <div className="buttonCardEvent">
          {event.creatorId !== userId && (
