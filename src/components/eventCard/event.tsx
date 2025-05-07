@@ -20,7 +20,7 @@ export const EventCard = ({ event, method }: EventProps) => {
 
   async function joinleaveEvent() {
     method(event.id);
-    ChangeIn(!itIsIn);
+    // ChangeIn(!itIsIn);
   }
 
 
@@ -49,7 +49,8 @@ export const EventCard = ({ event, method }: EventProps) => {
           </h4>
         </div>
         <div className="buttonCardEvent">
-          {itIsIn ? (
+         {event.creatorId !== userId && (
+          itIsIn ? (
             <ButtonCard label="Salir" method={joinleaveEvent} isCancel={true} />
           ) : (
             <ButtonCard
@@ -57,7 +58,8 @@ export const EventCard = ({ event, method }: EventProps) => {
               method={joinleaveEvent}
               isCancel={false}
             />
-          )}
+          )
+         )}
         </div>
       </div>
     </div>
