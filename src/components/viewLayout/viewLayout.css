@@ -6,6 +6,7 @@
     width: 100%;
     padding: 9rem 0; 
     overflow-y: auto;
+    min-height: 100vh;
 }
 
 .app-container {

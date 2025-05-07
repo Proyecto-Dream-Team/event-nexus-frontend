@@ -1,91 +1,67 @@
 import { useState } from "react";
-import { EventDto } from "../../domain/createEvent";
-import { ButtonApp } from "../buttons/button";
-import "./event.css";
-import { moduleService } from "../../services/moduleService";
 import { useNavigate } from "react-router-dom";
+import { EventDto } from "../../domain/createEvent";
+import { ButtonCard } from "../buttons/buttonCard/buttonCard";
+import "./event.css";
 
-// interface EventProps {
-//   info : EventDto;
-// }
+interface EventProps {
+  event : EventDto;
+  method: (id : number) => void;
+}
 
-export const EventCard = ({event}:{event:EventDto}) => {
+export const EventCard = ({ event, method }: EventProps) => {
   const userId = Number(sessionStorage.getItem("userId"));
-  const navigate = useNavigate()
-  const [isOpen, ChangeOpen] = useState(false);
-  const [itIsIn, ChangeIn] = useState(isIn())
+  const navigate = useNavigate();
+  const [itIsIn, ChangeIn] = useState(isIn());
 
-  function isIn(){
+  function isIn() {
     return event.creatorId === userId || event.participantsIds.includes(userId);
   }
 
-  const HandleOpen = () => {
-    ChangeOpen(!isOpen);
-  };
-
-  const handleReload = () => {
-    ChangeIn(!itIsIn)
-    navigate("/module-events/all-events")
+  async function joinleaveEvent() {
+    method(event.id);
+    // ChangeIn(!itIsIn);
   }
 
-  async function joinleaveEvent(){
-    await moduleService.joinleaveEvent(event.id)
-    HandleOpen()
-    handleReload()
-  }
 
-  const ArrowOpen = () => {
-    if (isOpen) {
-      return "https://cdn-icons-png.flaticon.com/512/44/44603.png";
-    } else {
-      return "https://cdn-icons-png.flaticon.com/512/44/44969.png";
-    }
-  };
+  function formatDate(dateToFormat: Date) {
+    const splitedDate = dateToFormat.toString().split("T");
+    const date = splitedDate[0];
+    const time = splitedDate[1].split(":");
+    const hour = time[0] + ":" + time[1];
 
-  function formatDate(dateToFormat:Date){
-    const splitedDate = dateToFormat.toString().split('T')
-    const date = splitedDate[0]
-    const time = splitedDate[1].split(':')
-    const hour = time[0]+':'+time[1]
-
-    return date + ' | ' + hour
+    return date + " | " + hour;
   }
   return (
-    <div className={`bodyCard ${!event.isActive ? "active" : ""}`}>
-      <div className="user">
-        <img
-          className="profile"
-          src={event.creatorImage}
-        ></img>
-        <div className="title">
-          <h3>{event.creatorName}</h3>
-          <h4>Fecha: {formatDate(event.dateFinished)}</h4>
-          <h4>Titulo: {event.title}</h4>
-          <h4>Participantes: {event.numberOfParticipants}</h4>
-        </div>
-        <img className="arrow" src={ArrowOpen()} onClick={HandleOpen}></img>
+    <div className= "bodyCard" >
+      <div className={`user ${!itIsIn ? "active" : "notActive"}`}>
+        <h3>{event.creatorName}</h3>
+        <img className="profile" src={event.creatorImage}></img>
       </div>
 
-      {isOpen && (
-        <div className="descriptionCard">
-          <h4 className="description">{event.description}</h4>
-          <div className="buttonCardEvent">
-            {itIsIn ? (
-              <ButtonApp
-                label="Salir"
-                method={joinleaveEvent}
-                isCancel={true}
-              />
-            ) : (
-              <ButtonApp
-                label="Unirse"
-                method={joinleaveEvent}
-                isCancel={false}
-              />
-            )}
-          </div>
+      <div className="descriptionCard">
+        <div className="title">
+          <h4 className="titleEvent">{event.title}</h4>
+          <h4>{formatDate(event.dateFinished)}</h4>
+          <h4>Participantes: {event.numberOfParticipants}</h4>
+          <h4>
+            {event.description}
+          </h4>
         </div>
-      )}
+        <div className="buttonCardEvent">
+         {event.creatorId !== userId && (
+          itIsIn ? (
+            <ButtonCard label="Salir" method={joinleaveEvent} isCancel={true} />
+          ) : (
+            <ButtonCard
+              label="Unirse"
+              method={joinleaveEvent}
+              isCancel={false}
+            />
+          )
+         )}
+        </div>
+      </div>
     </div>
   );
 };
