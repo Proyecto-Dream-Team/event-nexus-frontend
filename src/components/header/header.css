@@ -30,11 +30,46 @@
     justify-self: end;
   }
   
-  .imgName {
+  /* .imgName {
+=======
+text-align: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 10vh;
+z-index: 10;
+transform: translateZ(0);
+perspective: 1000px;
+} */
+
+.data-profile {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    align-items: start;
+    gap: 1rem;
+    font-size: 1.4rem;
+    transform: translateZ(10px);
+}
+
+.image {
+    width: 6rem;
+    height: 6rem;
+    border: 2px solid #282B30;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4), 0px 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateZ(15px);
+}
+
+.imgName {
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4), 0px 8px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+
     animation: slideInFromLeft 0.6s ease-out forwards;
   }
   
@@ -65,3 +100,4 @@
     }
   }
   
+
