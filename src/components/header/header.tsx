@@ -26,7 +26,7 @@ export const Header = () => {
   }, []);
   
   const isHome = () => {
-    return location.pathname == '/home'
+    return location.pathname === '/home' || location.pathname === '/profile';
   }
 
  
