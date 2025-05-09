@@ -1,24 +1,26 @@
+
 export class CreateEventDTO {
-    creatorId: number;
-    participantsIds: number[];
-    date: Date;
-    name: string;
-    description: string;
-  
-    constructor(
-      creatorId: number,
-      participantsIds: number[],
-      date: Date,
-      name: string,
-      description: string,
-    ) {
-      this.creatorId = creatorId;
-      this.participantsIds = participantsIds;
-      this.name = name;
-      this.description = description;
-      this.date = date;
-    }
+  creatorId: number;
+  participantsIds: number[] = [];
+  date: Date;
+  name: string;
+  description: string;
+  eventType: string; 
+
+  constructor(
+    creatorId: number,
+    date: Date,
+    name: string,
+    description: string,
+    eventType: string 
+  ) {
+    this.creatorId = creatorId;
+    this.name = name;
+    this.description = description;
+    this.date = date;
+    this.eventType = eventType; 
   }
+}
 
 export class EventDto{
     id: number
@@ -31,6 +33,7 @@ export class EventDto{
     isActive: boolean 
     numberOfParticipants: number
     participantsIds: number[]
+    type: string
 
     constructor(
       id: number,
@@ -43,6 +46,7 @@ export class EventDto{
       isActive: boolean,
       participantsAmount: number,
       participantsIds: number[],
+      type: string
     ) {
 
         this.id = id
@@ -55,6 +59,7 @@ export class EventDto{
         this.isActive = isActive
         this.numberOfParticipants = participantsAmount
         this.participantsIds = participantsIds
+        this.type = type
     }
 
 }
