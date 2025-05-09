@@ -1,3 +1,5 @@
+import { EventType } from "../utils/typeEvent";
+
 export class CreateEventDTO {
     creatorId: number;
     participantsIds: number[];
@@ -31,6 +33,7 @@ export class EventDto{
     isActive: boolean 
     numberOfParticipants: number
     participantsIds: number[]
+    type: string
 
     constructor(
       id: number,
@@ -43,6 +46,7 @@ export class EventDto{
       isActive: boolean,
       participantsAmount: number,
       participantsIds: number[],
+      type: string
     ) {
 
         this.id = id
@@ -55,6 +59,7 @@ export class EventDto{
         this.isActive = isActive
         this.numberOfParticipants = participantsAmount
         this.participantsIds = participantsIds
+        this.type = type
     }
 
 }

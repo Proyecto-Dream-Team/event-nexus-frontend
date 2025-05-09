@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { EventDto } from "../../domain/createEvent";
 import { ButtonCard } from "../buttons/buttonCard/buttonCard";
 import "./event.css";
+import { EventColor, EventType } from "../../utils/typeEvent";
+import { background } from "@cloudinary/url-gen/qualifiers/focusOn";
 
 interface EventProps {
   event : EventDto;
@@ -13,6 +15,8 @@ export const EventCard = ({ event, method }: EventProps) => {
   const userId = Number(sessionStorage.getItem("userId"));
   const navigate = useNavigate();
   const [itIsIn, ChangeIn] = useState(isIn());
+  const backgroundUrl = EventType[event.type as keyof typeof EventType];
+  const backgroundColor = EventColor[event.type as keyof typeof EventColor];
 
   function isIn() {
     return event.creatorId === userId || event.participantsIds.includes(userId);
@@ -34,18 +38,32 @@ export const EventCard = ({ event, method }: EventProps) => {
   }
   return (
     <div className= "bodyCard" >
-      <div className={`user ${!itIsIn ? "active" : "notActive"}`}>
+      <div
+        className="user"
+        style={{
+          background: `radial-gradient(circle, ${backgroundColor} 20%, rgb(52, 51, 51) 100%)`,
+        }}
+      >
         <h3>{event.creatorName}</h3>
         <img className="profile" src={event.creatorImage}></img>
+        <h3>{event.type}</h3>
       </div>
 
-      <div className="descriptionCard">
+     <div
+          className="descriptionCard"
+          style={{
+            backgroundImage: `url(${backgroundUrl})`,
+            backgroundSize: "cover", // Opcional, mejora visualmente
+            backgroundPosition: "center", // Opcional
+          }}
+        >
+
         <div className="title">
           <h4 className="titleEvent">{event.title}</h4>
           <h4>{formatDate(event.dateFinished)}</h4>
           <p>Participantes: {event.numberOfParticipants}</p>
           <p>
-            {event.description}
+        {event.description}
           </p>
         </div>
         <div className="buttonCardEvent">
