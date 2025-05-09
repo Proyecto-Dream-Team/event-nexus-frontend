@@ -12,6 +12,7 @@ import { authService } from "../../services/authService";
 import "./login.css";
 import { useLoader } from "../../context/loader/useLoader";
 import { TIMELOADER } from "../../utils/config";
+import { useToast } from "../../context/toast/useToast";
 
 export const Login = () => {
   const [us, setUss] = useState("");
@@ -19,6 +20,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { setImg } = useProfileImg();
+  const {open, openHTTP} = useToast();
   const {setIsLoading} = useLoader();
 
   const {register,handleSubmit,getValues,formState: { errors }, reset,} = useForm<LoginForm>({
@@ -52,14 +54,18 @@ export const Login = () => {
           handleNavigation();
         }, TIMELOADER);
       } else {
-        console.log("Error al hacer login: Credenciales incorrectas");
         setTimeout(() => {
           setIsLoading(false);
+          open("Credenciales incorrectas", "error");
           reset();
         }, TIMELOADER);
       }
     } catch (error) {
-      console.log("Error al hacer login:", error);
+      if (error instanceof Error && (error as any).response) {
+        openHTTP((error as any).response);
+      } else {
+        open("Ocurrió un error inesperado", "error");
+      }
     }
   };
 

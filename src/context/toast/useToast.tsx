@@ -30,7 +30,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 
     const open = (message: string, option: ToastOptions) => {
         setToast({ message, type: option, isOpen: true });
-        setTimeout(() => setToast(prev => ({ ...prev, isOpen: false })), 2000);
+        setTimeout(() => setToast(prev => ({ ...prev, isOpen: false })), 1500);
     };
 
     const openHTTP = (res: AxiosResponse) => {

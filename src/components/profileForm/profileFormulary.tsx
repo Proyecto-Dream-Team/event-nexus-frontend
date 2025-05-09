@@ -28,7 +28,7 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
     if (JSON.stringify(data) !== JSON.stringify(info)) {
       uploadData(data);
     } else {
-      open("No hay cambios en el formulario", "warning");
+      open("No hay cambios en el formulario", "error");
     }
   };
 
@@ -38,6 +38,7 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
 
   const HandleCancel = () => {
     reset(info);
+    open("Cambios cancelados", "warning");
   };
   
 /*

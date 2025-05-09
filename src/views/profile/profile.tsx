@@ -15,6 +15,7 @@ export const Profile = () => {
   const { setIsLoading } = useLoader();
   const { open } = useToast();
 
+
   const getProfile = async () => {
     try {
       const res = await serviceUser.getProfileDatos(id);
@@ -25,15 +26,12 @@ export const Profile = () => {
   };
 
   const changeImg = async (img: string) => {
-    setIsLoading(true);
     try {
       await serviceUser.updateImg(img);
+      open("Imagen actualizada", "success");
     } catch (error) {
-      console.error("Error al cambiar la imagen:", error);
+      open("Error al actualizar la imagen", "error");
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, TIMELOADER)
   }
 
   const changeData = async (data: DatosForm) => {

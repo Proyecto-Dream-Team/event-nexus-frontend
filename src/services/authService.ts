@@ -1,9 +1,10 @@
 import axios from "axios";
 import { LoginRequestDTO, loginResponseDTO, LoginResponseDTO } from "../domain/Login";
 import { URL_SERVIDOR_REST } from "../utils/config";
+import { useToast } from "../context/toast/useToast";
+
 class AuthService {
     
-
     async loginClient(data: LoginRequestDTO): Promise<boolean> {
         try {
             const res = await axios.post<LoginResponseDTO>(`${URL_SERVIDOR_REST}/auth/login`, data);
@@ -14,7 +15,6 @@ class AuthService {
             sessionStorage.setItem("img", userData.img);
             return res.status === 200;
         } catch (error) {
-            console.error("Login failed:", error);
             return false;
         }
     }

@@ -26,13 +26,13 @@ export const CreateEvent = () => {
             
             console.log("creado con exito")
             reset()
+            setTimeout(() => {
+                setIsLoading(false)
+            }, TIMELOADER)
         } catch (e: any) {
             reset()
             console.log(e.message)
         }
-        setTimeout(() => {
-            setIsLoading(false)
-        }, TIMELOADER)
     }
 
     return (
