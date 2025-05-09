@@ -5,10 +5,13 @@ import { serviceUser } from "../../services/serviceUser";
 import "./profile.css";
 import "../../components/title/title.css"
 import { ProfileImg } from "../../components/profileImg/profileImg";
+import { useLoader } from "../../context/loader/useLoader";
+import { TIMELOADER } from "../../utils/config";
 
 export const Profile = () => {
   const [datos, setDatos] = useState<DatosForm>(datosForm);
   const id = Number(sessionStorage.getItem("userId"));
+  const {setIsLoading} = useLoader();
   
   const getProfile = async () => {
     try {
@@ -18,16 +21,21 @@ export const Profile = () => {
       console.error("Error al obtener el perfil:", error);
     }
   };
-
+  
   const changeImg = async (img: string) => {
+    setIsLoading(true);
     try {
       await serviceUser.updateImg(img);
     } catch (error) {
       console.error("Error al cambiar la imagen:", error);
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    },TIMELOADER)
   }
 
   const changeData = async (data: DatosForm) => {
+    setIsLoading(true);
     try {
       await serviceUser.updateProfile(data);
       setDatos(data);
@@ -35,6 +43,9 @@ export const Profile = () => {
     } catch (error) {
       console.error("Error al actualizar los datos:", error);
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    },TIMELOADER)
   }
 
   useEffect(() => {

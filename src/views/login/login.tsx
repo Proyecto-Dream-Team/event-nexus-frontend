@@ -11,6 +11,7 @@ import { LoginRequestDTO } from "../../domain/Login";
 import { authService } from "../../services/authService";
 import "./login.css";
 import { useLoader } from "../../context/loader/useLoader";
+import { TIMELOADER } from "../../utils/config";
 
 export const Login = () => {
   const [us, setUss] = useState("");
@@ -49,13 +50,13 @@ export const Login = () => {
         setTimeout(() => {
           setIsLoading(false);
           handleNavigation();
-        }, 2000);
+        }, TIMELOADER);
       } else {
         console.log("Error al hacer login: Credenciales incorrectas");
         setTimeout(() => {
           setIsLoading(false);
           reset();
-        }, 2000);
+        }, TIMELOADER);
       }
     } catch (error) {
       console.log("Error al hacer login:", error);

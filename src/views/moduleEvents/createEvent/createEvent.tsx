@@ -5,9 +5,12 @@ import { ButtonApp } from "../../../components/buttons/button";
 import { CreateEventDTO } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import { EventType } from "../../../utils/typeEvent";
+import { useLoader } from "../../../context/loader/useLoader";
+import { TIMELOADER } from "../../../utils/config";
 export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
+    const { setIsLoading } = useLoader();
 
     const { register, handleSubmit, getValues, formState: { errors } ,reset } = useForm({
         mode: "all",
@@ -18,14 +21,18 @@ export const CreateEvent = () => {
 
         const eventCreated = new CreateEventDTO(userId, date, title, description, eventType)
         try {
+            setIsLoading(true)
             await moduleService.create(eventCreated)
+            
             console.log("creado con exito")
             reset()
         } catch (e: any) {
             reset()
             console.log(e.message)
         }
-
+        setTimeout(() => {
+            setIsLoading(false)
+        }, TIMELOADER)
     }
 
     return (
