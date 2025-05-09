@@ -1,26 +1,26 @@
-import { EventType } from "../utils/typeEvent";
 
 export class CreateEventDTO {
-    creatorId: number;
-    participantsIds: number[];
-    date: Date;
-    name: string;
-    description: string;
-  
-    constructor(
-      creatorId: number,
-      participantsIds: number[],
-      date: Date,
-      name: string,
-      description: string,
-    ) {
-      this.creatorId = creatorId;
-      this.participantsIds = participantsIds;
-      this.name = name;
-      this.description = description;
-      this.date = date;
-    }
+  creatorId: number;
+  participantsIds: number[] = [];
+  date: Date;
+  name: string;
+  description: string;
+  eventType: string; 
+
+  constructor(
+    creatorId: number,
+    date: Date,
+    name: string,
+    description: string,
+    eventType: string 
+  ) {
+    this.creatorId = creatorId;
+    this.name = name;
+    this.description = description;
+    this.date = date;
+    this.eventType = eventType; 
   }
+}
 
 export class EventDto{
     id: number
