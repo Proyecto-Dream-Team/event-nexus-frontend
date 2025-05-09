@@ -8,7 +8,7 @@ export enum EventType {
 
 export enum EventColor {
   SOCIAL = "rgb(255, 99, 71)",      
-  DEPORTIVO = "rgb(46, 204, 113)",  
+  DEPORTIVO = "rgb(44, 187, 104)",  
   CAPACITACION = "rgb(52, 152, 219)", 
   EJECUTIVO = "rgb(52, 80, 107)",    
   EQUIPO = "rgb(155, 89, 182)",     

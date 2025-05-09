@@ -4,6 +4,7 @@ import { DatosForm } from "../../domain/datosForm";
 import { InputApp } from "../input/input";
 import { ButtonApp } from "./../buttons/button";
 import './profileFormulary.css';
+import { useToast } from "../../context/toast/useToast";
 
 interface PropsFormulary {
   info: DatosForm;
@@ -16,6 +17,8 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
     defaultValues: info,
   });
 
+  const {open} = useToast();
+
   useEffect(() => {
     reset(info);
   }, [info, reset]);
@@ -25,7 +28,7 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
     if (JSON.stringify(data) !== JSON.stringify(info)) {
       uploadData(data);
     } else {
-      console.log("No hay cambios en los datos.");
+      open("No hay cambios en el formulario", "warning");
     }
   };
 

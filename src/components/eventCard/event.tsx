@@ -41,7 +41,7 @@ export const EventCard = ({ event, method }: EventProps) => {
       <div
         className="user"
         style={{
-          background: `radial-gradient(circle, ${backgroundColor} 20%, rgb(63, 60, 60) 100%)`,
+          background: `radial-gradient(circle, ${backgroundColor} 25%, rgb(63, 60, 60) 100%)`,
         }}
       >
         <h3>{event.creatorName}</h3>

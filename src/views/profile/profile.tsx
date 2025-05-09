@@ -7,12 +7,14 @@ import "../../components/title/title.css"
 import { ProfileImg } from "../../components/profileImg/profileImg";
 import { useLoader } from "../../context/loader/useLoader";
 import { TIMELOADER } from "../../utils/config";
+import { useToast } from "../../context/toast/useToast";
 
 export const Profile = () => {
   const [datos, setDatos] = useState<DatosForm>(datosForm);
   const id = Number(sessionStorage.getItem("userId"));
-  const {setIsLoading} = useLoader();
-  
+  const { setIsLoading } = useLoader();
+  const { open } = useToast();
+
   const getProfile = async () => {
     try {
       const res = await serviceUser.getProfileDatos(id);
@@ -21,7 +23,7 @@ export const Profile = () => {
       console.error("Error al obtener el perfil:", error);
     }
   };
-  
+
   const changeImg = async (img: string) => {
     setIsLoading(true);
     try {
@@ -31,21 +33,22 @@ export const Profile = () => {
     }
     setTimeout(() => {
       setIsLoading(false);
-    },TIMELOADER)
+    }, TIMELOADER)
   }
 
   const changeData = async (data: DatosForm) => {
-    setIsLoading(true);
+    // setIsLoading(true);
     try {
       await serviceUser.updateProfile(data);
       setDatos(data);
       console.log("Datos actualizados:", data);
     } catch (error) {
-      console.error("Error al actualizar los datos:", error);
+      open("Error al actualizar los datos", "error");
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    },TIMELOADER)
+    // setTimeout(() => {
+      // setIsLoading(false);
+      open("Perfil actualizado", "success");
+    // }, TIMELOADER)
   }
 
   useEffect(() => {
@@ -56,7 +59,7 @@ export const Profile = () => {
     <>
       <ProfileImg change={changeImg}></ProfileImg>
       <h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
-      <ProfileFormulary info={datos} uploadData={changeData}/>
+      <ProfileFormulary info={datos} uploadData={changeData} />
     </>
   );
 };

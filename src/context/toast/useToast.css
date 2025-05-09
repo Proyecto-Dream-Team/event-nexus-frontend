@@ -1,0 +1,39 @@
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    color: white;
+    z-index: 999;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.toast-success { background-color: #4caf50; }
+.toast-error { background-color: #f44336; }
+.toast-info { background-color: #2196f3; }
+.toast-warning { background-color: #ff9800; }
+
+.toast-content {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toastMsj {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
