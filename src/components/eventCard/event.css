@@ -16,9 +16,8 @@
     flex-direction: column;
     width: 18rem;
     height: 100%;
-    gap: 2rem;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;

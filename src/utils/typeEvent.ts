@@ -7,12 +7,9 @@ export enum EventType {
 }
 
 export enum EventColor {
-  SOCIAL = "rgb(255, 99, 71)",      // Rojo tomate: cálido, activo, ideal para lo social
-  DEPORTIVO = "rgb(46, 204, 113)",  // Verde fuerte: muy visible, representa salud y energía
-  CAPACITACION = "rgb(52, 152, 219)", // Azul claro: limpio, asociado al aprendizaje
-  EJECUTIVO = "rgb(52, 73, 94)",    // Gris azulado oscuro: serio, profesional, elegante
-  EQUIPO = "rgb(155, 89, 182)",     // Púrpura: colaboración, innovación, bien distinto de los demás
+  SOCIAL = "rgb(255, 99, 71)",      
+  DEPORTIVO = "rgb(46, 204, 113)",  
+  CAPACITACION = "rgb(52, 152, 219)", 
+  EJECUTIVO = "rgb(52, 80, 107)",    
+  EQUIPO = "rgb(155, 89, 182)",     
 }
-
-
-// linear-gradient(110deg, rgb(130, 206, 115), rgb(24, 78, 51));
