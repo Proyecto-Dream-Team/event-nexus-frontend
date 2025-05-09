@@ -7,6 +7,7 @@ import { moduleService } from "../../../services/moduleService";
 import { EventType } from "../../../utils/typeEvent";
 import { useLoader } from "../../../context/loader/useLoader";
 import { TIMELOADER } from "../../../utils/config";
+import { useToast } from "../../../context/toast/useToast";
 export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
@@ -15,6 +16,7 @@ export const CreateEvent = () => {
     const { register, handleSubmit, getValues, formState: { errors } ,reset } = useForm({
         mode: "all",
     });
+    const {open} = useToast();
 
     const create = async () => {
         const { title, date, description, eventType } = getValues()
@@ -23,15 +25,14 @@ export const CreateEvent = () => {
         try {
             setIsLoading(true)
             await moduleService.create(eventCreated)
-            
-            console.log("creado con exito")
             reset()
             setTimeout(() => {
                 setIsLoading(false)
+                open("Evento creado con exito", "success")
             }, TIMELOADER)
         } catch (e: any) {
             reset()
-            console.log(e.message)
+            open(e.response.data.message, "error")
         }
     }
 
