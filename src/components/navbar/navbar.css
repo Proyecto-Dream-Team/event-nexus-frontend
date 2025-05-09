@@ -26,3 +26,19 @@
     color: var(--white-color); 
 }
 
+.logOut {
+    all: unset;
+    font-size: 2rem;
+    margin-left: 1rem;
+    color: #505c72;
+    cursor: pointer;
+}
+
+.logOut:active {
+    color: var(--white-color);
+}
+
+.logOut:focus {
+    color: var(--white-color); 
+    outline: none; 
+}
