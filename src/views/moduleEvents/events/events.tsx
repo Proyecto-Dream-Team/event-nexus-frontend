@@ -5,6 +5,7 @@ import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import "./events.css";
 import { set } from "react-hook-form";
+import { useToast } from "../../../context/toast/useToast";
 
 export const Events = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ export const Events = () => {
   const id = Number(sessionStorage.getItem("userId"));
   const [events, setEvents] = useState<EventDto[]>();
   const [eventsEmployee, setEventsEmployee] = useState<EmployeeEvents>();
+  const {open, openHTTP} = useToast();
 
   const getEvents = async () => {
     if (showAllEvents) {
@@ -39,13 +41,14 @@ export const Events = () => {
   };
 
   const joinleaveEvent = async (eventId: number) => {
-    await moduleService.joinleaveEvent(eventId);
+   try{
+    const res = await moduleService.joinleaveEvent(eventId);
     setEventsEmployee((prevState) => {
       if (prevState) {
       return {
         ...prevState,
         invitedEvents: prevState.invitedEvents.filter(
-        (event) => event.id !== eventId
+          (event) => event.id !== eventId
         ),
       };
       }
@@ -58,6 +61,11 @@ export const Events = () => {
       }
       return prevState;
     });
+    open("Lista actualizada", "success");
+  }
+    catch (error) {
+      open("Error al unirse o abandonar el evento", "error");
+    }
   }
 
   useEffect(() => {
