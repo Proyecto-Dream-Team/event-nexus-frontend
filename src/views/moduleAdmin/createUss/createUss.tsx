@@ -8,8 +8,6 @@ import "./createUss.css";
 import { serviceUser } from "../../../services/serviceUser";
 import { useToast } from "../../../context/toast/useToast";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../../../domain/User-Domain";
-import { ProfileCard } from "../../../components/profileCard/profileCard";
-import { DatosForm } from "../../../domain/datosForm";
 import { TIMELOADER } from "../../../utils/config";
 import { useLoader } from "../../../context/loader/useLoader";
 
@@ -30,25 +28,32 @@ export const CreateUss = () => {
     const cancelCreate = () => {
         reset(new FormCreateUss());
     };
-
     const createUss = async (data: FormCreateUss) => {    
-       try{
-              setIsLoading(true);
-           const {nombre, apellido, email, permisos, roles} = getValues();
-           const newUser = new FormCreateFormularyAdmin(nombre, apellido, email, permisos, roles[0]);
-           await serviceUser.createUss(newUser);
-           setTimeout(() => {
+        try {
+            setIsLoading(true);
+            const { nombre, apellido, email, direccion, telefono, permisos, roles } = getValues();
+            const newUser = new FormCreateFormularyAdmin(
+                nombre,
+                apellido,
+                email,
+                direccion,
+                telefono,
+                permisos,
+                roles[0]
+            );
+            await serviceUser.createUss(newUser);
+            setTimeout(() => {
+                setIsLoading(false);
+                open("Usuario creado correctamente", "success");
+                reset(new FormCreateUss());
+            }, TIMELOADER);
+        } catch (error) {
             setIsLoading(false);
-            open("Usuario creado correctamente", "success");
-            reset(new FormCreateUss());
-              }, TIMELOADER);
-       } catch (error) {
-        
-    }
+            open("Error al crear el usuario", "error");
+        }
 
         console.log(data);
     };
-
 
     useEffect(() => {
         const fetchPermissions = async () => {
@@ -81,8 +86,8 @@ export const CreateUss = () => {
                     register={register("nombre", {
                         required: "El nombre es obligatorio",
                         pattern: {
-                            value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                            message: "Solo se permiten letras"
+                            value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/,
+                            message: "Solo se permiten letras y números"
                         }
                     })}
                     readonly={false}
@@ -95,15 +100,47 @@ export const CreateUss = () => {
                     register={register("apellido", {
                         required: "El apellido es obligatorio",
                         pattern: {
-                            value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                            message: "Solo se permiten letras"
+                            value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/,
+                            message: "Solo se permiten letras y números"
                         }
                     })}
                     readonly={false}
                     error={errors.apellido?.message || ""}
                 />
-
-
+                <InputApp
+                    label="Dirección"
+                    type="text"
+                    register={register("direccion", {
+                        required: "La dirección es obligatoria",
+                        pattern: {
+                            value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/,
+                            message: "Solo se permiten letras y números"
+                        }
+                    })}
+                    readonly={false}
+                    error={errors.direccion?.message || ""}
+                />
+                <InputApp
+                    label="Teléfono"
+                    type="number"
+                    register={register("telefono", {
+                        required: "El teléfono es obligatorio",
+                        pattern: {
+                            value: /^[0-9]+$/,
+                            message: "Solo se permiten números"
+                        },
+                        minLength: {
+                            value: 5,
+                            message: "El teléfono debe tener al menos 5 dígitos"
+                        },
+                        maxLength: {
+                            value: 15,
+                            message: "El teléfono debe tener como máximo 15 dígitos"
+                        }
+                    })}
+                    readonly={false}
+                    error={errors.telefono?.message || ""}
+                />
 
                 <InputApp
                     label="E-Mail"
@@ -118,22 +155,6 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.email?.message || ""}
                 />
-
-                {/* 
-                <Title title={"Módulos"}></Title>
-                <div className="checksArea">
-                    <BoxInput label={"diego"} value={"3"} register={register(
-                        "modulos", {
-                        required: "El módulo es obligatorio",
-                    }
-                    )} >
-                    </BoxInput>
-                </div>
-                <div className='error-containerCheckbox'>
-                    {errors.modulos?.message && <span className="error-msjCheckbox">{errors.modulos.message}</span>}
-                </div>
-                 */}
-
 
                 <Title title={"Permisos"} />
                 <div className="checksArea">
@@ -165,7 +186,7 @@ export const CreateUss = () => {
                         />
                     ))}
                     <div className='error-containerCheckbox'>
-                        {errors.permisos?.message && <span className="error-msjCheckbox">{errors.permisos.message}</span>}
+                        {errors.roles?.message && <span className="error-msjCheckbox">{errors.roles.message}</span>}
                     </div>
                 </div>
                 <div className="buttons">
