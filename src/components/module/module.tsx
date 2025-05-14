@@ -5,9 +5,13 @@ import { Card, Divider } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
 
 export const ModuleCard = ({ value }: { value: Module }) => {
-    const mapRoutes = { "Events": "/module-events/all-events", "Comunicarse": "/module-admin/create-user" };
+    const mapRoutes = { 
+                        "Events": "/module-events/all-events", 
+                        "Comunicarse": "/module-admin/create-user" 
+                    };
+                    
     const nav = useNavigate();
-
+   
     const navigate = () => {
         // Normalizar el nombre del módulo y las claves del mapa para ignorar mayúsculas/minúsculas
         const mapValue = value.name.split(" ")[0].toLowerCase();

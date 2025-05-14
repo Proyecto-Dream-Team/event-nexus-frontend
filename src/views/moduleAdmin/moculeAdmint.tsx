@@ -4,6 +4,7 @@ export const ModuleAdmin = () => {
     return (
        
        <>
+       
       <Outlet></Outlet>
        </>
     )
