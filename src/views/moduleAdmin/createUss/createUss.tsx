@@ -8,6 +8,8 @@ import "./createUss.css";
 import { serviceUser } from "../../../services/serviceUser";
 import { useToast } from "../../../context/toast/useToast";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../../../domain/User-Domain";
+import { useLoader } from "../../../context/loader/useLoader";
+import { TIMELOADER } from "../../../utils/config";
 
 
 
@@ -19,21 +21,34 @@ export const CreateUss = () => {
 
     const [permisos, setPermisos] = useState<string[]>([]);
     const [roles, setRoles] = useState<string[]>([]);
+    const { open } = useToast();
+    const {setIsLoading} = useLoader();
 
     const cancelCreate = () => {
         reset(new FormCreateUss());
     };
 
     const createUss = async (data: FormCreateUss) => {    
-        const {nombre, apellido, email, permisos, roles} = getValues();
-        const newUser = new FormCreateFormularyAdmin(nombre, apellido, email, permisos, roles[0]);
-        await serviceUser.createUss(newUser);
+       try{
+              setIsLoading(true);
+           const {nombre, apellido, email, permisos, roles} = getValues();
+           const newUser = new FormCreateFormularyAdmin(nombre, apellido, email, permisos, roles[0]);
+           await serviceUser.createUss(newUser);
+           setTimeout(() => {
+            setIsLoading(false);
+            open("Usuario creado correctamente", "success");
+            reset(new FormCreateUss());
+              }, TIMELOADER);
+       } catch (error) {
+        
+    }
+
+
 
 
         console.log(data);
     };
 
-    const { open } = useToast();
 
     useEffect(() => {
         const fetchPermissions = async () => {

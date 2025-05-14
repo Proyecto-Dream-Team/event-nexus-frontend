@@ -147,7 +147,7 @@
   inset: -18px;
   border-radius: 50%;
   border: 10px solid #3982b3;
-  animation: l18 2s infinite linear;
+  animation: l18 1s infinite linear;
 }
 @keyframes l18 {
     0%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
