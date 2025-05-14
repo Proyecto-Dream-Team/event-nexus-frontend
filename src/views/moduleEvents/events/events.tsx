@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { EventCard } from "../../../components/eventCard/event";
+import { useToast } from "../../../context/toast/useToast";
 import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import "./events.css";
-import { set } from "react-hook-form";
-import { useToast } from "../../../context/toast/useToast";
 
 export const Events = () => {
   const location = useLocation();
