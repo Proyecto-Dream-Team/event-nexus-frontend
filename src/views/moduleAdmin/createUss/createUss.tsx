@@ -8,10 +8,13 @@ import "./createUss.css";
 import { serviceUser } from "../../../services/serviceUser";
 import { useToast } from "../../../context/toast/useToast";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../../../domain/User-Domain";
+import { ProfileCard } from "../../../components/profileCard/profileCard";
+import { DatosForm } from "../../../domain/datosForm";
 
 
 
 export const CreateUss = () => {
+
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
         mode: "all",
         defaultValues: new FormCreateUss(),
