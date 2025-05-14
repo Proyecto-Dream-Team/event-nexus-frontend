@@ -1,9 +1,20 @@
 import axios from "axios";
 import { DatosForm } from "../domain/datosForm";
-import { URL_SERVIDOR_REST } from "../utils/config";
+import { PermissionsApp } from "../domain/permissions-description";
 import { HeaderDto } from "../domain/user";
+import { FormCreateFormularyAdmin } from "../domain/User-Domain";
+import { URL_SERVIDOR_REST } from "../utils/config";
 
 class ServiceUser {
+  async createUss(newUser: FormCreateFormularyAdmin): Promise<void> {
+    await axios.post(`${URL_SERVIDOR_REST}/admin/create-user`, newUser);
+  }
+
+  async getPermissions(): Promise<PermissionsApp> {
+     const res = await axios.get(`${URL_SERVIDOR_REST}/admin/permissions-role`);
+    return res.data;
+    }
+  
   async getProfileDatos(id: number): Promise<DatosForm> {
     const response = await axios.get<DatosForm>(`${URL_SERVIDOR_REST}/user/profile/${id}`);
     const entity = DatosForm.fromDto(response.data);

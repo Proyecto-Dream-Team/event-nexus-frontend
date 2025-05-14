@@ -1,0 +1,15 @@
+
+.error-containerCheckbox{
+    height: 1.5rem;
+    /* width: 100%; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.error-msjCheckbox{
+     color: red;
+    font-size: 1.4rem;
+    /* font-weight: lighter; */
+    margin-top: 0.5rem;
+    text-align: left;
+}
