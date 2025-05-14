@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Title } from "../../../components/title/title"
 import { InputApp } from "../../../components/input/input";
 import { ButtonApp } from "../../../components/buttons/button";
+import { use, useEffect } from "react";
 
 class FormCreateUss {
     nombre: string = "";
@@ -19,12 +20,16 @@ export const CreateUss = () => {
         defaultValues: new FormCreateUss(),
     });
 
-     const cancelCreate = () => {
+    const cancelCreate = () => {
         reset(new FormCreateUss());
     }
     const createUss = (data: FormCreateUss) => {
         console.log(data);
     }
+
+    useEffect(() => {
+        // deneria obtener los permisos y los modulos de la api
+    }, [])
 
 
     return (
@@ -84,11 +89,12 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.email?.message || ""}
                 />
+                <Title title={"Permisos"} ></Title>
 
-                 <div className="buttons">
-                        <ButtonApp label="Cancelar" method={cancelCreate} isCancel={true} />
-                        <ButtonApp label="Aceptar" method={handleSubmit(createUss)} isCancel={false} />
-                      </div>
+                <div className="buttons">
+                    <ButtonApp label="Cancelar" method={cancelCreate} isCancel={true} />
+                    <ButtonApp label="Aceptar" method={handleSubmit(createUss)} isCancel={false} />
+                </div>
             </form>
 
 
