@@ -20,10 +20,10 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { setImg } = useProfileImg();
-  const {open, openHTTP} = useToast();
-  const {setIsLoading} = useLoader();
+  const { open, openHTTP } = useToast();
+  const { setIsLoading } = useLoader();
 
-  const {register,handleSubmit,getValues,formState: { errors }, reset,} = useForm<LoginForm>({
+  const { register, handleSubmit, getValues, formState: { errors }, reset, } = useForm<LoginForm>({
     mode: "all",
     defaultValues: {
       user: "",
@@ -69,12 +69,12 @@ export const Login = () => {
     }
   };
 
-  
+
 
   return (
     <>
       <div className="login-box">
-    
+
         <HexagonBackground></HexagonBackground>
         <form className="loginFormulary">
           <Title title={"Event Nexus"} />
@@ -98,7 +98,12 @@ export const Login = () => {
             readonly={false}
           />
 
-          <h2>Olvidaste tu contraseña?</h2>
+          <h2>
+            <a className="forgotPassword" onClick={() => navigate("/recovery")}>
+
+              Olvidaste tu contraseña?
+            </a>
+          </h2>
 
           <div className="buttonsLogin">
             <ButtonApp

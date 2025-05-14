@@ -4,6 +4,8 @@ export class FormCreateUss {
     nombre: string;
     apellido: string;
     email: string;
+    direccion: string;
+    telefono: string;
     permisos: string[] ;
     roles: string[] ;
 
@@ -11,12 +13,16 @@ export class FormCreateUss {
         nombre: string = "",
         apellido: string = "",
         email: string = "",
+        direccion: string = "",
+        telefono: string = "",
         permisos: string[] = [],
         roles: string[] = []
     ) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.direccion = direccion;
+        this.telefono = telefono;
         this.permisos = permisos;
         this.roles = roles;
     }
@@ -26,6 +32,8 @@ export class FormCreateUss {
             nombre: data.nombre,
             apellido: data.apellido,
             email: data.email,
+            direccion: data.direccion,
+            telefono: data.telefono,
             permisos: data.permisos,
             roles: data.roles
         }
@@ -37,6 +45,8 @@ export class FormCreateFormularyAdmin {
     name: string;
     lastName: string;
     email: string;
+    address: string;
+    phone: string;
     permissions: string[] ;
     role: string ;
 
@@ -44,12 +54,16 @@ export class FormCreateFormularyAdmin {
         nombre: string = "",
         apellido: string = "",
         email: string = "",
+        address: string = "",
+        phone: string = "",
         permisos: string[] = [],
         roles: string = ""
     ) {
         this.name = nombre;
         this.lastName = apellido;
         this.email = email;
+        this.address = address;
+        this.phone = phone;
         this.permissions = permisos;
         this.role = roles;
     }

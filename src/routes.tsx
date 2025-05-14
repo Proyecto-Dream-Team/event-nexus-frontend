@@ -9,6 +9,7 @@ import { Events } from './views/moduleEvents/events/events';
 import {CreateUss} from './views/moduleAdmin/createUss/createUss';
 import { ModuleAdmin } from './views/moduleAdmin/moculeAdmint';
 import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
+import { CredentialsComponent } from './views/credentials/credentials';
 
 
 export const AppRouter = () => {
@@ -17,8 +18,8 @@ export const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route element={<Login/> } path = 'login' ></Route>
-                <Route element={<Login/> } path = 'register' ></Route>
-                <Route element={<Login/> } path = 'recovery' ></Route>
+                <Route element={<CredentialsComponent/> } path = 'register' ></Route>
+                <Route element={<CredentialsComponent/> } path = 'recovery' ></Route>
                 <Route element={<ViewLayout></ViewLayout>}>
                     <Route element={<Home /> } path = 'home' ></Route>
                     <Route element={<Profile /> } path = 'profile' ></Route>
