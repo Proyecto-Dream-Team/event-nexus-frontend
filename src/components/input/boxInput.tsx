@@ -1,17 +1,18 @@
+import './boxInput.css'
+
 interface BoxInputProps {
     label: string;
     value: string;
     register: any;
-    error: string;
 }
 
-export const BoxInput = ({ label, value, register, error }: BoxInputProps) => {
+export const BoxInput = ({ label, value, register}: BoxInputProps) => {
 
 
     return (
 
         <>
-            <div className="event-type-options">
+            <div className="">
                 <label className="event-type-option">
                     <input
                         className="event-type-radio"
@@ -22,9 +23,7 @@ export const BoxInput = ({ label, value, register, error }: BoxInputProps) => {
                     <span className="keySpan">{label}</span>
                 </label>
 
-            </div>
-            <div className='error-container'>
-                {error && <span className="error-message">{error}</span>}
+           
             </div>
         </>
 

@@ -4,6 +4,10 @@ import { URL_SERVIDOR_REST } from "../utils/config";
 import { HeaderDto } from "../domain/user";
 
 class ServiceUser {
+  async getPermissions(): Promise<any> {
+    // return await axios.get(`${URL_SERVIDOR_REST}/user/permissions`);
+  }
+  
   async getProfileDatos(id: number): Promise<DatosForm> {
     const response = await axios.get<DatosForm>(`${URL_SERVIDOR_REST}/user/profile/${id}`);
     const entity = DatosForm.fromDto(response.data);

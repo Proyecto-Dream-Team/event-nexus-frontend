@@ -1,15 +1,17 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Title } from "../../../components/title/title"
-import { InputApp } from "../../../components/input/input";
 import { ButtonApp } from "../../../components/buttons/button";
-import { use, useEffect } from "react";
 import { BoxInput } from "../../../components/input/boxInput";
+import { InputApp } from "../../../components/input/input";
+import { Title } from "../../../components/title/title";
+import "./createUss.css";
 
 class FormCreateUss {
     nombre: string = "";
     apellido: string = "";
     telefono: string = "";
     email: string = "";
+    direccion: string = "";
     modulos: string[] = [];
     permisos: string[] = [];
 }
@@ -19,6 +21,8 @@ export const CreateUss = () => {
         mode: "all",
         defaultValues: new FormCreateUss(),
     });
+
+    const [permisos, setPermisos] = useState<string[]>([]);
 
     const cancelCreate = () => {
         reset(new FormCreateUss());
@@ -30,6 +34,16 @@ export const CreateUss = () => {
 
     useEffect(() => {
         // debería obtener los permisos y los módulos de la API
+        // const fetchPermissions = async () => {
+        //     try {
+        //         const permissions = await serviceUser.getPermissions();
+        //         console.log(permissions);
+        //         setPermisos(permissions.data);
+        //     } catch (error) {
+        //         console.error("Error fetching permissions:", error);
+        //     }
+        // };
+        // fetchPermissions();
     }, []);
 
     return (
@@ -92,19 +106,47 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.email?.message || ""}
                 />
+                <InputApp
+                    label="Direccion"
+                    type="text"
+                    register={register("direccion", {
+                        required: "La dirección es obligatoria",
+                        pattern: {
+                            value: /^[a-zA-Z0-9\s,.-áéíóúÁÉÍÓÚñÑ]+$/,
+                            message: "La dirección contiene caracteres inválidos"
+                        }
+                    })}
+                    readonly={false}
+                    error={errors.direccion?.message || ""}
+                />
+{/* 
+                <Title title={"Módulos"}></Title>
+                <div className="checksArea">
+                    <BoxInput label={"diego"} value={"3"} register={register(
+                        "modulos", {
+                        required: "El módulo es obligatorio",
+                    }
+                    )} >
+                    </BoxInput>
+                </div>
+                 */}
 
-                <div className="event-type-selector">
-                    <Title title={"Módulos"}></Title>
-                    <BoxInput label={"diego"} value={"3"} register={undefined} error={""}></BoxInput>
-                  
+                <div className='error-containerCheckbox'>
+                    {errors.modulos?.message && <span className="error-msjCheckbox">{errors.modulos.message}</span>}
                 </div>
 
-                <div className="event-type-selector">
-                    <Title title={"Permisos"} />
-                    <BoxInput label={"pepe"} value={"3"} register={undefined} error={""}></BoxInput>
-                 
+                <Title title={"Permisos"} />
+                <div className="checksArea">
+                    <BoxInput label={"pepe"} value={"3"} register={register(
+                        "permisos", {
+                            required: "El permiso es obligatorio",
+                        }
+                    )} >
+                    </BoxInput>
                 </div>
-
+                <div className='error-containerCheckbox'>
+                    {errors.permisos?.message && <span className="error-msjCheckbox">{errors.permisos.message}</span>}
+                </div>
 
                 <div className="buttons">
                     <ButtonApp label="Cancelar" method={cancelCreate} isCancel={true} />
