@@ -6,6 +6,9 @@ import { Profile } from './views/profile/profile';
 import { ModuleEvents } from './views/moduleEvents/moduleEvents';
 import { CreateEvent } from './views/moduleEvents/createEvent/createEvent';
 import { Events } from './views/moduleEvents/events/events';
+import {CreateUss} from './views/moduleAdmin/createUss/createUss';
+import { ModuleAdmin } from './views/moduleAdmin/moculeAdmint';
+import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
 
 
 export const AppRouter = () => {
@@ -22,6 +25,10 @@ export const AppRouter = () => {
                         <Route element= {<Events/>} path = 'my-events' ></Route>
                         <Route element = {<Events/>} path = 'created-events' ></Route>
                         <Route element = {<CreateEvent/>} path = 'create-event' ></Route>
+                    </Route>
+                    <Route element={<ModuleAdmin/> } path = 'module-admin' >
+                        <Route element = {<CreateUss/>} path='create-user'></Route>
+                        <Route element = {<SearchUser/>} path='search-user'></Route>
                     </Route>
                 </Route>
                 <Route path="/" element={<Navigate to="/login" />}></Route>{/* por defecto me lleva al login */}
