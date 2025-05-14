@@ -3,6 +3,7 @@ import { Title } from "../../../components/title/title"
 import { InputApp } from "../../../components/input/input";
 import { ButtonApp } from "../../../components/buttons/button";
 import { use, useEffect } from "react";
+import { BoxInput } from "../../../components/input/boxInput";
 
 class FormCreateUss {
     nombre: string = "";
@@ -14,7 +15,6 @@ class FormCreateUss {
 }
 
 export const CreateUss = () => {
-
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
         defaultValues: new FormCreateUss(),
@@ -22,21 +22,21 @@ export const CreateUss = () => {
 
     const cancelCreate = () => {
         reset(new FormCreateUss());
-    }
+    };
+
     const createUss = (data: FormCreateUss) => {
         console.log(data);
-    }
+    };
 
     useEffect(() => {
-        // deneria obtener los permisos y los modulos de la api
-    }, [])
-
+        // debería obtener los permisos y los módulos de la API
+    }, []);
 
     return (
         <>
-            <Title title={"Crear Usuario"} ></Title>
+            <Title title={"Crear Usuario"} />
 
-            <form className="profileFormulary">
+            <form className="profileFormulary" onSubmit={handleSubmit(createUss)}>
                 <InputApp
                     label="Nombre"
                     type="text"
@@ -50,6 +50,7 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.nombre?.message || ""}
                 />
+
                 <InputApp
                     label="Apellido"
                     type="text"
@@ -63,6 +64,7 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.apellido?.message || ""}
                 />
+
                 <InputApp
                     label="Telefono"
                     type="number"
@@ -76,6 +78,7 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.telefono?.message || ""}
                 />
+
                 <InputApp
                     label="E-Mail"
                     type="email"
@@ -89,15 +92,25 @@ export const CreateUss = () => {
                     readonly={false}
                     error={errors.email?.message || ""}
                 />
-                <Title title={"Permisos"} ></Title>
+
+                <div className="event-type-selector">
+                    <Title title={"Módulos"}></Title>
+                    <BoxInput label={"diego"} value={"3"} register={undefined} error={""}></BoxInput>
+                  
+                </div>
+
+                <div className="event-type-selector">
+                    <Title title={"Permisos"} />
+                    <BoxInput label={"pepe"} value={"3"} register={undefined} error={""}></BoxInput>
+                 
+                </div>
+
 
                 <div className="buttons">
                     <ButtonApp label="Cancelar" method={cancelCreate} isCancel={true} />
                     <ButtonApp label="Aceptar" method={handleSubmit(createUss)} isCancel={false} />
                 </div>
             </form>
-
-
         </>
-    )
-}
+    );
+};
