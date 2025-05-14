@@ -4,12 +4,21 @@ import { Title } from '../../components/title/title'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
 import './home.css'
+import { mock } from '../../services/notification.service'
 
 export const Home = () => {
 
     const [modules, setModules] = useState<Module[]>()
     const id = Number(sessionStorage.getItem("userId"));
 
+    async function clickMock(){
+        try{
+            mock()
+        }
+        catch(e:any){
+            
+        }
+    }
     const getModules = async () => {
         try {
             const res = await moduleService.getModules(id)
@@ -40,7 +49,8 @@ export const Home = () => {
                         ))
                     }
                 </div>
-                <img className='image-home' src="EventNexusImagotipo.png" />
+                <button onClick={clickMock}>ACTIVAR NOTIFICACIONES</button>
+                <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>
         </>
     )
