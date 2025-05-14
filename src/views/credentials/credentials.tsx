@@ -106,7 +106,12 @@ export const CredentialsComponent = () => {
                     readonly={false}
                 />
 
-                <div className="buttonsLogin">
+                <div className="buttonsCredentials">
+                    <ButtonApp
+                        label="Volver"
+                        method={() => nav('/login')}
+                        isCancel={true}
+                    />
                         <ButtonApp
                             label="Enviar"
                             method={handleSubmit(createUser)}
