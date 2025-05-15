@@ -1,7 +1,6 @@
 import axios from "axios";
 import { LoginRequestDTO, loginResponseDTO, LoginResponseDTO } from "../domain/Login";
 import { URL_SERVIDOR_REST } from "../utils/config";
-import { useToast } from "../context/toast/useToast";
 
 class AuthService {
     

@@ -1,6 +1,8 @@
+
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import "./searchUss.css";
+
 
 export const SearchUser = () => {
   const [value, setValue] = useState("");
