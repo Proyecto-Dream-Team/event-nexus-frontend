@@ -43,3 +43,21 @@ export const sesionStorage = new SesionStorage(
     "profileImage.png",
     "admin"
 ) 
+
+export const sesionStorage1 = new SesionStorage(
+    0,
+    "Pedro",
+    "McGeraghty",
+    "profileImage.png",
+    "admin"
+) 
+
+export const sesionStorage2 = new SesionStorage(
+    0,
+    "Pedro",
+    "McGeraghty",
+    "profileImage.png",
+    "admin"
+) 
+
+export const sesionStorages = [sesionStorage,sesionStorage1,sesionStorage2]
