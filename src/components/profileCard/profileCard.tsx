@@ -1,8 +1,9 @@
 import { datosForm, DatosForm } from "../../domain/datosForm"
-import EastIcon from '@mui/icons-material/East';
+import CreateIcon from '@mui/icons-material/Create';
 import "./profileCard.css"
 import { serviceUser } from "../../services/serviceUser";
 import { useEffect, useState } from "react";
+import { useProfileImg } from "../../context/contextImg";
 
 interface profileForm{
     profileId: number
@@ -32,10 +33,10 @@ export const ProfileCard = (profileForm: profileForm) => {
                     <h2>{datos.apellido + " " + datos.nombre}</h2>
                     {profileForm.work}
                 </div>
-                <h6 className="number">{datos.phone}</h6>
+                <img className="image" src={useProfileImg().img}></img>
             </div>
             <div className='icon'>
-                <EastIcon fontSize="large" />
+                <CreateIcon fontSize="large" />
             </div>
         </div>
     )
