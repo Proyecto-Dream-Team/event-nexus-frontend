@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import "./searchUss.css";
 
@@ -21,6 +21,10 @@ export const SearchUser = () => {
           onChange={(e) => setValue(e.target.value)}
         />
         <SearchIcon className="search-icon" />
+
+        <div className= "usuarios" >
+          
+        </div>
       </div>
     </section>
   );
