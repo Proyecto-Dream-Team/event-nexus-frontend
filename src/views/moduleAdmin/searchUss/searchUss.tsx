@@ -27,6 +27,7 @@ export const SearchUser = () => {
         />
         <SearchIcon className="search-icon" />
 
+      </div>
         <div className= "usuarios" >
         {
           users?.map((item, index) => (
@@ -40,7 +41,6 @@ export const SearchUser = () => {
             ))
             }
         </div>
-      </div>
     </section>
   );
 };
