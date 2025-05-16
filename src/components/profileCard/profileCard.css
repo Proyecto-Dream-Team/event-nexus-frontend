@@ -29,10 +29,9 @@
     margin-left: 2vh;
 }
 
-.image{
-    position: absolute;
-    right: 1rem;
-    margin: auto auto;
+.img{
+    width: 5rem;
+    margin: 1rem;
     border-radius: 50%;
     justify-self: center;
     align-self: center;

@@ -8,14 +8,14 @@ export class SesionStorage {
         public id: number,
         public name: string,
         public lastname: string,
-        public img: string,
-        public role: string
+        public image: string,
+        public rol: string
     ) {
         this.id = id
         this.name = name
         this.lastname = lastname
-        this.img = img
-        this.role = role
+        this.image = image
+        this.rol = rol
     }
 
 }
@@ -36,10 +36,3 @@ export class HeaderDto {
     }
 }
 
-export const sesionStorage = new SesionStorage(
-    0,
-    "Pedro",
-    "McGeraghty",
-    "profileImage.png",
-    "admin"
-) 

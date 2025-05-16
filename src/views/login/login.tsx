@@ -15,59 +15,59 @@ import { TIMELOADER } from "../../utils/config";
 import { useToast } from "../../context/toast/useToast";
 
 export const Login = () => {
-  const [us, setUss] = useState("");
-  const [pass, setPass] = useState("");
-  const navigate = useNavigate();
+	const [us, setUss] = useState("");
+	const [pass, setPass] = useState("");
+	const navigate = useNavigate();
 
-  const { setImg } = useProfileImg();
-  const { open, openHTTP } = useToast();
-  const { setIsLoading } = useLoader();
+	const { setImg } = useProfileImg();
+	const { open, openHTTP } = useToast();
+	const { setIsLoading } = useLoader();
 
-  const { register, handleSubmit, getValues, formState: { errors }, reset, } = useForm<LoginForm>({
-    mode: "all",
-    defaultValues: {
-      user: "",
-      password: "",
-    },
-  });
+	const { register, handleSubmit, getValues, formState: { errors }, reset, } = useForm<LoginForm>({
+		mode: "all",
+		defaultValues: {
+		user: "",
+		password: "",
+		},
+	});
 
-  const handleNavigation = () => {
-    navigate("/home");
-  };
+	const handleNavigation = () => {
+		navigate("/home");
+	};
 
-  const handleLogin = async () => {
-    setIsLoading(true);
-    const { user, password } = getValues();
-    setUss(user);
-    setPass(password);
+	const handleLogin = async () => {
+		setIsLoading(true);
+		const { user, password } = getValues();
+		setUss(user);
+		setPass(password);
 
-    try {
-      const credentials = LoginRequestDTO.fromDto(user, password);
-      const loginSuccess = await authService.loginClient(credentials);
+		try {
+		const credentials = LoginRequestDTO.fromDto(user, password);
+		const loginSuccess = await authService.loginClient(credentials);
 
-      if (loginSuccess) {
-        const img = sessionStorage.getItem("img") || "";
-        setImg(img);
-        reset();
-        setTimeout(() => {
-          setIsLoading(false);
-          handleNavigation();
-        }, TIMELOADER);
-      } else {
-        setTimeout(() => {
-          setIsLoading(false);
-          open("Credenciales incorrectas", "error");
-          reset();
-        }, TIMELOADER);
-      }
-    } catch (error) {
-      if (error instanceof Error && (error as any).response) {
-        openHTTP((error as any).response);
-      } else {
-        open("Ocurrió un error inesperado", "error");
-      }
-    }
-  };
+		if (loginSuccess) {
+			const img = sessionStorage.getItem("img") || "";
+			setImg(img);
+			reset();
+			setTimeout(() => {
+			setIsLoading(false);
+			handleNavigation();
+			}, TIMELOADER);
+		} else {
+			setTimeout(() => {
+			setIsLoading(false);
+			open("Credenciales incorrectas", "error");
+			reset();
+			}, TIMELOADER);
+		}
+		} catch (error) {
+		if (error instanceof Error && (error as any).response) {
+			openHTTP((error as any).response);
+		} else {
+			open("Ocurrió un error inesperado", "error");
+		}
+		}
+	};
 
 
 

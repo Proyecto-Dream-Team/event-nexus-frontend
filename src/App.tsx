@@ -7,13 +7,13 @@ import { AppRouter } from "./routes";
 function App() {
   return (
     <>
-      <ToastProvider>
-        <LoaderProvider>
-          <ProfileImgProvider>
-            <AppRouter />
-          </ProfileImgProvider>
-        </LoaderProvider>
-      </ToastProvider>
+		<ToastProvider>
+			<LoaderProvider>
+			<ProfileImgProvider>
+				<AppRouter />
+			</ProfileImgProvider>
+			</LoaderProvider>
+		</ToastProvider>
     </>
   );
 }
