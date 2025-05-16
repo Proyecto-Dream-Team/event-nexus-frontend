@@ -26,6 +26,7 @@ class AdminService {
     }
 
         async updateUss(newUser: FormCreateFormularyAdmin) : Promise<void> {
+            console.log(newUser);
             await axios.put(`${URL_SERVIDOR_REST}/admin/edit-user`, newUser);
         }
         async createUss(newUser: FormCreateFormularyAdmin): Promise<void> {
