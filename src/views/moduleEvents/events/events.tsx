@@ -7,69 +7,69 @@ import { moduleService } from "../../../services/moduleService";
 import "./events.css";
 
 export const Events = () => {
-  const location = useLocation();
+	const location = useLocation();
 
-  const showAllEvents = location.pathname === "/module-events/all-events";
-  const showMyEvents = location.pathname === "/module-events/my-events";
-  const showCreatedEvents =
-    location.pathname === "/module-events/created-events";
-  const id = Number(sessionStorage.getItem("userId"));
-  const [events, setEvents] = useState<EventDto[]>();
-  const [eventsEmployee, setEventsEmployee] = useState<EmployeeEvents>();
-  const {open, openHTTP} = useToast();
+	const showAllEvents = location.pathname === "/module-events/all-events";
+	const showMyEvents = location.pathname === "/module-events/my-events";
+	const showCreatedEvents =
+		location.pathname === "/module-events/created-events";
+	const id = Number(sessionStorage.getItem("userId"));
+	const [events, setEvents] = useState<EventDto[]>();
+	const [eventsEmployee, setEventsEmployee] = useState<EmployeeEvents>();
+	const {open, openHTTP} = useToast();
 
-  const getEvents = async () => {
-    if (showAllEvents) {
-      const allEvents: EventDto[] = await moduleService.getEvents();
-      setEvents(allEvents);
-    }
-    if (showMyEvents) {
-      const id = Number(sessionStorage.getItem("userId"));
-      const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
-        id
-      );
-      setEventsEmployee(employeeEvents);
-    }
-    if (showCreatedEvents) {
-      const id = Number(sessionStorage.getItem("userId"));
-      const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
-        id
-      );
-      setEventsEmployee(employeeEvents);
-    }
-  };
+	const getEvents = async () => {
+		if (showAllEvents) {
+		const allEvents: EventDto[] = await moduleService.getEvents();
+		setEvents(allEvents);
+		}
+		if (showMyEvents) {
+		const id = Number(sessionStorage.getItem("userId"));
+		const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+			id
+		);
+		setEventsEmployee(employeeEvents);
+		}
+		if (showCreatedEvents) {
+		const id = Number(sessionStorage.getItem("userId"));
+		const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+			id
+		);
+		setEventsEmployee(employeeEvents);
+		}
+	};
 
-  const joinleaveEvent = async (eventId: number) => {
-   try{
-    const res = await moduleService.joinleaveEvent(eventId);
-    setEventsEmployee((prevState) => {
-      if (prevState) {
-      return {
-        ...prevState,
-        invitedEvents: prevState.invitedEvents.filter(
-          (event) => event.id !== eventId
-        ),
-      };
-      }
-      return prevState;
-    });
+	const joinleaveEvent = async (eventId: number) => {
+	try{
+		const res = await moduleService.joinleaveEvent(eventId);
+		setEventsEmployee((prevState) => {
+		if (prevState) {
+		return {
+			...prevState,
+			invitedEvents: prevState.invitedEvents.filter(
+			(event) => event.id !== eventId
+			),
+		};
+		}
+		return prevState;
+		});
 
-    setEvents((prevState) => {
-      if (prevState) {
-      return prevState.filter((event) => event.id !== eventId);
-      }
-      return prevState;
-    });
-    open("Lista actualizada", "success");
-  }
-    catch (error) {
-      open("Error al unirse o abandonar el evento", "error");
-    }
-  }
+		setEvents((prevState) => {
+		if (prevState) {
+		return prevState.filter((event) => event.id !== eventId);
+		}
+		return prevState;
+		});
+		open("Lista actualizada", "success");
+	}
+		catch (error) {
+		open("Error al unirse o abandonar el evento", "error");
+		}
+	}
 
-  useEffect(() => {
-    getEvents();
-  }, [showAllEvents]);
+	useEffect(() => {
+		getEvents();
+	}, [showAllEvents]);
   
 
   return (

@@ -8,15 +8,15 @@ import { serviceUser } from "../../../services/serviceUser";
 
 
 export const SearchUser = () => {
-  const [value, setValue] = useState("");
-  const [expanded, setExpanded] = useState(false);
-  const [users , setUsers] = useState<SesionStorage[]>()
+  	const [value, setValue] = useState("");
+  	const [expanded, setExpanded] = useState(false);
+  	const [users , setUsers] = useState<SesionStorage[]>()
 
 
-  const fetchUSer = async () => {
-    const response = await serviceUser.search(value);
-    console.log(response)
-    setUsers(response);
+  	const fetchUSer = async () => {
+    	const response = await serviceUser.search(value);
+    	console.log(response)
+    	setUsers(response);
 };
 
   return (

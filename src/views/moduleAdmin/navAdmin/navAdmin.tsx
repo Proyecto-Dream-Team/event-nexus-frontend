@@ -2,12 +2,6 @@ import './navAdmin.css'
 import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-export const dividerStyles = {
-    backgroundColor: "#ffffff",
-    height: "2px",
-    margin: "0 4rem 2rem 4rem",
-}
-
 export const NavAdmin = () => {
     const navigate = useNavigate()
     const location = useLocation()
@@ -19,7 +13,7 @@ export const NavAdmin = () => {
 
     const links = [
         { path: '/module-admin/create-user', label: 'Crear Usuario' },
-        { path: '/module-admin/search-user', label: 'Participo' },
+        { path: '/module-admin/search-user', label: 'Buscar Usuario' },
 
     ]
 

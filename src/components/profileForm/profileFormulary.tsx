@@ -12,34 +12,34 @@ interface PropsFormulary {
 }
 
 export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
-  const { register, handleSubmit, formState: { errors }, reset} = useForm({
-    mode: "all",
-    defaultValues: info,
-  });
+	const { register, handleSubmit, formState: { errors }, reset} = useForm({
+		mode: "all",
+		defaultValues: info,
+	});
 
-  const {open} = useToast();
+	const {open} = useToast();
 
-  useEffect(() => {
-    reset(info);
-  }, [info, reset]);
+	useEffect(() => {
+		reset(info);
+	}, [info, reset]);
 
-  const onclick = (data: DatosForm) => {
-    
-    if (JSON.stringify(data) !== JSON.stringify(info)) {
-      uploadData(data);
-    } else {
-      open("No hay cambios en el formulario", "error");
-    }
-  };
+	const onclick = (data: DatosForm) => {
+		
+		if (JSON.stringify(data) !== JSON.stringify(info)) {
+		uploadData(data);
+		} else {
+		open("No hay cambios en el formulario", "error");
+		}
+	};
 
-  const cancel = () => {
-    reset(info);
-  };
+	const cancel = () => {
+		reset(info);
+	};
 
-  const HandleCancel = () => {
-    reset(info);
-    open("Cambios cancelados", "warning");
-  };
+	const HandleCancel = () => {
+		reset(info);
+		open("Cambios cancelados", "warning");
+	};
   
 /*
  <InputApp

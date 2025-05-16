@@ -10,54 +10,54 @@ import { TIMELOADER } from "../../utils/config";
 import { useToast } from "../../context/toast/useToast";
 
 export const Profile = () => {
-  const [datos, setDatos] = useState<DatosForm>(datosForm);
-  const id = Number(sessionStorage.getItem("userId"));
-  const { setIsLoading } = useLoader();
-  const { open } = useToast();
+	const [datos, setDatos] = useState<DatosForm>(datosForm);
+	const id = Number(sessionStorage.getItem("userId"));
+	const { setIsLoading } = useLoader();
+	const { open } = useToast();
 
 
-  const getProfile = async () => {
-    try {
-      const res = await serviceUser.getProfileDatos(id);
-      setDatos(res);
-    } catch (error) {
-      console.error("Error al obtener el perfil:", error);
-    }
-  };
+	const getProfile = async () => {
+		try {
+		const res = await serviceUser.getProfileDatos(id);
+		setDatos(res);
+		} catch (error) {
+		console.error("Error al obtener el perfil:", error);
+		}
+	};
 
-  const changeImg = async (img: string) => {
-    try {
-      await serviceUser.updateImg(img);
-      open("Imagen actualizada", "success");
-    } catch (error) {
-      open("Error al actualizar la imagen", "error");
-    }
-  }
+	const changeImg = async (img: string) => {
+		try {
+		await serviceUser.updateImg(img);
+		open("Imagen actualizada", "success");
+		} catch (error) {
+		open("Error al actualizar la imagen", "error");
+		}
+	}
 
-  const changeData = async (data: DatosForm) => {
-    // setIsLoading(true);
-    try {
-      await serviceUser.updateProfile(data);
-      setDatos(data);
-      console.log("Datos actualizados:", data);
-    } catch (error) {
-      open("Error al actualizar los datos", "error");
-    }
-    // setTimeout(() => {
-      // setIsLoading(false);
-      open("Perfil actualizado", "success");
-    // }, TIMELOADER)
-  }
+	const changeData = async (data: DatosForm) => {
+		// setIsLoading(true);
+		try {
+		await serviceUser.updateProfile(data);
+		setDatos(data);
+		console.log("Datos actualizados:", data);
+		} catch (error) {
+		open("Error al actualizar los datos", "error");
+		}
+		// setTimeout(() => {
+		// setIsLoading(false);
+		open("Perfil actualizado", "success");
+		// }, TIMELOADER)
+	}
 
-  useEffect(() => {
-    getProfile();
-  }, []);
+	useEffect(() => {
+		getProfile();
+	}, []);
 
-  return (
-    <>
-      <ProfileImg change={changeImg}></ProfileImg>
-      <h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
-      <ProfileFormulary info={datos} uploadData={changeData} />
-    </>
-  );
+	return (
+		<>
+		<ProfileImg change={changeImg}></ProfileImg>
+		<h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
+		<ProfileFormulary info={datos} uploadData={changeData} />
+		</>
+	);
 };
