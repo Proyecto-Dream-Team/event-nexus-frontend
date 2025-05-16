@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { URL_SERVIDOR_REST } from "../utils/config";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../domain/User-Domain";
-import { Form } from "react-router-dom";
+import { URL_SERVIDOR_REST } from "../utils/config";
 
 class AdminService {
 
@@ -13,7 +12,6 @@ class AdminService {
     async getUser(id: number): Promise<FormCreateUss> {
         const res = await axios.get(`${URL_SERVIDOR_REST}/admin/edit-user/${id}`);
         const user = res.data;
-        console.log(user);
         const us = new FormCreateUss(
             user.id,
             user.name,
@@ -26,6 +24,13 @@ class AdminService {
         );
         return us;
     }
+
+        async updateUss(newUser: FormCreateFormularyAdmin) : Promise<void> {
+            await axios.put(`${URL_SERVIDOR_REST}/admin/edit-user`, newUser);
+        }
+        async createUss(newUser: FormCreateFormularyAdmin): Promise<void> {
+            await axios.post(`${URL_SERVIDOR_REST}/admin/create-user`, newUser);
+      }
 
 }
 

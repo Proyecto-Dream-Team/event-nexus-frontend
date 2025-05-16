@@ -35,7 +35,7 @@ export const CreateUss = () => {
                 permisos,
                 Array.isArray(roles) ? "" : roles // Cambiar a roles[0] si es un array
             );
-            await serviceUser.createUss(newUser);
+            await adminService.createUss(newUser);
             setTimeout(() => {
                 setIsLoading(false);
                 open("Usuario creado correctamente", "success");
@@ -47,6 +47,33 @@ export const CreateUss = () => {
         }
 
     };
+
+    const updateUss = async (data: FormCreateUss) => {
+        try {
+            setIsLoading(true);
+            const { id, nombre, apellido, email, direccion, telefono, permisos, roles } = data;
+            const newUser = new FormCreateFormularyAdmin(
+                id,
+                nombre,
+                apellido,
+                email,
+                direccion,
+                telefono,
+                permisos,
+                Array.isArray(roles) ? "" : roles // Cambiar a roles[0] si es un array
+            );
+            await adminService.updateUss(newUser);
+            setTimeout(() => {
+                setIsLoading(false);
+                open("Usuario actualizado correctamente", "success");
+                // reset(new FormCreateUss());
+            }, TIMELOADER);
+        } catch (error) {
+            setIsLoading(false);
+            open("Error al actualizar el usuario", "error");
+        }
+
+    }
     
     const fetchData = async () => {
         if (isCreate) {
@@ -70,7 +97,10 @@ export const CreateUss = () => {
         <>
             {/* <Title title={"Crear Usuario"} /> */}
 
-          <UserForm userForm = {user} click = {createUss}></UserForm>
+        <UserForm
+            userForm={user}
+            click={isCreate ? createUss : updateUss}
+        />
         </>
     );
 };

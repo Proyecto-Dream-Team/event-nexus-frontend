@@ -6,9 +6,7 @@ import { FormCreateFormularyAdmin } from "../domain/User-Domain";
 import { URL_SERVIDOR_REST } from "../utils/config";
 
 class ServiceUser {
-  	async createUss(newUser: FormCreateFormularyAdmin): Promise<void> {
-    	await axios.post(`${URL_SERVIDOR_REST}/admin/create-user`, newUser);
-  }
+
 
 	async getPermissions(): Promise<PermissionsApp> {
 		const res = await axios.get(`${URL_SERVIDOR_REST}/admin/permissions-role`);

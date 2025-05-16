@@ -23,11 +23,11 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
 
     const [permisos, setPermisos] = useState<string[]>([]);
     const [roles, setRoles] = useState<string[]>([]);
+    const isCreate = userForm.id === 0;
 
     const cancelCreate = () => {
         reset(new FormCreateUss());
     };
-
     useEffect(() => {
         const fetchPermissions = async () => {
             const res = await serviceUser.getPermissions();
@@ -35,9 +35,6 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
             setRoles(res.roles);
         };
         fetchPermissions();
-    }, []);
-
-    useEffect(() => {
         reset(userForm);
     }, [userForm, reset]);
 
