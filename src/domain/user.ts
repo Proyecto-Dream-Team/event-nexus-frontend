@@ -8,13 +8,13 @@ export class SesionStorage {
         public id: number,
         public name: string,
         public lastname: string,
-        public img: string,
+        public image: string,
         public rol: string
     ) {
         this.id = id
         this.name = name
         this.lastname = lastname
-        this.img = img
+        this.image = image
         this.rol = rol
     }
 

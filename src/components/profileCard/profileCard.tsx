@@ -14,7 +14,7 @@ export const ProfileCard = ({user}: userCard) => {
                 <div className="row">
                 <div className="title">
                     <h2>{user.name+ " " + user.lastname}</h2>
-                    {user.role}
+                    {user.rol}
                 </div>
                 <img className="img" src={useProfileImg().img}></img>
             </div>

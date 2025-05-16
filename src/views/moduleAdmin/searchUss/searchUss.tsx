@@ -15,6 +15,7 @@ export const SearchUser = () => {
 
   const fetchUSer = async () => {
     const response = await serviceUser.search(value);
+    console.log(response)
     setUsers(response);
 };
 
@@ -35,19 +36,23 @@ export const SearchUser = () => {
         <SearchIcon className="search-icon" onClick={fetchUSer}/>
 
       </div>
-        <div className= "usuarios" >
-        {
-          users?.map((item, index) => (
-            <div
-              key={index}
-              style={{ animationDelay: `${index * 0.3}s` }}
-              className="card-animated"
+      <div className="usuarios">
+        {users ? (
+          users.length > 0 ? (
+            users.map((item, index) => (
+              <div
+                key={index}
+                style={{ animationDelay: `${index * 0.3}s` }}
+                className="card-animated"
               >
-              <ProfileCard user={item} />
-            </div>
+                <ProfileCard user={item} />
+              </div>
             ))
-            }
-        </div>
+          ) : (
+            <p className="no-results">No se encontraron usuarios.</p>
+          )
+        ) : null}
+      </div>
     </section>
   );
 };
