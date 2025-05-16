@@ -14,6 +14,8 @@ import { CredentialsComponent } from './views/credentials/credentials';
 
 export const AppRouter = () => {
 
+    
+
     return (
         <BrowserRouter>
             <Routes>
@@ -32,6 +34,7 @@ export const AppRouter = () => {
                     <Route element={<ModuleAdmin/> } path = 'module-admin' >
                         <Route element = {<CreateUss/>} path='create-user'></Route>
                         <Route element = {<SearchUser/>} path='search-user'></Route>
+                        <Route element={<CreateUss />} path="updateUser/:id"></Route>
                     </Route>
                 </Route>
                 <Route path="/" element={<Navigate to="/login" />}></Route>{/* por defecto me lleva al login */}

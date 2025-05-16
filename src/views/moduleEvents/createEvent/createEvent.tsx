@@ -8,6 +8,7 @@ import { EventType } from "../../../utils/typeEvent";
 import { useLoader } from "../../../context/loader/useLoader";
 import { TIMELOADER } from "../../../utils/config";
 import { useToast } from "../../../context/toast/useToast";
+import { RadioInput } from "../../../components/input/radioInput";
 export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
@@ -70,16 +71,14 @@ export const CreateEvent = () => {
                     <label className="input-label">Tipo de Evento</label>
                     <div className="event-type-options">
                         {Object.entries(EventType).map(([key, value]) => (
-                            <label key={key} className="event-type-option">
-                                <input className="event-type-radio"
-                                    type="radio"
-                                    value={key}
-                                    {...register("eventType", {
-                                        required: "El tipo de evento es obligatorio",
-                                    })}
-                                />
-                                <span className="keySpan">{key}</span>
-                            </label>
+                             <RadioInput
+                                                       key={key}
+                                                       label={key}
+                                                       value={value}
+                                                       register={register("roles", {
+                                                           required: "El rol es obligatorio",
+                                                       })}
+                                                   />
                         ))}
                     </div>
                     {errors.eventType?.message && (
