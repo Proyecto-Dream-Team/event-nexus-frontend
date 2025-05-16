@@ -10,6 +10,7 @@ import { useToast } from "../../../context/toast/useToast";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../../../domain/User-Domain";
 import { TIMELOADER } from "../../../utils/config";
 import { useLoader } from "../../../context/loader/useLoader";
+import { RadioInput } from "../../../components/input/radioInput";
 
 
 
@@ -77,7 +78,7 @@ export const CreateUss = () => {
 
     return (
         <>
-            <Title title={"Crear Usuario"} />
+            {/* <Title title={"Crear Usuario"} /> */}
 
             <form className="profileFormulary" onSubmit={handleSubmit(createUss)}>
                 <InputApp
@@ -176,7 +177,7 @@ export const CreateUss = () => {
                 <Title title={"Roles"} />
                 <div className="checksArea">
                     {roles.map((role, index) => (
-                        <BoxInput
+                        <RadioInput
                             key={index}
                             label={role}
                             value={role}
