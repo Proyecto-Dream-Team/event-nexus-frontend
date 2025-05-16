@@ -35,7 +35,7 @@ export class FormCreateUss {
             direccion: data.direccion,
             telefono: data.telefono,
             permisos: data.permisos,
-            roles: data.roles
+            roles: data.roles[0]
         }
     }
 

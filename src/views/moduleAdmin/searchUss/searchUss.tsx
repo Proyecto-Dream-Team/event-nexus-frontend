@@ -19,6 +19,13 @@ export const SearchUser = () => {
     setUsers(response);
   };
 
+
+  const deleteUser = async (id: number) => {
+	const newUsers = users?.filter((user) => user.id !== id);
+	setUsers(newUsers);
+	console.log(id);
+  }
+
   // Cerrar input si se clickea fuera
   useEffect(() => {
     const clickOut = (event: MouseEvent) => {
@@ -70,7 +77,7 @@ export const SearchUser = () => {
             style={{ animationDelay: `${index * 0.3}s` }}
             className="card-animated"
           >
-            <ProfileCard user={item} />
+            <ProfileCard user={item}  click={deleteUser}/>
           </div>
         ))}
       </div>
