@@ -1,7 +1,7 @@
 import axios from "axios";
 import { DatosForm } from "../domain/datosForm";
 import { PermissionsApp } from "../domain/permissions-description";
-import { HeaderDto } from "../domain/user";
+import { HeaderDto, SesionStorage } from "../domain/user";
 import { FormCreateFormularyAdmin } from "../domain/User-Domain";
 import { URL_SERVIDOR_REST } from "../utils/config";
 
@@ -41,6 +41,11 @@ class ServiceUser {
     console.log(res);
   }
 
+  async search(text : string) {
+    const response = await axios.get(`${URL_SERVIDOR_REST}/user`,
+      { params: { search : text}})
+      return response.data
+    }
 }
 
 

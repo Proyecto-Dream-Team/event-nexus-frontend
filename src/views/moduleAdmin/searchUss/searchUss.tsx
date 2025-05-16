@@ -2,14 +2,21 @@
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import "./searchUss.css";
-import { SesionStorage, sesionStorages } from "../../../domain/user";
+import { SesionStorage } from "../../../domain/user";
 import { ProfileCard } from "../../../components/profileCard/profileCard";
+import { serviceUser } from "../../../services/serviceUser";
 
 
 export const SearchUser = () => {
   const [value, setValue] = useState("");
   const [expanded, setExpanded] = useState(false);
-  const [users , setUsers] = useState<SesionStorage[]>(sesionStorages)
+  const [users , setUsers] = useState<SesionStorage[]>()
+
+
+  const fetchUSer = async () => {
+    const response = await serviceUser.search(value);
+    setUsers(response);
+};
 
   return (
     <section className="section">
@@ -25,7 +32,7 @@ export const SearchUser = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <SearchIcon className="search-icon" />
+        <SearchIcon className="search-icon" onClick={fetchUSer}/>
 
       </div>
         <div className= "usuarios" >
