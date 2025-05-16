@@ -24,7 +24,7 @@ export const ProfileCard = ({ user, click }: userCard) => {
 
     const toUpdate = () => {
         console.log("update");
-        nav(`/updateUser/${user.id}`);
+        nav(`/module-admin/updateUser/${user.id}`);
     };
 
     const confirmDelete = () => {

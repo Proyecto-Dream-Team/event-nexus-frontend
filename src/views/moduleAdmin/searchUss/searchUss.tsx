@@ -5,6 +5,7 @@ import "./searchUss.css";
 import { SesionStorage } from "../../../domain/user";
 import { ProfileCard } from "../../../components/profileCard/profileCard";
 import { serviceUser } from "../../../services/serviceUser";
+import { adminService } from "../../../services/adminService";
  
 
 export const SearchUser = () => {
@@ -21,9 +22,12 @@ export const SearchUser = () => {
 
 
   const deleteUser = async (id: number) => {
+	// TODO implementar la eliminacion de usuario
+	const res = await adminService.deleteUser(id);
+	
 	const newUsers = users?.filter((user) => user.id !== id);
 	setUsers(newUsers);
-	console.log(id);
+	console.log(res);
   }
 
   // Cerrar input si se clickea fuera

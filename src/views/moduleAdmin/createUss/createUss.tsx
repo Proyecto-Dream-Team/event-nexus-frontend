@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
-import { get, useForm } from "react-hook-form";
-import { ButtonApp } from "../../../components/buttons/button";
-import { BoxInput } from "../../../components/input/boxInput";
-import { InputApp } from "../../../components/input/input";
-import { Title } from "../../../components/title/title";
-import "./createUss.css";
-import { serviceUser } from "../../../services/serviceUser";
+import { use, useEffect, useState } from "react";
+import { UserForm } from "../../../components/userForm/userForm";
+import { useLoader } from "../../../context/loader/useLoader";
 import { useToast } from "../../../context/toast/useToast";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../../../domain/User-Domain";
+import { serviceUser } from "../../../services/serviceUser";
 import { TIMELOADER } from "../../../utils/config";
-import { useLoader } from "../../../context/loader/useLoader";
-import { RadioInput } from "../../../components/input/radioInput";
-import { UserForm } from "../../../components/userForm/userForm";
+import "./createUss.css";
+import { useLocation, useParams } from "react-router-dom";
 
 
 
@@ -20,6 +15,10 @@ export const CreateUss = () => {
     
     const { open } = useToast();
     const {setIsLoading} = useLoader();
+    const location = useLocation();
+    const param = useParams();
+    const isCreate = location.pathname === "/module-admin/create-user";
+    const [user, setUser] = useState<FormCreateUss>(new FormCreateUss());
 
     const createUss = async (data: FormCreateUss) => {    
         try {
@@ -47,13 +46,24 @@ export const CreateUss = () => {
 
         console.log(data);
     };
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            if (isCreate) {
+                setUser(new FormCreateUss());
+            }else {
+                console.log(param.id);
+            }
+        }
+        fetchData();
 
+    }, []);
 
     return (
         <>
             {/* <Title title={"Crear Usuario"} /> */}
 
-          <UserForm userForm = {new FormCreateUss} click = {createUss}></UserForm>
+          <UserForm userForm = {user} click = {createUss}></UserForm>
         </>
     );
 };

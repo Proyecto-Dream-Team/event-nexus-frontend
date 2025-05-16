@@ -41,10 +41,12 @@ class ServiceUser {
 		console.log(res);
 	}
 
-	async search(text : string) {
+	async search(text : string): Promise<SesionStorage[]> {
+		const id = Number(sessionStorage.getItem("userId"));
 		const response = await axios.get(`${URL_SERVIDOR_REST}/user`,
 		{ params: { search : text}})
-		return response.data
+		// para qe no me traiga el usuario logueado, sino me elimino yo mismo
+		return response.data.filter((user : SesionStorage) => user.id !== id);
 		}
 }
 

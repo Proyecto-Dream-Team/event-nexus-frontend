@@ -1,6 +1,7 @@
 
 
 export class FormCreateUss {
+    id: number ;
     nombre: string;
     apellido: string;
     email: string;
@@ -10,6 +11,7 @@ export class FormCreateUss {
     roles: string[] ;
 
     constructor(
+        id: number = 0,
         nombre: string = "",
         apellido: string = "",
         email: string = "",
@@ -18,6 +20,7 @@ export class FormCreateUss {
         permisos: string[] = [],
         roles: string[] = []
     ) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -26,6 +29,8 @@ export class FormCreateUss {
         this.permisos = permisos;
         this.roles = roles;
     }
+
+
 
     static toDto(data: FormCreateUss): any{
         return {
