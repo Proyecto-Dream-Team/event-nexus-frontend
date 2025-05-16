@@ -24,13 +24,16 @@ export const Header = () => {
     
     getData();
   }, []);
-  
+
+  const getTitle = () => {
+    if (location.pathname.includes("module-admin")) return "Administrador";
+    if (location.pathname.includes("module-events")) return "Eventos";
+    return "Eventos"; // título por defecto si querés
+  };
+
   const isHome = () => {
     return location.pathname === '/home' || location.pathname === '/profile';
   }
-
- 
-
 
   return (
           <header className="header">
@@ -48,7 +51,7 @@ export const Header = () => {
             </div>
 
             <div className="header-center">
-              {!isHome() && <h2 className="header-title">Eventos</h2>}
+              {!isHome() && <h2 className="header-title">{getTitle()}</h2>}
             </div>
 
             <div className="header-right">
