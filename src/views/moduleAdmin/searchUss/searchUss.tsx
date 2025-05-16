@@ -21,38 +21,32 @@ export const SearchUser = () => {
 
   return (
     <section className="section">
-      <div
-        className={`search-container ${expanded ? "expanded" : ""}`}
-        onClick={() => setExpanded(true)}
-      >
-        <input
-          type="text"
-          name="search"
-          placeholder="Search..."
-          className="search-input"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <SearchIcon className="search-icon" onClick={fetchUSer}/>
+      	<div
+        	className={`search-container ${expanded ? "expanded" : ""}`}
+        	onClick={() => setExpanded(true)}
+      	>
+			<input
+				type="text"
+				name="search"
+				placeholder="Search..."
+				className="search-input"
+				value={value}
+				onChange={(e) => setValue(e.target.value)}
+			/>
+        	<SearchIcon className="search-icon" onClick={fetchUSer}/>
+      	</div>
 
-      </div>
-      <div className="usuarios">
-        {users ? (
-          users.length > 0 ? (
-            users.map((item, index) => (
-              <div
-                key={index}
-                style={{ animationDelay: `${index * 0.3}s` }}
-                className="card-animated"
-              >
-                <ProfileCard user={item} />
-              </div>
-            ))
-          ) : (
-            <p className="no-results">No se encontraron usuarios.</p>
-          )
-        ) : null}
-      </div>
+      	<div className="usuarios">
+		  	{users?.map((item, index) => (
+				<div
+					key={index}
+					style={{ animationDelay: `${index * 0.3}s` }}
+					className="card-animated"
+				>
+					<ProfileCard user={item} />
+				</div>
+			))}
+      	</div>
     </section>
   );
 };
