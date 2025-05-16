@@ -29,21 +29,18 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
     };
 
     useEffect(() => {
-        if (
-            !userForm ||
-            (!userForm.permisos?.length && !userForm.roles?.length)
-        ) {
-            const fetchPermissions = async () => {
-                const res = await serviceUser.getPermissions();
-                setPermisos(res.permissions);
-                setRoles(res.roles);
-            };
-            fetchPermissions();
-        } else {
-            setPermisos(userForm.permisos || []);
-            setRoles(userForm.roles || []);
-        }
+        const fetchPermissions = async () => {
+            const res = await serviceUser.getPermissions();
+            setPermisos(res.permissions);
+            setRoles(res.roles);
+        };
+        fetchPermissions();
     }, []);
+
+    useEffect(() => {
+        reset(userForm);
+    }, [userForm, reset]);
+
 
     return (
         <>

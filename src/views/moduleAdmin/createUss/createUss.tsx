@@ -7,6 +7,7 @@ import { serviceUser } from "../../../services/serviceUser";
 import { TIMELOADER } from "../../../utils/config";
 import "./createUss.css";
 import { useLocation, useParams } from "react-router-dom";
+import { adminService } from "../../../services/adminService";
 
 
 
@@ -25,6 +26,7 @@ export const CreateUss = () => {
             setIsLoading(true);
             const { nombre, apellido, email, direccion, telefono, permisos, roles } = data;
             const newUser = new FormCreateFormularyAdmin(
+                0,
                 nombre,
                 apellido,
                 email,
@@ -44,20 +46,25 @@ export const CreateUss = () => {
             open("Error al crear el usuario", "error");
         }
 
-        console.log(data);
     };
     
-    useEffect(() => {
-        const fetchData = async () => {
-            if (isCreate) {
-                setUser(new FormCreateUss());
-            }else {
-                console.log(param.id);
-            }
+    const fetchData = async () => {
+        if (isCreate) {
+            return new FormCreateUss();
+        }else {
+            const res = await adminService.getUser(Number(param.id));
+            return res
         }
-        fetchData();
+    }
 
-    }, []);
+    useEffect(() => {
+        const fetchAndSetUser = async () => {
+            const data = await fetchData();
+            console.log(data);
+            setUser(data);
+        };
+        fetchAndSetUser();
+    }, [location.pathname]);
 
     return (
         <>
