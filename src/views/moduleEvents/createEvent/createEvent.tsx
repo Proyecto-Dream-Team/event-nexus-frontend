@@ -9,15 +9,18 @@ import { useLoader } from "../../../context/loader/useLoader";
 import { TIMELOADER } from "../../../utils/config";
 import { useToast } from "../../../context/toast/useToast";
 import { RadioInput } from "../../../components/input/radioInput";
+import { serviceUser } from "../../../services/serviceUser";
+import { useEffect, useState } from "react";
 export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
     const { setIsLoading } = useLoader();
-
+    const [permissions , setPermissions] = useState<string[]>()
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
     });
     const {open} = useToast();
+    const [flag,setFlag] = useState<boolean>(false)
 
     const create = async (data : any) => {
         const { title, date, description, eventType } = data;
@@ -38,8 +41,30 @@ export const CreateEvent = () => {
         }
     }
 
+
+
+    const pirulo = (nameEvent : string ) : boolean => {
+        const nombreDelPermiso = `CREAR_EVENTO_${nameEvent}`
+        console.log(permissions)
+        const tienePermiso = permissions ? permissions.includes(nombreDelPermiso) : false
+        // console.log(`Verificando permiso: ${nombreDelPermiso} => ${tienePermiso}`)
+        return tienePermiso
+    }
+
+    useEffect(() => {
+        const getPermission = async () => {
+            const permisos = await serviceUser.getPermissionsUser(userId)
+            console.log(permisos)
+            setPermissions(permisos.permissions)
+        }
+		getPermission()
+        setFlag(!flag)
+	}, []);
+
     return (
         <>
+        {
+            flag && (
             <form>
                 <InputApp
                     label="Titulo"
@@ -76,6 +101,7 @@ export const CreateEvent = () => {
                                 key={key}
                                 label={key}
                                 value={key}
+                                disable={pirulo(key)}
                                 register={register("eventType", {
                                     required: "El tipo de evento es obligatorio",
                                 })}
@@ -99,6 +125,7 @@ export const CreateEvent = () => {
                 />
                 </div>
             </form>
+        )}
         </>
     )
 }

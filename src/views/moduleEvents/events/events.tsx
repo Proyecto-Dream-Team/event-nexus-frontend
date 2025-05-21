@@ -5,6 +5,7 @@ import { useToast } from "../../../context/toast/useToast";
 import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import "./events.css";
+import { serviceUser } from "../../../services/serviceUser";
 
 export const Events = () => {
 	const location = useLocation();

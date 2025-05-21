@@ -11,7 +11,12 @@ class ServiceUser {
 		const res = await axios.get(`${URL_SERVIDOR_REST}/admin/permissions-role`);
 		return res.data;
 	}
-  
+
+	async getPermissionsUser( id : number ): Promise<PermissionsApp> {
+		const res = await axios.get(`${URL_SERVIDOR_REST}/user/${id}/permissions`);
+		return res.data;
+	}
+	
 	async getProfileDatos(id: number): Promise<DatosForm> {
 		const response = await axios.get<DatosForm>(`${URL_SERVIDOR_REST}/user/profile/${id}`);
 		const entity = DatosForm.fromDto(response.data);
