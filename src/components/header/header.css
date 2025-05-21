@@ -36,6 +36,7 @@
   
   .header-right {
     justify-self: end;
+    cursor: pointer;
   }
 
 .data-profile {

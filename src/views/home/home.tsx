@@ -4,16 +4,17 @@ import { Title } from '../../components/title/title'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
 import './home.css'
-import { mock } from '../../services/notification.service'
+import { trySSE } from '../../services/notification.service'
+import { URL_SERVIDOR_REST } from '../../utils/config'
 
 export const Home = () => {
-
+    // const eventSource:EventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${Number(localStorage.getItem("userId"))}`);
     const [modules, setModules] = useState<Module[]>()
     const id = Number(sessionStorage.getItem("userId"));
 
-    async function clickMock(){
+    async function tryConectionSEE(){
         try{
-            mock()
+            trySSE()
         }
         catch(e:any){
             
@@ -49,7 +50,7 @@ export const Home = () => {
                         ))
                     }
                 </div>
-                <button onClick={clickMock}>ACTIVAR NOTIFICACIONES</button>
+                <button onClick={tryConectionSEE}>ACTIVAR NOTIFICACIONES</button>
                 <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>
         </>
