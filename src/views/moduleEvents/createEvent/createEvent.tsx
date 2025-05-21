@@ -14,13 +14,14 @@ export const CreateEvent = () => {
     const userId = Number(sessionStorage.getItem('userId'))
     const { setIsLoading } = useLoader();
 
-    const { register, handleSubmit, getValues, formState: { errors } ,reset } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
     });
     const {open} = useToast();
 
-    const create = async () => {
-        const { title, date, description, eventType } = getValues()
+    const create = async (data : any) => {
+        const { title, date, description, eventType } = data;
+        console.log("eventType:", eventType);
 
         const eventCreated = new CreateEventDTO(userId, date, title, description, eventType)
         try {
@@ -70,15 +71,15 @@ export const CreateEvent = () => {
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
                     <div className="event-type-options">
-                        {Object.entries(EventType).map(([key, value]) => (
-                             <RadioInput
-                                                       key={key}
-                                                       label={key}
-                                                       value={value}
-                                                       register={register("roles", {
-                                                           required: "El rol es obligatorio",
-                                                       })}
-                                                   />
+                        {Object.entries(EventType).map(([key]) => (
+                            <RadioInput
+                                key={key}
+                                label={key}
+                                value={key}
+                                register={register("eventType", {
+                                    required: "El tipo de evento es obligatorio",
+                                })}
+                            />
                         ))}
                     </div>
                     {errors.eventType?.message && (

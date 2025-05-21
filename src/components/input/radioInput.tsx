@@ -13,7 +13,7 @@ export const RadioInput = ({ label, value, register} : RadioInputProps) => {
                  <label className="event-type-option">
                                 <input className="event-type-radio"
                                     type="radio"
-                                    value={value}
+                                    value={label}
                                     {...register}
                                 />
                                 <span className="keySpan">{label}</span>

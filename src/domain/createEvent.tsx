@@ -1,12 +1,13 @@
 
 export class CreateEventDTO {
+  id : number = 0
 	creatorId: number;
 	participantsIds: number[] = [];
 	date: Date;
 	name: string;
 	description: string;
 	eventType: string; 
-
+  
 	constructor(
 		creatorId: number,
 		date: Date,
