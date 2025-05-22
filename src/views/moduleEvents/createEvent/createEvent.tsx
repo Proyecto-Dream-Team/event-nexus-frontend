@@ -11,11 +11,14 @@ import { useToast } from "../../../context/toast/useToast";
 import { RadioInput } from "../../../components/input/radioInput";
 import { serviceUser } from "../../../services/serviceUser";
 import { useEffect, useState } from "react";
+
+export type PermissionType = "EVENT" | "DIRECTIVE" | "REPORT" | "ADMIN"
+
 export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
     const { setIsLoading } = useLoader();
-    const [permissions , setPermissions] = useState<string[]>([])
+    const [permissions, setPermissions] = useState<string[]>([]);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
     });
@@ -23,7 +26,6 @@ export const CreateEvent = () => {
 
     const create = async (data : any) => {
         const { title, date, description, eventType } = data;
-        console.log("eventType:", eventType);
 
         const eventCreated = new CreateEventDTO(userId, date, title, description, eventType)
         try {
@@ -40,16 +42,10 @@ export const CreateEvent = () => {
         }
     }
 
-    const hasPermissions = (nameEvent : string ) : boolean => {
-        console.log(permissions)
-        return permissions ? permissions.includes(`CREAR_EVENTO_${nameEvent}`) : false
-    }
-
     useEffect(() => {
         const getPermission = async () => {
-            const permisos1 = await serviceUser.getPermissionsUser(userId)
-            console.log(permisos1)
-            setPermissions(permisos1.permissions)
+            const response = await serviceUser.getPermissionsUser(userId , "EVENT" )
+            setPermissions(response)
         }
 		getPermission()
 	}, []);
@@ -87,17 +83,18 @@ export const CreateEvent = () => {
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
                     <div className="event-type-options">
-                        {Object.entries(EventType).map(([key]) => (
+                    {permissions?.map((perm) => {
+                        return (
                             <RadioInput
-                                key={key}
-                                label={key}
-                                value={key}
-                                disable={hasPermissions(key)}
-                                register={register("eventType", {
-                                    required: "El tipo de evento es obligatorio",
-                                })}
-                            />
-                        ))}
+                            key={perm}
+                            label={perm}
+                            value={perm}
+                            register={register("eventType", {
+                                required: "El tipo de evento es obligatorio",
+                            })}
+                        />
+                    );
+                    })}
                     </div>
                     {errors.eventType?.message && (
                         <div className="error-container">

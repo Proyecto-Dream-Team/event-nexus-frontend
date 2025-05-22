@@ -3,6 +3,7 @@ import { DatosForm } from "../domain/datosForm";
 import { PermissionsApp } from "../domain/permissions-description";
 import { HeaderDto, SesionStorage } from "../domain/user";
 import { URL_SERVIDOR_REST } from "../utils/config";
+import { PermissionType } from "../views/moduleEvents/createEvent/createEvent";
 
 class ServiceUser {
 
@@ -12,8 +13,8 @@ class ServiceUser {
 		return res.data;
 	}
 
-	async getPermissionsUser( id : number ): Promise<PermissionsApp> {
-		const res = await axios.get(`${URL_SERVIDOR_REST}/user/${id}/permissions`);
+	async getPermissionsUser( id : number, type : PermissionType ): Promise<string[]> {
+		const res = await axios.get(`${URL_SERVIDOR_REST}/user/${id}/permissions/${type}`);
 		return res.data;
 	}
 	
