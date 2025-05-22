@@ -45,7 +45,7 @@
     border-radius: 50%;
 }
 
-.descriptionCard {
+.descriptionCardd {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,7 @@
     font-weight: bold;
 }
 
-.descriptionCard::before {
+.descriptionCardd::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -68,7 +68,7 @@
     background-position: center;
     z-index: 0;
 }
-.descriptionCard::after {
+.descriptionCardd::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -78,14 +78,14 @@
 
 
 /* Contenido por encima del fondo difuminado */
-.descriptionCard > * {
+.descriptionCardd > * {
     position: relative;
     z-index: 2;
     color: black; /* Asegura texto negro si usás overlay claro */
 }
 
 
-.title {
+.titleCardEvent {
     font-size: 1.2rem;
     width: 100%;
     height: 100%;

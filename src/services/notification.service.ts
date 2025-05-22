@@ -11,7 +11,7 @@ interface NuevoEvento {
 
 export async function trySSE(notificationSetter:React.Dispatch<React.SetStateAction<NotificationDTO[]>>){
     // const [notificaciones, setNotificaciones] = useState<NuevoEvento[]>([]);
-    const userId:number = Number(localStorage.getItem('userId')); // Reemplaza con la forma de obtener el ID del 
+    const userId:number = Number(sessionStorage.getItem('userId')); // Reemplaza con la forma de obtener el ID del 
     // const inactivityTimeout = useRef<number | null>(null);
     // 
     const eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${userId}`);

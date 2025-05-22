@@ -50,7 +50,7 @@ export const EventCard = ({ event, method }: EventProps) => {
 		</div>
 
 		<div
-			className="descriptionCard"
+			className="descriptionCardd"
 			style={{
 				backgroundImage: `url(${backgroundUrl})`,
 				backgroundSize: "cover", // Opcional, mejora visualmente
@@ -58,7 +58,7 @@ export const EventCard = ({ event, method }: EventProps) => {
 			}}
 			>
 
-			<div className="title">
+			<div className="titleCardEvent">
 			<h4 className="titleEvent">{event.title}</h4>
 			<h4>{formatDate(event.dateFinished)}</h4>
 			<p>Participantes: {event.numberOfParticipants}</p>

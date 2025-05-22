@@ -9,6 +9,7 @@ import { getNotificationsByUserId, trySSE } from "../../services/notification.se
 import { NotificationDTO } from "../../domain/notification";
 import { Box, Modal, Typography } from "@mui/material";
 import { Height } from "@mui/icons-material";
+import { NotificationComponent } from "../notification/notification";
 
 
 const style = {
@@ -27,31 +28,25 @@ const style = {
 	border: '2px solid #000',
 	boxShadow: 24,
 	p: 4
-  };
+};
 
-  const style2 = {
+const style2 = {
 	width: 300,
 	height: 100,
 	bgcolor: 'background.paper',
 	border: '2px solid #000',
 	boxShadow: 24,
 	p: 4
-  };
+};
 
 export const Header = () => {
 	const id = Number(sessionStorage.getItem("userId"));
 	const location = useLocation()
 	const [data, setData] = useState<HeaderDto>(new HeaderDto(0, "", ""));
 	const { img } = useProfileImg();
-	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
+
 	const [open, setOpen] = useState(false);
-	const handleOpen = async () => {
-		trySSE(setNotifications)
-		const notifications = await getNotificationsByUserId(id)
-		setNotifications(notifications)
-		setOpen(true)
-	};
-	const handleClose = () => setOpen(false);
+
 
 	useEffect(() => {
 		const getData = async () => {
@@ -64,6 +59,8 @@ export const Header = () => {
 		};
 
 		getData();
+
+
 	}, []);
 
 	const getTitle = () => {
@@ -97,43 +94,8 @@ export const Header = () => {
 			<div className="header-center">
 				{!isHome() && <h2 className="header-title">{getTitle()}</h2>}
 			</div>
+			<NotificationComponent></NotificationComponent>
 
-			<div className="header-right" onClick={handleOpen}>
-				<img src="/icons/notification.svg" alt="Notificación" className="notificationIcon" />
-			</div>
-
-			<Modal
-				open={open}
-				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
-			>
-				<Box sx={style}>
-					<button onClick={handleClose}>close</button>
-					{notifications.length === 0 ? (<>
-				
-						<Typography id="modal-modal-title" variant="h6" component="h2">
-						No tienes notificaciones
-						</Typography>
-						
-					</>) : (
-						notifications.map((notification) => (
-							<div key={notification.id}>
-								<Box sx={style2}>
-									<Typography id="modal-modal-title" variant="h6" component="h2">
-										{notification.title}
-									</Typography>
-									<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-										{notification.date}
-									</Typography>
-								</Box>
-							</div>
-						))
-					)}	
-					
-
-				</Box>
-			</Modal>
 		</header>
 	);
 };
