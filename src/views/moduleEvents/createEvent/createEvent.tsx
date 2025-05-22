@@ -4,15 +4,12 @@ import './createEvent.css'
 import { ButtonApp } from "../../../components/buttons/button";
 import { CreateEventDTO } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
-import { EventType } from "../../../utils/typeEvent";
 import { useLoader } from "../../../context/loader/useLoader";
 import { TIMELOADER } from "../../../utils/config";
 import { useToast } from "../../../context/toast/useToast";
 import { RadioInput } from "../../../components/input/radioInput";
 import { serviceUser } from "../../../services/serviceUser";
 import { useEffect, useState } from "react";
-
-export type PermissionType = "EVENT" | "DIRECTIVE" | "REPORT" | "ADMIN"
 
 export const CreateEvent = () => {
 
@@ -83,12 +80,12 @@ export const CreateEvent = () => {
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
                     <div className="event-type-options">
-                    {permissions?.map((perm) => {
+                    {permissions?.map((permission) => {
                         return (
                             <RadioInput
-                            key={perm}
-                            label={perm}
-                            value={perm}
+                            key={permission}
+                            label={permission}
+                            value={permission}
                             register={register("eventType", {
                                 required: "El tipo de evento es obligatorio",
                             })}

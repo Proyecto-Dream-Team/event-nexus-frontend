@@ -56,15 +56,15 @@ export const Events = () => {
 		});
 
 		setEvents((prevState) => {
-		if (prevState) {
-		return prevState.filter((event) => event.id !== eventId);
+			if (prevState) {
+			return prevState.filter((event) => event.id !== eventId);
 		}
 		return prevState;
 		});
 		open("Lista actualizada", "success");
 	}
 		catch (error) {
-		open("Error al unirse o abandonar el evento", "error");
+			open("Error al unirse o abandonar el evento", "error");
 		}
 	}
 

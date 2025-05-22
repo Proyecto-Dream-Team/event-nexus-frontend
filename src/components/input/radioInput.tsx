@@ -9,17 +9,15 @@ interface RadioInputProps {
 export const RadioInput = ({ label, value, register} : RadioInputProps) => {
     return (
         <>
-            
-                <div>
+            <div>
                 <label className="event-type-option">
-                               <input className="event-type-radio"
-                                   type="radio"
-                                   value={label}
-                                   {...register}
-                            
-                               />
-                               <span className="keySpan">{label}</span>
-                           </label>
+                    <input className="event-type-radio"
+                        type="radio"
+                        value={label}
+                        {...register}
+                    />
+                    <span className="keySpan">{label}</span>
+                </label>
            </div>
             
         </>

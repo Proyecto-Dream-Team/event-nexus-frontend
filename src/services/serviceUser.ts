@@ -1,9 +1,8 @@
 import axios from "axios";
 import { DatosForm } from "../domain/datosForm";
-import { PermissionsApp } from "../domain/permissions-description";
+import { PermissionsApp, PermissionType } from "../domain/permissions-description";
 import { HeaderDto, SesionStorage } from "../domain/user";
 import { URL_SERVIDOR_REST } from "../utils/config";
-import { PermissionType } from "../views/moduleEvents/createEvent/createEvent";
 
 class ServiceUser {
 
