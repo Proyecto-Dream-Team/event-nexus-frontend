@@ -83,14 +83,14 @@ export const CreateEvent = () => {
                     {permissions?.map((permission) => {
                         return (
                             <RadioInput
-                            key={permission}
-                            label={permission}
-                            value={permission}
-                            register={register("eventType", {
-                                required: "El tipo de evento es obligatorio",
-                            })}
-                        />
-                    );
+                                key={permission}
+                                label={permission}
+                                value={permission}
+                                register={register("eventType", {
+                                    required: "El tipo de evento es obligatorio",
+                                })}
+                            />
+                        );
                     })}
                     </div>
                     {errors.eventType?.message && (
