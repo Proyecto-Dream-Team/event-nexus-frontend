@@ -10,7 +10,7 @@ interface RadioInputProps {
 export const RadioInput = ({ label, value, register, disable} : RadioInputProps) => {
     return (
         <>
-            {disable && (
+            {!disable && (
                 <div>
                 <label className="event-type-option">
                                <input className="event-type-radio"

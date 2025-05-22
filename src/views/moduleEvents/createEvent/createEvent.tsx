@@ -15,12 +15,11 @@ export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
     const { setIsLoading } = useLoader();
-    const [permissions , setPermissions] = useState<string[]>()
+    const [permissions , setPermissions] = useState<string[]>([])
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
     });
     const {open} = useToast();
-    const [flag,setFlag] = useState<boolean>(false)
 
     const create = async (data : any) => {
         const { title, date, description, eventType } = data;
@@ -42,23 +41,21 @@ export const CreateEvent = () => {
     }
 
     const hasPermissions = (nameEvent : string ) : boolean => {
+        console.log(permissions)
         return permissions ? permissions.includes(`CREAR_EVENTO_${nameEvent}`) : false
     }
 
     useEffect(() => {
         const getPermission = async () => {
-            const permisos = await serviceUser.getPermissionsUser(userId)
-            console.log(permisos)
-            setPermissions(permisos.permissions)
+            const permisos1 = await serviceUser.getPermissionsUser(userId)
+            console.log(permisos1)
+            setPermissions(permisos1.permissions)
         }
 		getPermission()
-        setFlag(!flag)
 	}, []);
 
     return (
         <>
-        {
-            flag && (
             <form>
                 <InputApp
                     label="Titulo"
@@ -119,7 +116,6 @@ export const CreateEvent = () => {
                 />
                 </div>
             </form>
-        )}
         </>
     )
 }

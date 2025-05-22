@@ -21,22 +21,22 @@ export const Events = () => {
 
 	const getEvents = async () => {
 		if (showAllEvents) {
-		const allEvents: EventDto[] = await moduleService.getEvents();
-		setEvents(allEvents);
+			const allEvents: EventDto[] = await moduleService.getEvents();
+			setEvents(allEvents);
 		}
 		if (showMyEvents) {
-		const id = Number(sessionStorage.getItem("userId"));
-		const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
-			id
-		);
-		setEventsEmployee(employeeEvents);
+			const id = Number(sessionStorage.getItem("userId"));
+			const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+				id
+			);
+			setEventsEmployee(employeeEvents);
 		}
 		if (showCreatedEvents) {
-		const id = Number(sessionStorage.getItem("userId"));
-		const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
-			id
+			const id = Number(sessionStorage.getItem("userId"));
+			const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+				id
 		);
-		setEventsEmployee(employeeEvents);
+			setEventsEmployee(employeeEvents);
 		}
 	};
 
