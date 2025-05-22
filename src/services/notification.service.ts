@@ -3,34 +3,37 @@ import { URL_SERVIDOR_REST } from '../utils/config';
 import { NotificationDTO } from '../domain/notification';
 import axios from 'axios';
 
-interface NuevoEvento {
-    id: string;
-    nombre: string;
-    timestamp: string;
-}
 
-export async function trySSE(notificationSetter:React.Dispatch<React.SetStateAction<NotificationDTO[]>>){
-    // const [notificaciones, setNotificaciones] = useState<NuevoEvento[]>([]);
-    const userId:number = Number(sessionStorage.getItem('userId')); // Reemplaza con la forma de obtener el ID del 
-    // const inactivityTimeout = useRef<number | null>(null);
-    // 
-    const eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${userId}`);
 
-    eventSource.onopen = () => {
+export function trySSE(setCounter:React.Dispatch<React.SetStateAction<number>>){
+
+    // const userId:number = Number(sessionStorage.getItem('userId'));
+    // const eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${userId}`);
+    const eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=1`);
+
+    // eventSource.readyState\
+    console.log(eventSource)
+    eventSource.onopen = (event) => {
+        console.log(event)
         console.log('Conexión SSE abierta');
     };
     eventSource.onerror = (error) => {
-        console.error('Error en la conexión SSE:', error);
+        console.error('Error en la conexión SSE:', error.composedPath);
+        console.error('Error path:', error.composedPath);
+        console.error('Current target:', error.currentTarget);
+        console.error('Phase:', error.eventPhase);
         eventSource.close()
         // Posiblemente intentar reconectar
     };
     eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
+        setCounter((prev) => prev + 1);
+        console.log(data)
         try {
-            if(data.type === 'new-notification'){
-                console.log(data.payload as NotificationDTO)
-                notificationSetter((prev) => [...prev, data.payload as NotificationDTO]);
-            }
+            // if(data.type === 'new-notification'){
+            //     console.log(data.payload as NotificationDTO)
+            //     notificationSetter((prev) => [...prev, data.payload as NotificationDTO]);
+            // }
             // console.log(data)
             // if (data.tipo === 'nuevo-evento') {
             //     console.log(data)
@@ -45,6 +48,7 @@ export async function trySSE(notificationSetter:React.Dispatch<React.SetStateAct
     eventSource.addEventListener('heartbeat', (event) => {
         const timestamp = JSON.parse((event as MessageEvent).data);
         console.log('Heartbeat received at:', timestamp);
+        // setCounter((prev) => prev + 1);
         // Aquí podrías resetear un temporizador de inactividad en el frontend si lo tuvieras
     });
 }

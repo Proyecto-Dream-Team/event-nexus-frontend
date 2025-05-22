@@ -13,28 +13,29 @@ export const NotificationComponent = () => {
 	const handleOpen = async () => {
 		const notifications = await getNotificationsByUserId(id)
 		setNotifications(notifications)
-		setUnreadCount(0); 
+		setUnreadCount(0);
 		setOpen(true)
 	};
 
 	const handleClose = () => setOpen(false);
 
-useEffect(() => {
-	const fetchNotifications = async () => {
-		const newNotifications = await getNotificationsByUserId(id);
+	useEffect(() => {
+		trySSE(setUnreadCount)
+		const fetchNotifications = async () => {
+			const newNotifications = await getNotificationsByUserId(id);
 
-		if (!open) {
-			setUnreadCount(newNotifications.length);
-		}
+			if (!open) {
+				setUnreadCount(newNotifications.length);
+			}
 
-		setNotifications(newNotifications);
-	};
+			setNotifications(newNotifications);
+		};
 
-	fetchNotifications();
-	const interval = setInterval(fetchNotifications, 5000); // cada 5 segundos
+		fetchNotifications();
+		// const interval = setInterval(fetchNotifications, 5000); // cada 5 segundos
 
-	return () => clearInterval(interval);
-}, [open]);
+		// return () => clearInterval(interval);
+	}, [open]);
 
 
 	const style = {
@@ -66,30 +67,30 @@ useEffect(() => {
 	return (
 		<>
 			<div className="header-right" onClick={handleOpen} style={{ position: 'relative', cursor: 'pointer' }}>
-                <Badge
-                    badgeContent={unreadCount}
-                    color="error"
-                    overlap="circular"
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    sx={{
-                        '& .MuiBadge-badge': {
-                            fontSize: '1.2rem',
-                            height: 25,
-                            minWidth: 25,
-                            padding: '0 6px',
-                        },
-                    }}
-                >
-                    <img
-                        src="/icons/notification.svg"
-                        alt="Notificación"
-                        className="notificationIcon"
-                        style={{ width: 40, height: 40 }}
-                    />
-                </Badge>
+				<Badge
+					badgeContent={unreadCount}
+					color="error"
+					overlap="circular"
+					anchorOrigin={{
+						vertical: 'top',
+						horizontal: 'right',
+					}}
+					sx={{
+						'& .MuiBadge-badge': {
+							fontSize: '1.2rem',
+							height: 25,
+							minWidth: 25,
+							padding: '0 6px',
+						},
+					}}
+				>
+					<img
+						src="/icons/notification.svg"
+						alt="Notificación"
+						className="notificationIcon"
+						style={{ width: 40, height: 40 }}
+					/>
+				</Badge>
 			</div>
 
 			<Modal open={open} onClose={handleClose}>

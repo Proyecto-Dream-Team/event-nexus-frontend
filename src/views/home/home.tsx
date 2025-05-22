@@ -11,14 +11,9 @@ export const Home = () => {
     // const eventSource:EventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${Number(localStorage.getItem("userId"))}`);
     const [modules, setModules] = useState<Module[]>()
     const id = Number(sessionStorage.getItem("userId"));
-
-    async function tryConectionSEE(){
-        try{
-            trySSE()
-        }
-        catch(e:any){
-            
-        }
+    const [counter, setCounter] = useState(0)
+    function tryConectionSEE(){
+        trySSE(setCounter)
     }
     const getModules = async () => {
         try {
@@ -50,7 +45,7 @@ export const Home = () => {
                         ))
                     }
                 </div>
-                <button onClick={tryConectionSEE}>ACTIVAR NOTIFICACIONES</button>
+                <button onClick={tryConectionSEE}>ACTIVAR NOTIFICACIONES {counter}</button>
                 <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>
         </>
