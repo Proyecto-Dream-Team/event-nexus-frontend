@@ -41,14 +41,8 @@ export const CreateEvent = () => {
         }
     }
 
-
-
-    const pirulo = (nameEvent : string ) : boolean => {
-        const nombreDelPermiso = `CREAR_EVENTO_${nameEvent}`
-        console.log(permissions)
-        const tienePermiso = permissions ? permissions.includes(nombreDelPermiso) : false
-        // console.log(`Verificando permiso: ${nombreDelPermiso} => ${tienePermiso}`)
-        return tienePermiso
+    const hasPermissions = (nameEvent : string ) : boolean => {
+        return permissions ? permissions.includes(`CREAR_EVENTO_${nameEvent}`) : false
     }
 
     useEffect(() => {
@@ -101,7 +95,7 @@ export const CreateEvent = () => {
                                 key={key}
                                 label={key}
                                 value={key}
-                                disable={pirulo(key)}
+                                disable={hasPermissions(key)}
                                 register={register("eventType", {
                                     required: "El tipo de evento es obligatorio",
                                 })}
