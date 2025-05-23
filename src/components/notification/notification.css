@@ -1,0 +1,35 @@
+
+.mock{
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+    white-space: nowrap; /* Evita que el texto se envuelva */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    display: inline-flex; /* Usa flexbox para centrar texto e iconos */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Espacio entre el texto y el icono, si lo hay */
+    background-color: var(--primary-color);
+}
+
+.close:hover{
+    /* color: black; */
+    background-color: red;
+    /* background-color: var(--card-red); */
+}
+
+.active{
+    /* background-color: var(--primary-color); */
+    /* opacity:0.5 */
+}
+
+.inactive{
+    /* background-color: var(--primary-color); */
+    opacity:0.5
+}
