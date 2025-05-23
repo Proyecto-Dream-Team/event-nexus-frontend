@@ -4,16 +4,18 @@ import './createEvent.css'
 import { ButtonApp } from "../../../components/buttons/button";
 import { CreateEventDTO } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
-import { EventType } from "../../../utils/typeEvent";
 import { useLoader } from "../../../context/loader/useLoader";
 import { TIMELOADER } from "../../../utils/config";
 import { useToast } from "../../../context/toast/useToast";
 import { RadioInput } from "../../../components/input/radioInput";
+import { serviceUser } from "../../../services/serviceUser";
+import { useEffect, useState } from "react";
+
 export const CreateEvent = () => {
 
     const userId = Number(sessionStorage.getItem('userId'))
     const { setIsLoading } = useLoader();
-
+    const [permissions, setPermissions] = useState<string[]>([]);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
     });
@@ -21,7 +23,6 @@ export const CreateEvent = () => {
 
     const create = async (data : any) => {
         const { title, date, description, eventType } = data;
-        console.log("eventType:", eventType);
 
         const eventCreated = new CreateEventDTO(userId, date, title, description, eventType)
         try {
@@ -37,6 +38,14 @@ export const CreateEvent = () => {
             open(e.response.data.message, "error")
         }
     }
+
+    useEffect(() => {
+        const getPermission = async () => {
+            const response = await serviceUser.getPermissionsUser(userId , "EVENT" )
+            setPermissions(response)
+        }
+		getPermission()
+	}, []);
 
     return (
         <>
@@ -71,16 +80,18 @@ export const CreateEvent = () => {
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
                     <div className="event-type-options">
-                        {Object.entries(EventType).map(([key]) => (
+                    {permissions?.map((permission) => {
+                        return (
                             <RadioInput
-                                key={key}
-                                label={key}
-                                value={key}
+                                key={permission}
+                                label={permission}
+                                value={permission}
                                 register={register("eventType", {
                                     required: "El tipo de evento es obligatorio",
                                 })}
                             />
-                        ))}
+                        );
+                    })}
                     </div>
                     {errors.eventType?.message && (
                         <div className="error-container">

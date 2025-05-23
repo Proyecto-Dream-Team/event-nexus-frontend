@@ -5,6 +5,7 @@ import { useToast } from "../../../context/toast/useToast";
 import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import "./events.css";
+import { serviceUser } from "../../../services/serviceUser";
 
 export const Events = () => {
 	const location = useLocation();
@@ -20,22 +21,22 @@ export const Events = () => {
 
 	const getEvents = async () => {
 		if (showAllEvents) {
-		const allEvents: EventDto[] = await moduleService.getEvents();
-		setEvents(allEvents);
+			const allEvents: EventDto[] = await moduleService.getEvents();
+			setEvents(allEvents);
 		}
 		if (showMyEvents) {
-		const id = Number(sessionStorage.getItem("userId"));
-		const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
-			id
-		);
-		setEventsEmployee(employeeEvents);
+			const id = Number(sessionStorage.getItem("userId"));
+			const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+				id
+			);
+			setEventsEmployee(employeeEvents);
 		}
 		if (showCreatedEvents) {
-		const id = Number(sessionStorage.getItem("userId"));
-		const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
-			id
+			const id = Number(sessionStorage.getItem("userId"));
+			const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(
+				id
 		);
-		setEventsEmployee(employeeEvents);
+			setEventsEmployee(employeeEvents);
 		}
 	};
 
@@ -55,15 +56,15 @@ export const Events = () => {
 		});
 
 		setEvents((prevState) => {
-		if (prevState) {
-		return prevState.filter((event) => event.id !== eventId);
+			if (prevState) {
+			return prevState.filter((event) => event.id !== eventId);
 		}
 		return prevState;
 		});
 		open("Lista actualizada", "success");
 	}
 		catch (error) {
-		open("Error al unirse o abandonar el evento", "error");
+			open("Error al unirse o abandonar el evento", "error");
 		}
 	}
 

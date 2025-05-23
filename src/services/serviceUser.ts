@@ -1,6 +1,6 @@
 import axios from "axios";
 import { DatosForm } from "../domain/datosForm";
-import { PermissionsApp } from "../domain/permissions-description";
+import { PermissionsApp, PermissionType } from "../domain/permissions-description";
 import { HeaderDto, SesionStorage } from "../domain/user";
 import { URL_SERVIDOR_REST } from "../utils/config";
 
@@ -11,7 +11,12 @@ class ServiceUser {
 		const res = await axios.get(`${URL_SERVIDOR_REST}/admin/permissions-role`);
 		return res.data;
 	}
-  
+
+	async getPermissionsUser( id : number, type : PermissionType ): Promise<string[]> {
+		const res = await axios.get(`${URL_SERVIDOR_REST}/user/${id}/permissions/${type}`);
+		return res.data;
+	}
+	
 	async getProfileDatos(id: number): Promise<DatosForm> {
 		const response = await axios.get<DatosForm>(`${URL_SERVIDOR_REST}/user/profile/${id}`);
 		const entity = DatosForm.fromDto(response.data);
