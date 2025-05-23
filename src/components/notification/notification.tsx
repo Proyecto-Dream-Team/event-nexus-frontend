@@ -19,23 +19,23 @@ export const NotificationComponent = () => {
 
 	const handleClose = () => setOpen(false);
 
-	useEffect(() => {
-		trySSE(setUnreadCount)
-		const fetchNotifications = async () => {
-			const newNotifications = await getNotificationsByUserId(id);
+	// useEffect(() => {
+	// 	trySSE(setUnreadCount)
+	// 	const fetchNotifications = async () => {
+	// 		const newNotifications = await getNotificationsByUserId(id);
 
-			if (!open) {
-				setUnreadCount(newNotifications.length);
-			}
+	// 		if (!open) {
+	// 			setUnreadCount(newNotifications.length);
+	// 		}
 
-			setNotifications(newNotifications);
-		};
+	// 		setNotifications(newNotifications);
+	// 	};
 
-		fetchNotifications();
-		// const interval = setInterval(fetchNotifications, 5000); // cada 5 segundos
+	// 	fetchNotifications();
+	// 	// const interval = setInterval(fetchNotifications, 5000); // cada 5 segundos
 
-		// return () => clearInterval(interval);
-	}, [open]);
+	// 	// return () => clearInterval(interval);
+	// }, [open]);
 
 
 	const style = {

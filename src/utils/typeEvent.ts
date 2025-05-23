@@ -13,3 +13,15 @@ export enum EventColor {
 	EJECUTIVO = "rgb(52, 80, 107)",    
 	EQUIPO = "rgb(155, 89, 182)",     
 }
+
+export class PermissionsApp{
+    roles: string[];
+    permissions: string[];
+    
+    constructor(data: any) {
+        this.roles = data.roles;
+        this.permissions = data.permissions;
+    } 
+}
+
+export type PermissionType = "EVENT" | "DIRECTIVE" | "REPORT" | "ADMIN"

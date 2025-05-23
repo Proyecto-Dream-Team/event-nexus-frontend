@@ -1,11 +1,10 @@
 import axios from "axios";
 import { DatosForm } from "../domain/datosForm";
-import { PermissionsApp, PermissionType } from "../domain/permissions-description";
 import { HeaderDto, SesionStorage } from "../domain/user";
 import { URL_SERVIDOR_REST } from "../utils/config";
+import { PermissionsApp, PermissionType } from "../utils/typeEvent";
 
 class ServiceUser {
-
 
 	async getPermissions(): Promise<PermissionsApp> {
 		const res = await axios.get(`${URL_SERVIDOR_REST}/admin/permissions-role`);
