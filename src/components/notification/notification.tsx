@@ -2,13 +2,21 @@ import { Modal, Box, Typography, Badge } from "@mui/material"
 import { NotificationDTO } from "../../domain/notification"
 import { useEffect, useState } from "react";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
+import { URL_SERVIDOR_REST } from "../../utils/config";
+import './notification.css'
+
 
 export const NotificationComponent = () => {
 	const [open, setOpen] = useState(false);
-	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
-	const [unreadCount, setUnreadCount] = useState(0);
 
+	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
+	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
+	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
+	const [unreadCount, setUnreadCount] = useState(0);
+	const [onlyNew, setOnlyNew] = useState(false);
 	const id = Number(sessionStorage.getItem("userId"));
+	const [activeNotifications, setActiveNotifications] = useState(true);
+	let eventSource: EventSource | null = null;
 
 	const handleOpen = async () => {
 		const notifications = await getNotificationsByUserId(id)
@@ -17,25 +25,44 @@ export const NotificationComponent = () => {
 		setOpen(true)
 	};
 
-	const handleClose = () => setOpen(false);
+	const handleClose = () => {
+		setOpen(false)
+		setNewNotifications([])
+	};
 
-	// useEffect(() => {
-	// 	trySSE(setUnreadCount)
-	// 	const fetchNotifications = async () => {
-	// 		const newNotifications = await getNotificationsByUserId(id);
+	function activateNotifications() {
+		const button = document.querySelector('button.activable') as HTMLButtonElement;
+		if(button.classList.contains('active')){
+			setActiveNotifications(false);
+			button.classList.remove('active')
+			button.classList.add('inactive')
+			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+		}else{
+			setActiveNotifications(true);
+			button.classList.remove('inactive')
+			button.classList.add('active')
+			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
 
-	// 		if (!open) {
-	// 			setUnreadCount(newNotifications.length);
-	// 		}
+		}
+	}
 
-	// 		setNotifications(newNotifications);
-	// 	};
+	// function
+	function handleActivate() {
+		setOnlyNew(!onlyNew);
+	}
+	useEffect(() => {
+		// trySSE(setUnreadCount)
+		const fetchNotifications = async () => {
+			const newNotifications = await getNotificationsByUserId(id);
 
-	// 	fetchNotifications();
-	// 	// const interval = setInterval(fetchNotifications, 5000); // cada 5 segundos
+			// if (!open) {
+			// 	setUnreadCount(newNotifications.length);
+			// }
 
-	// 	// return () => clearInterval(interval);
-	// }, [open]);
+			setNotifications(newNotifications);
+		};
+		fetchNotifications();
+	}, [open]);
 
 
 	const style = {
@@ -44,13 +71,14 @@ export const NotificationComponent = () => {
 		flexDirection: 'column',
 		overflowY: 'scroll',
 		gap: 2,
-		top: '50%',
+		top: '25%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
-		width: 400,
+		width: 300,
 		height: 300,
-		bgcolor: 'background.paper',
+		bgcolor: '#2b3240',
 		border: '2px solid #000',
+		borderRadius: '2rem',
 		boxShadow: 24,
 		p: 4
 	};
@@ -93,18 +121,39 @@ export const NotificationComponent = () => {
 				</Badge>
 			</div>
 
-			<Modal open={open} onClose={handleClose}>
+			<Modal open={true} onClose={handleClose}>
 				<Box sx={style}>
-					<button onClick={handleClose}>Cerrar</button>
-					{notifications.length === 0 ? (
-						<Typography>No tienes notificaciones</Typography>
+					<div className="butons">
+						<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
+						<button onClick={handleActivate} className="mock toggle">{onlyNew ? "Nuevas" : "Todas"}</button>
+						<button onClick={handleClose} className="mock close">X</button>
+					</div>
+
+					{onlyNew ? (
+						// Display new notifications
+						newNotifications.length === 0 ? (
+							<Typography sx={{ mt: 2 }}>No tienes notificaciones nuevas.</Typography>
+						) : (
+							newNotifications.map((notification, index) => (<>
+								<Box key={notification.id} sx={style2}>
+									<Typography variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
+								</Box>
+							</>))
+						)
 					) : (
-						notifications.map((notification) => (
-							<Box key={notification.id} sx={style2}>
-								<Typography variant="h6">{notification.title}</Typography>
-								<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
-							</Box>
-						))
+						// Display all notifications
+						notifications.length === 0 ? (
+							<Typography sx={{ mt: 2 }}>No tienes notificaciones.</Typography>
+						) : (
+							notifications.map((notification, index) => (<>
+								<Box key={notification.id} sx={style2}>
+									<Typography variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
+								</Box>
+
+							</>))
+						)
 					)}
 				</Box>
 			</Modal>

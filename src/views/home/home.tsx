@@ -13,7 +13,7 @@ export const Home = () => {
     const id = Number(sessionStorage.getItem("userId"));
     const [counter, setCounter] = useState(0)
     function tryConectionSEE(){
-        trySSE(setCounter)
+        // trySSE(setCounter)
     }
     const getModules = async () => {
         try {
@@ -45,7 +45,7 @@ export const Home = () => {
                         ))
                     }
                 </div>
-                <button onClick={tryConectionSEE}>ACTIVAR NOTIFICACIONES {counter}</button>
+                {/* <button onClick={tryConectionSEE}>ACTIVAR NOTIFICACIONES {counter}</button> */}
                 <img className='image-home' src = "EventNexusImagotipo.png"/>
             </main>
         </>
