@@ -1,5 +1,5 @@
-.profile-box{
-    width: 80vw;
+.containerCardDirectiveInfo{
+    width: 70vw;
     background-color: transparent;
     border: 1px solid var(--title-color);
     display: flex;
@@ -9,29 +9,31 @@
     border-radius:1rem;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(7, 30, 105, 0.19);
 }
-.row{
+.rowCardDirectiveInfo{
     width: 100%;
     height: 8rem;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
 }
 
-.title{
+.titleCardDirectiveInfo{
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 70%;
     height: 100%;
     padding: 0;
-    margin-bottom: 1vh;
-    margin-top: 1vh;
-    margin-left: 2vh;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.icon{
+.iconCardDirectiveInfo{
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-around;
     align-items: center;
+    width: 20%;
 }
 

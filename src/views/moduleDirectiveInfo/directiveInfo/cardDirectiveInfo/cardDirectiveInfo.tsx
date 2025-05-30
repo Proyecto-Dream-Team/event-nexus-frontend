@@ -2,6 +2,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { useState } from "react";
 import { DirectiveInfoData } from "../../../../domain/directiveInfo";
+import "./cardDirectiveInfo.css";
 
 interface CardDirectiveInfoProps {
     info: DirectiveInfoData;
@@ -26,14 +27,14 @@ export const CardDirectiveInfo = ({ info, funcDelete }: CardDirectiveInfoProps) 
 
     return (
         <>
-            <div className="profile-box">
-                <div className="row">
-                    <div className="title">
+            <div className="containerCardDirectiveInfo">
+                <div className="rowCardDirectiveInfo">
+                    <div className="titleCardDirectiveInfo">
                         <h2>{info.titulo}</h2>
                         <p>{info.descripcion}</p>
                         <p>{info.fecha}</p>
                     </div>
-                    <div className='icon'>
+                    <div className='iconCardDirectiveInfo'>
                         <DeleteForeverIcon
                             fontSize='inherit'
                             style={{ color: 'red', fontSize: 30 }}
