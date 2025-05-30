@@ -5,12 +5,18 @@ import { getNotificationsByUserId, trySSE } from "../../services/notification.se
 import { URL_SERVIDOR_REST } from "../../utils/config";
 import './notification.css'
 
+import { URL_SERVIDOR_REST } from "../../utils/config";
+import './notification.css'
+
 
 export const NotificationComponent = () => {
 	const [open, setOpen] = useState(false);
 
 	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
+
+	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
 	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
+	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [unreadCount, setUnreadCount] = useState(0);
 	const [onlyNew, setOnlyNew] = useState(false);
@@ -54,11 +60,47 @@ export const NotificationComponent = () => {
 		// trySSE(setUnreadCount)
 		const fetchNotifications = async () => {
 			const newNotifications = await getNotificationsByUserId(id);
+	const handleClose = () => {
+		setOpen(false)
+		setNewNotifications([])
+	};
+
+	function activateNotifications() {
+		const button = document.querySelector('button.activable') as HTMLButtonElement;
+		if(button.classList.contains('active')){
+			setActiveNotifications(false);
+			button.classList.remove('active')
+			button.classList.add('inactive')
+			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+		}else{
+			setActiveNotifications(true);
+			button.classList.remove('inactive')
+			button.classList.add('active')
+			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+
+		}
+	}
+
+	// function
+	function handleActivate() {
+		setOnlyNew(!onlyNew);
+	}
+	useEffect(() => {
+		// trySSE(setUnreadCount)
+		const fetchNotifications = async () => {
+			const newNotifications = await getNotificationsByUserId(id);
 
 			// if (!open) {
 			// 	setUnreadCount(newNotifications.length);
 			// }
+			// if (!open) {
+			// 	setUnreadCount(newNotifications.length);
+			// }
 
+			setNotifications(newNotifications);
+		};
+		fetchNotifications();
+	}, [open]);
 			setNotifications(newNotifications);
 		};
 		fetchNotifications();
