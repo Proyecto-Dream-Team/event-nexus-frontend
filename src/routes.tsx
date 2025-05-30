@@ -10,6 +10,8 @@ import {CreateUss} from './views/moduleAdmin/createUss/createUss';
 import { ModuleAdmin } from './views/moduleAdmin/moculeAdmint';
 import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
 import { CredentialsComponent } from './views/credentials/credentials';
+import { ModuleDirectiveInfo } from './views/moduleDirectiveInfo/moduleDirectiveInfo';
+import { DirectiveInfo } from './views/moduleDirectiveInfo/directiveInfo/directiveInfo';
 
 
 export const AppRouter = () => {
@@ -35,6 +37,10 @@ export const AppRouter = () => {
                         <Route element = {<CreateUss/>} path='create-user'></Route>
                         <Route element = {<SearchUser/>} path='search-user'></Route>
                         <Route element={<CreateUss />} path="updateUser/:id"></Route>
+                    </Route>
+                    <Route element={<ModuleDirectiveInfo/> } path = 'module-directive-info' >
+                        <Route element = {<DirectiveInfo/>} path='create-info'></Route>
+                        <Route element = {<DirectiveInfo/>} path='read-info'></Route>
                     </Route>
                 </Route>
                 <Route path="/" element={<Navigate to="/login" />}></Route>{/* por defecto me lleva al login */}

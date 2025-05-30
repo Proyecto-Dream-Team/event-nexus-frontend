@@ -7,7 +7,8 @@ import EastIcon from '@mui/icons-material/East';
 export const ModuleCard = ({ value }: { value: Module }) => {
     const mapRoutes = { 
                         "Events": "/module-events/all-events", 
-                        "Comunicarse": "/module-admin/create-user" 
+                        "Comunicarse": "/module-admin/create-user", 
+                        "Informacion": "/module-directive-info/read-info"
                     };
                     
     const nav = useNavigate();
