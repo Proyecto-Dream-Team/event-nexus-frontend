@@ -14,11 +14,32 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url('https://img.freepik.com/vector-gratis/fondo-abstracto-vector-hexagonal-forma-hexagonal-patron-hexagonal-geometrico-textura-hexagonal-ilustracion-hexagonal-decoracion_1284-52740.jpg?semt=ais_hybrid&w=740')  center center;
-  background-size: fill;
-  filter:sepia(0.9) opacity(0.3) brightness(0.8);
+  background: url('https://img.freepik.com/vector-gratis/fondo-abstracto-vector-hexagonal-forma-hexagonal-patron-hexagonal-geometrico-textura-hexagonal-ilustracion-hexagonal-decoracion_1284-52740.jpg?semt=ais_hybrid&w=740') center center;
+  background-size: cover;
+  filter: sepia(0.9) opacity(0.6) brightness(0.7); /* Filtros iniciales reducidos */
+  animation: sepiaTransition 1s linear infinite; /* Animación para variar el nivel de sepia */
+  z-index: -1; /* Asegura que esté detrás del contenido */
 }
 
 .layout-rendering-area > * {
   position: relative;
+}
+
+/* Animación para cambiar el nivel de sepia con menos brillo */
+@keyframes sepiaTransition {
+  0% {
+    filter: sepia(1) opacity(0.8) brightness(0.8); /* Sepia intenso con bajo brillo */
+  }
+  25% {
+    filter: sepia(0.8) opacity(0.85) brightness(0.85); /* Sepia moderado */
+  }
+  50% {
+    filter: sepia(0.6) opacity(0.9) brightness(0.9); /* Sepia más tenue */
+  }
+  75% {
+    filter: sepia(0.8) opacity(0.85) brightness(0.85); /* Recuperando intensidad */
+  }
+  100% {
+    filter: sepia(1) opacity(0.8) brightness(0.8); /* Vuelve al estado inicial */
+  }
 }
