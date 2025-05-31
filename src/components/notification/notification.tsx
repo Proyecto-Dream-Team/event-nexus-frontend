@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
 import { URL_SERVIDOR_REST } from "../../utils/config";
 import './notification.css'
+import { right } from "@cloudinary/url-gen/qualifiers/textAlignment";
 
 
 export const NotificationComponent = () => {
@@ -24,13 +25,21 @@ export const NotificationComponent = () => {
 		const notifications = await getNotificationsByUserId(id)
 		setNotifications(notifications)
 		setUnreadCount(0);
-		setOpen(true)
+		setOpen(!open)
 	};
 
 	const handleClose = () => {
 		setOpen(false)
 		setNewNotifications([])
 	};
+
+	const formatIsoToDdMmAaaa = (isoString: string) =>{
+		const date = new Date(isoString);
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const year = date.getFullYear();
+		return `${day}/${month}/${year}`;
+	}
 
 	function activateNotifications() {
 		const button = document.querySelector('button.activable') as HTMLButtonElement;
@@ -104,30 +113,30 @@ export const NotificationComponent = () => {
 
 
 	const style = {
-		position: 'absolute',
+		position: "absolute",
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'scroll',
 		gap: 2,
+		width: 300,
+		height: 400,
 		top: '25%',
 		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		width: 300,
-		height: 300,
+		transform: 'translate(-50%, 10%)',
 		bgcolor: '#2b3240',
 		border: '2px solid #000',
 		borderRadius: '2rem',
-		boxShadow: 24,
+		float: "right",
 		p: 4
 	};
 
 	const style2 = {
-		width: 300,
 		height: 100,
-		bgcolor: 'background.paper',
-		border: '2px solid #000',
-		boxShadow: 24,
-		p: 4
+		bgcolor: '#5b6271',
+		border: '1px solid #000',
+		borderRadius: '1rem',
+		boxShadow: 10,
+		p: 1
 	};
 
 	return (
@@ -159,7 +168,8 @@ export const NotificationComponent = () => {
 				</Badge>
 			</div>
 
-			<Modal open={open} onClose={handleClose}>
+			{open ? (
+				<div style={{display: 'flex', flexDirection: 'row-reverse', }}>
 				<Box sx={style}>
 					<div className="butons">
 						<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
@@ -172,10 +182,10 @@ export const NotificationComponent = () => {
 						newNotifications.length === 0 ? (
 							<Typography sx={{ mt: 2 }}>No tienes notificaciones nuevas.</Typography>
 						) : (
-							newNotifications.map((notification, index) => (<>
+							notifications.map((notification, index) => (<>
 								<Box key={notification.id} sx={style2}>
-									<Typography variant="h6">{notification.title}</Typography>
-									<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
+									<Typography sx= {{textAlign: "left", color:"black"}} variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2, color:"black" }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 								</Box>
 							</>))
 						)
@@ -186,15 +196,16 @@ export const NotificationComponent = () => {
 						) : (
 							notifications.map((notification, index) => (<>
 								<Box key={notification.id} sx={style2}>
-									<Typography variant="h6">{notification.title}</Typography>
-									<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
+									<Typography sx= {{textAlign: "left", color:"black"}} variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2, color:"black" }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 								</Box>
 
 							</>))
 						)
 					)}
 				</Box>
-			</Modal>
+				</div>
+			):(<div></div>)}
 		</>
 	);
 }
