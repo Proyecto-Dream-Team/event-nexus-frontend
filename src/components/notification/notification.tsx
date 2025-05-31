@@ -5,9 +5,6 @@ import { getNotificationsByUserId, trySSE } from "../../services/notification.se
 import { URL_SERVIDOR_REST } from "../../utils/config";
 import './notification.css'
 
-import { URL_SERVIDOR_REST } from "../../utils/config";
-import './notification.css'
-
 
 export const NotificationComponent = () => {
 	const [open, setOpen] = useState(false);
@@ -16,7 +13,6 @@ export const NotificationComponent = () => {
 
 	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
 	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
-	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [unreadCount, setUnreadCount] = useState(0);
 	const [onlyNew, setOnlyNew] = useState(false);
@@ -163,7 +159,7 @@ export const NotificationComponent = () => {
 				</Badge>
 			</div>
 
-			<Modal open={true} onClose={handleClose}>
+			<Modal open={open} onClose={handleClose}>
 				<Box sx={style}>
 					<div className="butons">
 						<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
