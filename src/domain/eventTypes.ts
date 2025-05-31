@@ -1,0 +1,3 @@
+
+type EventType = "SOCIAL" | "DEPORTIVO" | "CAPACITACION" | "EJECUTIVO" | "EQUIPO" | "BENEFICO" | "SALUD" | "CULTURAL";
+

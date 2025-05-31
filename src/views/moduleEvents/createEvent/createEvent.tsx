@@ -10,6 +10,9 @@ import { useToast } from "../../../context/toast/useToast";
 import { RadioInput } from "../../../components/input/radioInput";
 import { serviceUser } from "../../../services/serviceUser";
 import { useEffect, useState } from "react";
+import { SesionStorage } from "../../../domain/user";
+import { ProfileCard } from "../../../components/profileCard/profileCard";
+import { InviteUserCard } from "../../../components/inviteUserCard/inviteUserCard";
 
 export const CreateEvent = () => {
 
@@ -19,12 +22,14 @@ export const CreateEvent = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
     });
-    const {open} = useToast();
-
-    const create = async (data : any) => {
+    const { open } = useToast();
+    const [availableUsers, setAvailableUsers] = useState<SesionStorage[]>([]);  
+    const [invitedUsers, setInvitedUsers] = useState<number[]>([]);
+    const [inviteMode, setInviteMode] = useState(false);
+    const create = async (data: any) => {
         const { title, date, description, eventType } = data;
 
-        const eventCreated = new CreateEventDTO(userId, date, title, description, eventType)
+        const eventCreated = new CreateEventDTO(userId, invitedUsers ,date, title, description, eventType)
         try {
             setIsLoading(true)
             await moduleService.create(eventCreated)
@@ -39,13 +44,58 @@ export const CreateEvent = () => {
         }
     }
 
+    async function getAvaliableUsers() {
+        const response = await serviceUser.search("");
+		console.log(response);
+		setAvailableUsers(response);
+    }
+
+    function changeInviteMode(){
+        setInviteMode(prev => !prev);
+        if (inviteMode) {
+            getAvaliableUsers();
+        }
+    }
+    function handleInvitation(id: number) {
+        // console.log("BEFORE");
+        // console.log("handleInvitation", id);
+        // console.log("invitedUsers", invitedUsers);
+        if (invitedUsers.includes(id)) {
+            uninviteUser(id);
+        }else{
+            inviteUser(id);
+        }
+        // console.log("after");
+        // console.log("handleInvitation", id);
+        // console.log("invitedUsers", invitedUsers);
+    }
+    function inviteUser(id: number) {
+        console.log("Invite User");
+        console.log("BEFORE");
+        console.log("Invite User", invitedUsers);
+        setInvitedUsers(prev => [...prev, id]);
+        console.log("AFTER");
+        console.log("Invite User", invitedUsers);
+
+    }
+
+    function uninviteUser(id: number) {
+        console.log("Uninvite user User");
+        console.log("BEFORE");
+        console.log("Invite User", invitedUsers);
+        setInvitedUsers(prev => prev.filter(userId => userId !== id));
+            console.log("AFTER");
+        console.log("Invite User", invitedUsers);
+    }
+
+
     useEffect(() => {
         const getPermission = async () => {
-            const response = await serviceUser.getPermissionsUser(userId , "EVENT" )
+            const response = await serviceUser.getPermissionsUser(userId, "EVENT")
             setPermissions(response)
         }
-		getPermission()
-	}, []);
+        getPermission()
+    }, []);
 
     return (
         <>
@@ -80,34 +130,46 @@ export const CreateEvent = () => {
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
                     <div className="event-type-options">
-                    {permissions?.map((permission) => {
-                        return (
-                            <RadioInput
-                                key={permission}
-                                label={permission}
-                                value={permission}
-                                register={register("eventType", {
-                                    required: "El tipo de evento es obligatorio",
-                                })}
-                            />
-                        );
-                    })}
+                        {permissions?.map((permission) => {
+                            return (
+                                <RadioInput
+                                    key={permission}
+                                    label={permission}
+                                    value={permission}
+                                    register={register("eventType", {
+                                        required: "El tipo de evento es obligatorio",
+                                    })}
+                                />
+                            );
+                        })}
                     </div>
                     {errors.eventType?.message && (
                         <div className="error-container">
-                        <p className="error-message">
-                            {typeof errors.eventType?.message === "string" ? errors.eventType.message : ""}
-                        </p>
+                            <p className="error-message">
+                                {typeof errors.eventType?.message === "string" ? errors.eventType.message : ""}
+                            </p>
                         </div>
                     )}
                 </div>
-
-                    <div className="buttonCreateEvent">
-                <ButtonApp
-                    label="Confirmar"
-                    method={handleSubmit(create)}
-                    isCancel={false}
-                />
+                <div>
+                    <label className="input-label">Invitados</label>
+                    <div onClick={changeInviteMode}>Invitar gente</div>
+                    {inviteMode && availableUsers?.map((user, index) => (
+                        <div
+                            key={index}
+                            style={{ animationDelay: `${index * 0.3}s` }}
+                            className="card-animated"
+                        >
+                            <InviteUserCard user={user} click={handleInvitation} invited={invitedUsers.includes(user.id)}/>
+                        </div>
+                    ))}
+                </div>
+                <div className="buttonCreateEvent">
+                    <ButtonApp
+                        label="Confirmar"
+                        method={handleSubmit(create)}
+                        isCancel={false}
+                    />
                 </div>
             </form>
         </>
