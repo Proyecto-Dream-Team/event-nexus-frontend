@@ -1,10 +1,10 @@
-<svg width="128" height="128" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="128" height="128" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <!-- Escudo -->
-  <path fill="black" d="M12 1L3 5V11C3 16.52 7.03 21.74 12 23C16.97 21.74 21 16.52 21 11V5L12 1Z"/>
+  <path fill="darkblue" d="M12 1L3 5V11C3 16.52 7.03 21.74 12 23C16.97 21.74 21 16.52 21 11V5L12 1Z"/>
   
   <!-- Cabeza del usuario -->
-  <circle cx="12" cy="10" r="2" fill="white"/>
+  <circle cx="12" cy="10" r="2" fill="lightgray"/>
   
   <!-- Cuerpo del usuario -->
-  <path d="M12 13C10.07 13 8.5 14.57 8.5 16.5H15.5C15.5 14.57 13.93 13 12 13Z" fill="white"/>
+  <path fill="lightgray" d="M12 13C10.07 13 8.5 14.57 8.5 16.5H15.5C15.5 14.57 13.93 13 12 13Z"/>
 </svg>

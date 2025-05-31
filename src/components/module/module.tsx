@@ -3,6 +3,7 @@ import { Module } from '../../domain/module'
 import { useNavigate } from 'react-router-dom'
 import { Card, Divider } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
+import { ReactComponent as EventsIcon } from '../../assets/icons/events.svg';
 
 export const ModuleCard = ({ value }: { value: Module }) => {
     const mapRoutes = { 
@@ -36,7 +37,7 @@ export const ModuleCard = ({ value }: { value: Module }) => {
                         <p>{value.description}</p>
                     </div>
                     <Divider orientation="vertical" variant="middle" flexItem />
-                    <img src={`./icons/${value.image}`} />
+                    <img src={`./icons/${value.image}`} className='icon-module'/>
                     <div className='icono'>
                         <EastIcon fontSize="large" />
                     </div>
