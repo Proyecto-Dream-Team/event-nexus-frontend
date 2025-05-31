@@ -59,25 +59,25 @@ export const EventCard = ({ event, method }: EventProps) => {
 			>
 
 			<div className="titleCardEvent">
-			<h4 className="titleEvent">{event.title}</h4>
-			<h4>{formatDate(event.dateFinished)}</h4>
-			<p>Participantes: {event.numberOfParticipants}</p>
-			<p>
-			{event.description}
-			</p>
+				<h4 className="titleEvent">{event.title}</h4>
+				<h4>{formatDate(event.dateFinished)}</h4>
+				<p>Participantes: {event.numberOfParticipants}</p>
+				<p>
+				{event.description}
+				</p>
 			</div>
 			<div className="buttonCardEvent">
-			{event.creatorId !== userId && (
-			itIsIn ? (
-				<ButtonCard label="Salir" method={joinleaveEvent} isCancel={true} />
-			) : (
-				<ButtonCard
-				label="Unirse"
-				method={joinleaveEvent}
-				isCancel={false}
-				/>
-			)
-			)}
+				{event.creatorId !== userId && (
+				itIsIn ? (
+					<ButtonCard label="Salir" method={joinleaveEvent} isCancel={true} />
+				) : (
+					<ButtonCard
+					label="Unirse"
+					method={joinleaveEvent}
+					isCancel={false}
+					/>
+				)
+				)}
 			</div>
 		</div>
 		</div>
