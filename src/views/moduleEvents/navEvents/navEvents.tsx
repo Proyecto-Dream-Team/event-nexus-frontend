@@ -1,7 +1,6 @@
-import { Divider } from "@mui/material"
+import { NavLink } from "react-router-dom"
 import './navEvents.css'
-import { useLocation, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 export const dividerStyles = {
     backgroundColor: "#ffffff",
@@ -10,34 +9,25 @@ export const dividerStyles = {
 }
 
 export const NavEvents = () => {
-    const navigate = useNavigate()
-    const location = useLocation()
-    const [prevPath, setPrevPath] = useState<string | null>(null)
-
-    useEffect(() => {
-        setPrevPath(location.pathname)
-    }, [location.pathname])
-
     const links = [
-        { path: '/module-events/all-events', label: 'Eventos' },
-        { path: '/module-events/my-events', label: 'Participo' },
-        { path: '/module-events/created-events', label: 'Creadas' },
-        { path: '/module-events/create-event', label: 'Crear' },
+        { index: 0, path: '/module-events/all-events', label: 'Eventos' },
+        { index: 1, path: '/module-events/my-events', label: 'Mis eventos' },
+        { index: 2, path: '/module-events/create-event', label: 'Crear' },
     ]
 
     return (
         <nav className="navegacion">
-            {links.map(({ path, label }) => {
-                const isActive = location.pathname === path
-                const wasActive = prevPath === path && !isActive
+            {links.map(({ index, path, label }) => {
                 return (
-                    <a
-                        key={path}
-                        className={`nav-link ${isActive ? 'activo' : ''} ${wasActive ? 'desactivo' : ''}`}
-                        onClick={() => navigate(path)}
+                    <NavLink
+                        key={index}
+                        to={path}
+                        className={({ isActive, isPending }) =>
+                            isPending ? "nav-link desactivo" : isActive ? "nav-link activo" : "nav-link"
+                        }
                     >
                         {label}
-                    </a>
+                    </NavLink>
                 )
             })}
         </nav>
