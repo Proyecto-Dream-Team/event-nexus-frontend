@@ -11,17 +11,17 @@ const mockDirective = new DirectiveInfoData(
     true
 )
 
-const directives = [mockDirective,mockDirective]
-
+const directives = [mockDirective,mockDirective,mockDirective,mockDirective]
 
 export const InformacionDirectiva = () => {
-    return(<>
-        <div className="background">
-        {
-                directives.map((directive, index) => (
-                    <CardInfoDirectiva key={index} value={directive} />
-                ))
-            }
-        </div>
-    </>)
+    return (
+        <>
+          <div className="fixed-background" />
+          <div className="scrollable-content">
+            {directives.map((directive, index) => (
+              <CardInfoDirectiva key={index} value={directive} />
+            ))}
+          </div>
+        </>
+      );
 }
