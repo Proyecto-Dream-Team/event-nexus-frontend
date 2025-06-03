@@ -6,7 +6,7 @@ interface Props {
     value: DirectiveInfoData;
 }
 
-export const CardInfoDirectiva = ( { value }: Props  ) => {
+export const CardDirectiveInfo = ( { value }: Props  ) => {
     return(<>
         <Divider>
             <Chip 

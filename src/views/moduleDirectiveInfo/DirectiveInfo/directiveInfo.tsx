@@ -1,14 +1,9 @@
 import { DirectiveInfoData } from '../../../domain/directiveInfo'
-<<<<<<< HEAD:src/views/moduleDirectiveInfo/DirectiveInfo/informacionDirectiva.tsx
-import { CardInfoDirectiva } from './cardInfoDirectiva'
+import { CardDirectiveInfo } from './cardDirectiveInfo'
 import './informacionDirectiva.css'
-import { AccountCircle } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import { serviceUser } from '../../../services/serviceUser'
-=======
-import { CardInfoDirectiva } from './cardDirectiveInfo'
 import './directiveInfo.css'
->>>>>>> refactor/informacion-directiva:src/views/moduleDirectiveInfo/DirectiveInfo/directiveInfo.tsx
 
 const mockDirective = new DirectiveInfoData(
     1,
@@ -20,7 +15,6 @@ const mockDirective = new DirectiveInfoData(
 
 const directives = [mockDirective,mockDirective,mockDirective,mockDirective]
 
-<<<<<<< HEAD:src/views/moduleDirectiveInfo/DirectiveInfo/informacionDirectiva.tsx
 export const InformacionDirectiva = () => {
 
     const [canCreate, setCanCreate] = useState(false);
@@ -42,16 +36,10 @@ export const InformacionDirectiva = () => {
         <>
             <div className="fixed-background" />
             <button disabled={!canCreate}>boton</button>
-            <div className="scrollable-content">
-=======
-export const DirectiveInfo = () => {
-    return (
-        <>
-            <div className="fixed-background" />
             <section className="scrollable-content">
->>>>>>> refactor/informacion-directiva:src/views/moduleDirectiveInfo/DirectiveInfo/directiveInfo.tsx
+
                 {directives.map((directive, index) => (
-                    <CardInfoDirectiva key={index} value={directive} />
+                    <CardDirectiveInfo key={index} value={directive} />
                 ))}
             </section>
             
