@@ -34,16 +34,18 @@ export const DirectiveInfo = () => {
         getPermissions()
         getDirectives()
     }, []);
+
+
     return (
         <>
             <div className="fixed-background" />
-            <button disabled={!canCreate}>boton</button>
             <section className="scrollable-content">
 
                 {directive.map((directive, index) => (
                     <CardDirectiveInfo key={index} value={directive} />
                 ))}
             </section>
+            
             
         </>
       );

@@ -12,10 +12,10 @@ export const CardDirectiveInfo = ( { value }: Props  ) => {
     return(<>
         <Divider>
             <Chip 
-                label="Hoy" 
+                label={value.priorityName} 
                 size="small"
                 variant="outlined"
-                color={value.priority == 'HIGH' ? "error" : "warning"} />
+                color={value.priorityName == 'urgente' ? "error" : "warning"} />
         </Divider>
         <div className="card">
             <img src={value.creatorImage} alt="" className="image-profile" />

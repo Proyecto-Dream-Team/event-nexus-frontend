@@ -1,4 +1,4 @@
-type Priority = "HIGH" | "MEDIUM" | "LOW" 
+type Priority = "urgente" | "importante" | "informativo" 
 
 export class DirectiveInfoData {
     creatorId: number;
@@ -6,7 +6,7 @@ export class DirectiveInfoData {
     title: string;
     date: Date;
     description: string;
-    priority: Priority
+    priorityName: Priority
 
     constructor(idCreator: number, creatorImage:string, titulo: string, date: Date, descripcion: string, priority : Priority) {
         this.creatorId = idCreator;
@@ -14,6 +14,6 @@ export class DirectiveInfoData {
         this.title = titulo;
         this.date = date;
         this.description = descripcion;
-        this.priority = priority
+        this.priorityName = priority
     }
 }

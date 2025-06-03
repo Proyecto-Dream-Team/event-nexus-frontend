@@ -11,7 +11,6 @@ import { RadioInput } from "../../../components/input/radioInput";
 import { serviceUser } from "../../../services/serviceUser";
 import { useEffect, useState } from "react";
 import { SesionStorage } from "../../../domain/user";
-import { ProfileCard } from "../../../components/profileCard/profileCard";
 import { InviteUserCard } from "../../../components/inviteUserCard/inviteUserCard";
 
 export const CreateEvent = () => {
