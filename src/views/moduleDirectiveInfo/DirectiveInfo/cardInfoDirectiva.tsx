@@ -1,7 +1,13 @@
 import { Chip, Divider } from "@mui/material"
 import './cardInfoDirectiva.css'
+import { DirectiveInfoData } from "../../../domain/directiveInfo"
 
-export const CardInfoDirectiva = () => {
+interface Props {
+    value: DirectiveInfoData;
+}
+
+
+export const CardInfoDirectiva = ( { value }: Props  ) => {
     return(<>
         <Divider>
             <Chip 
@@ -11,9 +17,9 @@ export const CardInfoDirectiva = () => {
                 color="warning" />
         </Divider>
         <div className="card">
-            <img src="profileImage.png" alt="" className="image-profile" />
-            <p className="name">Pedro Geraghty <span>12:30</span></p>
+            <img src={value.imageProfile} alt="" className="image-profile" />
+            <p className="name">{value.name} <span>12:30</span></p>
         </div>
-        <p className="comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque mollitia rem exercitationem, minima dolorum quod eius natus deserunt reprehenderit.</p>
+        <p className="comment">{value.description}</p>
     </>)
 }
