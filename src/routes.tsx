@@ -10,10 +10,8 @@ import {CreateUss} from './views/moduleAdmin/createUss/createUss';
 import { ModuleAdmin } from './views/moduleAdmin/moculeAdmint';
 import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
 import { CredentialsComponent } from './views/credentials/credentials';
-// import { ModuleDirectiveInfo } from './views/moduleDirectiveInfo/moduleDirectiveInfo';
-// import { DirectiveInfo } from './views/moduleDirectiveInfo/directiveInfo/directiveInfo';
 import { RelatedEvents } from './views/moduleEvents/relatedEvents/relatedEvents';
-import { InformacionDirectiva } from './views/moduleDirectiveInfo/DirectiveInfo/informacionDirectiva';
+import { DirectiveInfo } from './views/moduleDirectiveInfo/DirectiveInfo/directiveInfo';
 
 
 
@@ -41,10 +39,7 @@ export const AppRouter = () => {
                         <Route element = {<SearchUser/>} path='search-user'></Route>
                         <Route element={<CreateUss />} path="updateUser/:id"></Route>
                     </Route>
-                    <Route element={<InformacionDirectiva/> } path = 'module-directive-info' >
-                        {/* <Route element = {<DirectiveInfo/>} path='create-info'></Route> */}
-                        {/* <Route element = {<DirectiveInfo/>} path='read-info'></Route> */}
-                    </Route>
+                    <Route element={<DirectiveInfo/> } path = 'module-directive-info' ></Route>
                 </Route>
                 <Route path="/" element={<Navigate to="/login" />}></Route>{/* por defecto me lleva al login */}
                 <Route path="*" element={<Home />}></Route>{/* momentaneamente redirecciona al home si la ruta se escribe mal */}

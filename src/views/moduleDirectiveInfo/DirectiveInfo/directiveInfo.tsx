@@ -1,23 +1,24 @@
 import { DirectiveInfoData } from '../../../domain/directiveInfo'
 import { CardDirectiveInfo } from './cardDirectiveInfo'
-import './informacionDirectiva.css'
 import { useEffect, useState } from 'react'
 import { serviceUser } from '../../../services/serviceUser'
 import './directiveInfo.css'
+import { fetchDirectives } from '../../../services/directiveInfoService'
 
-const mockDirective = new DirectiveInfoData(
-    1,
-    "profileImage.png",
-    "Titulo",
-    '12/06/2024',
-    "lLorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, eos impedit aperiam itaque delectus autem veniam harum accusantium voluptatum omnis dolorum nulla qui aut? Pariatur nulla facilis dicta praesentium et!"
-)
+export const DirectiveInfo = () => {
 
-const directives = [mockDirective,mockDirective,mockDirective,mockDirective]
-
-export const InformacionDirectiva = () => {
+    const [directive,setDirective] = useState<DirectiveInfoData[]>([])
 
     const [canCreate, setCanCreate] = useState(false);
+
+    const getDirectives = async () => {
+        try{
+            const res = await fetchDirectives()
+            setDirective(res)
+        }catch (error: any) {
+            console.error("Error al obtener permisos: ", error.message);
+        }
+    } 
 
     async function getPermissions() {
         try{
@@ -31,6 +32,7 @@ export const InformacionDirectiva = () => {
     }
     useEffect(() => {
         getPermissions()
+        getDirectives()
     }, []);
     return (
         <>
@@ -38,7 +40,7 @@ export const InformacionDirectiva = () => {
             <button disabled={!canCreate}>boton</button>
             <section className="scrollable-content">
 
-                {directives.map((directive, index) => (
+                {directive.map((directive, index) => (
                     <CardDirectiveInfo key={index} value={directive} />
                 ))}
             </section>
