@@ -1,8 +1,6 @@
-import { Box, InputAdornment, TextField } from '@mui/material'
 import { DirectiveInfoData } from '../../../domain/directiveInfo'
-import { CardInfoDirectiva } from './cardInfoDirectiva'
-import './informacionDirectiva.css'
-import { AccountCircle } from '@mui/icons-material'
+import { CardInfoDirectiva } from './cardDirectiveInfo'
+import './directiveInfo.css'
 
 const mockDirective = new DirectiveInfoData(
     0,
@@ -15,15 +13,16 @@ const mockDirective = new DirectiveInfoData(
 
 const directives = [mockDirective,mockDirective,mockDirective,mockDirective]
 
-export const InformacionDirectiva = () => {
+export const DirectiveInfo = () => {
     return (
         <>
             <div className="fixed-background" />
-            <div className="scrollable-content">
+            <section className="scrollable-content">
                 {directives.map((directive, index) => (
                     <CardInfoDirectiva key={index} value={directive} />
                 ))}
-            </div>
+            </section>
+            
         </>
       );
 }

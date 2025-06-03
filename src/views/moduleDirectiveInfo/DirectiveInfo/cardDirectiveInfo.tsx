@@ -1,5 +1,5 @@
 import { Chip, Divider } from "@mui/material"
-import './cardInfoDirectiva.css'
+import './cardDirectiveInfo.css'
 import { DirectiveInfoData } from "../../../domain/directiveInfo"
 
 interface Props {

@@ -12,7 +12,7 @@ import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
 import { CredentialsComponent } from './views/credentials/credentials';
 import { ModuleDirectiveInfo } from './views/moduleDirectiveInfo/moduleDirectiveInfo';
 import { DirectiveInfo } from './views/moduleDirectiveInfo/directiveInfo/directiveInfo';
-import { InformacionDirectiva } from './views/moduleDirectiveInfo/DirectiveInfo/informacionDirectiva';
+import { InformacionDirectiva } from './views/moduleDirectiveInfo/DirectiveInfo/directiveInfo';
 
 
 export const AppRouter = () => {
