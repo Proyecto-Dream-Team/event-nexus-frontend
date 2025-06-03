@@ -1,6 +1,6 @@
 import { Box, InputAdornment, TextField } from '@mui/material'
 import { DirectiveInfoData } from '../../../domain/directiveInfo'
-import './informacionDirectiva.css'
+import './directiveInfo.css'
 import { AccountCircle } from '@mui/icons-material'
 import { CardInfoDirectiva } from './cardDirectiveInfo'
 
