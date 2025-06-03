@@ -12,6 +12,7 @@ import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
 import { CredentialsComponent } from './views/credentials/credentials';
 import { ModuleDirectiveInfo } from './views/moduleDirectiveInfo/moduleDirectiveInfo';
 import { DirectiveInfo } from './views/moduleDirectiveInfo/directiveInfo/directiveInfo';
+import { InformacionDirectiva } from './views/moduleDirectiveInfo/informacionDirectiva/informacionDirectiva';
 
 
 export const AppRouter = () => {
@@ -38,9 +39,9 @@ export const AppRouter = () => {
                         <Route element = {<SearchUser/>} path='search-user'></Route>
                         <Route element={<CreateUss />} path="updateUser/:id"></Route>
                     </Route>
-                    <Route element={<ModuleDirectiveInfo/> } path = 'module-directive-info' >
-                        <Route element = {<DirectiveInfo/>} path='create-info'></Route>
-                        <Route element = {<DirectiveInfo/>} path='read-info'></Route>
+                    <Route element={<InformacionDirectiva/> } path = 'module-directive-info' >
+                        {/* <Route element = {<DirectiveInfo/>} path='create-info'></Route> */}
+                        {/* <Route element = {<DirectiveInfo/>} path='read-info'></Route> */}
                     </Route>
                 </Route>
                 <Route path="/" element={<Navigate to="/login" />}></Route>{/* por defecto me lleva al login */}

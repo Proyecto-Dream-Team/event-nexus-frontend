@@ -8,7 +8,7 @@ export const ModuleCard = ({ value }: { value: Module }) => {
     const mapRoutes = { 
                         "Events": "/module-events/all-events", 
                         "Comunicarse": "/module-admin/create-user", 
-                        "Informacion": "/module-directive-info/read-info"
+                        "Informacion": "/module-directive-info"
                     };
                     
     const nav = useNavigate();

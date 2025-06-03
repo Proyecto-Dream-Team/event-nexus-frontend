@@ -1,0 +1,10 @@
+.background {
+    position: fixed; /* o absolute */
+    padding-top: 9rem;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #444f66;
+    z-index: -1;
+  }
