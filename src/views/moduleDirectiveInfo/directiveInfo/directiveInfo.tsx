@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import { ButtonApp } from "../../../components/buttons/button";
 import { InputApp } from "../../../components/input/input";
 import { DirectiveInfoData } from "../../../domain/directiveInfo";
-import { directiveInfoService } from "../../../services/directiveInfoService";
+import { directiveInfoService, fetchDirectives } from "../../../services/directiveInfoService";
 import { useToast } from "../../../context/toast/useToast";
-import { use, useEffect } from "react";
+import { use, useEffect, useState } from "react";
 import { CardDirectiveInfo } from "./cardDirectiveInfo/cardDirectiveInfo";
 
 const defaultValuesForm = {
@@ -19,7 +19,7 @@ export const DirectiveInfo = () => {
     const location = useLocation();
     const isCreateInfo = location.pathname.includes("create-info");
     const idUser = Number(sessionStorage.getItem("userId")) || 0;
-
+    const [directives,setDirectives] = useState<DirectiveInfoData[]>([]);   
     const {open} = useToast();
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         mode: "all",
@@ -31,6 +31,14 @@ export const DirectiveInfo = () => {
         reset(defaultValuesForm);
     };
 
+    async function getDirectives() {
+        try {
+            const response = await fetchDirectives();
+            setDirectives(response);
+        } catch (error: any) {
+            open("Error al obtener las directivas: " + error.message, "error");
+        }
+    }
     const createInfo = async (data: any) => {
         const { titulo, fecha, descripcion } = data
         const myCreation = new DirectiveInfoData(idUser, titulo, fecha, descripcion);
@@ -45,7 +53,7 @@ export const DirectiveInfo = () => {
 
 
     useEffect(() => {
-    
+        getDirectives();
     }, []);
 
 
@@ -80,8 +88,10 @@ export const DirectiveInfo = () => {
                 </div>
             ) : (
                 <div className="directive-info-view">
-                    <CardDirectiveInfo info={new DirectiveInfoData(1, "Recortes", "2023-01-01", "Descripción de ejemplo")}
-                                     funcDelete={() => {}}></CardDirectiveInfo>
+                    {directives.map((directive) => ( 
+                        <CardDirectiveInfo key={directive.creatorId} info={directive} funcDelete={() => {}} />
+                    ))}
+                    
                 </div>
             )}
         </>

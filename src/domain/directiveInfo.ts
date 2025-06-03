@@ -1,13 +1,13 @@
 export class DirectiveInfoData {
-    idCreator: number;
-    titulo: string;
-    fecha: string;
-    descripcion: string;
+    creatorId: number;
+    title: string;
+    date: string;
+    description: string;
 
     constructor(idCreator: number, titulo: string, fecha: string, descripcion: string) {
-        this.idCreator = idCreator;
-        this.titulo = titulo;
-        this.fecha = fecha;
-        this.descripcion = descripcion;
+        this.creatorId = idCreator;
+        this.title = titulo;
+        this.date = fecha;
+        this.description = descripcion;
     }
 }

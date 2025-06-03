@@ -30,9 +30,9 @@ export const CardDirectiveInfo = ({ info, funcDelete }: CardDirectiveInfoProps) 
             <div className="containerCardDirectiveInfo">
                 <div className="rowCardDirectiveInfo">
                     <div className="titleCardDirectiveInfo">
-                        <h2>{info.titulo}</h2>
-                        <p>{info.descripcion}</p>
-                        <p>{info.fecha}</p>
+                        <h2>{info.title}</h2>
+                        <p>{info.description}</p>
+                        <p>{info.date}</p>
                     </div>
                     <div className='iconCardDirectiveInfo'>
                         <DeleteForeverIcon
@@ -48,7 +48,7 @@ export const CardDirectiveInfo = ({ info, funcDelete }: CardDirectiveInfoProps) 
                     <DialogTitle>Confirmar eliminación</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            ¿Estás seguro que deseas eliminar la directiva <strong>{info.titulo}</strong>? Esta acción no se puede deshacer.
+                            ¿Estás seguro que deseas eliminar la directiva <strong>{info.title}</strong>? Esta acción no se puede deshacer.
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
