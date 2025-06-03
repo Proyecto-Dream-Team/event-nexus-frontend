@@ -1,8 +1,6 @@
 import { Chip, Divider } from "@mui/material"
 import './cardInfoDirectiva.css'
 
-
-
 export const CardInfoDirectiva = () => {
     return(<>
         <Divider>

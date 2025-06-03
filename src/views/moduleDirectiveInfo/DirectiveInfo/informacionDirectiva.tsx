@@ -6,6 +6,7 @@ export const InformacionDirectiva = () => {
         <div className="background">
             <CardInfoDirectiva></CardInfoDirectiva>
             <CardInfoDirectiva></CardInfoDirectiva>
+            
 
         </div>
     </>)
