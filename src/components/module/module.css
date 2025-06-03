@@ -4,15 +4,15 @@
     grid-template-columns: repeat(2 , 69% 1% 30% );
     padding: 1rem;
     margin: 0.3rem;
-    
-    img{
-        grid-column: 3 / 4 ;
-        border-radius: 7px;
-        justify-self: center;
-        align-self: center;
-        width: 70%;
-    }
-  }
+}
+
+.icon-module{
+    grid-column: 3 / 4 ;
+    border-radius: 7px;
+    justify-self: center;
+    align-self: center;
+    width: 70%;
+}
 
 .text {
     display: flex;

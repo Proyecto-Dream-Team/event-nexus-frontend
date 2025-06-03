@@ -8,7 +8,7 @@ export const ModuleCard = ({ value }: { value: Module }) => {
     const mapRoutes = { 
                         "Events": "/module-events/all-events", 
                         "Comunicarse": "/module-admin/create-user", 
-                        "Informacion": "/module-directive-info/read-info"
+                        "Informacion": "/module-directive-info"
                     };
                     
     const nav = useNavigate();
@@ -36,7 +36,7 @@ export const ModuleCard = ({ value }: { value: Module }) => {
                         <p>{value.description}</p>
                     </div>
                     <Divider orientation="vertical" variant="middle" flexItem />
-                    <img src={`./icons/${value.image}`} />
+                    <img src={`./icons/${value.image}`} className='icon-module'/>
                     <div className='icono'>
                         <EastIcon fontSize="large" />
                     </div>

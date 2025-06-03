@@ -66,6 +66,7 @@ export const Header = () => {
 	const getTitle = () => {
 		if (location.pathname.includes("module-admin")) return "Administrador";
 		if (location.pathname.includes("module-events")) return "Eventos";
+		if (location.pathname.includes("module-directive-info")) return "Informacion Directiva";
 		return "Eventos"; // HAY QUE MEJORAR ESTO PERO PARA MI (PICA). DEPENDE DE COMO MANEJAMOS LAS RUTAS
 	};
 
