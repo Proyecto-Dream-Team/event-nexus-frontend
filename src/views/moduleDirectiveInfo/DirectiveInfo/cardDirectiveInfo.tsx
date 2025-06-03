@@ -6,7 +6,6 @@ interface Props {
     value: DirectiveInfoData;
 }
 
-
 export const CardInfoDirectiva = ( { value }: Props  ) => {
     return(<>
         <Divider>
