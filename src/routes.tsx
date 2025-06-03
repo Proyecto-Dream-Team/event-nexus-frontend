@@ -12,6 +12,7 @@ import { SearchUser } from './views/moduleAdmin/searchUss/searchUss';
 import { CredentialsComponent } from './views/credentials/credentials';
 import { ModuleDirectiveInfo } from './views/moduleDirectiveInfo/moduleDirectiveInfo';
 import { DirectiveInfo } from './views/moduleDirectiveInfo/directiveInfo/directiveInfo';
+import { RelatedEvents } from './views/moduleEvents/relatedEvents/relatedEvents';
 
 
 export const AppRouter = () => {
@@ -29,8 +30,7 @@ export const AppRouter = () => {
                     <Route element={<Profile /> } path = 'profile' ></Route>
                     <Route element={<ModuleEvents/>} path = 'module-events'>
                         <Route element= {<Events/>} path = 'all-events' ></Route>
-                        <Route element= {<Events/>} path = 'my-events' ></Route>
-                        <Route element = {<Events/>} path = 'created-events' ></Route>
+                        <Route element= {<RelatedEvents/>} path = 'my-events' ></Route>
                         <Route element = {<CreateEvent/>} path = 'create-event' ></Route>
                     </Route>
                     <Route element={<ModuleAdmin/> } path = 'module-admin' >

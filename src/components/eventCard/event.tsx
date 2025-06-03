@@ -4,7 +4,6 @@ import { EventDto } from "../../domain/createEvent";
 import { ButtonCard } from "../buttons/buttonCard/buttonCard";
 import "./event.css";
 import { EventColor, EventType } from "../../utils/typeEvent";
-import { background } from "@cloudinary/url-gen/qualifiers/focusOn";
 
 interface EventProps {
   event : EventDto;

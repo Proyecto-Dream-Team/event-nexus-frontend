@@ -1,3 +1,5 @@
+export type EventCategory = "SOCIAL" | "DEPORTIVO" | "CAPACITACION" | "EJECUTIVO" | "EQUIPO" | "BENEFICO" | "SALUD" | "CULTURAL";
+
 export enum EventType {
 	SOCIAL = "https://img.freepik.com/fotos-premium/grupo-personas-diversas-estan-almorzando-juntos_53876-87748.jpg?semt=ais_hybrid&w=740",
 	DEPORTIVO = "https://img.freepik.com/fotos-premium/gente-que-ejercita-gimnasio-aptitud_53876-189.jpg?semt=ais_hybrid&w=740",
@@ -13,6 +15,14 @@ export enum EventColor {
 	EJECUTIVO = "rgb(52, 80, 107)",    
 	EQUIPO = "rgb(155, 89, 182)",     
 }
+
+export type EventCategory2 = {
+	category: EventType;
+	color: EventColor;	
+	image:EventCategory
+}
+
+// export EventsCategoryConfiguration: EventCategory2[] = []
 
 export class PermissionsApp{
     roles: string[];

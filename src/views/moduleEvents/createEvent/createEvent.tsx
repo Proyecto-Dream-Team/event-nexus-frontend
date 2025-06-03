@@ -34,6 +34,7 @@ export const CreateEvent = () => {
             setIsLoading(true)
             await moduleService.create(eventCreated)
             reset()
+            setInviteMode(false)
             setTimeout(() => {
                 setIsLoading(false)
                 open("Evento creado con exito", "success")

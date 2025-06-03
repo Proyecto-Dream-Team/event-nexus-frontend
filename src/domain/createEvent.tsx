@@ -1,4 +1,4 @@
-import { EventType } from "react-hook-form";
+import { EventCategory } from "./eventTypes";
 
 export class CreateEventDTO {
   id : number = 0
@@ -7,7 +7,7 @@ export class CreateEventDTO {
 	date: Date;
 	name: string;
 	description: string;
-	eventType: EventType;
+	eventType: EventCategory;
   
 	constructor(
 		creatorId: number,
@@ -15,7 +15,7 @@ export class CreateEventDTO {
 		date: Date,
 		name: string,
 		description: string,
-		eventType: EventType 
+		eventType: EventCategory 
 	) {
 		this.creatorId = creatorId;
     this.participantsIds = participantsIds
@@ -37,7 +37,7 @@ export class EventDto{
     isActive: boolean 
     numberOfParticipants: number
     participantsIds: number[]
-    type: EventType
+    type: EventCategory
 
     constructor(
       id: number,
@@ -50,7 +50,7 @@ export class EventDto{
       isActive: boolean,
       participantsAmount: number,
       participantsIds: number[],
-      type: EventType
+      type: EventCategory
     ) {
 
         this.id = id
