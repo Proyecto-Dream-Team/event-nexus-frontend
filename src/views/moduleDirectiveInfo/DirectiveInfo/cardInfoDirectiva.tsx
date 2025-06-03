@@ -17,8 +17,8 @@ export const CardInfoDirectiva = ( { value }: Props  ) => {
                 color="warning" />
         </Divider>
         <div className="card">
-            <img src={value.imageProfile} alt="" className="image-profile" />
-            <p className="name">{value.name} <span>12:30</span></p>
+            <img src={value.creatorImage} alt="" className="image-profile" />
+            <p className="name">{value.title} <span>12:30</span></p>
         </div>
         <p className="comment">{value.description}</p>
     </>)

@@ -5,7 +5,7 @@ export class DirectiveInfoData {
     date: string;
     description: string;
 
-    constructor(idCreator: number, titulo: string, fecha: string, descripcion: string, creatorImage:string) {
+    constructor(idCreator: number, creatorImage:string, titulo: string, fecha: string, descripcion: string) {
         this.creatorId = idCreator;
         this.creatorImage = creatorImage;
         this.title = titulo;

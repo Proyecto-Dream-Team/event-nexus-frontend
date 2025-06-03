@@ -5,12 +5,11 @@ import './informacionDirectiva.css'
 import { AccountCircle } from '@mui/icons-material'
 
 const mockDirective = new DirectiveInfoData(
-    0,
-    "Pedro Geraghty",
-    'profileImage.png',
+    1,
+    "profileImage.png",
+    "Titulo",
     '12/06/2024',
-    "lLorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, eos impedit aperiam itaque delectus autem veniam harum accusantium voluptatum omnis dolorum nulla qui aut? Pariatur nulla facilis dicta praesentium et!",
-    true
+    "lLorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, eos impedit aperiam itaque delectus autem veniam harum accusantium voluptatum omnis dolorum nulla qui aut? Pariatur nulla facilis dicta praesentium et!"
 )
 
 const directives = [mockDirective,mockDirective,mockDirective,mockDirective]

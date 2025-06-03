@@ -41,7 +41,7 @@ export const DirectiveInfo = () => {
     }
     const createInfo = async (data: any) => {
         const { titulo, fecha, descripcion } = data
-        const myCreation = new DirectiveInfoData(idUser, titulo, fecha, descripcion);
+        const myCreation = new DirectiveInfoData(idUser, "", titulo, fecha, descripcion);
         try{
             directiveInfoService.createDirectiveInfo(myCreation)
             reset(defaultValuesForm);
@@ -54,7 +54,9 @@ export const DirectiveInfo = () => {
 
     useEffect(() => {
         getDirectives();
+        console.log(directives)
     }, []);
+
 
 
     return (
