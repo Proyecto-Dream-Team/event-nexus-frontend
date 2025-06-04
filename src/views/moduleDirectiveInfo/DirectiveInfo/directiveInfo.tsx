@@ -3,7 +3,7 @@ import { CardDirectiveInfo } from './cardDirectiveInfo'
 import { useEffect, useState } from 'react'
 import { serviceUser } from '../../../services/serviceUser'
 import './directiveInfo.css'
-import { directiveInfoService, fetchDirectives } from '../../../services/directiveInfoService'
+import { directiveInfoService } from '../../../services/directiveInfoService'
 import { Box, Button, Chip, TextField } from '@mui/material'
 
 export const DirectiveInfo = () => {
