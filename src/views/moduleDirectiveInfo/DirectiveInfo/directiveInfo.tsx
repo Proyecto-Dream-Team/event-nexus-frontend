@@ -21,7 +21,7 @@ export const DirectiveInfo = () => {
     const userId = Number(sessionStorage.getItem("userId"));
     
     const createDirective = async () => {
-        if (!priority || !description) {
+        if (!priority || !title || !description) {
           alert("Completa todos los campos y selecciona una prioridad");
           return;
         }
@@ -30,13 +30,12 @@ export const DirectiveInfo = () => {
             userId,
             title,
             description,
-            priority.toLowerCase() as Priority // casteo a tipo correcto
+            priority.toLowerCase() as Priority 
         );
       
         try {
             await directiveInfoService.createDirectiveInfo(newDirective);
-            console.log(directive)
-            getDirectives(); // recargar directivas
+            getDirectives(); 
             setDescription('');
             setPriority(null);
         } catch (error: any) {
@@ -47,7 +46,7 @@ export const DirectiveInfo = () => {
     
     const getDirectives = async () => {
         try{
-            const res = await fetchDirectives()
+            const res = await directiveInfoService.fetchDirectives()
             setDirective(res)
         }catch (error: any) {
             console.error("Error al obtener permisos: ", error.message);
