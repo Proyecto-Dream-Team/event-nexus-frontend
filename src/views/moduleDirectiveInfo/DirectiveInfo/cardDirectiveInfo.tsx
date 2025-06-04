@@ -15,12 +15,23 @@ export const CardDirectiveInfo = ( { value }: Props  ) => {
                 label={value.priorityName} 
                 size="small"
                 variant="outlined"
-                color={value.priorityName == 'urgente' ? "error" : "warning"} />
+                color={
+                    value.priorityName === 'urgente'
+                      ? 'error'
+                      : value.priorityName === 'importante'
+                      ? 'warning'
+                      : 'primary'
+                  } />
         </Divider>
-        <div className="card">
-            <img src={value.creatorImage} alt="" className="image-profile" />
-            <p className="name">{value.title} <span>{utils.setDate(value.date)}</span></p>
-        </div>
+        <article className="card">
+            <img src={value.creatorImage!} alt="" className="image-profile" />
+            
+            <div className="atributos">
+                <h2 className="title">{value.title}</h2>
+                <p className="name">From: {value.name}</p>
+                <span>{` ${utils.setDate(value.date!)} - ${utils.setStartTime(value.date!)}` }</span>
+            </div>
+        </article>
         <p className="comment">{value.description}</p>
     </>)
 }
