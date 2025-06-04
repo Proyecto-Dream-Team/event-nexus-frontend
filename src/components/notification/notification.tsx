@@ -4,27 +4,67 @@ import { useEffect, useState } from "react";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
 import { URL_SERVIDOR_REST } from "../../utils/config";
 import './notification.css'
+import { right } from "@cloudinary/url-gen/qualifiers/textAlignment";
 
 
 export const NotificationComponent = () => {
 	const [open, setOpen] = useState(false);
 
 	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
+
+	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
 	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
 	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [unreadCount, setUnreadCount] = useState(0);
-	const [onlyNew, setOnlyNew] = useState(true);
+	const [onlyNew, setOnlyNew] = useState(false);
 	const id = Number(sessionStorage.getItem("userId"));
-	const [activeNotifications, setActiveNotifications] = useState(false);
+	const [activeNotifications, setActiveNotifications] = useState(true);
 	let eventSource: EventSource | null = null;
 
 	const handleOpen = async () => {
 		const notifications = await getNotificationsByUserId(id)
 		setNotifications(notifications)
 		setUnreadCount(0);
-		setOpen(true)
+		setOpen(!open)
 	};
 
+	const handleClose = () => {
+		setOpen(false)
+		setNewNotifications([])
+	};
+
+	const formatIsoToDdMmAaaa = (isoString: string) =>{
+		const date = new Date(isoString);
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const year = date.getFullYear();
+		return `${day}/${month}/${year}`;
+	}
+
+	function activateNotifications() {
+		const button = document.querySelector('button.activable') as HTMLButtonElement;
+		if(button.classList.contains('active')){
+			setActiveNotifications(false);
+			button.classList.remove('active')
+			button.classList.add('inactive')
+			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+		}else{
+			setActiveNotifications(true);
+			button.classList.remove('inactive')
+			button.classList.add('active')
+			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+
+		}
+	}
+
+	// function
+	function handleActivate() {
+		setOnlyNew(!onlyNew);
+	}
+	useEffect(() => {
+		// trySSE(setUnreadCount)
+		const fetchNotifications = async () => {
+			const newNotifications = await getNotificationsByUserId(id);
 	const handleClose = () => {
 		setOpen(false)
 		setNewNotifications([])
@@ -58,7 +98,14 @@ export const NotificationComponent = () => {
 			// if (!open) {
 			// 	setUnreadCount(newNotifications.length);
 			// }
+			// if (!open) {
+			// 	setUnreadCount(newNotifications.length);
+			// }
 
+			setNotifications(newNotifications);
+		};
+		fetchNotifications();
+	}, [open]);
 			setNotifications(newNotifications);
 		};
 		fetchNotifications();
@@ -66,29 +113,31 @@ export const NotificationComponent = () => {
 
 
 	const style = {
-		position: 'absolute',
+		position: "absolute",
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'scroll',
 		gap: 2,
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		width: 400,
-		height: 300,
-		bgcolor: 'background.paper',
+		width: 300,
+		height: 400,
+		top: '60%',
+		right: '2%',
+		//transform: 'translate(-50%, 10%)',
+		bgcolor: '#2b3240',
 		border: '2px solid #000',
-		boxShadow: 24,
+		borderRadius: '2rem',
+		float: "right",
 		p: 4
 	};
 
 	const style2 = {
-		width: 300,
 		height: 100,
-		bgcolor: 'background.paper',
-		border: '2px solid #000',
-		boxShadow: 24,
-		p: 4
+		bgcolor: '#5b6271',
+		border: '1px solid #000',
+		borderRadius: '1rem',
+		boxShadow: 10,
+		color: "#fffffff",
+		p: 1
 	};
 
 	return (
@@ -120,21 +169,24 @@ export const NotificationComponent = () => {
 				</Badge>
 			</div>
 
-			<Modal open={open} onClose={handleClose}>
+			{open ? (
+				<div>
 				<Box sx={style}>
-					<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
-					<button onClick={handleClose} className="mock close">Cerrar</button>
-					<button onClick={handleActivate} className="mock toggle">{onlyNew ? "Nuevas notificaciones" : "Todas"}</button>
+					<div className="butons">
+						<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
+						<button onClick={handleActivate} className="mock toggle">{onlyNew ? "Nuevas" : "Todas"}</button>
+						<button onClick={handleClose} className="mock close">X</button>
+					</div>
 
 					{onlyNew ? (
 						// Display new notifications
 						newNotifications.length === 0 ? (
 							<Typography sx={{ mt: 2 }}>No tienes notificaciones nuevas.</Typography>
 						) : (
-							newNotifications.map((notification, index) => (<>
+							notifications.map((notification, index) => (<>
 								<Box key={notification.id} sx={style2}>
-									<Typography variant="h6">{notification.title}</Typography>
-									<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
+									<Typography sx= {{textAlign: "left"}} variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 								</Box>
 							</>))
 						)
@@ -145,15 +197,16 @@ export const NotificationComponent = () => {
 						) : (
 							notifications.map((notification, index) => (<>
 								<Box key={notification.id} sx={style2}>
-									<Typography variant="h6">{notification.title}</Typography>
-									<Typography sx={{ mt: 2 }}>{notification.date}</Typography>
+									<Typography sx= {{textAlign: "left"}} variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 								</Box>
 
 							</>))
 						)
 					)}
 				</Box>
-			</Modal>
+				</div>
+			):(<div></div>)}
 		</>
 	);
 }

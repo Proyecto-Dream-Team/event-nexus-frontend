@@ -1,8 +1,8 @@
 
 .mock{
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -15,13 +15,24 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem; /* Espacio entre el texto y el icono, si lo hay */
-    background-color: var(--primary-color);
+    background-color: #5b6271;
+    color: white;
 }
 
-.close:hover{
-    /* color: black; */
-    background-color: red;
-    /* background-color: var(--card-red); */
+
+.butons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+
+.close{
+    background-color: var(--primary-color);
+    font-size: 1rem;
+    padding: 0;
+    width: 15px;
+    height:15px;
 }
 
 .active{
