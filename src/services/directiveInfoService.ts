@@ -5,7 +5,8 @@ import { URL_SERVIDOR_REST } from "../utils/config";
 class DiretiveInfoService {
 
     async createDirectiveInfo(directiveInfoData: DirectiveInfoData): Promise<void> {
-        console.log("Creating directive info:", directiveInfoData);
+        const response = await axios.post(`${URL_SERVIDOR_REST}/directive/create`,directiveInfoData);
+        console.log("Creating directive info:", response);
     }
 
 }

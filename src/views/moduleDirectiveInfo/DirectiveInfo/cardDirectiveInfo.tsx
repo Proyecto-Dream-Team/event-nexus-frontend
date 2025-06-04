@@ -18,8 +18,8 @@ export const CardDirectiveInfo = ( { value }: Props  ) => {
                 color={value.priorityName == 'urgente' ? "error" : "warning"} />
         </Divider>
         <div className="card">
-            <img src={value.creatorImage} alt="" className="image-profile" />
-            <p className="name">{value.title} <span>{utils.setDate(value.date)}</span></p>
+            <img src={value.creatorImage!} alt="" className="image-profile" />
+            <p className="name">{value.title} <span>{utils.setDate(value.date!)}</span></p>
         </div>
         <p className="comment">{value.description}</p>
     </>)
