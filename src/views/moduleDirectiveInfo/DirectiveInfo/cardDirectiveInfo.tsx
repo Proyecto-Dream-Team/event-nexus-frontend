@@ -23,10 +23,15 @@ export const CardDirectiveInfo = ( { value }: Props  ) => {
                       : 'primary'
                   } />
         </Divider>
-        <div className="card">
+        <article className="card">
             <img src={value.creatorImage!} alt="" className="image-profile" />
-            <p className="name">{value.title} <span>{utils.setDate(value.date!)}</span></p>
-        </div>
+            
+            <div className="atributos">
+                <h2 className="title">{value.title}</h2>
+                <p className="name">From: {value.name}</p>
+                <span>{` ${utils.setDate(value.date!)} - ${utils.setStartTime(value.date!)}` }</span>
+            </div>
+        </article>
         <p className="comment">{value.description}</p>
     </>)
 }

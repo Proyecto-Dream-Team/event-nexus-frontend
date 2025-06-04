@@ -12,9 +12,11 @@ export const DirectiveInfo = () => {
 
     const [canCreate, setCanCreate] = useState(false);
 
-    const [priority, setPriority] = useState<'URGENTE' | 'IMPORTANTE' | 'INFORMATIVO' | null>(null);
-
+    const [title, setTitle] = useState('');
+    
     const [description, setDescription] = useState('');
+    
+    const [priority, setPriority] = useState<'URGENTE' | 'IMPORTANTE' | 'INFORMATIVO' | null>(null);
     
     const userId = Number(sessionStorage.getItem("userId"));
     
@@ -26,7 +28,7 @@ export const DirectiveInfo = () => {
       
         const newDirective = new DirectiveInfoData(
             userId,
-            "",
+            title,
             description,
             priority.toLowerCase() as Priority // casteo a tipo correcto
         );
@@ -77,53 +79,69 @@ export const DirectiveInfo = () => {
             </section>
             {canCreate ? (
                 <>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Box sx={{ display: 'flex', gap: 2, width: '80%' }}>
+                    <div className='create-directive'>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Box sx={{  width: '80%' , display: 'flex' , flexDirection: 'column' , gap: 2}}>
+                                
                             <TextField
-                                label="Descripción"
-                                multiline
-                                minRows={2}
-                                fullWidth
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                sx={{
-                                    backgroundColor: 'white',
-                                    borderRadius: '1rem',
-                                }}
-                            />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={createDirective}
-                                sx={{ borderRadius: '1rem', whiteSpace: 'nowrap' }}
-                                >
-                                Crear
-                            </Button>
+                                    label="titulo"
+                                    multiline
+                                    minRows={1}
+                                    fullWidth
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    sx={{
+                                        backgroundColor: 'white',
+                                        borderRadius: '1rem',
+                                    }}
+                                />
+                                <TextField
+                                    label="Descripción"
+                                    multiline
+                                    minRows={2}
+                                    fullWidth
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    sx={{
+                                        backgroundColor: 'white',
+                                        borderRadius: '1rem',
+                                    }}
+                                />
+                                <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
+                                    <Box sx={{ display: 'flex', gap: 2 }}>
+                                        <Chip
+                                        label="Urgente"
+                                        color="error"
+                                        variant={priority === 'URGENTE' ? 'filled' : 'outlined'}
+                                        onClick={() => setPriority('URGENTE')}
+                                        />
+                                        <Chip
+                                        label="Importante"
+                                        color="warning"
+                                        variant={priority === 'IMPORTANTE' ? 'filled' : 'outlined'}
+                                        onClick={() => setPriority('IMPORTANTE')}
+                                        />
+                                        <Chip
+                                        label="Informativo"
+                                        color="primary"
+                                        variant={priority === 'INFORMATIVO' ? 'filled' : 'outlined'}
+                                        onClick={() => setPriority('INFORMATIVO')}
+                                        />
+                                    </Box>
+                                </Box>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={createDirective}
+                                    sx={{ borderRadius: '1rem', whiteSpace: 'nowrap' }}
+                                    >
+                                    Crear
+                                </Button>
+                            </Box>
                         </Box>
-                    </Box>
 
-                    <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
-                        <Box sx={{ display: 'flex', gap: 2 }}>
-                            <Chip
-                            label="Urgente"
-                            color="error"
-                            variant={priority === 'URGENTE' ? 'filled' : 'outlined'}
-                            onClick={() => setPriority('URGENTE')}
-                            />
-                            <Chip
-                            label="Importante"
-                            color="warning"
-                            variant={priority === 'IMPORTANTE' ? 'filled' : 'outlined'}
-                            onClick={() => setPriority('IMPORTANTE')}
-                            />
-                            <Chip
-                            label="Informativo"
-                            color="primary"
-                            variant={priority === 'INFORMATIVO' ? 'filled' : 'outlined'}
-                            onClick={() => setPriority('INFORMATIVO')}
-                            />
-                        </Box>
-                    </Box>
+                    </div>
+                    
                 </>
                 ) : null}
         </>

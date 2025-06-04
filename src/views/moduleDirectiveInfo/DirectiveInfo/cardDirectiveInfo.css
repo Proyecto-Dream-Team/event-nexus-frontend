@@ -1,5 +1,5 @@
 .image-profile{
-    width: 4rem;
+    width: 5rem;
     display: inline-block;
     margin: 1rem 1rem 1rem 2rem  ;
     border-radius: 100%;
@@ -15,10 +15,26 @@ span{
     align-items: center;   
 }
 
-.name{
+.atributos{
+    color: var(--white-color);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.title{
+    width: 100%;
+    margin: 0;
+    align-items: start;
     font-size: 1.6rem;
     font-weight: 600;
-    color: var(--white-color);
+}
+
+.name{
+    font-size: 1.3rem;
+    font-weight: 400;
 }
 
 .comment{
