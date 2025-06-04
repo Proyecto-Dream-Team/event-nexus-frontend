@@ -120,9 +120,9 @@ export const NotificationComponent = () => {
 		gap: 2,
 		width: 300,
 		height: 400,
-		top: '25%',
-		left: '50%',
-		transform: 'translate(-50%, 10%)',
+		top: '60%',
+		right: '2%',
+		//transform: 'translate(-50%, 10%)',
 		bgcolor: '#2b3240',
 		border: '2px solid #000',
 		borderRadius: '2rem',
@@ -136,6 +136,7 @@ export const NotificationComponent = () => {
 		border: '1px solid #000',
 		borderRadius: '1rem',
 		boxShadow: 10,
+		color: "#fffffff",
 		p: 1
 	};
 
@@ -169,7 +170,7 @@ export const NotificationComponent = () => {
 			</div>
 
 			{open ? (
-				<div style={{display: 'flex', flexDirection: 'row-reverse', }}>
+				<div>
 				<Box sx={style}>
 					<div className="butons">
 						<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
@@ -184,8 +185,8 @@ export const NotificationComponent = () => {
 						) : (
 							notifications.map((notification, index) => (<>
 								<Box key={notification.id} sx={style2}>
-									<Typography sx= {{textAlign: "left", color:"black"}} variant="h6">{notification.title}</Typography>
-									<Typography sx={{ mt: 2, color:"black" }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+									<Typography sx= {{textAlign: "left"}} variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 								</Box>
 							</>))
 						)
@@ -196,8 +197,8 @@ export const NotificationComponent = () => {
 						) : (
 							notifications.map((notification, index) => (<>
 								<Box key={notification.id} sx={style2}>
-									<Typography sx= {{textAlign: "left", color:"black"}} variant="h6">{notification.title}</Typography>
-									<Typography sx={{ mt: 2, color:"black" }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+									<Typography sx= {{textAlign: "left"}} variant="h6">{notification.title}</Typography>
+									<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 								</Box>
 
 							</>))

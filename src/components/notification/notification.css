@@ -16,6 +16,7 @@
     justify-content: center;
     gap: 0.5rem; /* Espacio entre el texto y el icono, si lo hay */
     background-color: #5b6271;
+    color: white;
 }
 
 
