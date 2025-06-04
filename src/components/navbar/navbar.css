@@ -13,6 +13,7 @@
     justify-content: space-between;
     /* border: solid 1px; */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1200
 }
 
 
