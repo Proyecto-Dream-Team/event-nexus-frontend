@@ -35,14 +35,18 @@ export const DirectiveInfo = () => {
       
         try {
             await directiveInfoService.createDirectiveInfo(newDirective);
-            getDirectives(); 
-            setDescription('');
-            setPriority(null);
+            resetValues()
         } catch (error: any) {
             console.error("Error al crear directiva:", error.message);
         }
-      };
-
+    };
+    
+    const resetValues = () => {
+        getDirectives(); 
+        setDescription('');
+        setTitle('')
+        setPriority(null);
+    }
     
     const getDirectives = async () => {
         try{
