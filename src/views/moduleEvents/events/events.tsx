@@ -1,60 +1,50 @@
 import { SetStateAction, useRef, useState } from "react";
 import { EventCard } from "../../../components/eventCard/event";
 import { useToast } from "../../../context/toast/useToast";
-import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
+import { EventDto } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import "./events.css";
 import { EventFilter } from "../../../components/filters/eventFilter/eventFilter";
+import { Grid, ListItem, styled, Theme } from "@mui/material";
+import { StyledGrid } from "./event.style";
 
-// type mode = "createdEvents" | "invitedEvents"
-export const Events = () => {;
+export const Events = () => {
+	;
 	const [events, setEvents] = useState<EventDto[]>();
-	const [eventsEmployee, setEventsEmployee] = useState<EmployeeEvents>();
 	const { open } = useToast();
 
-	const joinleaveEvent = async (eventId: number) => {
-		try {
-			await moduleService.joinleaveEvent(eventId);
-			setEventsEmployee((prevState) => {
-				if (prevState) {
-					return {
-						...prevState,
-						invitedEvents: prevState.invitedEvents.filter(
-							(event) => event.id !== eventId
-						),
-					};
-				}
-				return prevState;
-			});
 
-			setEvents((prevState) => {
-				if (prevState) {
-					return prevState.filter((event) => event.id !== eventId);
-				}
-				return prevState;
-			});
-			open("Lista actualizada", "success");
-		}
-		catch (error) {
-			open("Error al unirse o abandonar el evento", "error");
-		}
-	}
-
-	return (
-		<div className="containerEvents">
-			<EventFilter eventSetter={setEvents}/>
+	return <>
+		<EventFilter eventSetter={setEvents} />
+		{/* <div className="containerEvents"> */}
+		{/* <StyledGrid>
 			{events?.length ? (
 				events.map((event, index) => (
 					<EventCard
 						key={event.id || index}
-						event={event as EventDto}
-						method={joinleaveEvent}
+						event={event}
 					/>
 				))
 			) : (
 				<h2>No hay eventos</h2>
 			)}
+		</StyledGrid> */}
+		<StyledGrid container>
+			{events?.length ? (
+				events.map((event, index) => (
+					<Grid key={index}>
+						<EventCard
+						key={event.id || index}
+						event={event}
+						/>
+					</Grid>
+					
+				))
+			) : (
+				<h2>No hay eventos</h2>
+			)}
+		</StyledGrid>
 
-		</div>
-	);
+	</>
 };
+

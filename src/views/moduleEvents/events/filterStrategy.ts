@@ -1,6 +1,6 @@
 import { EventDto } from "../../../domain/createEvent";
 import { EventCategory } from "../../../domain/eventTypes";
-import { getEvents, getEventsByCategory, getEventsByTitle } from "../../../services/moduleService";
+import { getEvents, getEventsByCategory, getEventsByCreator, getEventsByInvitation, getEventsByTitle } from "../../../services/moduleService";
 import { EventType } from "../../../utils/typeEvent";
 
 export interface FilterOption {
@@ -23,5 +23,17 @@ export class EventsByTitleSearch implements FilterOption {
 export class EventsByType implements FilterOption {
     public async getEvents(eventTitle:string, eventCategory:EventCategory): Promise<EventDto[]> {
         return await getEventsByCategory(eventCategory);
+    }
+}
+
+export class EventsByCreated implements FilterOption {
+    public async getEvents(eventTitle:string, eventCategory:EventCategory): Promise<EventDto[]> {
+        return await getEventsByCreator();
+    }
+}
+
+export class EventsByInvitation implements FilterOption {
+    public async getEvents(eventTitle:string, eventCategory:EventCategory): Promise<EventDto[]> {
+        return await getEventsByInvitation();
     }
 }

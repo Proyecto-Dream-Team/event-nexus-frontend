@@ -1,3 +1,3 @@
 
-export type EventCategory = "SOCIAL" | "DEPORTIVO" | "CAPACITACION" | "EJECUTIVO" | "EQUIPO" | "BENEFICO" | "SALUD" | "CULTURAL";
+export type EventCategory = "SOCIAL" | "DEPORTIVO" | "CAPACITACION" | "EJECUTIVO" | "EQUIPO" | "BENEFICO";
 

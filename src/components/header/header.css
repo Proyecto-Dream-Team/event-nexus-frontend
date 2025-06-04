@@ -6,11 +6,11 @@
     background-color: var(--primary-color);
     color: var(--white-color);
     padding: 0 1rem;
-    height: 10vh;
+    /* height: 10vh; */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     width: 100%;
     z-index: 10;

@@ -1,19 +1,20 @@
 import { Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
 import { EventDto } from "../../../domain/createEvent";
-import { getEventTypes,  } from "../../../services/moduleService";
+import { getEventTypes, } from "../../../services/moduleService";
 import "./eventFilter.css";
-import { List, ListItemButton, ListItemText, Menu, MenuItem } from "@mui/material";
-
+import { List, ListItemButton, ListItemText, Menu, MenuItem, styled, Theme } from "@mui/material";
 import { EventCategory } from "../../../domain/eventTypes";
-import { AllEventsOption, EventsByTitleSearch, EventsByType, FilterOption } from "../../../views/moduleEvents/events/filterStrategy";
+import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "../../../views/moduleEvents/events/filterStrategy";
 
 const options = [
     'sin filtro',
     'titulo',
-    'categoria'
+    'categoria',
+    'creados',
+    'invitaciones'
 ];
-type FilterMode = "all" | "title" | "type"
-export const EventFilter = ({eventSetter}:{eventSetter:Dispatch<SetStateAction<EventDto[] | undefined>>}) => {
+type FilterMode = "all" | "title" | "type" | "created" | "invited";
+export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAction<EventDto[] | undefined>> }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [eventCategory, setEventCategory] = useState<EventCategory>("SOCIAL");
@@ -23,13 +24,13 @@ export const EventFilter = ({eventSetter}:{eventSetter:Dispatch<SetStateAction<E
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const openMenu = Boolean(anchorEl);
 
-    function noFilterStrategy(){
+    async function noFilterStrategy() {
         setFilterMode("all");
         setFilterStrategy(new AllEventsOption());
-        getEvents()
+        // getEvents()
     }
 
-    function filterByTitleStrategy(){
+    function filterByTitleStrategy() {
         setFilterMode("title");
         setFilterStrategy(new EventsByTitleSearch());
     }
@@ -40,6 +41,24 @@ export const EventFilter = ({eventSetter}:{eventSetter:Dispatch<SetStateAction<E
         setEventTypes(eventTypes)
         setFilterStrategy(new EventsByType());
     }
+
+    async function filterByCreatedStrategy() {
+        setFilterMode("created");
+        // const eventTypes: string[] = await getEventTypes();
+        // setEventTypes(eventTypes)
+        setFilterStrategy(new EventsByCreated());
+        // getEvents()
+    }
+
+    async function filterByInvitedStrategy() {
+        setFilterMode("invited");
+        // const eventTypes: string[] = await getEventTypes();
+        // setEventTypes(eventTypes)
+        setFilterStrategy(new EventsByInvitation());
+        // getEvents()
+    }
+
+    
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (inputRef.current) {
@@ -61,6 +80,8 @@ export const EventFilter = ({eventSetter}:{eventSetter:Dispatch<SetStateAction<E
         if (options[index] === "sin filtro") noFilterStrategy();
         if (options[index] === "titulo") filterByTitleStrategy();
         if (options[index] === "categoria") await filterByTypeStrategy();
+        if (options[index] === "creados") await filterByCreatedStrategy();
+        if (options[index] === "invitaciones") await filterByInvitedStrategy();
         setSelectedIndex(index);
         setAnchorEl(null);
     };
@@ -73,48 +94,45 @@ export const EventFilter = ({eventSetter}:{eventSetter:Dispatch<SetStateAction<E
 
     useEffect(() => {
         getEvents();
-    }, [eventCategory]);
+    }, [eventCategory, filterStrategy]);
 
 
-    return (
-        <div className="containerEvents">
-            <div>
-                <List
-                    component="nav"
-                    aria-label="Device settings"
-                    sx={{ bgcolor: 'background.paper' }}
+    return <>
+        <List
+                component="nav"
+                aria-label="Device settings"
+                sx={{ bgcolor: 'background.paper' }}
+            >
+                <ListItemButton
+                    id="lock-button"
+                    aria-haspopup="listbox"
+                    aria-controls="lock-menu"
+                    aria-label="when device is locked"
+                    aria-expanded={openMenu ? 'true' : undefined}
+                    onClick={handleClickListItem}
                 >
-                    <ListItemButton
-                        id="lock-button"
-                        aria-haspopup="listbox"
-                        aria-controls="lock-menu"
-                        aria-label="when device is locked"
-                        aria-expanded={openMenu ? 'true' : undefined}
-                        onClick={handleClickListItem}
+                    <ListItemText
+                        primary="Filtrar eventos por:"
+                        secondary={options[selectedIndex]}
+                    />
+                </ListItemButton>
+            </List>
+            <Menu
+                id="lock-menu"
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleClose}
+            >
+                {options.map((option, index) => (
+                    <MenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
                     >
-                        <ListItemText
-                            primary="Filtrar eventos por:"
-                            secondary={options[selectedIndex]}
-                        />
-                    </ListItemButton>
-                </List>
-                <Menu
-                    id="lock-menu"
-                    anchorEl={anchorEl}
-                    open={openMenu}
-                    onClose={handleClose}
-                >
-                    {options.map((option, index) => (
-                        <MenuItem
-                            key={option}
-                            selected={index === selectedIndex}
-                            onClick={(event) => handleMenuItemClick(event, index)}
-                        >
-                            {option}
-                        </MenuItem>
-                    ))}
-                </Menu>
-            </div>
+                        {option}
+                    </MenuItem>
+                ))}
+            </Menu>
 
             {filterMode === "title" &&
                 <form action="" onSubmit={handleSubmit}>
@@ -141,6 +159,23 @@ export const EventFilter = ({eventSetter}:{eventSetter:Dispatch<SetStateAction<E
                     </fieldset>
                 ))
             }
-        </div>
-    );
+    </>
 };
+
+
+
+
+const StyledList = styled(List)(({ theme }:{ theme:Theme }) => ({
+    backgroundColor: theme.palette.secondary.main,
+    height: '100%',
+    width: 'fit-content',
+    display: 'flex',
+    padding: 5,
+    gap: 5,
+    '& a, & h2': {
+        height: 35,
+    },
+    borderColor: theme.palette.success.main,
+    borderWidth: '3px',
+    borderStyle: 'solid'
+}));

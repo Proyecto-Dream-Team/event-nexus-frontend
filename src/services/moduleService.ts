@@ -6,7 +6,6 @@ import { EventType } from 'react-hook-form';
 
 class ModuleService {
 
-
     async getEvents() {
         const response = await axios.get(`${URL_SERVIDOR_REST}/event`);
         return response.data
@@ -61,11 +60,21 @@ export async function getEventsByCategory(eventCategory: string):Promise<EventDt
     return response.data
 }
 
-export async function getEventsByCreator() {
-    const response = await axios.get(`${URL_SERVIDOR_REST}/event`);
+export async function getEventsByCreator():Promise<EventDto[]> {
+    const userId:number = Number(sessionStorage.getItem('userId'))
+    const response = await axios.get(`${URL_SERVIDOR_REST}/event/${userId}/created`);
     return response.data
 }
 
+export async function getEventsByInvitation():Promise<EventDto[]> {
+    const userId:number = Number(sessionStorage.getItem('userId'))
+    const response = await axios.get(`${URL_SERVIDOR_REST}/event/${userId}/invited`);   
+    return response.data
+}
+
+// ////////////////////////////////////////////////////////////////////////////////////
+// TIPOS DE EVENTOS
+// ////////////////////////////////////////////////////////////////////////////////////
 export async function getEventTypes():Promise<string[]> {
     const response = await axios.get(`${URL_SERVIDOR_REST}/event/type/all`);
     console.log("EVENT TYPES", response.data)   
