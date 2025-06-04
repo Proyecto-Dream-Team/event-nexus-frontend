@@ -15,7 +15,13 @@ export const CardDirectiveInfo = ( { value }: Props  ) => {
                 label={value.priorityName} 
                 size="small"
                 variant="outlined"
-                color={value.priorityName == 'urgente' ? "error" : "warning"} />
+                color={
+                    value.priorityName === 'urgente'
+                      ? 'error'
+                      : value.priorityName === 'importante'
+                      ? 'warning'
+                      : 'primary'
+                  } />
         </Divider>
         <div className="card">
             <img src={value.creatorImage!} alt="" className="image-profile" />

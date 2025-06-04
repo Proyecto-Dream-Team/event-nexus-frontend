@@ -26,7 +26,7 @@ export const DirectiveInfo = () => {
       
         const newDirective = new DirectiveInfoData(
             userId,
-            "Socrates",
+            "",
             description,
             priority.toLowerCase() as Priority // casteo a tipo correcto
         );
