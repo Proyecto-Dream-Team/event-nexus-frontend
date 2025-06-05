@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react'
 import { ModuleCard } from '../../components/module/module'
-import { Title } from '../../components/title/title'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
 import './home.css'
-import { trySSE } from '../../services/notification.service'
-import { URL_SERVIDOR_REST } from '../../utils/config'
+import { Box, Button, ButtonGroup, Typography } from '@mui/material'
+
 
 export const Home = () => {
-    // const eventSource:EventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${Number(localStorage.getItem("userId"))}`);
-    const [modules, setModules] = useState<Module[]>()
+    const [modules, setModules] = useState<Module[]>([])
     const id = Number(sessionStorage.getItem("userId"));
-    const [counter, setCounter] = useState(0)
-    function tryConectionSEE(){
-        // trySSE(setCounter)
-    }
+    const [selectedModule, setSelectedModule] = useState<Module>(new Module(0, "asd", "asd", "asd"))
+    const [selectedIndex, setSelectedIndex] = useState<number>(0)
+    const [loading, setLoading] = useState<boolean>(false)
+
     const getModules = async () => {
         try {
+            setLoading(true)
             const res = await moduleService.getModules(id)
+            console.log(res)
             setModules(res)
+            setSelectedModule(res[0])
+            setLoading(false)
         } catch (e: unknown) {
             console.log(e)
         }
@@ -28,25 +30,28 @@ export const Home = () => {
         getModules()
     }, [])
 
+    useEffect(() => {
+        setSelectedModule(modules[selectedIndex])
+    }, [selectedIndex])
+
+    if(loading){
+        return <div>CARGANDO</div>
+    }
     return (
-        <>
-            <Title title='Modulos'></Title>
+        <>     
+            <Box>
+                <ButtonGroup variant="contained" aria-label="Basic button group">
+                    {modules.map((module, index)=>(
+                        <Button onClick={(e)=>(setSelectedModule(module))} disabled={selectedModule==module}>
+                            {module.name}
+                        </Button>
+                    ))}
+                </ButtonGroup>
+            </Box>
             <main className='main' >
-                <div className='module-card'>
-                    {
-                        modules?.map((item, index) => (
-                            <div
-                                key={index}
-                                style={{ animationDelay: `${index * 0.3}s` }}
-                                className="card-animated"
-                            >
-                                <ModuleCard value={item} />
-                            </div>
-                        ))
-                    }
-                </div>
-                {/* <button onClick={tryConectionSEE}>ACTIVAR NOTIFICACIONES {counter}</button> */}
-                <img className='image-home' src = "EventNexusImagotipo.png"/>
+                <ModuleCard value={selectedModule} setIndex={setSelectedIndex} />
+                {/* </div> */}
+                <img className='image-home' src="EventNexusImagotipo.png" />
             </main>
         </>
     )
