@@ -5,47 +5,15 @@ import { serviceUser } from "../../services/serviceUser";
 import "./header.css";
 import WestIcon from '@mui/icons-material/West';
 import { NavLink, useLocation } from "react-router-dom";
-import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
-import { NotificationDTO } from "../../domain/notification";
-import { Box, Modal, Typography } from "@mui/material";
-import { Height } from "@mui/icons-material";
+import { getNotificationsByUserId } from "../../services/notification.service";
 import { NotificationComponent } from "../notification/notification";
 
-
-const style = {
-	position: 'absolute',
-	display: 'flex',
-	flexDirection: 'column',
-	// scrollY: 'auto',
-	overflowY: 'scroll',
-	gap: 2,
-	top: '50%',
-	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: 400,
-	height: 300,
-	bgcolor: 'background.paper',
-	border: '2px solid #000',
-	boxShadow: 24,
-	p: 4
-};
-
-const style2 = {
-	width: 300,
-	height: 100,
-	bgcolor: 'background.paper',
-	border: '2px solid #000',
-	boxShadow: 24,
-	p: 4
-};
 
 export const Header = () => {
 	const id = Number(sessionStorage.getItem("userId"));
 	const location = useLocation()
 	const [data, setData] = useState<HeaderDto>(new HeaderDto(0, "", ""));
 	const { img } = useProfileImg();
-
-	const [open, setOpen] = useState(false);
 
 
 	useEffect(() => {

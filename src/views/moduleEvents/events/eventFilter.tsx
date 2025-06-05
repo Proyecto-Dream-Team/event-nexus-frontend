@@ -1,10 +1,9 @@
 import { Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
 import { EventDto } from "../../../domain/createEvent";
 import { getEventTypes, } from "../../../services/moduleService";
-import "./eventFilter.css";
-import { List, ListItemButton, ListItemText, Menu, MenuItem, styled, Theme } from "@mui/material";
+import { List, ListItemButton, ListItemText, Menu, MenuItem } from "@mui/material";
 import { EventCategory } from "../../../domain/eventTypes";
-import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "../../../views/moduleEvents/events/filterStrategy";
+import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
 
 const options = [
     'sin filtro',
@@ -58,7 +57,7 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
         // getEvents()
     }
 
-    
+
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (inputRef.current) {
@@ -99,83 +98,67 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
 
     return <>
         <List
-                component="nav"
-                aria-label="Device settings"
-                sx={{ bgcolor: 'background.paper' }}
+            component="nav"
+            aria-label="Device settings"
+            sx={{ bgcolor: 'background.paper' }}
+        >
+            <ListItemButton
+                id="lock-button"
+                aria-haspopup="listbox"
+                aria-controls="lock-menu"
+                aria-label="when device is locked"
+                aria-expanded={openMenu ? 'true' : undefined}
+                onClick={handleClickListItem}
             >
-                <ListItemButton
-                    id="lock-button"
-                    aria-haspopup="listbox"
-                    aria-controls="lock-menu"
-                    aria-label="when device is locked"
-                    aria-expanded={openMenu ? 'true' : undefined}
-                    onClick={handleClickListItem}
+                <ListItemText
+                    primary="Filtrar eventos por:"
+                    secondary={options[selectedIndex]}
+                />
+                {filterMode === "title" &&
+                    <form action="" onSubmit={handleSubmit}>
+                        <input type="text" id="filterValue" ref={inputRef} />
+                    </form>
+                }
+                {filterMode === "type" &&
+                    eventTypes?.map((eventType, index) => (
+                        <fieldset>
+                            <input
+                                id={eventType}
+                                type="radio"
+                                value={eventType}
+                                name="eventType"
+                                key={index}
+                                onClick={(e) => {
+                                    setEventCategory(
+                                        e.currentTarget.value as EventCategory
+                                    );
+                                }}
+                            />
+                            <label htmlFor={eventType}>{eventType}</label>
+                        </fieldset>
+                    ))
+                }
+            </ListItemButton>
+        </List>
+        <Menu
+            id="lock-menu"
+            anchorEl={anchorEl}
+            open={openMenu}
+            onClose={handleClose}
+        >
+            {options.map((option, index) => (
+                <MenuItem
+                    key={option}
+                    selected={index === selectedIndex}
+                    onClick={(event) => handleMenuItemClick(event, index)}
                 >
-                    <ListItemText
-                        primary="Filtrar eventos por:"
-                        secondary={options[selectedIndex]}
-                    />
-                </ListItemButton>
-            </List>
-            <Menu
-                id="lock-menu"
-                anchorEl={anchorEl}
-                open={openMenu}
-                onClose={handleClose}
-            >
-                {options.map((option, index) => (
-                    <MenuItem
-                        key={option}
-                        selected={index === selectedIndex}
-                        onClick={(event) => handleMenuItemClick(event, index)}
-                    >
-                        {option}
-                    </MenuItem>
-                ))}
-            </Menu>
+                    {option}
+                </MenuItem>
+            ))}
+        </Menu>
 
-            {filterMode === "title" &&
-                <form action="" onSubmit={handleSubmit}>
-                    <input type="text" id="filterValue" ref={inputRef} />
-                </form>
-            }
 
-            {filterMode === "type" &&
-                eventTypes?.map((eventType, index) => (
-                    <fieldset>
-                        <input
-                            id={eventType}
-                            type="radio"
-                            value={eventType}
-                            name="eventType"
-                            key={index}
-                            onClick={(e) => {
-                                setEventCategory(
-                                    e.currentTarget.value as EventCategory
-                                );
-                            }}
-                        />
-                        <label htmlFor={eventType}>{eventType}</label>
-                    </fieldset>
-                ))
-            }
+
+
     </>
 };
-
-
-
-
-const StyledList = styled(List)(({ theme }:{ theme:Theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
-    height: '100%',
-    width: 'fit-content',
-    display: 'flex',
-    padding: 5,
-    gap: 5,
-    '& a, & h2': {
-        height: 35,
-    },
-    borderColor: theme.palette.success.main,
-    borderWidth: '3px',
-    borderStyle: 'solid'
-}));

@@ -1,7 +1,6 @@
 import { EventDto } from "../../../domain/createEvent";
 import { EventCategory } from "../../../domain/eventTypes";
 import { getEvents, getEventsByCategory, getEventsByCreator, getEventsByInvitation, getEventsByTitle } from "../../../services/moduleService";
-import { EventType } from "../../../utils/typeEvent";
 
 export interface FilterOption {
     getEvents(eventTitle:string, eventCategory:EventCategory): Promise<EventDto[]>;

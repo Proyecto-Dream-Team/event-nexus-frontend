@@ -1,10 +1,10 @@
-import { Modal, Box, Typography, Badge } from "@mui/material"
+import { Box, Typography, Badge } from "@mui/material"
 import { NotificationDTO } from "../../domain/notification"
 import { useEffect, useState } from "react";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
-import { URL_SERVIDOR_REST } from "../../utils/config";
+
 import './notification.css'
-import { right } from "@cloudinary/url-gen/qualifiers/textAlignment";
+
 
 
 export const NotificationComponent = () => {
@@ -56,40 +56,10 @@ export const NotificationComponent = () => {
 
 		}
 	}
-
-	// function
 	function handleActivate() {
 		setOnlyNew(!onlyNew);
 	}
-	useEffect(() => {
-		// trySSE(setUnreadCount)
-		const fetchNotifications = async () => {
-			const newNotifications = await getNotificationsByUserId(id);
-	const handleClose = () => {
-		setOpen(false)
-		setNewNotifications([])
-	};
 
-	function activateNotifications() {
-		const button = document.querySelector('button.activable') as HTMLButtonElement;
-		if(button.classList.contains('active')){
-			setActiveNotifications(false);
-			button.classList.remove('active')
-			button.classList.add('inactive')
-			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
-		}else{
-			setActiveNotifications(true);
-			button.classList.remove('inactive')
-			button.classList.add('active')
-			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
-
-		}
-	}
-
-	// function
-	function handleActivate() {
-		setOnlyNew(!onlyNew);
-	}
 	useEffect(() => {
 		// trySSE(setUnreadCount)
 		const fetchNotifications = async () => {
@@ -102,10 +72,6 @@ export const NotificationComponent = () => {
 			// 	setUnreadCount(newNotifications.length);
 			// }
 
-			setNotifications(newNotifications);
-		};
-		fetchNotifications();
-	}, [open]);
 			setNotifications(newNotifications);
 		};
 		fetchNotifications();

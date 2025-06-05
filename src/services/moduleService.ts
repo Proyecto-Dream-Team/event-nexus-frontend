@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Module } from "../domain/module";
 import { URL_SERVIDOR_REST } from "../utils/config";
-import { CreateEventDTO, EventDto } from '../domain/createEvent';
+import { CreateEventDTO, EventDto, ResponseEntityDTO } from '../domain/createEvent';
 import { EventType } from 'react-hook-form';
 
 class ModuleService {
@@ -25,7 +25,7 @@ class ModuleService {
         return await axios.post(`${URL_SERVIDOR_REST}/event/create`, data)
     }
 
-    async joinleaveEvent(eventId: number) {
+    async joinleaveEvent(eventId: number):Promise<ResponseEntityDTO> {
         const employeeId = Number(sessionStorage.getItem('userId'))
         const response = await axios.post(`${URL_SERVIDOR_REST}/event/join-leave?employeeId=${employeeId}&eventId=${eventId}`);
         return response.data
