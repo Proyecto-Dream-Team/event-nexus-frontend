@@ -7,6 +7,6 @@ export const ViewLayout = () => {
     return <>
         <Header />
         <Outlet />
-        <NavBar />
+        {/* <NavBar /> */}
     </>
 };

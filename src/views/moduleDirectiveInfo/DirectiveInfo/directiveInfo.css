@@ -8,6 +8,30 @@
   z-index: -1;
 }
 
-.scrollable-content {
-  position: relative;
+.scrollable-adrian{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+  gap: 3rem;
+  padding: 2rem;
+
 }
+
+.create-directive {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: scroll; */
+}
+
+.scrollable-content {
+  height: max(100%, 20rem);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+      border: 1px solid;
+}
+
+
+
