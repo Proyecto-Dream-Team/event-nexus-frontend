@@ -3,6 +3,7 @@ import { Module } from "../domain/module";
 import { URL_SERVIDOR_REST } from "../utils/config";
 import { CreateEventDTO, EventDto, ResponseEntityDTO } from '../domain/createEvent';
 import { EventType } from 'react-hook-form';
+import { EventCategory } from '../domain/eventTypes';
 
 class ModuleService {
 
@@ -75,7 +76,7 @@ export async function getEventsByInvitation():Promise<EventDto[]> {
 // ////////////////////////////////////////////////////////////////////////////////////
 // TIPOS DE EVENTOS
 // ////////////////////////////////////////////////////////////////////////////////////
-export async function getEventTypes():Promise<string[]> {
+export async function getEventTypes():Promise<EventCategory[]> {
     const response = await axios.get(`${URL_SERVIDOR_REST}/event/type/all`);
     console.log("EVENT TYPES", response.data)   
     return response.data

@@ -1,9 +1,10 @@
 import { Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
 import { EventDto } from "../../../domain/createEvent";
 import { getEventTypes, } from "../../../services/moduleService";
-import { List, ListItemButton, ListItemText, Menu, MenuItem } from "@mui/material";
+import { FormControl, InputLabel, ListItemButton, ListItemText, Menu, MenuItem, Select, TextField } from "@mui/material";
 import { EventCategory } from "../../../domain/eventTypes";
 import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
+import { StyleBoxContainer, StyledList, StyleMenuItem } from "./eventFilter.style";
 
 const options = [
     'sin filtro',
@@ -19,7 +20,7 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
     const [eventCategory, setEventCategory] = useState<EventCategory>("SOCIAL");
     const [filterMode, setFilterMode] = useState<FilterMode>("all")
     const [filterStrategy, setFilterStrategy] = useState<FilterOption>(new AllEventsOption);
-    const [eventTypes, setEventTypes] = useState<string[]>()
+    const [eventTypes, setEventTypes] = useState<EventCategory[]>()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const openMenu = Boolean(anchorEl);
 
@@ -36,7 +37,7 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
 
     async function filterByTypeStrategy() {
         setFilterMode("type");
-        const eventTypes: string[] = await getEventTypes();
+        const eventTypes: EventCategory[] = await getEventTypes();
         setEventTypes(eventTypes)
         setFilterStrategy(new EventsByType());
     }
@@ -60,6 +61,7 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        console.log(inputRef.current?.value);
         if (inputRef.current) {
             getEvents();
         }
@@ -97,68 +99,77 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
 
 
     return <>
-        <List
-            component="nav"
-            aria-label="Device settings"
-            sx={{ bgcolor: 'background.paper' }}
-        >
-            <ListItemButton
-                id="lock-button"
-                aria-haspopup="listbox"
-                aria-controls="lock-menu"
-                aria-label="when device is locked"
-                aria-expanded={openMenu ? 'true' : undefined}
-                onClick={handleClickListItem}
+        <StyleBoxContainer>
+            <StyledList
+                aria-label="Device settings"
+                sx={{ bgcolor: 'background.paper' }}
             >
-                <ListItemText
-                    primary="Filtrar eventos por:"
-                    secondary={options[selectedIndex]}
-                />
-                {filterMode === "title" &&
-                    <form action="" onSubmit={handleSubmit}>
-                        <input type="text" id="filterValue" ref={inputRef} />
-                    </form>
-                }
-                {filterMode === "type" &&
-                    eventTypes?.map((eventType, index) => (
-                        <fieldset>
-                            <input
-                                id={eventType}
-                                type="radio"
-                                value={eventType}
-                                name="eventType"
-                                key={index}
-                                onClick={(e) => {
-                                    setEventCategory(
-                                        e.currentTarget.value as EventCategory
-                                    );
-                                }}
-                            />
-                            <label htmlFor={eventType}>{eventType}</label>
-                        </fieldset>
-                    ))
-                }
-            </ListItemButton>
-        </List>
-        <Menu
-            id="lock-menu"
-            anchorEl={anchorEl}
-            open={openMenu}
-            onClose={handleClose}
-        >
-            {options.map((option, index) => (
-                <MenuItem
-                    key={option}
-                    selected={index === selectedIndex}
-                    onClick={(event) => handleMenuItemClick(event, index)}
+                <ListItemButton
+                    id="lock-button"
+                    aria-haspopup="listbox"
+                    aria-controls="lock-menu"
+                    aria-label="when device is locked"
+                    aria-expanded={openMenu ? 'true' : undefined}
+                    onClick={handleClickListItem}
                 >
-                    {option}
-                </MenuItem>
-            ))}
-        </Menu>
-
-
-
-
+                    <ListItemText
+                        primary="Filtrar eventos por:"
+                        secondary={options[selectedIndex]}
+                    />
+                </ListItemButton>
+            </StyledList>
+            <Menu
+                id="lock-menu"
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleClose}
+            >
+                {options.map((option, index) => (
+                    <StyleMenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
+                        
+                    >
+                        {option}
+                    </StyleMenuItem>
+                ))}
+            </Menu>
+            {filterMode === "title" &&
+                <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)' }}>
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Titulo del evento"
+                        inputRef={inputRef}
+                        sx={{ width: '100%' }}
+                    />
+                </form>
+            }
+            {filterMode === "type" &&
+                    <FormControl fullWidth sx={{width: 'min(100%, 50rem)'}}>
+                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            label="Age"
+                            value={eventCategory}
+                        >
+                            {eventTypes?.map((eventType, index) => (
+                                <MenuItem
+                                    key={eventType}
+                                    value={eventType}
+                                    sx={{height:'5rem'}}
+                                    onClick={(e) => {
+                                        setEventCategory(eventTypes[index])
+                                        console.log(eventTypes[index])
+                                    }}
+                                >
+                                    {eventType}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>                
+            }
+        </StyleBoxContainer>
     </>
 };

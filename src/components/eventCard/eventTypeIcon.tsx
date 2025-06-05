@@ -10,21 +10,29 @@ import { Tooltip } from "@mui/material";
 import DeviceUnknownIcon from '@mui/icons-material/DeviceUnknown';
 export function mapEventTypeToIcon(eventType: EventCategory) {
     return <>
-        <Tooltip title={"EVENTO "+eventType.toString()} placement="top" arrow>
+        <Tooltip
+                title={
+                        <h2 style={{ color: "black", fontSize: "12px" }}>
+                                EVENTO {eventType}
+                        </h2>
+                } 
+                placement="top"
+                arrow
+        >
             {   eventType === "SOCIAL" ? (
-                    <EmojiPeopleIcon />
+                    <EmojiPeopleIcon sx={{cursor:'pointer'}}/>
             ) : eventType === "DEPORTIVO" ? (
-                    <SportsFootballIcon />
+                    <SportsFootballIcon sx={{cursor:'pointer'}}/>
             ) : eventType === "CAPACITACION" ? (
-                    <SchoolIcon />
+                    <SchoolIcon sx={{cursor:'pointer'}}/>
             ) : eventType === "EJECUTIVO" ? (
-                    <BusinessIcon />
+                    <BusinessIcon sx={{cursor:'pointer'}}/>
             ) : eventType === "EQUIPO" ? (
-                    <GroupIcon />
+                    <GroupIcon sx={{cursor:'pointer'}}/>
             ) : eventType === "BENEFICO" ? (
-                    <FoodBankIcon />
+                    <FoodBankIcon sx={{cursor:'pointer'}}/>
             ): (
-                <DeviceUnknownIcon/>
+                <DeviceUnknownIcon sx={{cursor:'pointer'}}/>
             )}
         </Tooltip>
 

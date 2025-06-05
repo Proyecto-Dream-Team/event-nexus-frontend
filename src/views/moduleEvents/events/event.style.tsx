@@ -5,7 +5,7 @@ export const StyledGrid = styled(Grid)(({ theme }:{ theme:Theme }) => ({
     height: '100%',
 	display: 'grid',
 	gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 20rem), 1fr))',
-	gridAutoRows: '22rem',
+	gridAutoRows: 'minmax(auto, 25rem)',
 	overflowY: 'scroll',
 	padding: "clamp(16px, 5vw, 30px);",
 	gap: "clamp(10px, 5vw, 20px);",

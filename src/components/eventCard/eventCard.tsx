@@ -1,6 +1,6 @@
 import { EventDto } from "../../domain/createEvent";
 import { eventColorMapping } from "../../utils/typeEvent";
-import { Avatar, AvatarGroup, Box, Button, CardActions, CardContent, Divider, IconButton, TextareaAutosize, TextField, Tooltip, Typography } from "@mui/material";
+import { Avatar, AvatarGroup, Box, Button, CardActions, CardContent, Divider,TextField, Tooltip, Typography } from "@mui/material";
 import { EventCategory } from "../../domain/eventTypes";
 import { useEffect, useState } from "react";
 import { moduleService } from "../../services/moduleService";
@@ -9,7 +9,6 @@ import { SimpleDialog } from "./eventParticipantsDialog";
 import { StyledCard, StyledCardContent, StyledIconButton, StyleTypographyA } from "./eventCard.style";
 import { calculateTimeLeft, formatDate } from "../../utils/functions";
 import { mapEventTypeToIcon } from "./eventTypeIcon";
-import SwitchAccessShortcutAddIcon from '@mui/icons-material/SwitchAccessShortcutAdd';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { PersonAdd } from "@mui/icons-material";
 
@@ -52,23 +51,24 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 	}, [eventDTO.dateFinished]);
 
 	return (
-		<StyledCard sx={{ border: `3px solid`, borderColor: mapCardColorByEventType(event.type)}} elevation={24}>
+		<StyledCard sx={{ border: `3px solid`, borderColor: mapCardColorByEventType(event.type) }} elevation={24}>
 			<CardContent sx={{ height: "50%", padding: 1 }}>
 				<Typography variant="h4" sx={{ color: 'black', fontWeight: 'bold' }}>
 					{event.title}
 				</Typography>
 
 				<Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-					<StyleTypographyA sx={{backgroundColor: mapCardColorByEventType(event.type)}}>
+					<StyleTypographyA sx={{ backgroundColor: mapCardColorByEventType(event.type) }}>
 						{formatDate(event.dateFinished)}
 					</StyleTypographyA>
-					<StyleTypographyA sx={{backgroundColor: mapCardColorByEventType(event.type)}}>
+					<StyleTypographyA sx={{ backgroundColor: mapCardColorByEventType(event.type) }}>
 						Cuenta atras: {timeLeft.hours}:{timeLeft.minutes}
 					</StyleTypographyA>
 				</Box>
 			</CardContent>
 
-			<Divider sx={{borderColor: mapCardColorByEventType(event.type), borderWidth:"1px"}}/>
+			<Divider />
+			{/* <Divider sx={{borderColor: mapCardColorByEventType(event.type), borderWidth:"1px"}}/> */}
 
 			<StyledCardContent>
 				<TextField
@@ -80,23 +80,43 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 					aria-disabled="true"
 				/>
 
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', gridArea: 'participants', alignItems: 'center', padding: "0rem 0.5rem" }}>
-					<Tooltip title={"Creador:" + event.creatorName} placement="top" arrow>
-						<Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', gridArea: 'participants', alignItems: 'center', padding: "0.5rem 0.5rem 0rem 0.5rem", }}>
+					<Tooltip
+						title={
+							<h2 style={{ color: "black", fontSize: "12px" }}>
+								Creador: {event.creatorName}
+							</h2>
+						}
+						placement="top"
+						arrow
+					>
+						<Box sx={{ display: 'flex', gap: 1, alignItems: 'center',  cursor: 'pointer'}}>
+							<Avatar alt="" src={event.creatorImage} sx={{ width: 15, height: 15 }} />
 							<Typography sx={{ color: 'black' }} variant="body2">
 								{event.creatorName}
 							</Typography>
-							<Avatar alt="" src={event.creatorImage} sx={{ width: 15, height: 15 }} />
 						</Box>
 					</Tooltip>
 
 
+
 					{event.participants.length > 0 && (
-						<AvatarGroup max={4} spacing="medium" onClick={handleDialog} sx={{ cursor: 'pointer' }}>
-							{event.participants.map((participant, index) => (
-								<Avatar key={index} alt={participant.name} src={participant.image} sx={{ width: 15, height: 15 }} />
-							))}
-						</AvatarGroup>
+						<Tooltip
+							title={
+								<h2 style={{ color: "black", fontSize: "12px" }}>
+									PARTICIPANTES
+								</h2>
+							}
+							placement="top"
+							arrow
+						>
+							<AvatarGroup max={4} spacing="medium" onClick={handleDialog} sx={{ cursor: 'pointer' }}>
+								{event.participants.map((participant, index) => (
+									<Avatar key={index} alt={participant.name} src={participant.image} sx={{ width: 15, height: 15 }} />
+								))}
+							</AvatarGroup>
+						</Tooltip>
+
 					)}
 
 					<SimpleDialog
@@ -108,7 +128,8 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 				</Box>
 			</StyledCardContent>
 
-			<Divider sx={{borderColor: mapCardColorByEventType(event.type), borderWidth:"1px"}}/>
+			<Divider />
+			{/* <Divider sx={{borderColor: mapCardColorByEventType(event.type), borderWidth:"1px"}}/> */}
 
 			<CardActions sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: "0.5rem" }}>
 				{event.creatorId == userId && (
@@ -118,17 +139,17 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 				{event.creatorId != userId && (<>
 					{event.participants.map((participant, index) => (participant.id)).includes(userId) ? (
 						<StyledIconButton onClick={joinleaveEvent}>
-							<PersonRemoveIcon sx={{color:"red"}} />
+							<PersonRemoveIcon sx={{ color: "red" }} />
 						</StyledIconButton>
 					) : (
 						<StyledIconButton onClick={joinleaveEvent}>
-							<PersonAdd sx={{color:"green"}} />
+							<PersonAdd sx={{ color: "green" }} />
 						</StyledIconButton>
 					)}
 				</>)}
 
 				{mapEventTypeToIcon(event.type)}
-				
+
 			</CardActions>
 
 		</StyledCard>
