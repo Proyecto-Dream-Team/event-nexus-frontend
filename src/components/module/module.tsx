@@ -9,29 +9,17 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 export const ModuleCard = (
     { value, setIndex }: { value: Module, setIndex: React.Dispatch<React.SetStateAction<number>> }
 ) => {
-    const mapRoutes = {
-        "Events": "/module-events/all-events",
-        "Comunicarse": "/module-admin/create-user",
-        "Informacion": "/module-directive-info"
-    };
 
     const nav = useNavigate();
+    
+    function handleTitle() {
+        const currentPath = location.pathname;
+        const matchedLabel = Object.keys(pathToLabelMap).find(path => {
 
-    function handleModuleSelection() {
-
+            return currentPath === path || currentPath.startsWith(path.replace(/:id/, ''));
+        });
+        props.stateDispatcher(matchedLabel ? pathToLabelMap[matchedLabel] : paths.login.label);
     }
-    const navigate = () => {
-        // Normalizar el nombre del módulo y las claves del mapa para ignorar mayúsculas/minúsculas
-        const mapValue = value.name.split(" ")[0].toLowerCase();
-        const routeKey = Object.keys(mapRoutes).find(key => key.toLowerCase() === mapValue);
-
-        if (routeKey) {
-            const route = mapRoutes[routeKey as keyof typeof mapRoutes];
-            nav(route);
-        } else {
-            console.error("No se encontró una ruta para el módulo:", value.name);
-        }
-    };
 
     return (
         <>
@@ -44,11 +32,11 @@ export const ModuleCard = (
                     <ArrowBackIcon></ArrowBackIcon>
                 </IconButton>
                 <div className='contenido-card'>
-            
+
                     <p className='text'>{value.description}</p>
                     {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
                     <img src={`./icons/${value.image}`} className='icon-module' />
-                    <div className='icono' onClick={() => navigate()}>
+                    <div className='icono' onClick={() => nav("/module-events/all-events")}>
                         <EastIcon fontSize="large" />
                     </div>
                 </div>

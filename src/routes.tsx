@@ -30,8 +30,7 @@ export const AppRouter = () => {
                     <Route element={<Home /> } path = 'home' ></Route>
                     <Route element={<Profile /> } path = 'profile' ></Route>
                     <Route element={<ModuleEvents/>} path = 'module-events'>
-                        <Route element= {<Events/>} path = 'all-events' ></Route>
-                        <Route element= {<RelatedEvents/>} path = 'my-events' ></Route>
+                        <Route element= {<Events/>} path = 'events' ></Route>
                         <Route element = {<CreateEvent/>} path = 'create-event' ></Route>
                     </Route>
                     <Route element={<ModuleAdmin/> } path = 'module-admin' >

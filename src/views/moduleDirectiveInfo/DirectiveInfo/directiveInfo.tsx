@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import { serviceUser } from '../../../services/serviceUser'
 import './directiveInfo.css'
 import { directiveInfoService } from '../../../services/directiveInfoService'
-import { Box, Button, Chip, TextField } from '@mui/material'
+import { Box, Button, Chip, createTheme, TextField } from '@mui/material'
 
 export const DirectiveInfo = () => {
 
+    const theme = createTheme()
     const [directive, setDirective] = useState<DirectiveInfoData[]>([])
 
     const [canCreate, setCanCreate] = useState(false);
