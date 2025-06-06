@@ -1,7 +1,7 @@
 import { EventCategory } from "../domain/eventTypes";
 
 export const eventColorMapping: Record<EventCategory, string> = {
-  SOCIAL: "error.light",    // O 'success.main' si usas el tema de Material UI
+  SOCIAL: "blue",    // O 'success.main' si usas el tema de Material UI
   DEPORTIVO: "success.light",       // O 'primary.main'
   CAPACITACION: "secondary.light",    // O 'secondary.main'
   EJECUTIVO: "primary.light",   // O 'warning.main'

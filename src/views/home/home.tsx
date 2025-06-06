@@ -40,7 +40,7 @@ export const Home = () => {
     return (
         <>     
             <Box>
-                <ButtonGroup variant="contained" aria-label="Basic button group">
+                <ButtonGroup variant="contained" aria-label="Basic button group" color='primary'>
                     {modules.map((module, index)=>(
                         <Button onClick={(e)=>(setSelectedModule(module))} disabled={selectedModule==module}>
                             {module.name}
