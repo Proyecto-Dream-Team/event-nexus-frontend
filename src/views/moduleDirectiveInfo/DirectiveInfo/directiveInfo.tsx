@@ -125,6 +125,7 @@ export const DirectiveInfo = () => {
                                             label="Importante"
                                             color="warning"
                                             size='small'
+                                            sx={{color:priority == "IMPORTANTE" ? 'white': 'orange'}}
                                             variant={priority === 'IMPORTANTE' ? 'filled' : 'outlined'}
                                             onClick={() => setPriority('IMPORTANTE')}
                                         />
