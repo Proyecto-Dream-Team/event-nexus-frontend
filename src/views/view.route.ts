@@ -71,28 +71,28 @@ export const paths = {
 
 
 
-export const pathToLabelMap = {
+// export const pathToLabelMap = {
 
-    [paths.dashboard.path]: paths.dashboard.label,
+//     [paths.dashboard.path]: paths.dashboard.label,
 
-    [paths.author.list.path]: paths.author.list.label,
+//     [paths.author.list.path]: paths.author.list.label,
 
-    [paths.author.create.path]: paths.author.create.label,
+//     [paths.author.create.path]: paths.author.create.label,
 
-    [paths.author.edit.path]: paths.author.edit.label,
+//     [paths.author.edit.path]: paths.author.edit.label,
 
-    [paths.author.show.path]: paths.author.show.label,
+//     [paths.author.show.path]: paths.author.show.label,
 
-    [paths.books.list.path]: paths.books.list.label,
+//     [paths.books.list.path]: paths.books.list.label,
 
-    [paths.books.create.path]: paths.books.create.label,
+//     [paths.books.create.path]: paths.books.create.label,
 
-    [paths.books.display.path]: paths.books.display.label,
+//     [paths.books.display.path]: paths.books.display.label,
 
-    [paths.books.edit.path]: paths.books.edit.label,
+//     [paths.books.edit.path]: paths.books.edit.label,
 
 
-    [paths.list.book.path]: paths.list.book.label,
+//     [paths.list.book.path]: paths.list.book.label,
 
-    [paths.list.autor.path]: paths.list.autor.label
-};
+//     [paths.list.autor.path]: paths.list.autor.label
+// };

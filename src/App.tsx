@@ -43,7 +43,7 @@ function App() {
 						<ProfileImgProvider>
 							<CssBaseline />
 							<AppRouter />
-							<SwitchToggleThemeMode checked={mode} change={handleChange} />
+							{/* <SwitchToggleThemeMode checked={mode} change={handleChange} /> */}
 						</ProfileImgProvider>
 					</LoaderProvider>
 				</ToastProvider>

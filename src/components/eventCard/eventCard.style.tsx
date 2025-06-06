@@ -8,6 +8,7 @@ export const StyledCard = styled(Paper)(({ theme }: { theme: Theme }) => ({
 	flexDirection: 'column',
 	boxShadow: theme.shadows[24],
     borderColor: theme.palette.success.main,
+	// backgroundColor: theme.palette.primary.light,
     borderWidth: '3px',
     borderStyle: 'solid'
 }));
