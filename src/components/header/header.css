@@ -6,6 +6,7 @@
     background-color: var(--primary-color);
     color: var(--white-color);
 
+    position:relative;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 
   }
@@ -17,7 +18,11 @@
   }
   
   .header-center {
-    justify-self: center;
+    position: absolute;
+    left: 50%; /* Mueve el borde izquierdo del hijo al 50% del ancho del padre */
+    transform: translateX(-50%); /* Ajusta el elemento hacia la izquierda en un 50% de su PROPIO ancho */
+
+    /* justify-self: center; */
   }
 
   .header-title {
