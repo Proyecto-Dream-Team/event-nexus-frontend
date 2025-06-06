@@ -74,7 +74,7 @@ export const Header = () => {
 				{!isHome() && <h2 className="header-title">{getTitle()}</h2>}
 			</div>
 
-			<div>
+			{/* <div>
 				<Button
 					id="basic-button"
 					aria-controls={open ? 'basic-menu' : undefined}
@@ -100,8 +100,8 @@ export const Header = () => {
 					<MenuItem onClick={(e)=>(nav("/profile"))}>Mi perfil</MenuItem>
 					<MenuItem onClick={(e)=>(nav("/login"))}>Logout</MenuItem>
 				</Menu>
-				<NotificationComponent></NotificationComponent>
-			</div>
+			</div> */}
+			<NotificationComponent></NotificationComponent>
 		</header>
 	);
 };
