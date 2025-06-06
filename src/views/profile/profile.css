@@ -12,6 +12,14 @@
     text-decoration: none;
 }
 
+.titleStyle{
+    margin: 0;
+}
+
+.profile__container{
+    height: 100%;
+}
+
 
 
 

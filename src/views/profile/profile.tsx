@@ -18,30 +18,30 @@ export const Profile = () => {
 
 	const getProfile = async () => {
 		try {
-		const res = await serviceUser.getProfileDatos(id);
-		setDatos(res);
+			const res = await serviceUser.getProfileDatos(id);
+			setDatos(res);
 		} catch (error) {
-		console.error("Error al obtener el perfil:", error);
+			console.error("Error al obtener el perfil:", error);
 		}
 	};
 
 	const changeImg = async (img: string) => {
 		try {
-		await serviceUser.updateImg(img);
-		open("Imagen actualizada", "success");
+			await serviceUser.updateImg(img);
+			open("Imagen actualizada", "success");
 		} catch (error) {
-		open("Error al actualizar la imagen", "error");
+			open("Error al actualizar la imagen", "error");
 		}
 	}
 
 	const changeData = async (data: DatosForm) => {
 		// setIsLoading(true);
 		try {
-		await serviceUser.updateProfile(data);
-		setDatos(data);
-		console.log("Datos actualizados:", data);
+			await serviceUser.updateProfile(data);
+			setDatos(data);
+			console.log("Datos actualizados:", data);
 		} catch (error) {
-		open("Error al actualizar los datos", "error");
+			open("Error al actualizar los datos", "error");
 		}
 		// setTimeout(() => {
 		// setIsLoading(false);
@@ -54,10 +54,10 @@ export const Profile = () => {
 	}, []);
 
 	return (
-		<>
-		<ProfileImg change={changeImg}></ProfileImg>
-		<h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
-		<ProfileFormulary info={datos} uploadData={changeData} />
-		</>
+		<div className="profile__container">
+			<ProfileImg change={changeImg}></ProfileImg>
+			<h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
+			<ProfileFormulary info={datos} uploadData={changeData} />
+		</div>
 	);
 };
