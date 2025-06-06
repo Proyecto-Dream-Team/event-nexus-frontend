@@ -1,4 +1,4 @@
-import { blue, blueGrey, brown, deepOrange, deepPurple, green, grey, indigo, purple, red } from "@mui/material/colors";
+import { blue, blueGrey, green, grey, indigo, orange, purple, red } from "@mui/material/colors";
 import { createTheme } from "@mui/material";
 
 
@@ -7,11 +7,29 @@ export const appTheme = (mode: boolean) => {
     palette: {
       mode: mode ? 'dark' : 'light',
       ...(mode ? {
-        // primary: { main: blueGrey[700] },
-        secondary: { main: blueGrey[700] },
+        primary: {
+          main: blue[700],
+          dark: blueGrey[700],
+          light: blueGrey[700]
+        },
+        secondary: {
+          main: blueGrey[700],
+          dark: blueGrey[700],
+          light: blueGrey[700]
+        },
+        warning:{
+          main: orange[700],
+          light: orange[700],
+          dark: orange[700]
+        },
         cardColor: { main: indigo[700] },
         details: { main: purple[200] },
         success: { main: green[200] },
+        error: {
+          main: red[700],
+          dark: red[700],
+          light: red[700]
+        },
         background: {
           default: blueGrey[900]
         }
@@ -24,10 +42,25 @@ export const appTheme = (mode: boolean) => {
         // background: {
         //   default: deepOrange[50]
         // }
+        primary: {
+          main: blue[700],
+          dark: blueGrey[700],
+          light: blueGrey[700]
+        },
+        warning:{
+          main: orange[700],
+          light: orange[700],
+          dark: orange[700]
+        },
         secondary: { main: blueGrey[700] },
         cardColor: { main: indigo[700] },
         details: { main: purple[200] },
         success: { main: green[200] },
+        error: {
+          main: red[700],
+          dark: red[700],
+          light: red[700]
+        },
         background: {
           default: blueGrey[900]
         }
