@@ -7,6 +7,7 @@ import WestIcon from '@mui/icons-material/West';
 import { NavLink, useLocation } from "react-router-dom";
 import { getNotificationsByUserId } from "../../services/notification.service";
 import { NotificationComponent } from "../notification/notification";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 
 export const Header = () => {
@@ -14,6 +15,15 @@ export const Header = () => {
 	const location = useLocation()
 	const [data, setData] = useState<HeaderDto>(new HeaderDto(0, "", ""));
 	const { img } = useProfileImg();
+
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 
 	useEffect(() => {
@@ -63,6 +73,34 @@ export const Header = () => {
 			<div className="header-center">
 				{!isHome() && <h2 className="header-title">{getTitle()}</h2>}
 			</div>
+
+			<div>
+				<Button
+					id="basic-button"
+					aria-controls={open ? 'basic-menu' : undefined}
+					aria-haspopup="true"
+					aria-expanded={open ? 'true' : undefined}
+					onClick={handleClick}
+				>
+					Dashboard
+				</Button>
+				<Menu
+					id="basic-menu"
+					anchorEl={anchorEl}
+					open={open}
+					onClose={handleClose}
+					slotProps={{
+						list: {
+							'aria-labelledby': 'basic-button',
+						},
+					}}
+				>
+					<MenuItem onClick={handleClose}>Profile</MenuItem>
+					<MenuItem onClick={handleClose}>My account</MenuItem>
+					<MenuItem onClick={handleClose}>Logout</MenuItem>
+				</Menu>
+			</div>
+
 			<NotificationComponent></NotificationComponent>
 
 		</header>
