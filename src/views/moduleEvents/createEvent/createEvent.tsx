@@ -57,35 +57,18 @@ export const CreateEvent = () => {
         }
     }
     function handleInvitation(id: number) {
-        // console.log("BEFORE");
-        // console.log("handleInvitation", id);
-        // console.log("invitedUsers", invitedUsers);
         if (invitedUsers.includes(id)) {
             uninviteUser(id);
         }else{
             inviteUser(id);
         }
-        // console.log("after");
-        // console.log("handleInvitation", id);
-        // console.log("invitedUsers", invitedUsers);
     }
     function inviteUser(id: number) {
-        console.log("Invite User");
-        console.log("BEFORE");
-        console.log("Invite User", invitedUsers);
         setInvitedUsers(prev => [...prev, id]);
-        console.log("AFTER");
-        console.log("Invite User", invitedUsers);
-
     }
 
     function uninviteUser(id: number) {
-        console.log("Uninvite user User");
-        console.log("BEFORE");
-        console.log("Invite User", invitedUsers);
         setInvitedUsers(prev => prev.filter(userId => userId !== id));
-            console.log("AFTER");
-        console.log("Invite User", invitedUsers);
     }
 
 

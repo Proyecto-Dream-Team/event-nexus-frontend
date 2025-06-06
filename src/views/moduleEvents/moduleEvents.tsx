@@ -4,7 +4,7 @@ import { NavEvents } from "./navEvents/navEvents"
 export const ModuleEvents = () => {
     return (
         <>
-                <NavEvents></NavEvents>
+                {/* <NavEvents></NavEvents> */}
                 <Outlet></Outlet>
         </>
     )

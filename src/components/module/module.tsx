@@ -1,46 +1,51 @@
 import './module.css'
 import { Module } from '../../domain/module'
 import { useNavigate } from 'react-router-dom'
-import { Card, Divider } from '@mui/material'
+import { Button, Card, Divider, IconButton } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export const ModuleCard = ({ value }: { value: Module }) => {
-    const mapRoutes = { 
-                        "Events": "/module-events/all-events", 
-                        "Comunicarse": "/module-admin/create-user", 
-                        "Informacion": "/module-directive-info"
-                    };
-                    
+export const ModuleCard = (
+    { value, setIndex }: { value: Module, setIndex: React.Dispatch<React.SetStateAction<number>> }
+) => {
+
     const nav = useNavigate();
-   
-    const navigate = () => {
-        // Normalizar el nombre del módulo y las claves del mapa para ignorar mayúsculas/minúsculas
-        const mapValue = value.name.split(" ")[0].toLowerCase();
-        const routeKey = Object.keys(mapRoutes).find(key => key.toLowerCase() === mapValue);
+    
+    function handleTitle() {
+        const currentPath = location.pathname;
+        const matchedLabel = Object.keys(pathToLabelMap).find(path => {
 
-        if (routeKey) {
-            const route = mapRoutes[routeKey as keyof typeof mapRoutes];
-            nav(route);
-        } else {
-            console.error("No se encontró una ruta para el módulo:", value.name);
-        }
-    };
+            return currentPath === path || currentPath.startsWith(path.replace(/:id/, ''));
+        });
+        props.stateDispatcher(matchedLabel ? pathToLabelMap[matchedLabel] : paths.login.label);
+    }
 
     return (
         <>
-            <Card className='card' onClick={() => navigate()}>
+
+            <Card className='card' >
+                <IconButton
+                    onClick={(e) => (setIndex((prev) => prev == 0 ? 2 : prev - 1))}
+                    sx={{ width: 'fit-content', height: 'fit-content' }}
+                    className='arrow__back'>
+                    <ArrowBackIcon></ArrowBackIcon>
+                </IconButton>
                 <div className='contenido-card'>
-                    <div className='text'>
-                        <h2>{value.name}</h2>
-                        <br />
-                        <p>{value.description}</p>
-                    </div>
-                    <Divider orientation="vertical" variant="middle" flexItem />
-                    <img src={`./icons/${value.image}`} className='icon-module'/>
-                    <div className='icono'>
+
+                    <p className='text'>{value.description}</p>
+                    {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
+                    <img src={`./icons/${value.image}`} className='icon-module' />
+                    <div className='icono' onClick={() => nav("/module-events/all-events")}>
                         <EastIcon fontSize="large" />
                     </div>
                 </div>
+                <IconButton
+                    onClick={(e) => (setIndex((prev) => prev == 2 ? 0 : prev + 1))}
+                    sx={{ width: 'fit-content', height: 'fit-content' }}
+                    className='arrow__forward'>
+                    <ArrowForwardIcon></ArrowForwardIcon>
+                </IconButton>
             </Card>
         </>
     );

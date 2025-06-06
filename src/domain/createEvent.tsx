@@ -8,7 +8,7 @@ export class CreateEventDTO {
 	name: string;
 	description: string;
 	eventType: EventCategory;
-  
+
 	constructor(
 		creatorId: number,
     participantsIds: number[] = [],
@@ -26,6 +26,18 @@ export class CreateEventDTO {
 	}
 }
 
+export class EventParticipantDTO{
+  id: number;
+  name: string;
+  image: string;
+
+  constructor(id: number, name: string, image: string) {
+    this.id = id;
+    this.name = name;
+    this.image = image;
+  }
+}
+
 export class EventDto{
     id: number
     creatorName:string
@@ -35,8 +47,7 @@ export class EventDto{
     title: string
     description: string
     isActive: boolean 
-    numberOfParticipants: number
-    participantsIds: number[]
+    participants: EventParticipantDTO[]
     type: EventCategory
 
     constructor(
@@ -48,8 +59,7 @@ export class EventDto{
       title: string,
       description: string,
       isActive: boolean,
-      participantsAmount: number,
-      participantsIds: number[],
+      participants: EventParticipantDTO[],
       type: EventCategory
     ) {
 
@@ -61,24 +71,18 @@ export class EventDto{
         this.title = title
         this.description = description
         this.isActive = isActive
-        this.numberOfParticipants = participantsAmount
-        this.participantsIds = participantsIds
+        this.participants = participants
         this.type = type
     }
 
 }
 
-export class EmployeeEvents{
-	createdEvents: EventDto[]
-	invitedEvents: EventDto[]
+export class ResponseEntityDTO {
+  responseMessage: string;
+  responseBody: EventParticipantDTO[];
 
-	constructor(
-		createdEvents: EventDto[],
-		invitedEvents: EventDto[]
-	){
-		this.createdEvents = createdEvents
-		this.invitedEvents = invitedEvents
-	}
+  constructor(responseMessage: string, responseBody: EventParticipantDTO[]) {
+    this.responseMessage = responseMessage;
+    this.responseBody = responseBody;
+  }
 }
-// export const event : EventDto = new EventDto(1, new Date("2023-10-10"), "Tomar Cerveza", 10, "Ir a la casa del colorado y tomarle toda la birra", "Juan", "Perez", "img1.jpg", true)
-// export const myEvent : EventDto = new EventDto(2, new Date("2023-10-11"), "Actividad Grupal", 20, "Hacer una actividad grupal con los chicos de la empresa", "Maria", "Lopez", "img2.jpg", false)

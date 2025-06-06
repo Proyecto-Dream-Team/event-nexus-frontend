@@ -1,10 +1,10 @@
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import { EventCard } from "../../../components/eventCard/event";
+import { EventCard } from "../../../components/eventCard/eventCard";
 import { useToast } from "../../../context/toast/useToast";
 import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
 import { moduleService } from "../../../services/moduleService";
 import "./relatedEvents.css";
-import { EventFilter } from "../../../components/filters/eventFilter/eventFilter";
+import { EventFilter } from "../events/eventFilter";
 
 type mode = "createdEvents" | "invitedEvents"
 export const RelatedEvents = () => {
