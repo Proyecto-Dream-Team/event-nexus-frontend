@@ -75,7 +75,7 @@ export const DirectiveInfo = () => {
 
     return (
         <>
-            <div>ACA IRIA FILTER</div>
+            {/* <div>ACA IRIA FILTER</div> */}
             <div className='scrollable-adrian'>
                 <section className="scrollable-content">
                     {directive.map((directive, index) => (
@@ -125,6 +125,7 @@ export const DirectiveInfo = () => {
                                                 color="warning"
                                                 variant={priority === 'IMPORTANTE' ? 'filled' : 'outlined'}
                                                 onClick={() => setPriority('IMPORTANTE')}
+                                                sx={{color:priority == "IMPORTANTE" ? 'white': 'orange'}}
                                             />
                                             <Chip
                                                 label="Informativo"
