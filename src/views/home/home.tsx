@@ -40,9 +40,19 @@ export const Home = () => {
     return (
         <>     
             <Box>
-                <ButtonGroup variant="contained" aria-label="Basic button group">
+                <ButtonGroup
+                    variant="outlined"
+                    aria-label="Basic button group"
+                    sx={{backgroundColor:'white'}}>
                     {modules.map((module, index)=>(
-                        <Button onClick={(e)=>(setSelectedModule(module))}>
+                        <Button
+                            onClick={(e)=>(setSelectedModule(module))}
+                            sx={{
+                                backgroundColor:selectedModule==module ? 'primary.main' : 'white',
+                                color:selectedModule==module ? 'white' : 'black',
+                                fontWeight:'bold'
+                            }}
+                        >
                             {module.name}
                         </Button>
                     ))}

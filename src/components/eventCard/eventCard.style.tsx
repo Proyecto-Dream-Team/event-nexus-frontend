@@ -2,14 +2,16 @@ import { Card, CardContent, IconButton, Paper, styled, Theme, Typography } from 
 
 
 export const StyledCard = styled(Paper)(({ theme }: { theme: Theme }) => ({
-
+	borderRadius:'1rem',
 	height: '100%',
 	display: 'flex',
 	flexDirection: 'column',
 	boxShadow: theme.shadows[24],
     borderColor: theme.palette.success.main,
-    borderWidth: '3px',
-    borderStyle: 'solid'
+	// backgroundColor: theme.palette.primary.light,
+    borderWidth: '10px',
+    borderStyle: 'solid',
+
 }));
 
 export const StyledCardContent = styled(CardContent)(({ theme }: { theme: Theme }) => ({

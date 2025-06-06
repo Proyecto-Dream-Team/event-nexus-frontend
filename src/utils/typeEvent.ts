@@ -1,12 +1,12 @@
 import { EventCategory } from "../domain/eventTypes";
 
 export const eventColorMapping: Record<EventCategory, string> = {
-  SOCIAL: "blue",    // O 'success.main' si usas el tema de Material UI
-  DEPORTIVO: "success.light",       // O 'primary.main'
-  CAPACITACION: "secondary.light",    // O 'secondary.main'
-  EJECUTIVO: "primary.light",   // O 'warning.main'
-  EQUIPO: "warning.light",      // O 'error.main'
-  BENEFICO: "primary.main",   // O 'warning.main'
+  SOCIAL: "error.dark",    // O 'success.main' si usas el tema de Material UI
+  DEPORTIVO: "success.dark",       // O 'primary.main'
+  CAPACITACION: "secondary.dark",    // O 'secondary.main'
+  EJECUTIVO: "primary.dark",   // O 'warning.main'
+  EQUIPO: "warning.dark",      // O 'error.main'
+  BENEFICO: "primary.dark",   // O 'warning.main'
 };
 
 export const eventShadowColor: Record<EventCategory, string> = {
