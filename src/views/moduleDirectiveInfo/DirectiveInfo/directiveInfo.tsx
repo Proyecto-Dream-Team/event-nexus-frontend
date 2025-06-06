@@ -113,7 +113,7 @@ export const DirectiveInfo = () => {
                                         }}
                                     />
 
-                                    <Box sx={{ display: 'flex', gap: 1 , width: '35%'}}>
+                                    <Box sx={{ display: 'flex', gap: 1 , width: '35%', margin: 0}}>
                                         <Chip
                                             label="Urgente"
                                             color="error"
@@ -143,7 +143,7 @@ export const DirectiveInfo = () => {
                                     variant="contained"
                                     color="primary"
                                     onClick={createDirective}
-                                    sx={{ borderRadius: '1rem', height: '10rem' }}
+                                    sx={{ borderRadius: '1rem', height: '11rem' , marginTop : 1.5 }}
                                 >
                                     Crear
                                 </Button>
