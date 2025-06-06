@@ -5,7 +5,7 @@ export const StyleBoxContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    height: '10rem',
     width: '100%',
     flexWrap:'wrap',
     padding: theme.spacing(2),

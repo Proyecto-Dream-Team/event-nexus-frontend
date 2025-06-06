@@ -57,6 +57,7 @@ export const Header = () => {
 	}
 	return (
 		<header className="header">
+			
 			<div className="header-left">
 				{isHome() ? (
 					<div className="imgName">

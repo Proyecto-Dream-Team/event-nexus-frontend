@@ -91,7 +91,8 @@ export const NotificationComponent = () => {
 		border: '2px solid #000',
 		borderRadius: '2rem',
 		float: "right",
-		p: 4
+		p: 4,
+		zIndex: 9999
 	};
 
 	const style2 = {
@@ -106,7 +107,7 @@ export const NotificationComponent = () => {
 
 	return (
 		<>
-			<div className="header-right" onClick={handleOpen} style={{ cursor: 'pointer' }}>
+			<div className="header-right" onClick={handleOpen} style={{ position:'absolute',right:'1rem',cursor: 'pointer' }}>
 				<Badge
 					badgeContent={unreadCount}
 					color="error"

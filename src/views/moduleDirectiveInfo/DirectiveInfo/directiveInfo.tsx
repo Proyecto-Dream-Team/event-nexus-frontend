@@ -75,7 +75,7 @@ export const DirectiveInfo = () => {
 
     return (
         <>
-            <div>ACA IRIA FILTER</div>
+            {/* <div>ACA IRIA FILTER</div> */}
             <div className='scrollable-adrian'>
                 <section className="scrollable-content">
                     {directive.map((directive, index) => (
@@ -112,6 +112,7 @@ export const DirectiveInfo = () => {
                                             borderRadius: '1rem',
                                         }}
                                     />
+
                                     <Box sx={{ display: 'flex', gap: 1 , width: '35%'}}>
                                         <Chip
                                             label="Urgente"
@@ -134,6 +135,7 @@ export const DirectiveInfo = () => {
                                             variant={priority === 'INFORMATIVO' ? 'filled' : 'outlined'}
                                             onClick={() => setPriority('INFORMATIVO')}
                                         />
+
                                     </Box>
                                 </Box>
                                 <Button
