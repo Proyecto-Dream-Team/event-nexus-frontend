@@ -18,7 +18,7 @@ export async function trySSE(
         console.log('Conexión SSE cerrada');
         // eventSource.close()
     }else{
-        eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification/employee`);
+        eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?employeeId=${userId}`);
         eventSource.onopen = (event:Event) => {
             console.log('Conexión SSE abierta');
         };
