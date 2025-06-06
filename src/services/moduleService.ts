@@ -81,3 +81,8 @@ export async function getEventTypes():Promise<EventCategory[]> {
     console.log("EVENT TYPES", response.data)   
     return response.data
 }
+
+export async function deleteEvent(eventId:number):Promise<string> {
+    const response = await axios.delete(`${URL_SERVIDOR_REST}/event?eventId=${eventId}`);
+    return response.data
+}

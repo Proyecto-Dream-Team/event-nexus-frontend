@@ -3,7 +3,7 @@ import { eventColorMapping } from "../../utils/typeEvent";
 import { Avatar, AvatarGroup, Box, Button, CardActions, CardContent, Divider,TextField, Tooltip, Typography } from "@mui/material";
 import { EventCategory } from "../../domain/eventTypes";
 import { useEffect, useState } from "react";
-import { moduleService } from "../../services/moduleService";
+import { deleteEvent, moduleService } from "../../services/moduleService";
 import { useToast } from "../../context/toast/useToast";
 import { SimpleDialog } from "./eventParticipantsDialog";
 import { StyledCard, StyledCardContent, StyledIconButton, StyleTypographyA } from "./eventCard.style";
@@ -41,7 +41,22 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 
 		}
 	}
+	async function handleDelete() {
+		try {
+			const response = await deleteEvent(event.id);
+			console.log(response)
+			// setEvent((prevEvent) => ({
+			// 	...prevEvent,
+			// 	participants: response.responseBody,
+			// }));
+			open(response, 'success')
 
+		} catch (error: any) {
+			open(error, "error");
+
+		}
+	}
+	
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setTimeLeft(calculateTimeLeft(eventDTO.dateFinished.toString()));
@@ -133,12 +148,12 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 
 			<CardActions sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: "0.5rem" }}>
 				{event.creatorId == userId && (
-					<Button size="medium">Delete</Button>
+					<Button size="medium" onClick={handleDelete}>Delete</Button>
 				)}
 
 				{event.creatorId != userId && (<>
 					{event.participants.map((participant, index) => (participant.id)).includes(userId) ? (
-						<StyledIconButton onClick={joinleaveEvent}>
+						<StyledIconButton onClick={handleDelete}>
 							<PersonRemoveIcon sx={{ color: "red" }} />
 						</StyledIconButton>
 					) : (

@@ -86,3 +86,4 @@ export class ResponseEntityDTO {
     this.responseBody = responseBody;
   }
 }
+
