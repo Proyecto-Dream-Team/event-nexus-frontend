@@ -12,9 +12,12 @@ import { serviceUser } from "../../../services/serviceUser";
 import { useEffect, useState } from "react";
 import { SesionStorage } from "../../../domain/user";
 import { InviteUserCard } from "../../../components/inviteUserCard/inviteUserCard";
+import { StyledFloatingButton } from "../events/eventFilter.style";
+import { useNavigate } from "react-router-dom";
+import { Cancel } from "@mui/icons-material";
 
 export const CreateEvent = () => {
-
+    const nav = useNavigate()
     const userId = Number(sessionStorage.getItem('userId'))
     const { setIsLoading } = useLoader();
     const [permissions, setPermissions] = useState<string[]>([]);
@@ -81,8 +84,11 @@ export const CreateEvent = () => {
     }, []);
 
     return (
-        <>
-            <form>
+        <>  
+            <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-events/events'))} sx={{backgroundColor:'crimson'}}>
+                    <Cancel/>
+            </StyledFloatingButton>
+            <form style={{overflowY:'scroll'}}>
                 <InputApp
                     label="Titulo"
                     type="text"

@@ -37,8 +37,8 @@ export const ProfileCard = ({ user, click }: userCard) => {
             <div className="row">
                 <img className="img" src={img} alt="profile" />
                 <div className="title">
-                    <h2>{user.name + " " + user.lastname}</h2>
-                    <p>{user.rol}</p>
+                    <h4>{user.name + " " + user.lastname}</h4>
+                    <h4>{user.rol}</h4>
                 </div>
                 <div className='icon'>
                     <CreateIcon

@@ -22,7 +22,7 @@ export const Events = () => {
 				events.map((event, index) => (
 					<Grid key={index}>
 						<EventCard
-							key={event.id || index}
+							key={event.id}
 							eventDTO={event}
 						/>
 					</Grid>

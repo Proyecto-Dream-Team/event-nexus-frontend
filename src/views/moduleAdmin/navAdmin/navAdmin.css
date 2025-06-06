@@ -3,6 +3,7 @@
     justify-content: space-around;
     color: var(--title-color);
     font-size: 1.8rem;
+    margin-top: 2rem;
     padding: 1rem;
     font-weight: bold;
 }

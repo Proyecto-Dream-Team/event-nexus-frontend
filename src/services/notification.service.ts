@@ -18,7 +18,7 @@ export async function trySSE(
         console.log('Conexión SSE cerrada');
         // eventSource.close()
     }else{
-        eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?userId=${userId.valueOf()}`);
+        eventSource = new EventSource(`${URL_SERVIDOR_REST}/notification/employee}`);
         eventSource.onopen = (event:Event) => {
             console.log('Conexión SSE abierta');
         };
@@ -51,7 +51,7 @@ export async function trySSE(
 }
 
 export async function getNotificationsByUserId(userId:number): Promise<NotificationDTO[]>{
-    const response = await axios.get(`${URL_SERVIDOR_REST}/notification/${userId}`);
+    const response = await axios.get(`${URL_SERVIDOR_REST}/notification/employee`);
     return response.data
 }
 

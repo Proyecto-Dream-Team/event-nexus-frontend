@@ -14,7 +14,8 @@
   height: 100%;
   overflow-y: scroll;
   gap: 1rem;
-  padding-top: 2rem;
+  padding-top: 3rem;
+  background-color: #444f66;
 }
 
 .create-directive {

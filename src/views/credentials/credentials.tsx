@@ -66,7 +66,7 @@ export const CredentialsComponent = () => {
     return (
         <div className="credentials-box">
             <HexagonBackground></HexagonBackground>
-            <form className="credentialsFormulary">
+            <form className="credentialsFormulary" style={{overflowY:'scroll'}}>
                 {!isRecovery ? <Title title={"Crear cuenta"} /> : <Title title={"Recuperar contraseña"} />}
                 <InputApp
                     label="E-mail"

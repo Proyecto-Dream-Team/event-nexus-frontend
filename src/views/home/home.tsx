@@ -4,6 +4,7 @@ import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
 import './home.css'
 import { Box, Button, ButtonGroup, Typography } from '@mui/material'
+import { StyledFloatingButton } from './home.styles'
 
 
 export const Home = () => {
@@ -40,7 +41,7 @@ export const Home = () => {
     return (
         <>     
             <Box>
-                <ButtonGroup
+                <StyledFloatingButton
                     variant="outlined"
                     aria-label="Basic button group"
                     sx={{backgroundColor:'white'}}>
@@ -56,7 +57,7 @@ export const Home = () => {
                             {module.name}
                         </Button>
                     ))}
-                </ButtonGroup>
+                </StyledFloatingButton>
             </Box>
             <main className='main' >
                 <ModuleCard value={selectedModule} setIndex={setSelectedIndex} maxLenght={modules.length}/>

@@ -25,6 +25,8 @@
     margin-bottom: 1vh;
     margin-top: 1vh;
     margin-left: 2vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .img{

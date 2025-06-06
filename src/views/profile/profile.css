@@ -14,10 +14,12 @@
 
 .titleStyle{
     margin: 0;
+    color: #2a3344;
 }
 
 .profile__container{
     height: 100%;
+    overflow-y: scroll;
 }
 
 

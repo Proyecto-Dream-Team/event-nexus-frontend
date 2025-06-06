@@ -13,12 +13,12 @@ class ModuleService {
     }
 
     async employeeEvents(employeeId: number) {
-        const response = await axios.get(`${URL_SERVIDOR_REST}/event/${employeeId}`);
+        const response = await axios.get(`${URL_SERVIDOR_REST}/event/created`);
         return response.data
     }
 
     async getModules(id: number): Promise<Module[]> {
-        const response = await axios.get(`${URL_SERVIDOR_REST}/module/${id}`);
+        const response = await axios.get(`${URL_SERVIDOR_REST}/module`);
         return response.data
     }
 
@@ -28,23 +28,23 @@ class ModuleService {
 
     async joinleaveEvent(eventId: number):Promise<ResponseEntityDTO> {
         const employeeId = Number(sessionStorage.getItem('userId'))
-        const response = await axios.post(`${URL_SERVIDOR_REST}/event/join-leave?employeeId=${employeeId}&eventId=${eventId}`);
+        const response = await axios.post(`${URL_SERVIDOR_REST}/event/join-leave?eventId=${eventId}`);
         return response.data
     }
 }
 
 export const moduleService = new ModuleService()
 
-export async function getAvailableEvents():Promise<EventDto[]> {
-    const userId:number = Number(sessionStorage.getItem('userId'))
-    const response = await axios.get(`${URL_SERVIDOR_REST}/event/available/${userId}`);
-    console.log("ALL EVENTS", response.data)
-    return response.data
-}
+// export async function getAvailableEvents():Promise<EventDto[]> {
+//     const userId:number = Number(sessionStorage.getItem('userId'))
+//     const response = await axios.get(`${URL_SERVIDOR_REST}/event/available`);
+//     console.log("ALL EVENTS", response.data)
+//     return response.data
+// }
 
 export async function getEvents():Promise<EventDto[]> {
     const userId:number = Number(sessionStorage.getItem('userId'))
-    const response = await axios.get(`${URL_SERVIDOR_REST}/event/available/${userId}`);
+    const response = await axios.get(`${URL_SERVIDOR_REST}/event/available`);
     console.log("ALL EVENTS", response.data)
     return response.data
 }
@@ -63,13 +63,13 @@ export async function getEventsByCategory(eventCategory: string):Promise<EventDt
 
 export async function getEventsByCreator():Promise<EventDto[]> {
     const userId:number = Number(sessionStorage.getItem('userId'))
-    const response = await axios.get(`${URL_SERVIDOR_REST}/event/${userId}/created`);
+    const response = await axios.get(`${URL_SERVIDOR_REST}/event/created`);
     return response.data
 }
 
 export async function getEventsByInvitation():Promise<EventDto[]> {
     const userId:number = Number(sessionStorage.getItem('userId'))
-    const response = await axios.get(`${URL_SERVIDOR_REST}/event/${userId}/invited`);   
+    const response = await axios.get(`${URL_SERVIDOR_REST}/event/invited`);   
     return response.data
 }
 

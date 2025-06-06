@@ -12,19 +12,19 @@ class ServiceUser {
 	}
 
 	async getPermissionsUser( id : number, type : PermissionType ): Promise<string[]> {
-		const res = await axios.get(`${URL_SERVIDOR_REST}/user/${id}/permissions/${type}`);
+		const res = await axios.get(`${URL_SERVIDOR_REST}/user/permissions/${type}`);
 		return res.data;
 	}
 	
 	async getProfileDatos(id: number): Promise<DatosForm> {
-		const response = await axios.get<DatosForm>(`${URL_SERVIDOR_REST}/user/profile/${id}`);
+		const response = await axios.get<DatosForm>(`${URL_SERVIDOR_REST}/user/profile`);
 		const entity = DatosForm.fromDto(response.data);
 		
 		return entity;
 	}
 
 	async getHeaderData(id : number): Promise<HeaderDto> {
-		const response = await axios.get(`${URL_SERVIDOR_REST}/user/header/${id}`);
+		const response = await axios.get(`${URL_SERVIDOR_REST}/user/header`);
 		const entity = response.data;
 		return HeaderDto.fromDto(entity);
 	}

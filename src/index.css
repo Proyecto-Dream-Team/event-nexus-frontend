@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
   width: 100%;
   min-height: 100%;
   margin: 0;
@@ -7,21 +8,29 @@ html, body{
 }
 
 #root {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* grid-template-rows: 7rem 0.3fr 4fr; */
-    background-color: #444f66;
-    gap:2rem;
-    /* gap: 1rem; */
-    /* padding: 2rem; */
-    /* border: 1px solid rgb(168, 167, 167); */
-    /* border-radius: 2rem;   */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-rows: 7rem 0.3fr 4fr; */
+  /* background-color: #444f66; */
+  /* gap: 1rem; */
+  /* gap: 1rem; */
+  /* padding: 2rem; */
+  /* border: 1px solid rgb(168, 167, 167); */
+  /* border-radius: 2rem;   */
+  /* content: ""; */
+  /* position: absolute; */
+  /* inset: 0; */
+  background: url('https://img.freepik.com/vector-gratis/fondo-abstracto-vector-hexagonal-forma-hexagonal-patron-hexagonal-geometrico-textura-hexagonal-ilustracion-hexagonal-decoracion_1284-52740.jpg?semt=ais_hybrid&w=740') center center;
+  /* background-size: fill; */
+  /* filter: sepia(0.9) opacity(0.3) brightness(0.8); */
 
 }
+
 html {
-  font-size: 62.5%; /* 10px = 1rem */
+  font-size: 62.5%;
+  /* 10px = 1rem */
 }
 
 :root {
@@ -34,7 +43,7 @@ html {
   --event-color: #B6DA72;
   --faltante-color: #D9D9D9;
   --bones-color: #f5f5dc;
-  --title-color : #1a3b7a;
+  --title-color: #1a3b7a;
   --card-green: linear-gradient(110deg, rgb(130, 206, 115), rgb(24, 78, 51));
   --card-red: linear-gradient(-150deg, rgb(240, 98, 79), #441313bd);
 }
@@ -55,6 +64,3 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
-
-

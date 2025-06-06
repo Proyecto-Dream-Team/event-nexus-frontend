@@ -60,7 +60,7 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
 */
 
   return (
-    <form className='profileFormulary' >
+    <form className='profileFormulary' style={{overflowY:'scroll'}} >
      
 
       <InputApp

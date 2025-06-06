@@ -9,11 +9,16 @@ export const StyleBoxContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
     width: '100%',
     flexWrap:'wrap',
     padding: theme.spacing(2),
+    paddingTop: 0,
+    paddingBottom: 0,
     gap: theme.spacing(2),
 }));
 
 export const StyledList = styled(List)(({ theme }: { theme: Theme }) => ({
     width:'min(100%, 45rem)',
+    padding: theme.spacing(2),
+    paddingTop: 0,
+    paddingBottom: 0,
     borderRadius:'1rem'
 }));
 
