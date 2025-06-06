@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 
-export function trySSE(
+export async function trySSE(
     setCounter:React.Dispatch<React.SetStateAction<number>>,
     setNewNotification:React.Dispatch<React.SetStateAction<NotificationDTO[]>>,
     userId:number,

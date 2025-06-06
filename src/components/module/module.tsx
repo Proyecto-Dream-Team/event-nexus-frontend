@@ -7,7 +7,11 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const ModuleCard = (
-    { value, setIndex }: { value: Module, setIndex: React.Dispatch<React.SetStateAction<number>> }
+    { value, setIndex, maxLenght }: {
+        value: Module,
+        setIndex: React.Dispatch<React.SetStateAction<number>>,
+        maxLenght:number
+    }
 ) => {
 
     const mapRoutes = {
@@ -51,7 +55,7 @@ export const ModuleCard = (
                     </div>
                 </div>
                 <IconButton
-                    onClick={(e) => (setIndex((prev) => prev == 2 ? 0 : prev + 1))}
+                    onClick={(e) => (setIndex((prev) => prev == maxLenght-1 ? 0 : prev + 1))}
                     sx={{ width: 'fit-content', height: 'fit-content' }}
                     className='arrow__forward'>
                     <ArrowForwardIcon></ArrowForwardIcon>

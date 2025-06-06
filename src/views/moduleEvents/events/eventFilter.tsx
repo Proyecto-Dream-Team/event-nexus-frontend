@@ -4,7 +4,9 @@ import { getEventTypes, } from "../../../services/moduleService";
 import { FormControl, InputLabel, ListItemButton, ListItemText, Menu, MenuItem, Select, TextField } from "@mui/material";
 import { EventCategory } from "../../../domain/eventTypes";
 import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
-import { StyleBoxContainer, StyledList, StyleMenuItem } from "./eventFilter.style";
+import { StyleBoxContainer, StyledFloatingButton, StyledList, StyleMenuItem } from "./eventFilter.style";
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom";
 
 const options = [
     'sin filtro',
@@ -23,7 +25,7 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
     const [eventTypes, setEventTypes] = useState<EventCategory[]>()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const openMenu = Boolean(anchorEl);
-
+    
     async function noFilterStrategy() {
         setFilterMode("all");
         setFilterStrategy(new AllEventsOption());
@@ -136,11 +138,12 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
                 ))}
             </Menu>
             {filterMode === "title" &&
-                <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)' }}>
+                <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)'}}>
                     <TextField
                         required
-                        id="outlined-required"
+                        // id="outlined-required"
                         label="Titulo del evento"
+                        color="info"
                         inputRef={inputRef}
                         sx={{ width: '100%' }}
                     />
@@ -148,11 +151,12 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
             }
             {filterMode === "type" &&
                     <FormControl fullWidth sx={{width: 'min(100%, 50rem)'}}>
-                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <InputLabel id="demo-simple-select-label">CATEGORIA</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             label="Age"
                             value={eventCategory}
+                            sx={{borderColor:'red'}}
                         >
                             {eventTypes?.map((eventType, index) => (
                                 <MenuItem
@@ -170,6 +174,8 @@ export const EventFilter = ({ eventSetter }: { eventSetter: Dispatch<SetStateAct
                         </Select>
                     </FormControl>                
             }
+
         </StyleBoxContainer>
+        
     </>
 };

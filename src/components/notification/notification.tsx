@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
 
 import './notification.css'
+import { useToast } from "../../context/toast/useToast";
 
 export const NotificationComponent = () => {
-	const [open, setOpen] = useState(false);
-
+	const [openMenu, setOpenMenu] = useState(false);
+	const {open} = useToast()
 	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
 
 	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
@@ -16,18 +17,19 @@ export const NotificationComponent = () => {
 	const [unreadCount, setUnreadCount] = useState(0);
 	const [onlyNew, setOnlyNew] = useState(false);
 	const id = Number(sessionStorage.getItem("userId"));
-	const [activeNotifications, setActiveNotifications] = useState(true);
+	const [activeNotifications, setActiveNotifications] = useState(false);
+
 	let eventSource: EventSource | null = null;
 
 	const handleOpen = async () => {
 		const notifications = await getNotificationsByUserId(id)
 		setNotifications(notifications)
 		setUnreadCount(0);
-		setOpen(!open)
+		setOpenMenu(!openMenu)
 	};
 
 	const handleClose = () => {
-		setOpen(false)
+		setOpenMenu(false)
 		setNewNotifications([])
 	};
 
@@ -39,18 +41,21 @@ export const NotificationComponent = () => {
 		return `${day}/${month}/${year}`;
 	}
 
-	function activateNotifications() {
+	async function activateNotifications() {
 		const button = document.querySelector('button.activable') as HTMLButtonElement;
 		if(button.classList.contains('active')){
 			setActiveNotifications(false);
+			await trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
 			button.classList.remove('active')
 			button.classList.add('inactive')
-			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+			open("Notificaciones desactivadas", "info")
 		}else{
 			setActiveNotifications(true);
 			button.classList.remove('inactive')
 			button.classList.add('active')
 			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource)
+			open("Notificaciones activadas", "info")
+
 
 		}
 	}
@@ -73,7 +78,7 @@ export const NotificationComponent = () => {
 			setNotifications(newNotifications);
 		};
 		fetchNotifications();
-	}, [open]);
+	}, [openMenu]);
 
 
 	const style = {
@@ -134,7 +139,7 @@ export const NotificationComponent = () => {
 				</Badge>
 			</div>
 
-			{open ? (
+			{openMenu ? (
 				<div>
 				<Box sx={style}>
 					<div className="butons">
