@@ -51,7 +51,7 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 	}, [eventDTO.dateFinished]);
 
 	return (
-		<StyledCard sx={{ border: `3px solid`, borderColor: mapCardColorByEventType(event.type) }} elevation={24}>
+		<StyledCard sx={{ border: `2px solid`, borderColor: mapCardColorByEventType(event.type) }} elevation={24}>
 			<CardContent sx={{ height: "50%", padding: 1 }}>
 				<Typography variant="h4" sx={{ color: 'black', fontWeight: 'bold' }}>
 					{event.title}
