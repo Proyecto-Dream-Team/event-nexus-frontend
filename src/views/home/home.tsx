@@ -49,7 +49,7 @@ export const Home = () => {
                             onClick={(e)=>(setSelectedModule(module))}
                             sx={{
                                 backgroundColor:selectedModule==module ? 'primary.main' : 'white',
-                                color:selectedModule==module ? 'white' : 'black',
+                                color:selectedModule==module ? 'white' : 'primary.main',
                                 fontWeight:'bold'
                             }}
                         >

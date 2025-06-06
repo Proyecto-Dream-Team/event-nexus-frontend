@@ -106,7 +106,7 @@ export const NotificationComponent = () => {
 
 	return (
 		<>
-			<div className="header-right" onClick={handleOpen} style={{ position: 'relative', cursor: 'pointer' }}>
+			<div className="header-right" onClick={handleOpen} style={{ cursor: 'pointer' }}>
 				<Badge
 					badgeContent={unreadCount}
 					color="error"
