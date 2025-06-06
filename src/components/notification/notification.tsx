@@ -5,8 +5,6 @@ import { getNotificationsByUserId, trySSE } from "../../services/notification.se
 
 import './notification.css'
 
-
-
 export const NotificationComponent = () => {
 	const [open, setOpen] = useState(false);
 

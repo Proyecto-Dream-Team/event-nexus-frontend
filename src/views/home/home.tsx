@@ -50,7 +50,6 @@ export const Home = () => {
             </Box>
             <main className='main' >
                 <ModuleCard value={selectedModule} setIndex={setSelectedIndex} />
-                {/* </div> */}
                 <img className='image-home' src="EventNexusImagotipo.png" />
             </main>
         </>

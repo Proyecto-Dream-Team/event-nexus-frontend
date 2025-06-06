@@ -4,7 +4,7 @@ import { HeaderDto } from "../../domain/user";
 import { serviceUser } from "../../services/serviceUser";
 import "./header.css";
 import WestIcon from '@mui/icons-material/West';
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { getNotificationsByUserId } from "../../services/notification.service";
 import { NotificationComponent } from "../notification/notification";
 import { Button, Menu, MenuItem } from "@mui/material";
@@ -15,7 +15,7 @@ export const Header = () => {
 	const location = useLocation()
 	const [data, setData] = useState<HeaderDto>(new HeaderDto(0, "", ""));
 	const { img } = useProfileImg();
-
+	const nav = useNavigate()
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -95,14 +95,13 @@ export const Header = () => {
 						},
 					}}
 				>
-					<MenuItem onClick={handleClose}>Profile</MenuItem>
-					<MenuItem onClick={handleClose}>My account</MenuItem>
-					<MenuItem onClick={handleClose}>Logout</MenuItem>
+					
+					<MenuItem onClick={(e)=>(nav("/home"))}>Home</MenuItem>
+					<MenuItem onClick={(e)=>(nav("/profile"))}>Mi perfil</MenuItem>
+					<MenuItem onClick={(e)=>(nav("/login"))}>Logout</MenuItem>
 				</Menu>
+				<NotificationComponent></NotificationComponent>
 			</div>
-
-			<NotificationComponent></NotificationComponent>
-
 		</header>
 	);
 };
