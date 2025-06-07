@@ -12,20 +12,6 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* grid-template-rows: 7rem 0.3fr 4fr; */
-  /* background-color: #444f66; */
-  /* gap: 1rem; */
-  /* gap: 1rem; */
-  /* padding: 2rem; */
-  /* border: 1px solid rgb(168, 167, 167); */
-  /* border-radius: 2rem;   */
-  /* content: ""; */
-  /* position: absolute; */
-  /* inset: 0; */
-  background: url('https://img.freepik.com/vector-gratis/fondo-abstracto-vector-hexagonal-forma-hexagonal-patron-hexagonal-geometrico-textura-hexagonal-ilustracion-hexagonal-decoracion_1284-52740.jpg?semt=ais_hybrid&w=740') center center;
-  /* background-size: fill; */
-  /* filter: sepia(0.9) opacity(0.3) brightness(0.8); */
-
 }
 
 html {

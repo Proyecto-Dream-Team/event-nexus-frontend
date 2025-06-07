@@ -13,10 +13,10 @@ span{
 .card{
     display: flex;
     align-items: center;   
+    color: black;
 }
 
 .atributos{
-    color: var(--white-color);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -42,5 +42,4 @@ span{
     text-align: start;
     padding: 0.5rem 2rem;
     margin-bottom: 2rem;
-    color: var(--white-color);
 }
