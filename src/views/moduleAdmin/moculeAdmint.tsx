@@ -5,7 +5,6 @@ export const ModuleAdmin = () => {
     return (
        
        <>
-            <NavAdmin></NavAdmin>
             <Outlet></Outlet>
        </>
     )

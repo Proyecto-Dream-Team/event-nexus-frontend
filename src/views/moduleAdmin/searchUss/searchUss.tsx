@@ -6,6 +6,9 @@ import { SesionStorage } from "../../../domain/user";
 import { ProfileCard } from "../../../components/profileCard/profileCard";
 import { serviceUser } from "../../../services/serviceUser";
 import { adminService } from "../../../services/adminService";
+import AddIcon from '@mui/icons-material/Add';
+import { StyledFloatingButton } from "../../moduleEvents/events/eventFilter.style";
+import { useNavigate } from "react-router-dom";
 
 
 export const SearchUser = () => {
@@ -13,6 +16,7 @@ export const SearchUser = () => {
 	const [expanded, setExpanded] = useState(false);
 	const [users, setUsers] = useState<SesionStorage[]>();
 	const containerRef = useRef<HTMLDivElement>(null);
+	const nav = useNavigate()
 
 	const fetchUSer = async () => {
 		const response = await serviceUser.search(value);
@@ -20,6 +24,9 @@ export const SearchUser = () => {
 		setUsers(response);
 	};
 
+	useEffect(() =>{
+			fetchUSer()
+	},[])
 
 	const deleteUser = async (id: number) => {
 		// TODO implementar la eliminacion de usuario
@@ -31,13 +38,12 @@ export const SearchUser = () => {
 	}
 
 	// Cerrar input si se clickea fuera
-	useEffect(() => {
-		const clickOut = (event: MouseEvent) => {
+	useEffect(() => {const clickOut = (event: MouseEvent) => {
 			if (
 				containerRef.current &&
 				!containerRef.current.contains(event.target as Node)
 			) {
-				setExpanded(false);
+				setExpanded(true);
 			}
 		};
 
@@ -49,6 +55,9 @@ export const SearchUser = () => {
 
 	return (
 		<section className="section">
+			<StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/create-user'))}>
+			<AddIcon />
+			</StyledFloatingButton>
 			<div
 				ref={containerRef}
 				className={`search-container ${expanded ? "expanded" : ""}`}
