@@ -41,7 +41,7 @@ export const Home = () => {
     return (
         <>     
             <Box>
-                <StyledFloatingButton
+                {/* <StyledFloatingButton
                     variant="outlined"
                     aria-label="Basic button group"
                     sx={{backgroundColor:'white'}}>
@@ -57,7 +57,7 @@ export const Home = () => {
                             {module.name}
                         </Button>
                     ))}
-                </StyledFloatingButton>
+                </StyledFloatingButton> */}
             </Box>
             <main className='main' >
                 <ModuleCard value={selectedModule} setIndex={setSelectedIndex} maxLenght={modules.length}/>

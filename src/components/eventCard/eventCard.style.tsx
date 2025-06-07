@@ -36,7 +36,7 @@ export const StyleTypographyA = styled(Typography)(({ theme }: { theme: Theme })
 	border: '1px solid black',
 	padding: theme.spacing(0.5),
 	// backgroundColor: theme.palette.primary.dark,
-	color: theme.palette.common.white,
+	// color: theme.palette.common.white,
 	borderRadius: theme.shape.borderRadius,
 }));
 

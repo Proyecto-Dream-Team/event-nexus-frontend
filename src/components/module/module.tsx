@@ -46,7 +46,7 @@ export const ModuleCard = (
                     <ArrowBackIcon></ArrowBackIcon>
                 </IconButton>
                 <div className='contenido-card'>
-
+                    <h3 className='text'>{value.name}</h3>
                     <p className='text'>{value.description}</p>
                     {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
                     <img src={`./icons/${value.image}`} className='icon-module' />
