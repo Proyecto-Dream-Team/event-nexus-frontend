@@ -15,7 +15,7 @@
   overflow-y: scroll;
   gap: 1rem;
   padding-top: 3rem;
-  background-color: #444f66;
+  /* background-color: #444f66; */
 }
 
 .create-directive {
@@ -35,5 +35,29 @@
   overflow-y: scroll;
 }
 
+.create-directive {
+  position: fixed;
+  bottom: 0;
+  left: 10;
+  width: 100%;
+  max-height: 32vh;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 
+  /* Estado oculto: fuera de la pantalla */
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.create-directive.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
