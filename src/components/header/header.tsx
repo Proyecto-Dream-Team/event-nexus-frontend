@@ -7,8 +7,6 @@ import WestIcon from '@mui/icons-material/West';
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { getNotificationsByUserId } from "../../services/notification.service";
 import { NotificationComponent } from "../notification/notification";
-import { Button, Menu, MenuItem } from "@mui/material";
-
 
 export const Header = () => {
 	const id = Number(sessionStorage.getItem("userId"));
@@ -74,34 +72,6 @@ export const Header = () => {
 			<div className="header-center">
 				{!isHome() && <h2 className="header-title">{getTitle()}</h2>}
 			</div>
-
-			{/* <div>
-				<Button
-					id="basic-button"
-					aria-controls={open ? 'basic-menu' : undefined}
-					aria-haspopup="true"
-					aria-expanded={open ? 'true' : undefined}
-					onClick={handleClick}
-				>
-					Dashboard
-				</Button>
-				<Menu
-					id="basic-menu"
-					anchorEl={anchorEl}
-					open={open}
-					onClose={handleClose}
-					slotProps={{
-						list: {
-							'aria-labelledby': 'basic-button',
-						},
-					}}
-				>
-					
-					<MenuItem onClick={(e)=>(nav("/home"))}>Home</MenuItem>
-					<MenuItem onClick={(e)=>(nav("/profile"))}>Mi perfil</MenuItem>
-					<MenuItem onClick={(e)=>(nav("/login"))}>Logout</MenuItem>
-				</Menu>
-			</div> */}
 			<NotificationComponent></NotificationComponent>
 		</header>
 	);

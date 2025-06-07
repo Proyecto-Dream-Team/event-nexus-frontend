@@ -79,7 +79,7 @@ export const DirectiveInfo = () => {
 
     return (
         <>
-            <div className='scrollable-adrian'>
+            <div className='scrollable'>
                 <section className="scrollable-content">
                     {directive.map((directive, index) => (
                         <CardDirectiveInfo key={index} value={directive} />

@@ -10,7 +10,7 @@ interface Props {
 export const CardDirectiveInfo = ( { value }: Props  ) => {
 
     return(<>
-        <Divider>
+        <Divider >
             <Chip 
                 label={value.priorityName} 
                 size="small"
