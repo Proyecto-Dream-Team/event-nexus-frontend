@@ -38,28 +38,15 @@ export const ModuleCard = (
     return (
         <>
 
-            <Card className='card' >
-                <IconButton
-                    onClick={(e) => (setIndex((prev) => prev == 0 ? 2 : prev - 1))}
-                    sx={{ width: 'fit-content', height: 'fit-content' }}
-                    className='arrow__back'>
-                    <ArrowBackIcon></ArrowBackIcon>
-                </IconButton>
+            <Card className='card' component={'article'}>
                 <div className='contenido-card'>
-                    <h3 className='text'>{value.name}</h3>
+                    <h3 className='title'>{value.name}</h3>
                     <p className='text'>{value.description}</p>
-                    {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
                     <img src={`./icons/${value.image}`} className='icon-module' />
                     <div className='icono' onClick={navigate}>
                         <EastIcon fontSize="large" />
                     </div>
                 </div>
-                <IconButton
-                    onClick={(e) => (setIndex((prev) => prev == maxLenght-1 ? 0 : prev + 1))}
-                    sx={{ width: 'fit-content', height: 'fit-content' }}
-                    className='arrow__forward'>
-                    <ArrowForwardIcon></ArrowForwardIcon>
-                </IconButton>
             </Card>
         </>
     );

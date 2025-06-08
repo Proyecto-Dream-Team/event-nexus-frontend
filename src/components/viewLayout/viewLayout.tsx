@@ -1,13 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../header/header";
-
-import "./viewLayout.css";
 import { NavBar } from "../navbar/navbar";
+import "./viewLayout.css";
 
 export const ViewLayout = () => {
-    return <>
-        <Header />
-        <Outlet />
-        <NavBar />
-    </>
+    return (
+        <div className="view-layout">
+            <Header />
+            <div className="outlet-wrapper">
+                <Outlet />
+            </div>
+            <NavBar />
+        </div>
+    );
 };
