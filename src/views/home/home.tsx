@@ -42,8 +42,8 @@ export const Home = () => {
                         maxLenght={modules.length}
                     />
                 ))}
-            </main>
             <img className='image-home' src="EventNexusImagotipo.png" />
+            </main>
         </>
     )
 
