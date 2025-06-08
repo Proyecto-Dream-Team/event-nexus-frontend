@@ -4,11 +4,15 @@ import { useEffect, useState } from 'react'
 import { serviceUser } from '../../../services/serviceUser'
 import './directiveInfo.css'
 import { directiveInfoService } from '../../../services/directiveInfoService'
-import { Box, Button, Chip, createTheme, TextField } from '@mui/material'
-
+import { Box, Button, Chip, TextField } from '@mui/material'
+import { StyledFloatingButton } from '../../moduleEvents/events/eventFilter.style'
+import { Add } from '@mui/icons-material'
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
 export const DirectiveInfo = () => {
 
-    const theme = createTheme()
+    const [showCreate, setShowCreate] = useState(false);
+    
     const [directive, setDirective] = useState<DirectiveInfoData[]>([])
 
     const [canCreate, setCanCreate] = useState(false);
@@ -75,8 +79,7 @@ export const DirectiveInfo = () => {
 
     return (
         <>
-            {/* <div>ACA IRIA FILTER</div> */}
-            <div className='scrollable-adrian'>
+            <div className='scrollable'>
                 <section className="scrollable-content">
                     {directive.map((directive, index) => (
                         <CardDirectiveInfo key={index} value={directive} />
@@ -84,71 +87,77 @@ export const DirectiveInfo = () => {
                 </section>
                 {canCreate ? (
                     <>
-                        <div className='create-directive'>
-                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <Box sx={{ width: '80%', display: 'flex', flexDirection: 'column', gap: 2, padding: "1rem" }}>
+                        <StyledFloatingButton 
+                            color= { showCreate ? "error" : "primary"  }  
+                            aria-label="add" 
+                            onClick={() => setShowCreate(!showCreate)}
+                        >
+                            { showCreate ? (
+                                    <SouthIcon/>
+                                ) : (
+                                    <NorthIcon/>
+                                )
+                            }
+                        </StyledFloatingButton>
 
-                                    <TextField
-                                        label="titulo"
-                                        multiline
-                                        minRows={1}
-                                        fullWidth
-                                        value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
-                                        sx={{
-                                            backgroundColor: 'white',
-                                            borderRadius: '1rem',
-                                        }}
-                                    />
-                                    <TextField
-                                        label="Descripción"
-                                        multiline
-                                        minRows={1}
-                                        fullWidth
-                                        value={description}
-                                        onChange={(e) => setDescription(e.target.value)}
-                                        sx={{
-                                            backgroundColor: 'white',
-                                            borderRadius: '1rem',
-                                        }}
-                                    />
-
-                                    <Box sx={{ display: 'flex', gap: 1 , width: '35%', margin: 0}}>
-                                        <Chip
-                                            label="Urgente"
-                                            color="error"
-                                            size='small'
-                                            variant={priority === 'URGENTE' ? 'filled' : 'outlined'}
-                                            onClick={() => setPriority('URGENTE')}
+                        <div className={`create-directive ${showCreate ? 'show' : ''}`}>
+                                {canCreate && (
+                                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Box sx={{ width: '85%', display: 'flex', flexDirection: 'column', gap: 2, padding: "1rem 1rem 5rem 0"}}>
+                                        <TextField
+                                            label="titulo"
+                                            multiline
+                                            minRows={1}
+                                            fullWidth
+                                            value={title}
+                                            onChange={(e) => setTitle(e.target.value)}
+                                            sx={{ backgroundColor: 'white', borderRadius: '1rem' }}
                                         />
-                                        <Chip
-                                            label="Importante"
-                                            color="warning"
-                                            size='small'
-                                            sx={{color:priority == "IMPORTANTE" ? 'white': 'orange'}}
-                                            variant={priority === 'IMPORTANTE' ? 'filled' : 'outlined'}
-                                            onClick={() => setPriority('IMPORTANTE')}
-                                        />
-                                        <Chip
-                                            label="Informativo"
-                                            color="primary"
-                                            size='small'
-                                            variant={priority === 'INFORMATIVO' ? 'filled' : 'outlined'}
-                                            onClick={() => setPriority('INFORMATIVO')}
+                                        <TextField
+                                            label="Descripción"
+                                            multiline
+                                            minRows={2}
+                                            fullWidth
+                                            value={description}
+                                            onChange={(e) => setDescription(e.target.value)}
+                                            sx={{ backgroundColor: 'white', borderRadius: '1rem' }}
                                         />
 
+                                        <Box sx={{ display: 'flex', gap: 1 , width: '35%', margin: 0}}>
+                                            <Chip
+                                                label="Urgente"
+                                                color="error"
+                                                size='small'
+                                                variant={priority === 'URGENTE' ? 'filled' : 'outlined'}
+                                                onClick={() => setPriority('URGENTE')}
+                                            />
+                                            <Chip
+                                                label="Importante"
+                                                color="warning"
+                                                size='small'
+                                                sx={{color:priority == "IMPORTANTE" ? 'white': 'orange'}}
+                                                variant={priority === 'IMPORTANTE' ? 'filled' : 'outlined'}
+                                                onClick={() => setPriority('IMPORTANTE')}
+                                            />
+                                            <Chip
+                                                label="Informativo"
+                                                color="primary"
+                                                size='small'
+                                                variant={priority === 'INFORMATIVO' ? 'filled' : 'outlined'}
+                                                onClick={() => setPriority('INFORMATIVO')}
+                                            />
+                                        </Box>
                                     </Box>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={createDirective}
+                                        sx={{ borderRadius: '1rem', height: '11rem' , marginTop : 1.5 }}
+                                    >
+                                        Crear
+                                    </Button>
                                 </Box>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={createDirective}
-                                    sx={{ borderRadius: '1rem', height: '11rem' , marginTop : 1.5 }}
-                                >
-                                    Crear
-                                </Button>
-                            </Box>
-
+                                )}
                         </div>
 
                     </>
