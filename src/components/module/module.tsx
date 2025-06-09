@@ -1,10 +1,8 @@
 import './module.css'
 import { Module } from '../../domain/module'
 import { useNavigate } from 'react-router-dom'
-import { Button, Card, Divider, IconButton } from '@mui/material'
+import {  Card } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const ModuleCard = (
     { value, setIndex, maxLenght }: {
