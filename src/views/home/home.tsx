@@ -33,17 +33,19 @@ export const Home = () => {
     return (
         <>     
             <Title title='Modulos'></Title>
-            <main className='main' >
-                {modules.map((module, index) => (
-                    <ModuleCard
-                        key={module.id}
-                        value={module}
-                        setIndex={() => setSelectedIndex(index)}
-                        maxLenght={modules.length}
-                    />
-                ))}
+            <div className='scroll'>
+                <main className='main' >
+                    {modules.map((module, index) => (
+                        <ModuleCard
+                            key={module.id}
+                            value={module}
+                            setIndex={() => setSelectedIndex(index)}
+                            maxLenght={modules.length}
+                        />
+                    ))}
+                </main>
+            </div>
             <img className='image-home' src="EventNexusImagotipo.png" />
-            </main>
         </>
     )
 
