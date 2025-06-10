@@ -92,85 +92,83 @@ export const CreateEvent = () => {
             <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-events/events'))} sx={{ backgroundColor: 'crimson' }}>
                 <Cancel />
             </StyledFloatingButton>
-            <div className="form__container">
-                <form >
-                    <InputApp
-                        label="Titulo"
-                        type="text"
-                        register={register("title", {
-                            required: "El titulo es obligatorio",
-                        })}
-                        readonly={false}
-                        error={typeof errors.title?.message === "string" ? errors.title?.message : ""}
-                    />
-                    <InputApp
-                        label="Fecha"
-                        type="datetime-local"
-                        register={register("date", {
-                            required: "La fecha es obligatoria",
-                        })}
-                        readonly={false}
-                        error={typeof errors.date?.message === "string" ? errors.date?.message : ""}
-                    />
-                    <InputApp
-                        label="Descripcion"
-                        type="text"
-                        register={register("description", {
-                            required: "La Descripcion es oblogatoria",
-                        })}
-                        readonly={false}
-                        error={typeof errors.description?.message === "string" ? errors.description?.message : ""}
-                    />
-                    <div className="event-type-selector">
-                        <label className="input-label">Tipo de Evento</label>
-                        <div onClick={changeSelectEvenetTypeMode}>Invitar gente</div>
-                        <div className="event-type-options">
-                            {eventTypeMode && <>
-                                {permissions?.map((permission) => {
-                                    return (
-                                        <RadioInput
-                                            key={permission}
-                                            label={permission}
-                                            value={permission}
-                                            register={register("eventType", {
-                                                required: "El tipo de evento es obligatorio",
-                                            })}
-                                        />
-                                    );
-                                })}
-                            </>}
+            <form className="form__container">
+                <InputApp
+                    label="Titulo"
+                    type="text"
+                    register={register("title", {
+                        required: "El titulo es obligatorio",
+                    })}
+                    readonly={false}
+                    error={typeof errors.title?.message === "string" ? errors.title?.message : ""}
+                />
+                <InputApp
+                    label="Fecha"
+                    type="datetime-local"
+                    register={register("date", {
+                        required: "La fecha es obligatoria",
+                    })}
+                    readonly={false}
+                    error={typeof errors.date?.message === "string" ? errors.date?.message : ""}
+                />
+                <InputApp
+                    label="Descripcion"
+                    type="text"
+                    register={register("description", {
+                        required: "La Descripcion es oblogatoria",
+                    })}
+                    readonly={false}
+                    error={typeof errors.description?.message === "string" ? errors.description?.message : ""}
+                />
+                <div className="event-type-selector">
+                    <label className="input-label">Tipo de Evento</label>
+                    <div onClick={changeSelectEvenetTypeMode}>Invitar gente</div>
+                    <div className="event-type-options">
+                        {eventTypeMode && <>
+                            {permissions?.map((permission) => {
+                                return (
+                                    <RadioInput
+                                        key={permission}
+                                        label={permission}
+                                        value={permission}
+                                        register={register("eventType", {
+                                            required: "El tipo de evento es obligatorio",
+                                        })}
+                                    />
+                                );
+                            })}
+                        </>}
 
+                    </div>
+                    {errors.eventType?.message && (
+                        <div className="error-container">
+                            <p className="error-message">
+                                {typeof errors.eventType?.message === "string" ? errors.eventType.message : ""}
+                            </p>
                         </div>
-                        {errors.eventType?.message && (
-                            <div className="error-container">
-                                <p className="error-message">
-                                    {typeof errors.eventType?.message === "string" ? errors.eventType.message : ""}
-                                </p>
-                            </div>
-                        )}
-                    </div>
-                    <div>
-                        <label className="input-label">Invitados</label>
-                        <div onClick={changeInviteMode}>Invitar gente</div>
-                        {inviteMode && availableUsers?.map((user, index) => (
-                            <div
-                                key={index}
-                                style={{ animationDelay: `${index * 0.3}s` }}
-                                className="card-animated"
-                            >
-                                <InviteUserCard user={user} click={handleInvitation} invited={invitedUsers.includes(user.id)} />
-                            </div>
-                        ))}
-                    </div>
-                    <div className="buttonCreateEvent">
-                        <ButtonApp
-                            label="Confirmar"
-                            method={handleSubmit(create)}
-                            isCancel={false}
-                        />
-                    </div>
-                </form>
-            </div>
+                    )}
+                </div>
+                <div>
+                    <label className="input-label">Invitados</label>
+                    <div onClick={changeInviteMode}>Invitar gente</div>
+                    {inviteMode && availableUsers?.map((user, index) => (
+                        <div
+                            key={index}
+                            style={{ animationDelay: `${index * 0.3}s` }}
+                            className="card-event__card--animated"
+                        >
+                            <InviteUserCard user={user} click={handleInvitation} invited={invitedUsers.includes(user.id)} />
+                        </div>
+                    ))}
+                </div>
+                <div className="buttonCreateEvent">
+                    <ButtonApp
+                        label="Confirmar"
+                        method={handleSubmit(create)}
+                        isCancel={false}
+                    />
+                </div>
+            </form>
         </>
     )
 }

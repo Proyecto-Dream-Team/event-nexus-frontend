@@ -20,12 +20,17 @@ export const Events = () => {
 		<StyledGrid container>
 			{events?.length ? (
 				events.map((event, index) => (
-					<Grid key={index}>
+					<div
+						key={index}
+						style={{ animationDelay: `${index * 0.3}s` }}
+						className="card-animated"
+					>
 						<EventCard
 							key={event.id}
 							eventDTO={event}
 						/>
-					</Grid>
+					</div>
+
 
 				))
 			) : (
