@@ -2,7 +2,14 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.3rem;
+    overflow-y: scroll;
+}
+
+.form__container{
+  margin: 3rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
 }
 .event-type-options {
   display: flex;

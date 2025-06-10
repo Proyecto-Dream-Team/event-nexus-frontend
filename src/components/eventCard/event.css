@@ -1,121 +1,71 @@
-.bodyCard {
-    margin: 0 auto 2rem auto;
-    height: 100%;
-    width: 100%;
-    border-radius: 1rem;
+.event__header {
+    gap: 1rem;
     display: flex;
     flex-direction: row;
-    border-radius: 1rem;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    animation: animationCard  0.6s ease-out forwards;
-
-}
-
-.user {
-    display: flex;
-    flex-direction: column;
-    width: 18rem;
-    height: 100%;
-    justify-content: center;
-    gap: 1rem;
     align-items: center;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+    max-height: 7rem;
+    min-height: 7rem;
+    justify-content: space-between;
+
+    & div.mock {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        & .event__header-info {
+            height: 5rem;
+            display: inline-flex;
+            flex-direction: column;
+            text-align: left;
+
+
+            & .header-info__title {
+                font-size: 1.6rem;
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            & .header-info__creator-name {
+                font-size: 1rem;
+                font-weight: 400;
+
+            }
+
+            & .header-info__date {
+                font-size: 1rem;
+                font-weight: 400;
+                display: flex;
+            }
+        }
+    }
+
+    & .header__help {
+        width: fit-content;
+    }
+}
+
+.event__content {
+    max-height: 10rem;
+    min-height: 10rem;
     padding: 1rem;
-    & h3 {
-        font-size: 1.4rem;
-        text-align: center;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-
+    text-align: start;
 }
 
-.profile {
-    width: 7rem;
-    height: 7rem;
-    padding: 0.5rem;
-    border-radius: 50%;
+.foton {
+    max-width: 5rem;
+    width: 4rem;
+    min-width: 3rem;
+
+    max-height: 5rem;
+    height: 4rem;
+    min-height: 3rem;
+
+    display: inline-block;
+    border-radius: 100%;
 }
 
-.profile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.descriptionCardd {
-    position: relative;
+.event__footer{
     display: flex;
-    flex-direction: column;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 1.5rem;
-    width: 100%;
-    justify-content: flex-start;
-    overflow: hidden; /* Para recortar el blur que sobresale */
-    z-index: 1;
-    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;    
 }
-
-.descriptionCardd::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: inherit;
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
-}
-.descriptionCardd::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(146, 145, 145, 0.815); /* Blanco translúcido para aclarar */
-    z-index: 1;
-}
-
-
-/* Contenido por encima del fondo difuminado */
-.descriptionCardd > * {
-    position: relative;
-    z-index: 2;
-    color: black; /* Asegura texto negro si usás overlay claro */
-}
-
-
-.titleCardEvent {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    
-    flex-direction: column;
-    text-align: left;
-    gap: 1rem;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.titleEvent{
-    font-size: 1.5rem;
-}
-
-.buttonCardEvent{
-    position: absolute;
-    right: 3rem;
-    bottom: 0.5rem;
-    /* padding: 0.0rem; */
-
-}
-@keyframes animationCard {
-    from {
-        opacity: 0;
-        transform: translateY(50%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-

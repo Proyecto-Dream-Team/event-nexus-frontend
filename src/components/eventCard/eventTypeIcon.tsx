@@ -8,11 +8,22 @@ import BusinessIcon from '@mui/icons-material/Business';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import { Tooltip } from "@mui/material";
 import DeviceUnknownIcon from '@mui/icons-material/DeviceUnknown';
+import { eventColorMapping } from "../../utils/typeEvent";
 export function mapEventTypeToIcon(eventType: EventCategory) {
+        const styles = {
+                cursor:'pointer',
+                borderWidth:'3px',
+                borderRadius:'25%',
+                borderStyle:'solid',
+                // margin:'1rem',
+                width:'3rem',
+                height:'3rem',
+                borderColor:`${eventColorMapping[eventType]}`
+        }
     return <>
         <Tooltip
                 title={
-                        <h2 style={{ color: "black", fontSize: "12px" }}>
+                        <h2 style={{ color: "black", fontSize: "10px" }}>
                                 EVENTO {eventType}
                         </h2>
                 } 
@@ -20,19 +31,19 @@ export function mapEventTypeToIcon(eventType: EventCategory) {
                 arrow
         >
             {   eventType === "SOCIAL" ? (
-                    <EmojiPeopleIcon sx={{cursor:'pointer'}}/>
+                    <EmojiPeopleIcon sx={styles}/>
             ) : eventType === "DEPORTIVO" ? (
-                    <SportsFootballIcon sx={{cursor:'pointer'}}/>
+                    <SportsFootballIcon sx={styles}/>
             ) : eventType === "CAPACITACION" ? (
-                    <SchoolIcon sx={{cursor:'pointer'}}/>
+                    <SchoolIcon sx={styles}/>
             ) : eventType === "EJECUTIVO" ? (
-                    <BusinessIcon sx={{cursor:'pointer'}}/>
+                    <BusinessIcon sx={styles}/>
             ) : eventType === "EQUIPO" ? (
-                    <GroupIcon sx={{cursor:'pointer'}}/>
+                    <GroupIcon sx={styles}/>
             ) : eventType === "BENEFICO" ? (
-                    <FoodBankIcon sx={{cursor:'pointer'}}/>
+                    <FoodBankIcon sx={styles}/>
             ): (
-                <DeviceUnknownIcon sx={{cursor:'pointer'}}/>
+                <DeviceUnknownIcon sx={styles}/>
             )}
         </Tooltip>
 
