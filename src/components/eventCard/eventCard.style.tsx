@@ -11,34 +11,13 @@ export const StyledCard = styled(Paper)(({ theme }: { theme: Theme }) => ({
 	// backgroundColor: theme.palette.primary.light,
     borderWidth: '10px',
     borderStyle: 'solid',
+	padding:theme.spacing(1),
+	transition: 'ease-in 1s'
 
 }));
 
-export const StyledCardContent = styled(CardContent)(({ theme }: { theme: Theme }) => ({
 
-	height: '100%',
-	display: 'grid',
-    padding: theme.spacing(1),
-	gridTemplateAreas: `
-		"description" 		
-		"description"
-		"participants"
-	`,
 
-}));
-
-export const StyleTypographyA = styled(Typography)(({ theme }: { theme: Theme }) => ({
-	height: '100%',
-	display: 'flex',
-	flexDirection: 'column',
-	color: theme.palette.common.black,
-	fontWeight: theme.typography.fontWeightBold,
-	border: '1px solid black',
-	padding: theme.spacing(0.5),
-	// backgroundColor: theme.palette.primary.dark,
-	// color: theme.palette.common.white,
-	borderRadius: theme.shape.borderRadius,
-}));
 
 export const StyledIconButton = styled(IconButton)(({ theme }: { theme: Theme }) => ({
 	borderRadius: "0.5rem",

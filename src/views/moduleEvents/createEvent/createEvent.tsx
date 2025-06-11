@@ -25,13 +25,14 @@ export const CreateEvent = () => {
         mode: "all",
     });
     const { open } = useToast();
-    const [availableUsers, setAvailableUsers] = useState<SesionStorage[]>([]);  
+    const [availableUsers, setAvailableUsers] = useState<SesionStorage[]>([]);
     const [invitedUsers, setInvitedUsers] = useState<number[]>([]);
     const [inviteMode, setInviteMode] = useState(false);
+    const [eventTypeMode, seteventTypeMode] = useState(false);
     const create = async (data: any) => {
         const { title, date, description, eventType } = data;
 
-        const eventCreated = new CreateEventDTO(userId, invitedUsers ,date, title, description, eventType)
+        const eventCreated = new CreateEventDTO(userId, invitedUsers, date, title, description, eventType)
         try {
             setIsLoading(true)
             await moduleService.create(eventCreated)
@@ -49,20 +50,23 @@ export const CreateEvent = () => {
 
     async function getAvaliableUsers() {
         const response = await serviceUser.search("");
-		console.log(response);
-		setAvailableUsers(response);
+        console.log(response);
+        setAvailableUsers(response);
     }
 
-    function changeInviteMode(){
+    function changeInviteMode() {
         setInviteMode(prev => !prev);
         if (inviteMode) {
             getAvaliableUsers();
         }
     }
+    function changeSelectEvenetTypeMode() {
+        seteventTypeMode(prev => !prev);
+    }
     function handleInvitation(id: number) {
         if (invitedUsers.includes(id)) {
             uninviteUser(id);
-        }else{
+        } else {
             inviteUser(id);
         }
     }
@@ -84,11 +88,11 @@ export const CreateEvent = () => {
     }, []);
 
     return (
-        <>  
-            <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-events/events'))} sx={{backgroundColor:'crimson'}}>
-                    <Cancel/>
+        <>
+            <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-events/events'))} sx={{ backgroundColor: 'crimson' }}>
+                <Cancel />
             </StyledFloatingButton>
-            <form style={{overflowY:'scroll'}}>
+            <form className="form__container">
                 <InputApp
                     label="Titulo"
                     type="text"
@@ -118,19 +122,23 @@ export const CreateEvent = () => {
                 />
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
+                    <div onClick={changeSelectEvenetTypeMode}>Invitar gente</div>
                     <div className="event-type-options">
-                        {permissions?.map((permission) => {
-                            return (
-                                <RadioInput
-                                    key={permission}
-                                    label={permission}
-                                    value={permission}
-                                    register={register("eventType", {
-                                        required: "El tipo de evento es obligatorio",
-                                    })}
-                                />
-                            );
-                        })}
+                        {eventTypeMode && <>
+                            {permissions?.map((permission) => {
+                                return (
+                                    <RadioInput
+                                        key={permission}
+                                        label={permission}
+                                        value={permission}
+                                        register={register("eventType", {
+                                            required: "El tipo de evento es obligatorio",
+                                        })}
+                                    />
+                                );
+                            })}
+                        </>}
+
                     </div>
                     {errors.eventType?.message && (
                         <div className="error-container">
@@ -147,9 +155,9 @@ export const CreateEvent = () => {
                         <div
                             key={index}
                             style={{ animationDelay: `${index * 0.3}s` }}
-                            className="card-animated"
+                            className="card-event__card--animated"
                         >
-                            <InviteUserCard user={user} click={handleInvitation} invited={invitedUsers.includes(user.id)}/>
+                            <InviteUserCard user={user} click={handleInvitation} invited={invitedUsers.includes(user.id)} />
                         </div>
                     ))}
                 </div>

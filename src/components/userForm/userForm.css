@@ -1,0 +1,4 @@
+.profileFormulary{
+    display: flex;
+    flex-direction: column;
+}

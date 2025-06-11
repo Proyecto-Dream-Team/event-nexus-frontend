@@ -6,8 +6,8 @@ export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   height: 34,
   padding: 7,
   position: 'absolute',
-  top: '1rem',
-  right: 0,
+  top: '1.5rem',
+  right: '6rem',
   zIndex: 'tooltip',
   // transform: 'rotatedeg)',
   '& .MuiSwitch-switchBase': {

@@ -143,9 +143,9 @@ export const NotificationComponent = () => {
 				<div>
 				<Box sx={style}>
 					<div className="butons">
-						<button onClick={activateNotifications} className="mock activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
-						<button onClick={handleActivate} className="mock toggle">{onlyNew ? "Nuevas" : "Todas"}</button>
-						<button onClick={handleClose} className="mock close">X</button>
+						<button onClick={activateNotifications} className="notification activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
+						<button onClick={handleActivate} className="notification toggle">{onlyNew ? "Nuevas" : "Todas"}</button>
+						<button onClick={handleClose} className="notification close">X</button>
 					</div>
 
 					{onlyNew ? (

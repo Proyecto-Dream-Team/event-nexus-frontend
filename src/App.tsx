@@ -66,9 +66,9 @@ interface SwitchToggleThemeModeProps {
 function SwitchToggleThemeMode(props: SwitchToggleThemeModeProps) {
 	return (
 		<>
-			{window.location.pathname != '/login'
-				? <MaterialUISwitch checked={props.checked} onChange={props.change} ></MaterialUISwitch>
-				: <StyledSwitchToggleLogin checked={props.checked} onChange={props.change} />
+			{window.location.pathname != '/login' &&
+				<MaterialUISwitch checked={props.checked} onChange={props.change} ></MaterialUISwitch>
+				// <StyledSwitchToggleLogin checked={props.checked} onChange={props.change} />
 			}
 		</>
 	);
