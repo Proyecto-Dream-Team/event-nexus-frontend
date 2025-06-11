@@ -94,10 +94,12 @@ export const CreateUss = () => {
 
     return (
         <>
-        <UserForm
-            userForm={user}
-            click={isCreate ? createUss : updateUss}
-        />
+            <section className = "create-user">
+                <UserForm
+                    userForm={user}
+                    click={isCreate ? createUss : updateUss}
+                />
+            </section>
         </>
     );
 };

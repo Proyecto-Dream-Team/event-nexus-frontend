@@ -43,7 +43,7 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
 
     return (
         <>
-            <form className="profileFormulary" onSubmit={handleSubmit(click)} style={{overflowY:'scroll'}}>
+            <form className="profileFormulary"   onSubmit={handleSubmit(click)} >
                 <InputApp
                     label="Nombre"
                     type="text"
