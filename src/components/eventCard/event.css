@@ -12,17 +12,25 @@
         flex-direction: row;
         align-items: center;
         gap: 1rem;
+        width: 74%;
+
         & .event__header-info {
             height: 5rem;
             display: inline-flex;
             flex-direction: column;
             text-align: left;
-
+            width: 94%;
+            /* width: 20rem; */
+            /* max-width: 900px; */
 
             & .header-info__title {
                 font-size: 1.6rem;
                 font-weight: 600;
+                width: 100%;
+                /* width: 5rem; */
                 white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             & .header-info__creator-name {
@@ -64,8 +72,8 @@
     border-radius: 100%;
 }
 
-.event__footer{
+.event__footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;
 }
