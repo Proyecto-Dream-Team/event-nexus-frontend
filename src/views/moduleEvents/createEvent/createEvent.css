@@ -67,3 +67,6 @@
 .buttonCreateEvent{
     margin-top: 1rem;
 }
+.event-type-selector{
+  width: 100%;
+}

@@ -28,7 +28,7 @@ export const CreateEvent = () => {
     const [availableUsers, setAvailableUsers] = useState<SesionStorage[]>([]);
     const [invitedUsers, setInvitedUsers] = useState<number[]>([]);
     const [inviteMode, setInviteMode] = useState(false);
-    const [eventTypeMode, seteventTypeMode] = useState(false);
+    const [eventTypeMode, setEventTypeMode] = useState(false);
     const create = async (data: any) => {
         const { title, date, description, eventType } = data;
 
@@ -61,7 +61,7 @@ export const CreateEvent = () => {
         }
     }
     function changeSelectEvenetTypeMode() {
-        seteventTypeMode(prev => !prev);
+        setEventTypeMode(prev => !prev);
     }
     function handleInvitation(id: number) {
         if (invitedUsers.includes(id)) {
@@ -122,7 +122,9 @@ export const CreateEvent = () => {
                 />
                 <div className="event-type-selector">
                     <label className="input-label">Tipo de Evento</label>
-                    <div onClick={changeSelectEvenetTypeMode}>Invitar gente</div>
+                    <button onClick={(e)=>{e.preventDefault();changeSelectEvenetTypeMode()}}>
+                        Asignar categoria
+                    </button>
                     <div className="event-type-options">
                         {eventTypeMode && <>
                             {permissions?.map((permission) => {
@@ -150,7 +152,7 @@ export const CreateEvent = () => {
                 </div>
                 <div>
                     <label className="input-label">Invitados</label>
-                    <div onClick={changeInviteMode}>Invitar gente</div>
+                    <button onClick={(e)=>{e.preventDefault();changeInviteMode()}}>Invitar gente</button>
                     {inviteMode && availableUsers?.map((user, index) => (
                         <div
                             key={index}
