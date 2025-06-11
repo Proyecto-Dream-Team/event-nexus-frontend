@@ -27,9 +27,9 @@ export const Home = () => {
         getModules()
     }, [])
 
-    if(loading){
-        return <div>CARGANDO</div>
-    }
+    // if(loading){
+    //     return <div>CARGANDO</div>
+    // }    
     return (
         <>     
             <Title title='Modulos'></Title>
