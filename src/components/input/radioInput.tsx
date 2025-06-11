@@ -4,13 +4,14 @@ interface RadioInputProps {
     label: string;
     value: string;
     register: any;
+    helper:number
 }
 
-export const RadioInput = ({ label, value, register} : RadioInputProps) => {
+export const RadioInput = ({ label, value, register, helper} : RadioInputProps) => {
     return (
         <>
-            <div>
-                <label className="event-type-option">
+            <div className='container__radiobox' style={{ animationDelay: `${helper * 0.3}s` }}>
+                <label className="radiobox-input">
                     <input className="event-type-radio"
                         type="radio"
                         value={label}

@@ -5,13 +5,13 @@ export const StyleBoxContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '13rem',
+    height: '15rem',
     width: '100%',
     flexWrap:'wrap',
-    padding: theme.spacing(2),
-    paddingTop: 0,
-    paddingBottom: 0,
-    gap: theme.spacing(2),
+    padding: theme.spacing(1),
+    // paddingTop: 0,
+    // paddingBottom: 0,
+    gap: theme.spacing(1),
 }));
 
 export const StyledList = styled(List)(({ theme }: { theme: Theme }) => ({
@@ -34,3 +34,13 @@ export const StyledFloatingButton = styled(Fab)(({ theme }: { theme: Theme }) =>
     height:'60px'
 
 }));
+
+export const StyledFloatingConfirmEventButton = styled(Fab)(({ theme }: { theme: Theme }) => ({
+    position:'absolute',
+    left:'2rem',
+    bottom:'1rem',
+    width:'60px',
+    height:'60px'
+
+}));
+
