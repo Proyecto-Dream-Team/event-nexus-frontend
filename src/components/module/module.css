@@ -1,40 +1,30 @@
-
 .card{
-    width: min(100%, 50rem);
-    height: 30rem;
-    margin: 0;
-    padding: 0;
+    padding: 1.8rem;
 }
+
 .contenido-card {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
-    grid-template-rows: 0.7fr 0.3fr;
-    padding: 1rem;
-    margin: 0.3rem;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
 }
 
-.icon-module{
-    grid-column: 2/3;
-    grid-row: 1/2;
-    border-radius: 7px;
-    justify-self: center;
-    align-self: center;
-    width: 70%;
+.title {
+    grid-column:  1/3;
 }
 
 .text {
     grid-column:  1/2;
-    grid-row: 1/2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: justify;
-    justify-content: center;
-    font-size: 1.15rem;
-    margin-bottom: .5rem;
-    h2{
-        margin-bottom: 0.7rem;
-    }
+    border-right: solid 1px gray;
+    text-align: start;
+    align-self: center;
+    padding-right:  1rem ;
+}
+
+.icon-module{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 80%;
+    align-self: center;
 }
 
 .icono{
@@ -42,17 +32,7 @@
     background-color: var(--title-color);
     border-radius: 5px;
     padding: 0.5rem;
-    grid-column: 1 / 4;
-
+    grid-column: 1 / 3;
+    text-align: center;
 }
 
-/* .arrow__back{
-    position: absolute;
-    left: 0;
-    bottom:50%;
-}
-.arrow__forward{
-    position: absolute;
-    right: 0;
-    bottom:50%;
-} */

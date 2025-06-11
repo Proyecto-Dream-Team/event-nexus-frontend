@@ -3,14 +3,12 @@ import { ModuleCard } from '../../components/module/module'
 import { Module } from '../../domain/module'
 import { moduleService } from '../../services/moduleService'
 import './home.css'
-import { Box, Button, ButtonGroup, Typography } from '@mui/material'
-import { StyledFloatingButton } from './home.styles'
+import { Title } from '../../components/title/title'
 
 
 export const Home = () => {
     const [modules, setModules] = useState<Module[]>([])
     const id = Number(sessionStorage.getItem("userId"));
-    const [selectedModule, setSelectedModule] = useState<Module>(new Module(0, "asd", "asd", "asd"))
     const [selectedIndex, setSelectedIndex] = useState<number>(0)
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -18,9 +16,7 @@ export const Home = () => {
         try {
             setLoading(true)
             const res = await moduleService.getModules(id)
-            console.log(res)
             setModules(res)
-            setSelectedModule(res[0])
             setLoading(false)
         } catch (e: unknown) {
             console.log(e)
@@ -31,38 +27,25 @@ export const Home = () => {
         getModules()
     }, [])
 
-    useEffect(() => {
-        setSelectedModule(modules[selectedIndex])
-    }, [selectedIndex])
-
     if(loading){
         return <div>CARGANDO</div>
     }
     return (
         <>     
-            <Box>
-                {/* <StyledFloatingButton
-                    variant="outlined"
-                    aria-label="Basic button group"
-                    sx={{backgroundColor:'white'}}>
-                    {modules.map((module, index)=>(
-                        <Button
-                            onClick={(e)=>(setSelectedModule(module))}
-                            sx={{
-                                backgroundColor:selectedModule==module ? 'primary.main' : 'white',
-                                color:selectedModule==module ? 'white' : 'primary.main',
-                                fontWeight:'bold'
-                            }}
-                        >
-                            {module.name}
-                        </Button>
+            <Title title='Modulos'></Title>
+            <div className='scroll'>
+                <main className='main' >
+                    {modules.map((module, index) => (
+                        <ModuleCard
+                            key={module.id}
+                            value={module}
+                            setIndex={() => setSelectedIndex(index)}
+                            maxLenght={modules.length}
+                        />
                     ))}
-                </StyledFloatingButton> */}
-            </Box>
-            <main className='main' >
-                <ModuleCard value={selectedModule} setIndex={setSelectedIndex} maxLenght={modules.length}/>
-                <img className='image-home' src="EventNexusImagotipo.png" />
-            </main>
+                </main>
+            </div>
+            <img className='image-home' src="EventNexusImagotipo.png" />
         </>
     )
 
