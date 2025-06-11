@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { serviceUser } from '../../services/serviceUser';
 import { BoxInput } from '../input/boxInput';
 import { RadioInput } from '../input/radioInput';
+import { DialerSip } from '@mui/icons-material';
+import { Divider } from '@mui/material';
 
 interface FormularyProps {
     userForm: FormCreateUss;
@@ -151,6 +153,7 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
                         {errors.roles?.message && <span className="error-msjCheckbox">{errors.roles.message}</span>}
                     </div>
                 </div>
+                <Divider></Divider>
                 <div className="buttons">
                     <ButtonApp label="Cancelar" method={cancelCreate} isCancel={true} />
                     <ButtonApp label="Aceptar" method={handleSubmit(click)} isCancel={false} />
