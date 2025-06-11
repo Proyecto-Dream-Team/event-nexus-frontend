@@ -1,9 +1,8 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { UserForm } from "../../../components/userForm/userForm";
 import { useLoader } from "../../../context/loader/useLoader";
 import { useToast } from "../../../context/toast/useToast";
 import { FormCreateFormularyAdmin, FormCreateUss } from "../../../domain/User-Domain";
-import { serviceUser } from "../../../services/serviceUser";
 import { TIMELOADER } from "../../../utils/config";
 import "./createUss.css";
 import { useLocation, useParams } from "react-router-dom";
@@ -95,10 +94,12 @@ export const CreateUss = () => {
 
     return (
         <>
-        <UserForm
-            userForm={user}
-            click={isCreate ? createUss : updateUss}
-        />
+            <section className = "create-user">
+                <UserForm
+                    userForm={user}
+                    click={isCreate ? createUss : updateUss}
+                />
+            </section>
         </>
     );
 };

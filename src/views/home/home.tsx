@@ -26,10 +26,7 @@ export const Home = () => {
     useEffect(() => {
         getModules()
     }, [])
-
-    if(loading){
-        return <div>CARGANDO</div>
-    }
+    
     return (
         <>     
             <Title title='Modulos'></Title>

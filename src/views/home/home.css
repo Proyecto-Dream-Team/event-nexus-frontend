@@ -22,15 +22,14 @@
 	transform: translateY(0);
 	}
 }
-	
-.card-animated {
-	opacity: 0;
-	animation: fadeInUp 0.6s ease forwards;
-}
 
 .image-home {
 	animation: fadeInUp 0.6s ease forwards;
 	animation-delay: .8s;
 	width: 10rem;
 	margin: 1rem auto;
+}
+.card-animated {
+	opacity: 0;
+	animation: fadeInUp 0.6s ease forwards;
 }
