@@ -72,7 +72,8 @@ html {
 /* SE AGREGA data-theme al body en <index.html> */
 [data-theme='dark'] {
   --bg-color: #3c3939;
-  --header-nav: #6c99ed;
+  /* --header-nav: #6c99ed; */
+  --header-nav: #2a3344;
   --divider-color:#256bee;
   --home-card-button:#467fe8d8;
   --filter-events: #6c99ed;
@@ -81,6 +82,8 @@ html {
   --create-event-confirm: #D9D9D9;
   --text-color: #cec4c4;
   --text-color--inverted: #212020;
+  --fixed-text-color-light: #cec4c4;
+  --fixed-text-color-dark: #212020;
   --input-radio-color: #6c99ed;
   --error-message: #ff7474;
   --home-card-bg: #262323;

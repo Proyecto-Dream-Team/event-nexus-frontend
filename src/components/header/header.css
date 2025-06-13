@@ -26,7 +26,7 @@
 
 .header-title {
 	background-color: var(--header-nav);
-	color: var(--text-color--inverted);
+	color: var(--fixed-text-color-light);
 	padding: 2.5rem 2rem;
 	border-radius: 50%;
 	font-size: 2rem;
@@ -66,7 +66,7 @@
 
 .imgName p {
 	font-size: 1.7rem;
-	color: var(--text-color--inverted);
+	color: var(--fixed-text-color-light);
 }
 
 .image {
