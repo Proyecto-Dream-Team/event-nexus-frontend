@@ -43,7 +43,8 @@ export const appTheme = (mode: boolean) => {
         },
         create: {
           main: red[900]
-        }
+        },
+        
       } : {
         // primary: { main: deepOrange[300] },
         // secondary: { main: deepOrange[600] },
@@ -80,5 +81,8 @@ export const appTheme = (mode: boolean) => {
         }
       })
     },
+    action:{
+      hover:{}
+    }
   });
 }
