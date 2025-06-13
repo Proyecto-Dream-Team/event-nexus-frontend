@@ -55,6 +55,8 @@ export const SearchUser = () => {
 
 	return (
 		<section className="section">
+			<h1>Buscar usuarios</h1>
+			<h3>Aqui puedes editar o eliminar a los usuarios</h3>
 			<StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/create-user'))}>
 			<AddIcon />
 			</StyledFloatingButton>
