@@ -1,7 +1,7 @@
 .profile-box{
     width: 100%;
     background-color: transparent;
-    border: 1px solid var(--title-color);
+    border: 1px solid var(--header-nav);
     display: flex;
     flex-direction: column;
     margin: 0 auto;

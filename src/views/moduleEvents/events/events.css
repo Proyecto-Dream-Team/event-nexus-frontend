@@ -19,15 +19,19 @@
     /* background-color: #4CAF50; */
     color: white;
     padding: 1rem;
+    width: 45rem;
+    height: 5rem;
     /* font-size: 16px; */
     border: none;
     cursor: pointer;
 }
 
 .container__filter {
+    align-self: center;
     display: flex;
     justify-content: center;
     position: relative;
+    width: fit-content;
     /* display: inline-block; */
     padding: 2rem;
 }
@@ -36,33 +40,35 @@
     display: none;
     position: absolute;
     top: 7rem;
-    /* background-color: #f9f9f9; */
+    background-color: var(--header-nav);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    border-radius: 0rem 0rem 1rem 1rem;
     
 }
 
 .filter__options .filter__option {
-    color: black;
+    color: var(--text-color--inverted);
     padding: 12px 16px;
     text-decoration: none;
+    border-radius: 1rem 1rem 1rem 1rem;
     display: block;
 }
 
 .filter__options .filter__option:hover {
-    background-color: red
+    background-color: var(--filter-events--hover)
 }
 
-.filter:hover + .filter__options{
+.container__filter:hover  .filter__options{
     display: block;
     transition: 1s ease;
 }
-.container__filter:hover > .filter__options {
+/* .filter-options:hover {
     display: block;
     transition: 1s ease;
-}
+} */
 
-.container__filter:hover .filter {
-    background-color: #3e8e41;
+.filter:hover {
+    background-color: var(--filter-events--hover);
 }

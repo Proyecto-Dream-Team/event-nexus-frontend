@@ -41,7 +41,8 @@ html {
   --header-nav: #2a3344;
   --divider-color:#1a3b7a;
   --home-card-button:#1a3b7a;
-  --filter-events: #868484;
+  --filter-events: #2a3344;
+  --filter-events--hover: #3d4b65;
   --create-new-event: #142f62;
   --create-event-confirm: #D9D9D9;
   --text-color: #212020;
@@ -74,7 +75,8 @@ html {
   --header-nav: #6c99ed;
   --divider-color:#256bee;
   --home-card-button:#467fe8d8;
-  --filter-events: #b4b1b1;
+  --filter-events: #6c99ed;
+  --filter-events--hover: rgb(45, 68, 109);
   --create-new-event: #2354b0;
   --create-event-confirm: #D9D9D9;
   --text-color: #cec4c4;

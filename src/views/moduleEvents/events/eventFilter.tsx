@@ -101,7 +101,7 @@ export const EventFilter = (
         </div>
 
         {filterMode === "title" &&
-            <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)' }}>
+            <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)', alignSelf:'center' }}>
                 <TextField
                     required
                     // id="outlined-required"
@@ -113,7 +113,7 @@ export const EventFilter = (
             </form>
         }
         {filterMode === "type" &&
-            <FormControl fullWidth sx={{ width: 'min(100%, 50rem)' }}>
+            <FormControl fullWidth sx={{ width: 'min(100%, 50rem)', alignSelf:'center' }}>
                 <InputLabel id="demo-simple-select-label">CATEGORIA</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
