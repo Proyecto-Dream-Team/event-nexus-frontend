@@ -1,6 +1,7 @@
 .profileFormulary {
     display: flex;
     gap: 0rem;
+    /* overflow-y: scroll; */
 }
 
 .buttons{

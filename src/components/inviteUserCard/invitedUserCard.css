@@ -1,7 +1,7 @@
-.profile-box{
+.interactiveUserCard{
     width: 80vw;
     background-color: transparent;
-    border: 1px solid var(--title-color);
+    border: 1px solid var(--user-card-border);
     display: flex;
     flex-direction: column;
     margin: 0 auto;

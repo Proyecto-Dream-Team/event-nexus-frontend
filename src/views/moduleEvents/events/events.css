@@ -1,0 +1,74 @@
+.button_floating {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 999;
+    border-radius: 50%;
+    background-color: var(--create-new-event);
+    /* color: var(--text-color); */
+    color: white;
+    border: none;
+}
+
+.filter {
+    background-color: var(--filter-events);
+    width: min(80%, 45rem);
+    border-radius: 1rem;
+    /* background-color: #4CAF50; */
+    color: white;
+    padding: 1rem;
+    width: 45rem;
+    height: 5rem;
+    /* font-size: 16px; */
+    border: none;
+    cursor: pointer;
+}
+
+.container__filter {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    /* display: inline-block; */
+    padding: 2rem;
+}
+
+.filter__options {
+    display: none;
+    position: absolute;
+    top: 7rem;
+    background-color: var(--header-nav);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 0rem 0rem 1rem 1rem;
+    
+}
+
+.filter__options .filter__option {
+    color: var(--fixed-text-color-light);
+    padding: 12px 16px;
+    text-decoration: none;
+    border-radius: 1rem 1rem 1rem 1rem;
+    display: block;
+}
+
+.filter__options .filter__option:hover {
+    background-color: var(--filter-events--hover)
+}
+
+.container__filter:hover  .filter__options{
+    display: block;
+    transition: 1s ease;
+}
+/* .filter-options:hover {
+    display: block;
+    transition: 1s ease;
+} */
+
+/* .filter:hover {
+    background-color: var(--filter-events--hover);
+} */

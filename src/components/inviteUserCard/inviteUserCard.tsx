@@ -28,7 +28,7 @@ export const InviteUserCard = ({ user, click, invited }: userCard) => {
         console.log(invited)
     },[invited])
     return (
-        <div className="profile-box">
+        <div className="interactiveUserCard">
             <div className="row">
                 <img className="img" src={img} alt="profile" />
                 <div className="title">

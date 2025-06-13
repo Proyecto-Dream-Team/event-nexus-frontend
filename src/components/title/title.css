@@ -2,7 +2,7 @@
 .titleStyle{
     font-size: 3rem;
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
     margin-bottom: 0;
     text-align: center;
 }

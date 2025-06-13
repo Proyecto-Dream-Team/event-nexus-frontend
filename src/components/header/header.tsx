@@ -54,7 +54,7 @@ export const Header = () => {
 					</div>
 				) : (
 					<NavLink to="home">
-						<WestIcon className="imgName" sx={{ fontSize: "3rem", color: '#ffffff' }} />
+						<WestIcon className="imgName" sx={{ fontSize: "3rem", color: 'var(--fixed-text-color-light)' }} />
 					</NavLink>
 				)}
 			</div>
