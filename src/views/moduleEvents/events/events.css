@@ -1,0 +1,68 @@
+.button_floating {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 999;
+    border-radius: 50%;
+    background-color: var(--create-new-event);
+    /* color: var(--text-color); */
+    color: white;
+    border: none;
+}
+
+.filter {
+    background-color: var(--filter-events);
+    width: min(80%, 45rem);
+    border-radius: 1rem;
+    /* background-color: #4CAF50; */
+    color: white;
+    padding: 1rem;
+    /* font-size: 16px; */
+    border: none;
+    cursor: pointer;
+}
+
+.container__filter {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* display: inline-block; */
+    padding: 2rem;
+}
+
+.filter__options {
+    display: none;
+    position: absolute;
+    top: 7rem;
+    /* background-color: #f9f9f9; */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    
+}
+
+.filter__options .filter__option {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.filter__options .filter__option:hover {
+    background-color: red
+}
+
+.filter:hover + .filter__options{
+    display: block;
+    transition: 1s ease;
+}
+.container__filter:hover > .filter__options {
+    display: block;
+    transition: 1s ease;
+}
+
+.container__filter:hover .filter {
+    background-color: #3e8e41;
+}

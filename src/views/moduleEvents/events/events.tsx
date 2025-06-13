@@ -8,15 +8,14 @@ import AddIcon from '@mui/icons-material/Add';
 import { StyledFloatingButton } from "./eventFilter.style";
 import { useNavigate } from "react-router-dom";
 
+import './events.css'
 export const Events = () => {
 	const [events, setEvents] = useState<EventDto[]>();
 	const nav = useNavigate()
 
 	return <>
 		<EventFilter eventSetter={setEvents} />
-		<StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-events/create-event'))}>
-			<AddIcon />
-		</StyledFloatingButton>
+		<button className="button_floating" onClick={(e) => (nav('/module-events/create-event'))}>+</button>
 		<StyledGrid container>
 			{events?.length ? (
 				events.map((event, index) => (

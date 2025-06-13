@@ -4,7 +4,7 @@ import { ProfileImgProvider } from "./context/contextImg";
 import { LoaderProvider } from "./context/loader/useLoader";
 import { ToastProvider } from "./context/toast/useToast";
 import { AppRouter } from "./routes";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { appTheme } from "./MUI/theme";
 import { MaterialUISwitch } from "./MUI/switch";
 
@@ -28,13 +28,18 @@ const StyledSwitchToggleLogin = styled(Switch)(({ theme }) => ({
 }));
 
 function App() {
-	const [mode, setMode] = useState(false);
-
-	const theme = appTheme(mode)
+	const [darkMode, setDarkMode] = useState(false);
+	const theme = appTheme(darkMode)
+	// const [themeAux, setThemeAux] = useState<ThemeAux>('light');
 
 	function handleChange() {
-		setMode(!mode)
+		setDarkMode((darkModeValue)=>!darkModeValue)
 	}
+
+	useEffect(()=>{
+		document.body.setAttribute('data-theme', (darkMode ? "dark" : "light"));
+	},[darkMode])
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -43,7 +48,7 @@ function App() {
 						<ProfileImgProvider>
 							<CssBaseline />
 							<AppRouter />
-							<SwitchToggleThemeMode checked={mode} change={handleChange} />
+							<SwitchToggleThemeMode checked={darkMode} change={handleChange} />
 						</ProfileImgProvider>
 					</LoaderProvider>
 				</ToastProvider>
@@ -63,7 +68,12 @@ interface SwitchToggleThemeModeProps {
 
 }
 
+
+type ThemeAux = 'light' | 'dark'
 function SwitchToggleThemeMode(props: SwitchToggleThemeModeProps) {
+
+
+
 	return (
 		<>
 			{window.location.pathname != '/login' &&

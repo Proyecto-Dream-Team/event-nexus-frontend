@@ -31,7 +31,38 @@ html {
   --title-color: #1a3b7a;
   --card-green: linear-gradient(110deg, rgb(130, 206, 115), rgb(24, 78, 51));
   --card-red: linear-gradient(-150deg, rgb(240, 98, 79), #441313bd);
+
+
+
+  /* COLORES LIGHT MODE - DEFAULT */
+  --bg-color: #ffffff;
+  --bg-primary-main: #142f62;
+  --bg-primary-hover: #17418f;
+  --header-nav: #2a3344;
+  --filter-events: #868484;
+  --create-new-event: #142f62;
+  --create-event-confirm: #ffffff;
+  --text-color: #ffffff;
+  --input-radio-color: #ffffff;
+  --input-checkbox-color: #ffffff;
+
 }
+
+
+
+/* COLORES LIGHT MODE*/
+/* SE AGREGA data-theme al body en <index.html> */
+[data-theme='dark'] {
+  --bg-color: #514a4a;
+  --header-nav: #2a3344;
+  --filter-events: #b4b1b1;
+  --create-new-event: #2354b0;
+  --create-event-confirm: #ffffff;
+  --text-color: #0e0d0d;
+  --input-radio-color: #ffffff;
+  --input-checkbox-color: #ffffff;
+}
+
 
 body {
   background: radial-gradient(ellipse at center, #EAEAEA 0%, #eceaea 100%);
