@@ -15,6 +15,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { StyledFloatingButton, StyledFloatingConfirmEventButton } from '../../views/moduleEvents/events/eventFilter.style';
 import CheckIcon from '@mui/icons-material/Check';
+import { useNavigate } from 'react-router-dom';
 
 interface FormularyProps {
     userForm: FormCreateUss;
@@ -22,6 +23,7 @@ interface FormularyProps {
 }
 
 export const UserForm = ({ userForm, click }: FormularyProps) => {
+    const nav = useNavigate()
     const [rolTypeMode, setRolTypeMode] = useState(false);
     const [permTypeMode, setPermTypeMode] = useState(false);
 
@@ -57,7 +59,7 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
 
     return (
         <>
-        <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (cancelCreate)} sx={{ backgroundColor: 'crimson' }}>
+        <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/search-user'))} sx={{ backgroundColor: 'crimson' }}>
                         <Cancel />
         </StyledFloatingButton>
             <form className="profileFormulary"   onSubmit={handleSubmit(click)} >
