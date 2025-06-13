@@ -4,12 +4,17 @@ import { ButtonApp } from '../buttons/button';
 import { InputApp } from '../input/input';
 import { Title } from '../title/title';
 import './userForm.css';
+import '../../views/moduleEvents/createEvent/createEvent.css'
 import { useEffect, useState } from 'react';
 import { serviceUser } from '../../services/serviceUser';
 import { BoxInput } from '../input/boxInput';
 import { RadioInput } from '../input/radioInput';
-import { DialerSip } from '@mui/icons-material';
+import { Cancel, DialerSip } from '@mui/icons-material';
 import { Divider } from '@mui/material';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { StyledFloatingButton, StyledFloatingConfirmEventButton } from '../../views/moduleEvents/events/eventFilter.style';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface FormularyProps {
     userForm: FormCreateUss;
@@ -17,6 +22,8 @@ interface FormularyProps {
 }
 
 export const UserForm = ({ userForm, click }: FormularyProps) => {
+    const [rolTypeMode, setRolTypeMode] = useState(false);
+    const [permTypeMode, setPermTypeMode] = useState(false);
 
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
         mode: "all",
@@ -40,9 +47,19 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
         reset(userForm);
     }, [userForm, reset]);
 
+    function changeSelectRolTypeMode() {
+        setRolTypeMode(prev => !prev);
+    }
+    function changeSelectPermTypeMode() {
+        setPermTypeMode(prev => !prev);
+    }
+
 
     return (
         <>
+        <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (cancelCreate)} sx={{ backgroundColor: 'crimson' }}>
+                        <Cancel />
+        </StyledFloatingButton>
             <form className="profileFormulary"   onSubmit={handleSubmit(click)} >
                 <InputApp
                     label="Nombre"
@@ -121,43 +138,95 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
                 />
 
                 <Title title={"Permisos"} />
-                <div className="checksArea">
-                    {permisos.map((permiso, index) => (
-                        <BoxInput
-                            key={index}
-                            label={permiso}
-                            value={permiso}
-                            register={register("permisos", {
-                                required: "El permiso es obligatorio",
-                            })}
+                <div className="event-type-selector">
+                        <div className="container__label">
+                            <label className="input-label">Permisos</label>
+                            <button className="button__collapse-expand" onClick={(e) => { e.preventDefault(); changeSelectPermTypeMode() }}>
+                                {rolTypeMode ?
+                                    <><KeyboardArrowUpIcon /></> :
+                                    <><KeyboardArrowDownIcon /></>
+                                }
+
+                            </button>
+                        </div>
+                        <div className="event-type-options">
+                            {permTypeMode && <>
+                                {permisos?.map((perm, index) => {
+                                    return (
+                                        <BoxInput
+                                        key={index}
+                                        label={perm}
+                                        value={perm}
+                                        register={register("permisos", {
+                                            required: "El permiso es obligatorio",
+                                })}
                         />
-                    ))}
-                </div>
-                <div className='error-containerCheckbox'>
-                    {errors.permisos?.message && <span className="error-msjCheckbox">{errors.permisos.message}</span>}
-                </div>
+                                    );
+                                })}
+                            </>}
+
+                        </div>
+                        {errors.permisos?.message && (
+                            <div className="error-container">
+                                <p className="error-message">
+                                    {typeof errors.permisos?.message === "string" ? errors.permisos.message : ""}
+                                </p>
+                            </div>
+                        )}
+                    </div>
 
                 <Title title={"Roles"} />
-                <div className="checksArea">
-                    {roles.map((role, index) => (
-                        <RadioInput
-                            key={index}
-                            label={role}
-                            value={role}
-                            register={register("roles", {
-                                required: "El rol es obligatorio",
-                            })}
-                        />
-                    ))}
-                    <div className='error-containerCheckbox'>
-                        {errors.roles?.message && <span className="error-msjCheckbox">{errors.roles.message}</span>}
+                <div className="event-type-selector">
+                        <div className="container__label">
+                            <label className="input-label">Roles</label>
+                            <button className="button__collapse-expand" onClick={(e) => { e.preventDefault(); changeSelectRolTypeMode() }}>
+                                {rolTypeMode ?
+                                    <><KeyboardArrowUpIcon /></> :
+                                    <><KeyboardArrowDownIcon /></>
+                                }
+
+                            </button>
+                        </div>
+                        <div className="event-type-options">
+                            {rolTypeMode && <>
+                                {roles?.map((role, index) => {
+                                    return (
+                                        <RadioInput
+                                            key={index}
+                                            label={role}
+                                            helper={index}
+                                            value={role}
+                                            register={register("roles", {
+                                                required: "El rol es obligatorio",
+                                            })}
+                                        />
+                                    );
+                                })}
+                            </>}
+
+                        </div>
+                        {errors.roles?.message && (
+                            <div className="error-container">
+                                <p className="error-message">
+                                    {typeof errors.roles?.message === "string" ? errors.roles.message : ""}
+                                </p>
+                            </div>
+                        )}
                     </div>
-                </div>
+                    <div style={{height:'100px'}}></div>
                 <Divider></Divider>
-                <div className="buttons">
-                    <ButtonApp label="Cancelar" method={cancelCreate} isCancel={true} />
-                    <ButtonApp label="Aceptar" method={handleSubmit(click)} isCancel={false} />
-                </div>
+                <StyledFloatingConfirmEventButton
+                        color="success"
+                        aria-label="add"
+                        type="submit"
+                        onSubmit={ (e) => {
+                            handleSubmit(click)
+                            console.log('mock')}
+                        }
+                        sx={{ backgroundColor: 'forest' }}
+                    >
+                        <CheckIcon />
+                    </StyledFloatingConfirmEventButton>
             </form>
         </>
     )
