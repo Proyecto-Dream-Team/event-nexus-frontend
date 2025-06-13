@@ -14,7 +14,7 @@
 
 .titleStyle{
     margin: 0;
-    color: #2a3344;
+    color: var(--text-color);
 }
 
 .profile__container{

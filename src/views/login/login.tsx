@@ -76,7 +76,7 @@ export const Login = () => {
       <div className="login-box">
 
         <HexagonBackground></HexagonBackground>
-        <form className="loginFormulary">
+        <form className="loginFormulary" onSubmit={handleSubmit(handleLogin)}>
           <Title title={"Event Nexus"} />
           <InputApp
             label="Usuario"
@@ -108,6 +108,8 @@ export const Login = () => {
           <div className="buttonsLogin">
             <ButtonApp
               label="Ingresar"
+			  buttonType="submit"
+			  onSubmitMethod={handleSubmit(handleLogin)}
               method={handleSubmit(handleLogin)}
               isCancel={false}
             />
