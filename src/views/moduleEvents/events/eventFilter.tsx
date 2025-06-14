@@ -4,28 +4,30 @@ import { getEventTypes, } from "../../../services/moduleService";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { EventCategory } from "../../../domain/eventTypes";
 import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
-
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const options = [
-    'sin filtro',
-    'titulo',
-    'categoria',
-    'creados',
-    'invitaciones'
+    'Sin filtro',
+    'Titulo',
+    'Categoria',
+    'Creados',
+    'Invitaciones'
 ];
 
 type FilterMode = "all" | "title" | "type" | "created" | "invited";
 
 export const EventFilter = (
     { eventSetter }: { eventSetter: Dispatch<SetStateAction<EventDto[] | undefined>> }
-    ) => {
+) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [eventCategory, setEventCategory] = useState<EventCategory>("SOCIAL");
     const [filterMode, setFilterMode] = useState<FilterMode>("all")
     const [filterStrategy, setFilterStrategy] = useState<FilterOption>(new AllEventsOption);
     const [eventTypes, setEventTypes] = useState<EventCategory[]>()
-
+    // let filterOpen: boolean = false
+    const [filterOpen, setFilterOpen] = useState<boolean>()
     async function noFilterStrategy() {
         setFilterMode("all");
         setFilterStrategy(new AllEventsOption());
@@ -66,11 +68,11 @@ export const EventFilter = (
         event: React.MouseEvent<HTMLElement>,
         index: number
     ) {
-        if (options[index] === "sin filtro") noFilterStrategy();
-        if (options[index] === "titulo") filterByTitleStrategy();
-        if (options[index] === "categoria") await filterByTypeStrategy();
-        if (options[index] === "creados") await filterByCreatedStrategy();
-        if (options[index] === "invitaciones") await filterByInvitedStrategy();
+        if (options[index] === "Sin filtro") noFilterStrategy();
+        if (options[index] === "Titulo") filterByTitleStrategy();
+        if (options[index] === "Categoria") await filterByTypeStrategy();
+        if (options[index] === "Creados") await filterByCreatedStrategy();
+        if (options[index] === "Invitaciones") await filterByInvitedStrategy();
         setSelectedIndex(index);
     };
 
@@ -87,25 +89,44 @@ export const EventFilter = (
 
     return <>
         <div className="container__filter">
-            <button className="filter">{options[selectedIndex]}</button>
-            <div className="filter__options">
-                {options.map((option, index) => (
-                    <div
-                        className="filter__option"
-                        onClick={(event) => handleMenuItemClick(event, index)}
-                    >
-                        {option}
-                    </div>
-                ))}
-            </div>
+            Filtrar por
+            
+            <button
+                className="filter"
+                onClick={(e) => {
+                    e.preventDefault()
+                    console.log(filterOpen)
+                    setFilterOpen((prev) => !prev)
+                    console.log(filterOpen)
+                }}>
+                <strong> {options[selectedIndex]}</strong>
+                {filterOpen ?
+                    <><KeyboardArrowUpIcon /></> :
+                    <><KeyboardArrowDownIcon /></>
+                }
+            </button>
+
+            {filterOpen &&
+                <div className="filter__options">
+                    {options.map((option, index) => (
+                        <div
+                            className="filter__option"
+                            onClick={(event) => handleMenuItemClick(event, index)}
+                        >
+                            {option}
+                        </div>
+                    ))}
+                </div>
+            }
+
         </div>
 
         {filterMode === "title" &&
-            <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)', alignSelf:'center' }}>
+            <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)', alignSelf: 'center' }}>
                 <TextField
                     required
                     // id="outlined-required"
-                    label="Titulo del evento"
+                    label="titulo del evento"
                     color="info"
                     inputRef={inputRef}
                     sx={{ width: '100%' }}
@@ -113,7 +134,7 @@ export const EventFilter = (
             </form>
         }
         {filterMode === "type" &&
-            <FormControl fullWidth sx={{ width: 'min(100%, 50rem)', alignSelf:'center' }}>
+            <FormControl fullWidth sx={{ width: 'min(100%, 50rem)', alignSelf: 'center' }}>
                 <InputLabel id="demo-simple-select-label">CATEGORIA</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"

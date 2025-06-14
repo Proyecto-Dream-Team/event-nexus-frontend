@@ -80,9 +80,6 @@ export const appTheme = (mode: boolean) => {
           main: blueGrey[900]
         }
       })
-    },
-    action:{
-      hover:{}
     }
   });
 }

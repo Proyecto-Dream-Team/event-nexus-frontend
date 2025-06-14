@@ -12,63 +12,74 @@
     border: none;
 }
 
-.filter {
-    background-color: var(--filter-events);
-    width: min(80%, 45rem);
-    border-radius: 1rem;
-    /* background-color: #4CAF50; */
-    color: white;
+.container__events{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.container__filter {
+    width: fit-content;
+
+    display: flex;
     padding: 1rem;
-    width: 45rem;
-    height: 5rem;
-    /* font-size: 16px; */
+    gap: 0.5rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+
+    align-self: end;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--filter-events);
+    color: var(--text-color--inverted);
+    border-radius: 0.5rem;
+}
+
+.filter {
+    display: flex;
+    /* gap: 0.5rem; */
+    border-radius: 1rem;
+    background: transparent;
+    
+    color: var(--text-color--inverted);
     border: none;
     cursor: pointer;
 }
 
-.container__filter {
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: fit-content;
-    /* display: inline-block; */
-    padding: 2rem;
-}
+
 
 .filter__options {
-    display: none;
     position: absolute;
-    top: 7rem;
-    background-color: var(--header-nav);
-    min-width: 160px;
+    top: 4rem;
+    right: 0;
+    background-color: var(--filter-events);
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    border-radius: 0rem 0rem 1rem 1rem;
-    
+    border-radius: 1rem;
+
 }
 
-.filter__options .filter__option {
-    color: var(--fixed-text-color-light);
+.filter__option {
+    display: block;
     padding: 12px 16px;
+
+
+
+    color: var(--text-color--inverted);
+    background-color: var(--filter-events);
     text-decoration: none;
     border-radius: 1rem 1rem 1rem 1rem;
-    display: block;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover{
+        filter: brightness(170%);
+        backdrop-filter: brightness(90%);
+        font-weight: bold;
+    }
 }
 
-.filter__options .filter__option:hover {
-    background-color: var(--filter-events--hover)
-}
 
-.container__filter:hover  .filter__options{
-    display: block;
-    transition: 1s ease;
-}
-/* .filter-options:hover {
-    display: block;
-    transition: 1s ease;
-} */
 
-/* .filter:hover {
-    background-color: var(--filter-events--hover);
-} */

@@ -33,6 +33,7 @@ export const CreateEvent = () => {
     const [invitedUsers, setInvitedUsers] = useState<number[]>([]);
     const [inviteMode, setInviteMode] = useState(false);
     const [eventTypeMode, setEventTypeMode] = useState(false);
+    const toast = useToast()
     const create = async (data: any) => {
         const { title, date, description, eventType } = data;
 
@@ -71,8 +72,10 @@ export const CreateEvent = () => {
     function handleInvitation(id: number) {
         if (invitedUsers.includes(id)) {
             uninviteUser(id);
+            toast.open("Usuario invitado","success")
         } else {
             inviteUser(id);
+            toast.open("Usuario retirado","success")
         }
     }
     function inviteUser(id: number) {
