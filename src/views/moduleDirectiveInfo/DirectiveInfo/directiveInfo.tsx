@@ -90,7 +90,7 @@ export const DirectiveInfo = () => {
                         <StyledFloatingButton 
                             color= { showCreate ? "error" : "primary"  }  
                             aria-label="add" 
-                            sx={{'&:hover':{backgroundColor:'primary.main'}}}
+                            sx={{'&:hover':{backgroundColor: !showCreate ? 'primary.main' : 'error.main'}}}
                             onClick={() => setShowCreate(!showCreate)}
                         >
                             { showCreate ? (
