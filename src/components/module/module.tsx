@@ -3,6 +3,8 @@ import { Module } from '../../domain/module'
 import { useNavigate } from 'react-router-dom'
 import {  Card } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
+import ConeIcon from '../svgComponent/svgComponent';
+import { adminModuleIcon, directivetModuleIcon, eventModuleIcon, notificationIcon } from '../../utils/svgIcons';
 
 export const ModuleCard = (
     { value, setIndex, maxLenght }: {
@@ -16,7 +18,13 @@ export const ModuleCard = (
         "eventos": "/module-events/events",
         "informacion": "/module-directive-info",
         "comunicarse": "/module-admin/search-user"
+    };
 
+    function mapSvgIcon(imagePath:string){
+        if(imagePath=='events.svg'){return <ConeIcon className='icon-module' svgContent={eventModuleIcon}></ConeIcon>}
+        if(imagePath=='information.svg'){return <ConeIcon className='icon-module'svgContent={directivetModuleIcon}></ConeIcon>}
+        if(imagePath=='admin.svg'){return <ConeIcon className='icon-module'svgContent={adminModuleIcon}></ConeIcon>}
+        if(imagePath=='notification.svg'){return <ConeIcon className='icon-module'svgContent={notificationIcon}></ConeIcon>}
     };
 
     const nav = useNavigate();
@@ -40,9 +48,11 @@ export const ModuleCard = (
                 <div className='contenido-card'>
                     <h3 className='title'>{value.name}</h3>
                     <p className='text'>{value.description}</p>
-                    <img src={`./icons/${value.image}`} className='icon-module' />
+                    {/* <ConeIcon></ConeIcon> */}
+                    {mapSvgIcon(value.image)}
+                    {/* <img src={`./icons/${value.image}`} className='icon-module'/> */}
                     <div className='icono' onClick={navigate}>
-                        <EastIcon fontSize="large" />
+                        <EastIcon fontSize="large" style={{color:'var(--fixed-text-color-light)'}} />
                     </div>
                 </div>
             </Card>

@@ -31,7 +31,75 @@ html {
   --title-color: #1a3b7a;
   --card-green: linear-gradient(110deg, rgb(130, 206, 115), rgb(24, 78, 51));
   --card-red: linear-gradient(-150deg, rgb(240, 98, 79), #441313bd);
+
+
+
+  /* COLORES LIGHT MODE - DEFAULT */
+  --bg-color: #D9D9D9;
+  --bg-primary-main: #142f62;
+  --bg-primary-hover: #17418f;
+  --header-nav: #2a3344;
+  --divider-color:#1a3b7a;
+  --home-card-button:#1a3b7a;
+  --filter-events: #2a3344;
+  --filter-events--hover: #3d4b65;
+  --create-new-event: #142f62;
+  --create-event-confirm: #D9D9D9;
+  --text-color: #212020;
+  --text-color--inverted: #cec4c4;
+  --fixed-text-color-light: #cec4c4;
+  --fixed-text-color-dark: #212020;
+  --input-radio-color: #2a3344;
+  --error-message: #b23939;
+  --home-card-bg: #D9D9D9;
+  --card-directive:#D9D9D9;
+  --input-checkbox-color: #D9D9D9;
+  --event-type-color--social:#ff5722;
+  --event-type-color--deportivo:#357a38;
+  --event-type-color--capacitacion:#c786d3;
+  --event-type-color--ejecutivo:#626eb2;
+  --event-type-color--equipo:#008394;
+  --event-type-color--benefico:#f44336;
+  --event-type-color--cultural:#8f9a27;
+  --event-type-color--salud:#ff4081;
+
+  --user-card-border:#2a3344;
 }
+
+
+
+/* COLORES LIGHT MODE*/
+/* SE AGREGA data-theme al body en <index.html> */
+[data-theme='dark'] {
+  --bg-color: #3c3939;
+  /* --header-nav: #6c99ed; */
+  --header-nav: #2a3344;
+  --divider-color:#256bee;
+  --home-card-button:#467fe8d8;
+  --filter-events: #6c99ed;
+  --filter-events--hover: rgb(45, 68, 109);
+  --create-new-event: #2354b0;
+  --create-event-confirm: #D9D9D9;
+  --text-color: #cec4c4;
+  --text-color--inverted: #212020;
+  --fixed-text-color-light: #cec4c4;
+  --fixed-text-color-dark: #212020;
+  --input-radio-color: #6c99ed;
+  --error-message: #ff7474;
+  --home-card-bg: #262323;
+  --card-directive:#3c3939;
+  --input-checkbox-color: #D9D9D9;
+  --event-type-color--social:#ff784e;
+  --event-type-color--deportivo:#4caf50;
+  --event-type-color--capacitacion:#ba68c8;
+  --event-type-color--ejecutivo:#a3b1ff;
+  --event-type-color--equipo:#33c9dc;
+  --event-type-color--benefico:#f6685e;
+  --event-type-color--cultural:#d7e360;
+  --event-type-color--salud:#ff669a;
+  --user-card-border:#6c99ed;
+}
+
 
 body {
   background: radial-gradient(ellipse at center, #EAEAEA 0%, #eceaea 100%);

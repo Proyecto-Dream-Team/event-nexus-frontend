@@ -92,7 +92,7 @@ export const NotificationComponent = () => {
 		top: '60%',
 		right: '2%',
 		//transform: 'translate(-50%, 10%)',
-		bgcolor: '#2b3240',
+		bgcolor: 'var(--header-nav)',
 		border: '2px solid #000',
 		borderRadius: '2rem',
 		float: "right",

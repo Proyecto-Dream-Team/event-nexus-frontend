@@ -1,5 +1,5 @@
 import { EventDto } from "../../domain/createEvent";
-import { eventColorMapping } from "../../utils/typeEvent";
+import { eventColorMapping, eventShadowColor2 } from "../../utils/typeEvent";
 import { Avatar, AvatarGroup, Box, Button, Divider, Tooltip } from "@mui/material";
 import { EventCategory } from "../../domain/eventTypes";
 import { useEffect, useState } from "react";
@@ -25,7 +25,7 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 	};
 
 	function mapCardColorByEventType(eventType: EventCategory): string {
-		return eventColorMapping[eventType];
+		return eventShadowColor2[eventType];
 	}
 
 	async function joinleaveEvent() {

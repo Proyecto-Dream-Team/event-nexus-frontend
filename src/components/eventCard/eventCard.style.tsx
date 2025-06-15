@@ -12,7 +12,7 @@ export const StyledCard = styled(Paper)(({ theme }: { theme: Theme }) => ({
     borderWidth: '10px',
     borderStyle: 'solid',
 	padding:theme.spacing(1),
-	transition: 'ease-in 1s'
+	// transition: 'ease-in 1s'
 
 }));
 
