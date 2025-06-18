@@ -28,7 +28,7 @@ export const StyleMenuItem = styled(MenuItem)(({ theme }: { theme: Theme }) => (
 
 export const StyledFloatingButton = styled(Fab)(({ theme }: { theme: Theme }) => ({
     position:'absolute',
-    right:'2rem',
+    left:'2rem',
     bottom:'1rem',
     width:'60px',
     height:'60px',
@@ -37,7 +37,7 @@ export const StyledFloatingButton = styled(Fab)(({ theme }: { theme: Theme }) =>
 
 export const StyledFloatingConfirmEventButton = styled(Fab)(({ theme }: { theme: Theme }) => ({
     position:'absolute',
-    left:'2rem',
+    right:'2rem',
     bottom:'1rem',
     width:'60px',
     height:'60px'
