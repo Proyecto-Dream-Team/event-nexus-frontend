@@ -12,6 +12,16 @@
     text-decoration: none;
 }
 
+.titleStyle{
+    margin: 0;
+    color: var(--text-color);
+}
+
+.profile__container{
+    height: 100%;
+    overflow-y: scroll;
+}
+
 
 
 

@@ -1,0 +1,46 @@
+.image-profile{
+    width: 5rem;
+    display: inline-block;
+    margin: 1rem 1rem 1rem 0rem  ;
+    border-radius: 100%;
+}
+
+span{
+    font-weight: 200;
+    font-size: 1.4rem;
+}
+
+.card{
+    display: flex;
+    align-items: center;   
+    color: var(--text-color);
+    background-color: var(--card-directive);
+}
+
+.atributos{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.title{
+    width: 100%;
+    margin: 0;
+    align-items: start;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.name{
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.comment{
+    font-size: 1.1rem;
+    text-align: start;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}

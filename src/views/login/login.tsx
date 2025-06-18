@@ -1,61 +1,83 @@
 import { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ButtonApp } from "../../components/buttons/button";
+import { HexagonBackground } from "../../components/hexagonBackground/hexagonBackg";
 import { InputApp } from "../../components/input/input";
 import { Title } from "../../components/title/title";
-import { loginForm, LoginForm } from "../../domain/datosForm";
+import { useProfileImg } from "../../context/contextImg";
+import { LoginForm } from "../../domain/datosForm";
+import { LoginRequestDTO } from "../../domain/Login";
 import { authService } from "../../services/authService";
 import "./login.css";
-import { LoginRequestDTO } from "../../domain/Login";
-import { useProfileImg } from "../../context/contextImg";
+import { useLoader } from "../../context/loader/useLoader";
+import { TIMELOADER } from "../../utils/config";
+import { useToast } from "../../context/toast/useToast";
 
 export const Login = () => {
-  const [us, setUss] = useState("");
-  const [pass, setPass] = useState("");
-  const navigate = useNavigate();
+	const [us, setUss] = useState("");
+	const [pass, setPass] = useState("");
+	const navigate = useNavigate();
 
-  const { setImg } = useProfileImg();
+	const { setImg } = useProfileImg();
+	const { open, openHTTP } = useToast();
+	const { setIsLoading } = useLoader();
 
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm<LoginForm>({
-    mode: "all",
-    defaultValues: loginForm,
-  });
+	const { register, handleSubmit, getValues, formState: { errors }, reset, } = useForm<LoginForm>({
+		mode: "all",
+		defaultValues: {
+		user: "",
+		password: "",
+		},
+	});
 
-  const handleNavigation = () => {
-    navigate("/home");
-  };
+	const handleNavigation = () => {
+		navigate("/home");
+	};
 
-  const handleLogin = async () => {
-    const { user, password } = getValues(); 
-    setUss(user);
-    setPass(password);
+	const handleLogin = async () => {
+		setIsLoading(true);
+		const { user, password } = getValues();
+		setUss(user);
+		setPass(password);
 
-    try {
-      const credentials = LoginRequestDTO.fromDto(user, password);
-      await authService.loginClient(credentials);
-      handleNavigation();
-      
-      const img = sessionStorage.getItem("img") || ""; 
-      setImg(img);
-    } catch (error) {
-      console.log(error as string);
-    }
-  };
+		try {
+		const credentials = LoginRequestDTO.fromDto(user, password);
+		const loginSuccess = await authService.loginClient(credentials);
+
+		if (loginSuccess) {
+			const img = sessionStorage.getItem("img") || "";
+			setImg(img);
+			reset();
+			setTimeout(() => {
+			setIsLoading(false);
+			handleNavigation();
+			}, TIMELOADER);
+		} else {
+			setTimeout(() => {
+			setIsLoading(false);
+			open("Credenciales incorrectas", "error");
+			reset();
+			}, TIMELOADER);
+		}
+		} catch (error) {
+		if (error instanceof Error && (error as any).response) {
+			openHTTP((error as any).response);
+		} else {
+			open("Ocurrió un error inesperado", "error");
+		}
+		}
+	};
+
+
 
   return (
     <>
-      <div className="titleLogin">
-        <Title title={"Event Nexus"} />
-      </div>
-
       <div className="login-box">
-        <form className="profileFormulary">
+
+        <HexagonBackground></HexagonBackground>
+        <form className="loginFormulary" onSubmit={handleSubmit(handleLogin)}>
+          <Title title={"Event Nexus"} />
           <InputApp
             label="Usuario"
             type="text"
@@ -76,9 +98,18 @@ export const Login = () => {
             readonly={false}
           />
 
+          <h2>
+            <a className="forgotPassword" onClick={() => navigate("/recovery")}>
+
+              Olvidaste tu contraseña?
+            </a>
+          </h2>
+
           <div className="buttonsLogin">
             <ButtonApp
               label="Ingresar"
+			  buttonType="submit"
+			  onSubmitMethod={handleSubmit(handleLogin)}
               method={handleSubmit(handleLogin)}
               isCancel={false}
             />

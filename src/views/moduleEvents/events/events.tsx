@@ -1,61 +1,41 @@
-import { useLocation } from "react-router-dom";
-import { EventCard } from "../../../components/eventCard/event";
-import { EmployeeEvents, EventDto } from "../../../domain/createEvent";
-import { useEffect, useState } from "react";
-import { moduleService } from "../../../services/moduleService";
-import { Title } from "../../../components/title/title";
+import { useState } from "react";
+import { EventCard } from "../../../components/eventCard/eventCard";
+import { EventDto } from "../../../domain/createEvent";
+import { EventFilter } from "./eventFilter";
+import { StyledGrid } from "./event.style";
+import { useNavigate } from "react-router-dom";
+import './events.css'
 
 export const Events = () => {
-  const location = useLocation();
-  const isVisible = location.pathname === "/module-events/all-events";
+	const [events, setEvents] = useState<EventDto[]>();
+	const nav = useNavigate()
 
-  const showAllEvents = location.pathname === "/module-events/all-events";
-  const showMyEvents = location.pathname === "/module-events/my-events";
-  const [events, setEvents] = useState<EventDto[]>();
-  const [eventsEmployee, setEventsEmployee] = useState<EmployeeEvents>();
+	return <>
+		<div className="container__events">
+			<EventFilter eventSetter={setEvents} />
+			<button className="button_floating" onClick={(e) => (nav('/module-events/create-event'))}>+</button>
+			<StyledGrid container>
+				{events?.length ? (
+					events.map((event, index) => (
+						<div
+							key={index}
+							style={{ animationDelay: `${index * 0.3}s` }}
+							className="card-animated"
+						>
+							<EventCard
+								key={event.id}
+								eventDTO={event}
+							/>
+						</div>
 
-  const getEvents = async () => {
-    if (showAllEvents) {
-      const allEvents: EventDto[] = await moduleService.getEvents()
-      setEvents(allEvents);
-    }
-    if (showMyEvents) {
-      const id = Number(sessionStorage.getItem("userId"));
-      const employeeEvents: EmployeeEvents = await moduleService.employeeEvents(id)
-      setEventsEmployee(employeeEvents);
-    }
 
-  };
+					))
+				) : (
+					<h2>No hay eventos</h2>
+				)}
+			</StyledGrid>
+		</div>
 
-  useEffect(() => {
-    getEvents();
-  }, [showAllEvents]);
-
-  return (
-    <>
-      {showAllEvents ? (
-        <>
-          <Title title={"Todos los eventos"} />
-          {events?.map((event, index) => (
-            <EventCard
-              key={event.id || index}
-              event={event as EventDto}
-            />
-          ))}
-        </>
-      ) : (
-        <>
-          <Title title={"Eventos creados"} ></Title>
-          {eventsEmployee?.createdEvents.map((event, index) => (
-            <EventCard key={index} event={event}/>
-          ))}
-
-          <Title title={"Invitaciones"} ></Title>
-          {eventsEmployee?.invitedEvents.map((event, index) => (
-            <EventCard key={index} event={event}/>
-          ))}
-        </>
-      )}
-    </>
-  );
+	</>
 };
+

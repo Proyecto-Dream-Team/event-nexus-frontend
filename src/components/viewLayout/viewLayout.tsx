@@ -4,14 +4,13 @@ import { NavBar } from "../navbar/navbar";
 import "./viewLayout.css";
 
 export const ViewLayout = () => {
-
-  return (
-    <>
-      <Header></Header>
-      <div className="layout-rendering-area">
-        <Outlet></Outlet>
-      </div>
-      <NavBar></NavBar>
-    </>
-  );
+    return (
+        <div className="view-layout">
+            <Header />
+            <div className="outlet-wrapper">
+                <Outlet />
+            </div>
+            <NavBar />
+        </div>
+    );
 };

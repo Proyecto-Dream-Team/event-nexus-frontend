@@ -1,21 +1,35 @@
-
-.login-box{
-    background-color: var(--primary-color);
-    border-radius: 8%;
-    width: 90vw;
-    height: 55vh;
+.login-box {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    margin : 0 auto; 
+    z-index: 2;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+
 }
 
-.buttonsLogin{
-    margin-top: 3rem;
+.loginFormulary {
+    width: 30rem;
+    height: 43rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(3px);
+    /* Efecto de difuminación */
+    background-color: var(--primary-color);
+    background-color: rgba(109, 110, 107, 0.363);
+    border: 1px solid grey;
+    
 }
 
-.titleLogin{
-    margin-top: 8rem;
-    margin-bottom: 5rem;
+.forgotPassword {
+    cursor: pointer;
+    color: rgb(112, 8, 8);
 }

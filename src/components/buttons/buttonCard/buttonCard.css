@@ -1,0 +1,25 @@
+.buttonCard {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 2rem;
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+    text-align: center; /* Ensure text is centered */
+}
+
+.buttonCard-cancel{
+    background: var(--card-red);
+    color: black;
+    /* font-weight: bold; */
+}
+
+.buttonCard-acept{
+    
+    background: var(--card-green);
+    color: black;
+    /* font-weight: bold; */
+}

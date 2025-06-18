@@ -1,0 +1,7 @@
+.create-user {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden; /* evitamos el scroll horizontal */
+    overflow-y: auto;   /* solo si realmente necesitás scroll interno */
+    padding: 0 2rem;
+}

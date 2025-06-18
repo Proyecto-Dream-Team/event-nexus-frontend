@@ -1,12 +1,35 @@
-.button-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+.scroll {
+    /* height: 41rem; */
+    overflow-y: auto;
+} 
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1rem 2rem;
+	animation: fadeInUp 0.6s ease forwards;
 }
-  
-h1{
-    color: var(--white-color);
-    font-size: 2rem;
-    margin: 1rem;
+
+@keyframes fadeInUp {
+	from {
+	opacity: 0;
+	transform: translateY(20px);
+	}
+	to {
+	opacity: 1;
+	transform: translateY(0);
+	}
+}
+
+.image-home {
+	animation: fadeInUp 0.6s ease forwards;
+	animation-delay: .8s;
+	width: 10rem;
+	margin: 1rem auto;
+}
+.card-animated {
+	opacity: 0;
+	animation: fadeInUp 0.6s ease forwards;
 }

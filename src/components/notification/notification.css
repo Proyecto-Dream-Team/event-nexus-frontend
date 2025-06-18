@@ -1,0 +1,46 @@
+
+.notification{
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+    white-space: nowrap; /* Evita que el texto se envuelva */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    display: inline-flex; /* Usa flexbox para centrar texto e iconos */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Espacio entre el texto y el icono, si lo hay */
+    background-color: #5b6271;
+    color: white;
+}
+
+
+.butons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+
+.close{
+    background-color: var(--primary-color);
+    font-size: 1rem;
+    padding: 0;
+    width: 15px;
+    height:15px;
+}
+
+.active{
+    /* background-color: var(--primary-color); */
+    /* opacity:0.5 */
+}
+
+.inactive{
+    /* background-color: var(--primary-color); */
+    opacity:0.5
+}

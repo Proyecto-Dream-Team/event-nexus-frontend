@@ -4,6 +4,7 @@ import { DatosForm } from "../../domain/datosForm";
 import { InputApp } from "../input/input";
 import { ButtonApp } from "./../buttons/button";
 import './profileFormulary.css';
+import { useToast } from "../../context/toast/useToast";
 
 interface PropsFormulary {
   info: DatosForm;
@@ -11,32 +12,37 @@ interface PropsFormulary {
 }
 
 export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
-  const { register, handleSubmit, formState: { errors }, reset} = useForm({
-    mode: "all",
-    defaultValues: info,
-  });
+	const { register, handleSubmit, formState: { errors }, reset} = useForm({
+		mode: "all",
+		defaultValues: info,
+	});
 
-  useEffect(() => {
-    reset(info);
-  }, [info, reset]);
+	const {open} = useToast();
 
-  const onclick = (data: DatosForm) => {
-    
-    if (JSON.stringify(data) !== JSON.stringify(info)) {
-      uploadData(data);
-    } else {
-      console.log("No hay cambios en los datos.");
-    }
-  };
+	useEffect(() => {
+		reset(info);
+	}, [info, reset]);
 
-  const cancel = () => {
-    reset(info);
-  };
+	const onclick = (data: DatosForm) => {
+		
+		if (JSON.stringify(data) !== JSON.stringify(info)) {
+		uploadData(data);
+		} else {
+		open("No hay cambios en el formulario", "error");
+		}
+	};
 
+	const cancel = () => {
+		reset(info);
+	};
 
-  return (
-    <form className='profileFormulary' >
-      <InputApp
+	const HandleCancel = () => {
+		reset(info);
+		open("Cambios cancelados", "warning");
+	};
+  
+/*
+ <InputApp
         label="Nombre"
         type="text"
         register={register("nombre")}
@@ -51,6 +57,11 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
         readonly={true}
         error={errors.apellido?.message || ""}
       />
+*/
+
+  return (
+    <form className='profileFormulary' style={{overflowY:'scroll'}} >
+     
 
       <InputApp
         label="Telefono"
@@ -95,7 +106,7 @@ export const ProfileFormulary = ({ info, uploadData }: PropsFormulary) => {
       />
 
       <div className="buttons">
-        <ButtonApp label="Cancelar" method={handleSubmit(cancel)} isCancel={true} />
+        <ButtonApp label="Cancelar" method={HandleCancel} isCancel={true} />
         <ButtonApp label="Aceptar" method={handleSubmit(onclick)} isCancel={false} />
       </div>
     </form>

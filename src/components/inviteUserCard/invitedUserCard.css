@@ -1,0 +1,30 @@
+.interactiveUserCard{
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid var(--user-card-border);
+    display: flex;
+    flex-direction: row;
+    /* margin: 0 auto; */
+    /* margin-bottom: 2rem; */
+    justify-content: space-around;
+    border-radius:1rem;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(7, 30, 105, 0.19);
+}
+
+
+.title{
+
+}
+
+.img{
+    width: 6rem;
+    margin: 1rem;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+}
+
+.icon{
+
+}
+
