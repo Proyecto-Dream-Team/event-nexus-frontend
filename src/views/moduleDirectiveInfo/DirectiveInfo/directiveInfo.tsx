@@ -90,6 +90,7 @@ export const DirectiveInfo = () => {
                         <StyledFloatingButton 
                             color= { showCreate ? "error" : "primary"  }  
                             aria-label="add" 
+                            sx={{'&:hover':{backgroundColor: !showCreate ? 'primary.main' : 'error.main'}}}
                             onClick={() => setShowCreate(!showCreate)}
                         >
                             { showCreate ? (
@@ -144,6 +145,7 @@ export const DirectiveInfo = () => {
                                                 color="primary"
                                                 size='small'
                                                 variant={priority === 'INFORMATIVO' ? 'filled' : 'outlined'}
+                                                sx={{'&:hover':{backgroundColor:'primary.main'}}}
                                                 onClick={() => setPriority('INFORMATIVO')}
                                             />
                                         </Box>
@@ -151,8 +153,9 @@ export const DirectiveInfo = () => {
                                     <Button
                                         variant="contained"
                                         color="primary"
+                                        className='mock-para-pica'
                                         onClick={createDirective}
-                                        sx={{ borderRadius: '1rem', height: '11rem' , marginTop : 1.5 }}
+                                        sx={{ borderRadius: '1rem', height: '11rem' , marginTop : 1.5, '&:hover':{backgroundColor:'primary.main'} }}
                                     >
                                         Crear
                                     </Button>

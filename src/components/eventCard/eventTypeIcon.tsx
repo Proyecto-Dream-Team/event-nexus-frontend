@@ -8,7 +8,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import { Tooltip } from "@mui/material";
 import DeviceUnknownIcon from '@mui/icons-material/DeviceUnknown';
-import { eventColorMapping } from "../../utils/typeEvent";
+import { eventColorMapping, eventShadowColor2 } from "../../utils/typeEvent";
 export function mapEventTypeToIcon(eventType: EventCategory) {
         const styles = {
                 cursor:'pointer',
@@ -18,7 +18,7 @@ export function mapEventTypeToIcon(eventType: EventCategory) {
                 // margin:'1rem',
                 width:'3rem',
                 height:'3rem',
-                borderColor:`${eventColorMapping[eventType]}`
+                borderColor:`${eventShadowColor2[eventType]}`
         }
     return <>
         <Tooltip

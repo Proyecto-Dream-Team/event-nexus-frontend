@@ -1,7 +1,6 @@
 import { Grid, styled, Theme } from "@mui/material";
 
 export const StyledGrid = styled(Grid)(({ theme }:{ theme:Theme }) => ({
-    // backgroundColor: "#444f66",
     height: '100%',
 	display: 'grid',
 	gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 25rem), 1fr))',

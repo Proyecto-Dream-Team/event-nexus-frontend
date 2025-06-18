@@ -12,7 +12,6 @@ import { credentialService } from "../../services/credentials.service";
 import { useLoader } from "../../context/loader/useLoader";
 import { useToast } from "../../context/toast/useToast";
 import { TIMELOADER } from "../../utils/config";
-import { cat } from "@cloudinary/url-gen/qualifiers/focusOn";
 
 export const CredentialsComponent = () => {
 
