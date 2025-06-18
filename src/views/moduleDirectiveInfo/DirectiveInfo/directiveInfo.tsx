@@ -40,6 +40,7 @@ export const DirectiveInfo = () => {
 
         try {
             await directiveInfoService.createDirectiveInfo(newDirective);
+            setShowCreate(false)
             resetValues()
         } catch (error: any) {
             console.error("Error al crear directiva:", error.message);
