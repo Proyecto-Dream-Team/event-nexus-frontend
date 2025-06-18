@@ -28,10 +28,12 @@ export const InviteUserCard = ({ user, click, invited }: userCard) => {
     }, [invited])
     return (
         <div className="interactiveUserCard">
-            <img className="img" src={img} alt="profile" />
-            <div className="title">
-                <h4>{user.name + " " + user.lastname}</h4>
-                <h4>{user.rol}</h4>
+            <div className="identifier">
+                <img className="img" src={user.image} alt="profile" />
+                <div className="title">
+                    <h4>{user.name + " " + user.lastname}</h4>
+                    <h4>{user.rol}</h4>
+                </div>
             </div>
             <div className='icon'>
                 {invited ?
