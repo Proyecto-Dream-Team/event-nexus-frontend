@@ -139,7 +139,6 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
                     error={errors.email?.message || ""}
                 />
 
-                <Title title={"Permisos"} />
                 <div className="event-type-selector">
                         <div className="container__label">
                             <label className="input-label">Permisos</label>
@@ -177,7 +176,6 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
                         )}
                     </div>
 
-                <Title title={"Roles"} />
                 <div className="event-type-selector">
                         <div className="container__label">
                             <label className="input-label">Roles</label>

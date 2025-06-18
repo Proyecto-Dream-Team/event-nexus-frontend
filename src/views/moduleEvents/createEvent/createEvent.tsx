@@ -54,6 +54,10 @@ export const CreateEvent = () => {
         }
     }
 
+    function handleCreateEvent(){
+        handleSubmit(create);
+        nav('/module-events/events');
+    }
     async function getAvaliableUsers() {
         const response = await serviceUser.search("");
         console.log(response);
@@ -191,10 +195,7 @@ export const CreateEvent = () => {
                         color="success"
                         aria-label="add"
                         type="submit"
-                        onSubmit={ (e) => {
-                            handleSubmit(create)
-                            console.log('mock')}
-                        }
+                        onSubmit={ (e) => {handleCreateEvent}}
                         sx={{ backgroundColor: 'forest' }}
                     >
                         <CheckIcon />

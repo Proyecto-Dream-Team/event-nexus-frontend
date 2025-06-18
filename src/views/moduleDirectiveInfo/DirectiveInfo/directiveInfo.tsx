@@ -112,7 +112,7 @@ export const DirectiveInfo = () => {
                                             fullWidth
                                             value={title}
                                             onChange={(e) => setTitle(e.target.value)}
-                                            sx={{ backgroundColor: 'white', borderRadius: '1rem' }}
+                                            sx={{ backgroundColor: 'var(--text-color--inverted)', borderRadius: '1rem' }}
                                         />
                                         <TextField
                                             label="Descripción"
@@ -121,7 +121,7 @@ export const DirectiveInfo = () => {
                                             fullWidth
                                             value={description}
                                             onChange={(e) => setDescription(e.target.value)}
-                                            sx={{ backgroundColor: 'white', borderRadius: '1rem' }}
+                                            sx={{ backgroundColor: 'var(--text-color--inverted)', borderRadius: '1rem' }}
                                         />
 
                                         <Box sx={{ display: 'flex', gap: 1 , width: '35%', margin: 0}}>

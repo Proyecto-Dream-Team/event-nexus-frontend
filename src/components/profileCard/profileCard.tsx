@@ -1,6 +1,6 @@
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import {Button,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useProfileImg } from "../../context/contextImg";
@@ -34,24 +34,24 @@ export const ProfileCard = ({ user, click }: userCard) => {
 
     return (
         <div className="profile-box">
-            <div className="row">
-                <img className="img" src={img} alt="profile" />
+            <div className="identifier">
+                <img className="img" src={user.image} alt="profile" />
                 <div className="title">
                     <h4>{user.name + " " + user.lastname}</h4>
                     <h4>{user.rol}</h4>
                 </div>
-                <div className='icon'>
-                    <CreateIcon
-                        fontSize='inherit'
-                        style={{ color: 'green', fontSize: 28 }}
-                        onClick={toUpdate}
-                    />
-                    <DeleteForeverIcon
-                        fontSize='inherit'
-                        style={{ color: 'red', fontSize: 30 }}
-                        onClick={handleOpen}
-                    />
-                </div>
+            </div>
+            <div className='icon'>
+                <CreateIcon
+                    fontSize='inherit'
+                    style={{ color: 'green', fontSize: 28 }}
+                    onClick={toUpdate}
+                />
+                <DeleteForeverIcon
+                    fontSize='inherit'
+                    style={{ color: 'red', fontSize: 30 }}
+                    onClick={handleOpen}
+                />
             </div>
 
             {/* Diálogo de confirmación de eliminación */}
