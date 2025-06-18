@@ -5,7 +5,7 @@ import { serviceUser } from '../../../services/serviceUser'
 import './directiveInfo.css'
 import { directiveInfoService } from '../../../services/directiveInfoService'
 import { Box, Button, Chip, TextField } from '@mui/material'
-import { StyledFloatingButton } from '../../moduleEvents/events/eventFilter.style'
+import { StyledFloatingButton, StyledFloatingButtonRight } from '../../moduleEvents/events/eventFilter.style'
 import { Add } from '@mui/icons-material'
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
@@ -77,7 +77,6 @@ export const DirectiveInfo = () => {
         getDirectives()
     }, []);
 
-
     return (
         <>
             <div className='scrollable'>
@@ -88,7 +87,7 @@ export const DirectiveInfo = () => {
                 </section>
                 {canCreate ? (
                     <>
-                        <StyledFloatingButton 
+                        <StyledFloatingButtonRight 
                             color= { showCreate ? "error" : "primary"  }  
                             aria-label="add" 
                             sx={{'&:hover':{backgroundColor: !showCreate ? 'primary.main' : 'error.main'}}}
@@ -100,7 +99,7 @@ export const DirectiveInfo = () => {
                                     <NorthIcon/>
                                 )
                             }
-                        </StyledFloatingButton>
+                        </StyledFloatingButtonRight>
 
                         <div className={`create-directive ${showCreate ? 'show' : ''}`}>
                                 {canCreate && (

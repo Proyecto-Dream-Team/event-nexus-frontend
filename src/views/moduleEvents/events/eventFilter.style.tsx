@@ -35,6 +35,15 @@ export const StyledFloatingButton = styled(Fab)(({ theme }: { theme: Theme }) =>
     // backgroundColor: theme.palette.
 }));
 
+export const StyledFloatingButtonRight = styled(Fab)(({ theme }: { theme: Theme }) => ({
+    position:'absolute',
+    right:'2rem',
+    bottom:'1rem',
+    width:'60px',
+    height:'60px',
+    // backgroundColor: theme.palette.
+}));
+
 export const StyledFloatingConfirmEventButton = styled(Fab)(({ theme }: { theme: Theme }) => ({
     position:'absolute',
     right:'2rem',

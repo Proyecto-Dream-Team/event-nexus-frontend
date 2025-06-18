@@ -7,7 +7,7 @@ import { ProfileCard } from "../../../components/profileCard/profileCard";
 import { serviceUser } from "../../../services/serviceUser";
 import { adminService } from "../../../services/adminService";
 import AddIcon from '@mui/icons-material/Add';
-import { StyledFloatingButton } from "../../moduleEvents/events/eventFilter.style";
+import { StyledFloatingButton, StyledFloatingButtonRight } from "../../moduleEvents/events/eventFilter.style";
 import { useNavigate } from "react-router-dom";
 
 
@@ -57,9 +57,9 @@ export const SearchUser = () => {
 		<section className="section">
 			<h1>Buscar usuarios</h1>
 			<h3>Aqui puedes editar o eliminar a los usuarios</h3>
-			<StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/create-user'))}>
+			<StyledFloatingButtonRight color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/create-user'))}>
 			<AddIcon />
-			</StyledFloatingButton>
+			</StyledFloatingButtonRight>
 			<div
 				ref={containerRef}
 				className={`search-container ${expanded ? "expanded" : ""}`}
