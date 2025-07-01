@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
 import { EventDto } from "../../../domain/createEvent";
 import { getEventTypes, } from "../../../services/moduleService";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { ClickAwayListener, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { EventCategory } from "../../../domain/eventTypes";
 import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -87,8 +87,11 @@ export const EventFilter = (
         getEvents();
     }, [eventCategory, filterStrategy]);
 
+    
+
 
     return <>
+    <ClickAwayListener onClickAway={() => filterOpen && setFilterOpen(false)}>
         <div className="container__filter">
             Filtrar por
             
@@ -121,6 +124,7 @@ export const EventFilter = (
             }
 
         </div>
+    </ClickAwayListener>
 
         {filterMode === "title" &&
             <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)', alignSelf: 'center' }}>
