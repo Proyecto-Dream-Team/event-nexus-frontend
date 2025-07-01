@@ -19,7 +19,7 @@ export const NotificationComponent = () => {
 	const id = Number(sessionStorage.getItem("userId"));
 	const [activeNotifications, setActiveNotifications] = useState(false);
 
-	let eventSource: EventSource | null = null;
+	const eventSource: EventSource | null = null;
 
 	const handleOpen = async () => {
 		const notifications = await getNotificationsByUserId(id)

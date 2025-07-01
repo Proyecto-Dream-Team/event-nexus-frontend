@@ -1,9 +1,11 @@
 .scrollable{
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(3, 1fr);
+	/* height: 100%; */
 	/* overflow-y: scroll; */
 	gap: 1rem;	
+	padding: 5rem;
 }
 
 /* background-color: #444f66; */
