@@ -26,7 +26,6 @@ export const EventFilter = (
     const [filterMode, setFilterMode] = useState<FilterMode>("all")
     const [filterStrategy, setFilterStrategy] = useState<FilterOption>(new AllEventsOption);
     const [eventTypes, setEventTypes] = useState<EventCategory[]>()
-    // let filterOpen: boolean = false
     const [filterOpen, setFilterOpen] = useState<boolean>()
     async function noFilterStrategy() {
         setFilterMode("all");
@@ -94,7 +93,6 @@ export const EventFilter = (
     {/** Componente de Material UI que me permite esuchar los clicks y asignarle un evento */}
     <ClickAwayListener onClickAway={() => filterOpen && setFilterOpen(false)}>  
         <div className="container__filter">
-            Filtrar por
             
             <button
                 className="filter"
@@ -103,8 +101,9 @@ export const EventFilter = (
                     console.log(filterOpen)
                     setFilterOpen((prev) => !prev)
                     console.log(filterOpen)
-                }}>
-                <strong> {options[selectedIndex]}</strong>
+            }}>
+                Filtrar por 
+                <strong>   {options[selectedIndex]}</strong>
                 {filterOpen ?
                     <><KeyboardArrowUpIcon /></> :
                     <><KeyboardArrowDownIcon /></>
