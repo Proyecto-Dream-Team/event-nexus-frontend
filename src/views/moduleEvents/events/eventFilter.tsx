@@ -74,6 +74,7 @@ export const EventFilter = (
         if (options[index] === "Creados") await filterByCreatedStrategy();
         if (options[index] === "Invitaciones") await filterByInvitedStrategy();
         setSelectedIndex(index);
+        setFilterOpen(false)
     };
 
     const getEvents = async () => {
