@@ -91,7 +91,8 @@ export const EventFilter = (
 
 
     return <>
-    <ClickAwayListener onClickAway={() => filterOpen && setFilterOpen(false)}>
+    {/** Componente de Material UI que me permite esuchar los clicks y asignarle un evento */}
+    <ClickAwayListener onClickAway={() => filterOpen && setFilterOpen(false)}>  
         <div className="container__filter">
             Filtrar por
             
