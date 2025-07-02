@@ -1,10 +1,12 @@
 .card{
     padding: 1.8rem;
     background-color: var(--home-card-bg);
+    height: 22rem;
 }
 
 .contenido-card {
     display: grid;
+    max-width: 50rem;
     grid-template-columns: 2fr 1fr;
     gap: 1rem;
 }
@@ -15,19 +17,22 @@
 
 .text {
     grid-column:  1/2;
+    height: 10rem;
+    align-items: center;
     border-right: solid 1px gray;
     text-align: start;
     align-self: center;
+    align-content: center;
     padding-right:  1rem ;
 }
 
 .icon-module{
     grid-column: 2/3;
     grid-row: 2/3;
-    width: 80%;
+    width: 10rem;
     align-self: center;
-    /* fill: var(--home-card-button); */
-    /* color: var(--fixed-text-color-light); */
+    justify-content: center;
+    padding: 1rem;
 }
 
 .icono{
