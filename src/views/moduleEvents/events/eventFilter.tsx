@@ -27,12 +27,11 @@ export const EventFilter = (
     const [eventTypes, setEventTypes] = useState<EventCategory[]>()
     const [filterOpen, setFilterOpen] = useState<boolean>(false)
     const [categoryFilterOpen, setCategoryFilterOpen] = useState<boolean>(false);
-
     const [searchValue, setSearchValue] = useState("");
     const [searchExpanded, setSearchExpanded] = useState(false);
     const searchContainerRef = useRef<HTMLDivElement>(null);
+    const filterContainerRef = useRef<HTMLDivElement>(null); 
 
-    // ... (resto de las funciones y hooks sin cambios)
     async function noFilterStrategy() {
         setFilterMode("all");
         setFilterStrategy(new AllEventsOption());
@@ -86,7 +85,7 @@ export const EventFilter = (
         if (options[index] === "Creados") await filterByCreatedStrategy();
         if (options[index] === "Invitaciones") await filterByInvitedStrategy();
         setSelectedIndex(index);
-        setFilterOpen(false);
+        setFilterOpen(false); // Cierra el menú al hacer clic en una opción
     };
 
     const getEvents = async () => {
@@ -99,24 +98,28 @@ export const EventFilter = (
     }, [eventCategory, filterStrategy]);
 
     useEffect(() => {
-        const clickOut = (event: MouseEvent) => {
-            if (
-                searchContainerRef.current &&
-                !searchContainerRef.current.contains(event.target as Node)
-            ) {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
                 setSearchExpanded(false);
             }
+            if (filterContainerRef.current && !filterContainerRef.current.contains(event.target as Node)) {
+                setFilterOpen(false);
+                setCategoryFilterOpen(false);
+            }
         };
-        document.addEventListener("mousedown", clickOut);
+
+        document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            document.removeEventListener("mousedown", clickOut);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
+    }, []); 
 
 
     return <>
-        {/* --- 1. Contenedor principal para los filtros desplegables --- */}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+        <div 
+            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}
+            ref={filterContainerRef} 
+        >
             <div className="container__filter">
                 Filtrar por
                 <button
@@ -145,7 +148,6 @@ export const EventFilter = (
                 }
             </div>
 
-            {/* --- 2. El filtro de categoría ahora está dentro del mismo contenedor flex --- */}
             {filterMode === "type" &&
                 <div className="container__filter">
                     <button
@@ -168,7 +170,7 @@ export const EventFilter = (
                                     className="filter__option"
                                     onClick={() => {
                                         setEventCategory(type);
-                                        setCategoryFilterOpen(false);
+                                        setCategoryFilterOpen(false); 
                                     }}
                                 >
                                     {type}
@@ -180,8 +182,6 @@ export const EventFilter = (
             }
         </div>
 
-
-        {/* El buscador se mantiene separado para su propio layout */}
         {filterMode === "title" &&
             <div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '1rem 0' }}>
                 <div
