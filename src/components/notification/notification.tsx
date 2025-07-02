@@ -5,6 +5,7 @@ import { NotificationDTO } from "../../domain/notification";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
 
 import './notification.css';
+import { max } from "@cloudinary/url-gen/actions/roundCorners";
 
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -101,7 +102,8 @@ const handleClose = () => {
 		overflowY: 'scroll',
 		gap: 2,
 		width: 250,
-		height: 400,
+		height: 'auto',
+		maxHeight: '70vh',
 		top: '6rem',
 		right: 0,
 		bgcolor: 'var(--header-nav)',
