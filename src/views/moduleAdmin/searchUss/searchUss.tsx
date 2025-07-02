@@ -24,9 +24,9 @@ export const SearchUser = () => {
 		setUsers(response);
 	};
 
-	useEffect(() =>{
-			fetchUSer()
-	},[])
+	useEffect(() => {
+		fetchUSer()
+	}, [])
 
 	const deleteUser = async (id: number) => {
 		// TODO implementar la eliminacion de usuario
@@ -38,7 +38,8 @@ export const SearchUser = () => {
 	}
 
 	// Cerrar input si se clickea fuera
-	useEffect(() => {const clickOut = (event: MouseEvent) => {
+	useEffect(() => {
+		const clickOut = (event: MouseEvent) => {
 			if (
 				containerRef.current &&
 				!containerRef.current.contains(event.target as Node)
@@ -56,14 +57,13 @@ export const SearchUser = () => {
 	return (
 		<section className="section">
 			<h1>Buscar usuarios</h1>
-			<h3>Aqui puedes editar o eliminar a los usuarios</h3>
 			<StyledFloatingButtonRight color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/create-user'))}>
-			<AddIcon />
+				<AddIcon />
 			</StyledFloatingButtonRight>
 			<div
 				ref={containerRef}
 				className={`search-container ${expanded ? "expanded" : ""}`}
-				onClick={() => setExpanded(true)}
+				onClick={() => setExpanded(!expanded)}
 			>
 				<input
 					type="text"
@@ -84,7 +84,7 @@ export const SearchUser = () => {
 					style={{ fontSize: 36, background: "transparent", width: "auto" }}
 				/>
 			</div>
-
+			<h3>Aqui puedes editar o eliminar a los usuarios</h3>
 			<div className="usuarios">
 				{users?.map((item, index) => (
 					<div

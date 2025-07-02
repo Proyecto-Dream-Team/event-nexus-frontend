@@ -1,5 +1,5 @@
 .profile-box{
-    width: 45rem;
+    width: 100%;
     background-color: transparent;
     border: 1px solid var(--user-card-border);
     display: flex;
@@ -48,4 +48,3 @@
     justify-content: space-around;
     align-items: center;
 }
-
