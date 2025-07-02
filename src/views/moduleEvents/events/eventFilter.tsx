@@ -1,11 +1,11 @@
-import { Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
-import { EventDto } from "../../../domain/createEvent";
-import { getEventTypes, } from "../../../services/moduleService";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { EventCategory } from "../../../domain/eventTypes";
-import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import SearchIcon from "@mui/icons-material/Search";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { EventDto } from "../../../domain/createEvent";
+import { EventCategory } from "../../../domain/eventTypes";
+import { getEventTypes, } from "../../../services/moduleService";
+import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
 
 const options = [
     'Sin filtro',
@@ -20,14 +20,19 @@ type FilterMode = "all" | "title" | "type" | "created" | "invited";
 export const EventFilter = (
     { eventSetter }: { eventSetter: Dispatch<SetStateAction<EventDto[] | undefined>> }
 ) => {
-    const inputRef = useRef<HTMLInputElement>(null);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [eventCategory, setEventCategory] = useState<EventCategory>("SOCIAL");
     const [filterMode, setFilterMode] = useState<FilterMode>("all")
     const [filterStrategy, setFilterStrategy] = useState<FilterOption>(new AllEventsOption);
     const [eventTypes, setEventTypes] = useState<EventCategory[]>()
-    // let filterOpen: boolean = false
-    const [filterOpen, setFilterOpen] = useState<boolean>()
+    const [filterOpen, setFilterOpen] = useState<boolean>(false)
+    const [categoryFilterOpen, setCategoryFilterOpen] = useState<boolean>(false);
+
+    const [searchValue, setSearchValue] = useState("");
+    const [searchExpanded, setSearchExpanded] = useState(false);
+    const searchContainerRef = useRef<HTMLDivElement>(null);
+
+    // ... (resto de las funciones y hooks sin cambios)
     async function noFilterStrategy() {
         setFilterMode("all");
         setFilterStrategy(new AllEventsOption());
@@ -55,12 +60,19 @@ export const EventFilter = (
         setFilterStrategy(new EventsByInvitation());
     }
 
+    const executeTitleSearch = async () => {
+        if (filterMode === 'title') {
+            const events: EventDto[] = await filterStrategy.getEvents(searchValue, eventCategory);
+            eventSetter(events);
+        }
+    };
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        console.log(inputRef.current?.value);
-        if (inputRef.current) {
-            getEvents();
+    const handleSearchIconClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (searchExpanded) {
+            executeTitleSearch();
+        } else {
+            setSearchExpanded(true);
         }
     };
 
@@ -74,90 +86,125 @@ export const EventFilter = (
         if (options[index] === "Creados") await filterByCreatedStrategy();
         if (options[index] === "Invitaciones") await filterByInvitedStrategy();
         setSelectedIndex(index);
+        setFilterOpen(false);
     };
 
     const getEvents = async () => {
-        const events: EventDto[] = await filterStrategy.getEvents(inputRef.current?.value!, eventCategory);
+        const events: EventDto[] = await filterStrategy.getEvents("", eventCategory);
         eventSetter(events);
     };
-
 
     useEffect(() => {
         getEvents();
     }, [eventCategory, filterStrategy]);
 
+    useEffect(() => {
+        const clickOut = (event: MouseEvent) => {
+            if (
+                searchContainerRef.current &&
+                !searchContainerRef.current.contains(event.target as Node)
+            ) {
+                setSearchExpanded(false);
+            }
+        };
+        document.addEventListener("mousedown", clickOut);
+        return () => {
+            document.removeEventListener("mousedown", clickOut);
+        };
+    }, []);
+
 
     return <>
-        <div className="container__filter">
-            Filtrar por
-            
-            <button
-                className="filter"
-                onClick={(e) => {
-                    e.preventDefault()
-                    console.log(filterOpen)
-                    setFilterOpen((prev) => !prev)
-                    console.log(filterOpen)
-                }}>
-                <strong> {options[selectedIndex]}</strong>
-                {filterOpen ?
-                    <><KeyboardArrowUpIcon /></> :
-                    <><KeyboardArrowDownIcon /></>
-                }
-            </button>
+        {/* --- 1. Contenedor principal para los filtros desplegables --- */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <div className="container__filter">
+                Filtrar por
+                <button
+                    className="filter"
+                    onClick={(e) => {
+                        e.preventDefault()
+                        setCategoryFilterOpen(false);
+                        setFilterOpen((prev) => !prev)
+                    }}>
+                    <strong> {options[selectedIndex]}</strong>
+                    {filterOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </button>
 
-            {filterOpen &&
-                <div className="filter__options">
-                    {options.map((option, index) => (
-                        <div
-                            className="filter__option"
-                            onClick={(event) => handleMenuItemClick(event, index)}
-                        >
-                            {option}
+                {filterOpen &&
+                    <div className="filter__options">
+                        {options.map((option, index) => (
+                            <div
+                                key={index}
+                                className="filter__option"
+                                onClick={(event) => handleMenuItemClick(event, index)}
+                            >
+                                {option}
+                            </div>
+                        ))}
+                    </div>
+                }
+            </div>
+
+            {/* --- 2. El filtro de categoría ahora está dentro del mismo contenedor flex --- */}
+            {filterMode === "type" &&
+                <div className="container__filter">
+                    <button
+                        className="filter"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setFilterOpen(false);
+                            setCategoryFilterOpen((prev) => !prev);
+                        }}
+                    >
+                        <strong>{eventCategory}</strong>
+                        {categoryFilterOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </button>
+
+                    {categoryFilterOpen &&
+                        <div className="filter__options">
+                            {eventTypes?.map((type, index) => (
+                                <div
+                                    key={index}
+                                    className="filter__option"
+                                    onClick={() => {
+                                        setEventCategory(type);
+                                        setCategoryFilterOpen(false);
+                                    }}
+                                >
+                                    {type}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    }
                 </div>
             }
-
         </div>
 
-        {filterMode === "title" &&
-            <form onSubmit={handleSubmit} style={{ width: 'min(100%, 50rem)', alignSelf: 'center' }}>
-                <TextField
-                    required
-                    // id="outlined-required"
-                    label="titulo del evento"
-                    color="info"
-                    inputRef={inputRef}
-                    sx={{ width: '100%' }}
-                />
-            </form>
-        }
-        {filterMode === "type" &&
-            <FormControl fullWidth sx={{ width: 'min(100%, 50rem)', alignSelf: 'center' }}>
-                <InputLabel id="demo-simple-select-label">CATEGORIA</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    label="Age"
-                    value={eventCategory}
-                    sx={{ borderColor: 'red' }}
-                >
-                    {eventTypes?.map((eventType, index) => (
-                        <MenuItem
-                            key={eventType}
-                            value={eventType}
-                            sx={{ height: '5rem' }}
-                            onClick={(e) => {
-                                setEventCategory(eventTypes[index])
-                                console.log(eventTypes[index])
-                            }}
-                        >
-                            {eventType}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-        }
 
+        {/* El buscador se mantiene separado para su propio layout */}
+        {filterMode === "title" &&
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '1rem 0' }}>
+                <div
+                    ref={searchContainerRef}
+                    className={`search-container ${searchExpanded ? "expanded" : ""}`}
+                    onClick={() => setSearchExpanded(true)}
+                >
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Buscar evento por título..."
+                        className="search-input"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        onKeyDown={(e) => { if (e.key === "Enter") { executeTitleSearch(); } }}
+                    />
+                    <SearchIcon
+                        className="search-icon"
+                        onClick={handleSearchIconClick}
+                        style={{ fontSize: 36, background: "transparent", width: "auto" }}
+                    />
+                </div>
+            </div>
+        }
     </>
 };
