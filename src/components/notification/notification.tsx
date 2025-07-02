@@ -9,9 +9,6 @@ import { useToast } from "../../context/toast/useToast";
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const {open} = useToast()
-	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
-
-	// ESTO HAY QUE ACOPLARLO A UNO SOLO, ES EL MISMO ESTADO. UN OBJECTO QUE MANEJE NUEVAS Y T0DAS
 	const [notifications, setNotifications] = useState<NotificationDTO[]>([]);
 	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [unreadCount, setUnreadCount] = useState(0);
@@ -64,17 +61,8 @@ export const NotificationComponent = () => {
 	}
 
 	useEffect(() => {
-		// trySSE(setUnreadCount)
 		const fetchNotifications = async () => {
 			const newNotifications = await getNotificationsByUserId(id);
-
-			// if (!open) {
-			// 	setUnreadCount(newNotifications.length);
-			// }
-			// if (!open) {
-			// 	setUnreadCount(newNotifications.length);
-			// }
-
 			setNotifications(newNotifications);
 		};
 		fetchNotifications();
@@ -87,14 +75,13 @@ export const NotificationComponent = () => {
 		flexDirection: 'column',
 		overflowY: 'scroll',
 		gap: 2,
-		width: 300,
+		width: 250,
 		height: 400,
-		top: '60%',
-		right: '2%',
-		//transform: 'translate(-50%, 10%)',
+		top: '6rem',
+		right: 0,
 		bgcolor: 'var(--header-nav)',
-		border: '2px solid #000',
-		borderRadius: '2rem',
+		border: 'none',
+		borderRadius: '0 0 0 1rem',
 		float: "right",
 		p: 4,
 		zIndex: 9999
@@ -103,7 +90,7 @@ export const NotificationComponent = () => {
 	const style2 = {
 		height: 100,
 		bgcolor: '#5b6271',
-		border: '1px solid #000',
+		border: '10px solid #000',
 		borderRadius: '1rem',
 		boxShadow: 10,
 		color: "#fffffff",
@@ -134,7 +121,7 @@ export const NotificationComponent = () => {
 						src="/icons/notification.svg"
 						alt="Notificación"
 						className="notificationIcon"
-						style={{ width: 40, height: 40 }}
+						style={{ width: 35, height: 35, cursor: 'pointer' }}
 					/>
 				</Badge>
 			</div>
@@ -145,11 +132,9 @@ export const NotificationComponent = () => {
 					<div className="butons">
 						<button onClick={activateNotifications} className="notification activable inactive">{activeNotifications ? "Desactivar" : "Activar"} notificaciones</button>
 						<button onClick={handleActivate} className="notification toggle">{onlyNew ? "Nuevas" : "Todas"}</button>
-						<button onClick={handleClose} className="notification close">X</button>
 					</div>
 
 					{onlyNew ? (
-						// Display new notifications
 						newNotifications.length === 0 ? (
 							<Typography sx={{ mt: 2 }}>No tienes notificaciones nuevas.</Typography>
 						) : (
