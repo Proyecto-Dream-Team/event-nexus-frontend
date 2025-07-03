@@ -20,16 +20,15 @@
 .header-center {
 	position: absolute;
 	left: 50%; /* Mueve el borde izquierdo del hijo al 50% del ancho del padre */
-	transform: translateX(-50%); /* Ajusta el elemento hacia la izquierda en un 50% de su PROPIO ancho */
+	transform: translateX(-50%); 
 	/* justify-self: center; */
 }
 
 .header-title {
-	background-color: var(--header-nav);
+	/* background-color: var(--header-nav); */
 	color: var(--fixed-text-color-light);
 	padding: 2.5rem 2rem;
-	border-radius: 50%;
-	font-size: 2rem;
+	font-size: 1.6rem;
 	text-align: center;
 }
 	
