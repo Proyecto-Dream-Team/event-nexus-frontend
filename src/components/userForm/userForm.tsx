@@ -53,16 +53,16 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
         setRolTypeMode(prev => !prev);
     }
     function changeSelectPermTypeMode() {
-        setPermTypeMode(prev => !prev);
+        setPermTypeMode(!permTypeMode);
     }
 
 
     return (
         <>
-        <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/search-user'))} sx={{ backgroundColor: 'crimson' }}>
-                        <Cancel />
-        </StyledFloatingButton>
-            <form className="profileFormulary"   onSubmit={handleSubmit(click)} >
+            <StyledFloatingButton color="primary" aria-label="add" onClick={(e) => (nav('/module-admin/search-user'))} sx={{ backgroundColor: 'crimson' }}>
+                <Cancel />
+            </StyledFloatingButton>
+            <form className="profileFormulary" onSubmit={handleSubmit(click)} >
                 <InputApp
                     label="Nombre"
                     type="text"
@@ -140,93 +140,93 @@ export const UserForm = ({ userForm, click }: FormularyProps) => {
                 />
 
                 <div className="event-type-selector">
-                        <div className="container__label">
-                            <label className="input-label">Permisos</label>
-                            <button className="button__collapse-expand" onClick={(e) => { e.preventDefault(); changeSelectPermTypeMode() }}>
-                                {rolTypeMode ?
-                                    <><KeyboardArrowUpIcon /></> :
-                                    <><KeyboardArrowDownIcon /></>
-                                }
-
-                            </button>
-                        </div>
-                        <div className="event-type-options">
-                            {permTypeMode && <>
-                                {permisos?.map((perm, index) => {
-                                    return (
-                                        <BoxInput
+                    <div className="container__label">
+                        <label className="input-label">Permisos</label>
+                        <button className="button__collapse-expand" onClick={(e) => { e.preventDefault(); changeSelectPermTypeMode() }}>
+                            {permTypeMode ?
+                                <><KeyboardArrowUpIcon /></> :
+                                <><KeyboardArrowDownIcon /></>
+                            }
+                        </button>
+                    </div>
+                    <div className="event-type-options">
+                        {permTypeMode && <>
+                            {permisos?.map((perm, index) => {
+                                return (
+                                    <BoxInput
                                         key={index}
                                         label={perm}
                                         value={perm}
                                         register={register("permisos", {
                                             required: "El permiso es obligatorio",
-                                })}
-                        />
-                                    );
-                                })}
-                            </>}
+                                        })}
+                                    />
+                                );
+                            })}
+                        </>}
 
-                        </div>
-                        {errors.permisos?.message && (
-                            <div className="error-container">
-                                <p className="error-message">
-                                    {typeof errors.permisos?.message === "string" ? errors.permisos.message : ""}
-                                </p>
-                            </div>
-                        )}
                     </div>
+                    {errors.permisos?.message && (
+                        <div className="error-container">
+                            <p className="error-message">
+                                {typeof errors.permisos?.message === "string" ? errors.permisos.message : ""}
+                            </p>
+                        </div>
+                    )}
+                </div>
 
                 <div className="event-type-selector">
-                        <div className="container__label">
-                            <label className="input-label">Roles</label>
-                            <button className="button__collapse-expand" onClick={(e) => { e.preventDefault(); changeSelectRolTypeMode() }}>
-                                {rolTypeMode ?
-                                    <><KeyboardArrowUpIcon /></> :
-                                    <><KeyboardArrowDownIcon /></>
-                                }
+                    <div className="container__label">
+                        <label className="input-label">Roles</label>
+                        <button className="button__collapse-expand" onClick={(e) => { e.preventDefault(); changeSelectRolTypeMode() }}>
+                            {rolTypeMode ?
+                                <><KeyboardArrowUpIcon /></> :
+                                <><KeyboardArrowDownIcon /></>
+                            }
 
-                            </button>
-                        </div>
-                        <div className="event-type-options">
-                            {rolTypeMode && <>
-                                {roles?.map((role, index) => {
-                                    return (
-                                        <RadioInput
-                                            key={index}
-                                            label={role}
-                                            helper={index}
-                                            value={role}
-                                            register={register("roles", {
-                                                required: "El rol es obligatorio",
-                                            })}
-                                        />
-                                    );
-                                })}
-                            </>}
-
-                        </div>
-                        {errors.roles?.message && (
-                            <div className="error-container">
-                                <p className="error-message">
-                                    {typeof errors.roles?.message === "string" ? errors.roles.message : ""}
-                                </p>
-                            </div>
-                        )}
+                        </button>
                     </div>
-                    <div style={{height:'100px'}}></div>
+                    <div className="event-type-options">
+                        {rolTypeMode && <>
+                            {roles?.map((role, index) => {
+                                return (
+                                    <RadioInput
+                                        key={index}
+                                        label={role}
+                                        helper={index}
+                                        value={role}
+                                        register={register("roles", {
+                                            required: "El rol es obligatorio",
+                                        })}
+                                    />
+                                );
+                            })}
+                        </>}
+
+                    </div>
+                    {errors.roles?.message && (
+                        <div className="error-container">
+                            <p className="error-message">
+                                {typeof errors.roles?.message === "string" ? errors.roles.message : ""}
+                            </p>
+                        </div>
+                    )}
+                </div>
+                <div style={{ height: '100px' }}></div>
                 <Divider></Divider>
                 <StyledFloatingConfirmEventButton
-                        color="success"
-                        aria-label="add"
-                        type="submit"
-                        onSubmit={ (e) => {
-                            handleSubmit(click)
-                            console.log('mock')}
-                        }
-                        sx={{ backgroundColor: 'forest' }}
-                    >
-                        <CheckIcon />
-                    </StyledFloatingConfirmEventButton>
+                    color="success"
+                    aria-label="add"
+                    type="submit"
+                    onSubmit={(e) => {
+                        handleSubmit(click)
+                        console.log('mock')
+                    }
+                    }
+                    sx={{ backgroundColor: 'forest' }}
+                >
+                    <CheckIcon />
+                </StyledFloatingConfirmEventButton>
             </form>
         </>
     )

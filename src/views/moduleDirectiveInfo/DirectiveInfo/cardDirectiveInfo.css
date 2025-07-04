@@ -1,8 +1,11 @@
 .image-profile{
     width: 5rem;
+    height: 5rem;
     display: inline-block;
-    margin: 1rem 1rem 1rem 0rem  ;
-    border-radius: 100%;
+    margin: 1rem;
+    border-radius:3rem;
+    border: 1px solid grey;
+   
 }
 
 span{

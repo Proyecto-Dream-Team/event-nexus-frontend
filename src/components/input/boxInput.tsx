@@ -12,8 +12,8 @@ export const BoxInput = ({ label, value, register}: BoxInputProps) => {
     return (
 
         <>
-            <div className="">
-                <label className="event-type-option">
+            <div className="container__radiobox">
+                <label className="radiobox-input">
                     <input
                         className="event-type-radio"
                         type="checkbox"

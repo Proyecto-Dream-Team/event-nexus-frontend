@@ -13,3 +13,11 @@
     margin-top: 0.5rem;
     text-align: left;
 }
+
+.containerPermisos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}

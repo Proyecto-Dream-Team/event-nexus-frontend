@@ -96,11 +96,11 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 				{event.creatorId != userId && (<>
 					{event.participants.map((participant, index) => (participant.id)).includes(userId) ? (
 						<StyledIconButton onClick={joinleaveEvent}>
-							<PersonRemoveIcon sx={{ color: "red" }} />
+							<PersonRemoveIcon sx={{ color: "red", fontSize:'2rem' }} />
 						</StyledIconButton>
 					) : (
 						<StyledIconButton onClick={joinleaveEvent}>
-							<PersonAdd sx={{ color: "green" }} />
+							<PersonAdd sx={{ color: "green", fontSize:'2rem' }} />
 						</StyledIconButton>
 					)}
 				</>)}
@@ -117,7 +117,7 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 					>
 						<AvatarGroup max={4} spacing="medium" onClick={handleDialog} sx={{ cursor: 'pointer' }}>
 							{event.participants.map((participant, index) => (
-								<Avatar key={index} alt={participant.name} src={participant.image} sx={{ width: 15, height: 15 }} />
+								<Avatar key={index} alt={participant.name} src={participant.image} sx={{ width: '2rem', height:'2rem', margin:'0.5rem' }} />
 							))}
 						</AvatarGroup>
 					</Tooltip>
