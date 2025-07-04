@@ -57,7 +57,18 @@ export const Profile = () => {
 		<div className="profile__container">
 			<ProfileImg change={changeImg}></ProfileImg>
 			<h1 className="titleStyle">{datos.nombre + " " + datos.apellido}</h1>
+			<div className="puestoContainer">
+				<p className="puesto">{datos.job}</p>
+			</div>
 			<ProfileFormulary info={datos} uploadData={changeData} />
+			<div className="containerPp">
+				<h2 className="permisionsFont">Permisos</h2>
+				<div className="permisosEtiquetas">
+					{datos.permissons.map((permiso: string, idx: number) => (
+						<p key={idx}>{permiso}</p>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 };

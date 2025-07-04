@@ -5,6 +5,8 @@ export class DatosForm {
     phone: string;
     email: string;
     address : string;
+    permissons: string[];
+    job: string;
 
     constructor(data : any) {
         this.id = data.id;
@@ -13,6 +15,8 @@ export class DatosForm {
         this.phone = data.phone;
         this.email = data.email;
         this.address  = data.address ;
+        this.permissons = data.permissons;
+        this.job = data.job; 
     }
 
 
@@ -24,6 +28,8 @@ export class DatosForm {
             phone: data.phone,
             email: data.email,
             address : data.address,
+            permissons: data.permissons,
+            job: data.job
         };
     }
 
