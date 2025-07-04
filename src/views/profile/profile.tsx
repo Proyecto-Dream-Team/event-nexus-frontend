@@ -62,9 +62,9 @@ export const Profile = () => {
 			</div>
 			<ProfileFormulary info={datos} uploadData={changeData} />
 			<div className="containerPp">
-				<h2 className="permisionsFont">Permisos</h2>
+				<p className="permisionsFont">Permisos</p>
 				<div className="permisosEtiquetas">
-					{datos.permissons.map((permiso: string, idx: number) => (
+					{datos.permissons?.map((permiso: string, idx: number) => (
 						<p key={idx}>{permiso}</p>
 					))}
 				</div>
