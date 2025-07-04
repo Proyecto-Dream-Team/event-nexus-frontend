@@ -11,6 +11,7 @@ export const Home = () => {
     const id = Number(sessionStorage.getItem("userId"));
     const [selectedIndex, setSelectedIndex] = useState<number>(0)
     const [loading, setLoading] = useState<boolean>(false)
+    const isDark = sessionStorage.getItem('darkMode') === 'true' || false;
 
     const getModules = async () => {
         try {
@@ -42,7 +43,7 @@ export const Home = () => {
                     ))}
                 </main>
             </div>
-            <img className='image-home' src="EventNexusImagotipo.png" />
+            <img className={!isDark ? 'image-homeDark' : 'image-home'} src="EventNexusImagotipo.png" />
         </>
     )
 

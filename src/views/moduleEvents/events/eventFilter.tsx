@@ -121,7 +121,6 @@ export const EventFilter = (
             ref={filterContainerRef} 
         >
             <div className="container__filter">
-                Filtrar por
                 <button
                     className="filter"
                     onClick={(e) => {
@@ -129,6 +128,7 @@ export const EventFilter = (
                         setCategoryFilterOpen(false);
                         setFilterOpen((prev) => !prev)
                     }}>
+                        Filtrar
                     <strong> {options[selectedIndex]}</strong>
                     {filterOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </button>

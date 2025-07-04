@@ -33,12 +33,13 @@ function App() {
 	// const [themeAux, setThemeAux] = useState<ThemeAux>('light');
 
 	function handleChange() {
-		setDarkMode((darkModeValue)=>!darkModeValue)
+		setDarkMode((darkModeValue) => !darkModeValue)
 	}
 
-	useEffect(()=>{
-		document.body.setAttribute('data-theme', (darkMode ? "dark" : "light"));
-	},[darkMode])
+	useEffect(() => {
+		document.body.setAttribute('data-theme', (darkMode ? "dark" : "light"))
+		sessionStorage.setItem('darkMode', JSON.stringify(darkMode));
+	}, [darkMode])
 
 	return (
 		<>
@@ -68,11 +69,7 @@ interface SwitchToggleThemeModeProps {
 
 }
 
-
-type ThemeAux = 'light' | 'dark'
 function SwitchToggleThemeMode(props: SwitchToggleThemeModeProps) {
-
-
 
 	return (
 		<>

@@ -17,6 +17,7 @@
     flex-direction: column;
     gap: 1rem;
     overflow-y: scroll;
+    margin-bottom: 2rem;
 }
 
 .container__filter {
@@ -29,12 +30,16 @@
 
     align-self: end;
     position: relative;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
     background-color: var(--filter-events);
     color: var(--text-color--inverted);
     border-radius: 0.5rem;
+
+    & button{
+        gap: 1rem;
+    }
 }
 
 .filter {

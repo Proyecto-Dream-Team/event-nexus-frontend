@@ -6,6 +6,8 @@ import { getNotificationsByUserId, trySSE } from "../../services/notification.se
 
 import './notification.css';
 import { max } from "@cloudinary/url-gen/actions/roundCorners";
+import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
+import { border } from "@cloudinary/url-gen/qualifiers/background";
 
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -94,7 +96,6 @@ const handleClose = () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [openMenu]);
-
 	const style = {
 		position: "absolute",
 		display: 'flex',
@@ -111,7 +112,9 @@ const handleClose = () => {
 		borderRadius: '0 0 0 1rem',
 		float: "right",
 		p: 4,
-		zIndex: 9999
+		zIndex: 9999,
+		boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2), -8px 0 16px 0 rgba(0,0,0,0.1), 8px 0 16px 0 rgba(0,0,0,0.1)',
+		opacity: 0.98,
 	};
 
 	const style2 = {
