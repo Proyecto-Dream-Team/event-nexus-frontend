@@ -17,7 +17,7 @@ export const ModuleCard = (
     const mapRoutes = {
         "eventos": "/module-events/events",
         "informacion": "/module-directive-info",
-        "comunicarse": "/module-admin/search-user"
+        "administración": "/module-admin/search-user"
     };
 
     function mapSvgIcon(imagePath:string){
