@@ -6,6 +6,7 @@ import { EventDto } from "../../../domain/createEvent";
 import { EventCategory } from "../../../domain/eventTypes";
 import { getEventTypes, } from "../../../services/moduleService";
 import { AllEventsOption, EventsByCreated, EventsByInvitation, EventsByTitleSearch, EventsByType, FilterOption } from "./filterStrategy";
+import { useLoader } from "../../../context/loader/useLoader";
 
 const options = [
     'Sin filtro',
@@ -18,7 +19,9 @@ const options = [
 type FilterMode = "all" | "title" | "type" | "created" | "invited";
 
 export const EventFilter = (
-    { eventSetter }: { eventSetter: Dispatch<SetStateAction<EventDto[] | undefined>> }
+    { eventSetter }: { eventSetter: Dispatch<SetStateAction<EventDto[] | undefined>>,
+        setIsLoading: (isLoading: boolean) => void
+     }
 ) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [eventCategory, setEventCategory] = useState<EventCategory>("SOCIAL");
@@ -31,6 +34,7 @@ export const EventFilter = (
     const [searchExpanded, setSearchExpanded] = useState(false);
     const searchContainerRef = useRef<HTMLDivElement>(null);
     const filterContainerRef = useRef<HTMLDivElement>(null); 
+    const { setIsLoading } = useLoader()
 
     async function noFilterStrategy() {
         setFilterMode("all");
@@ -44,8 +48,16 @@ export const EventFilter = (
 
     async function filterByTypeStrategy() {
         setFilterMode("type");
-        const eventTypes: EventCategory[] = await getEventTypes();
-        setEventTypes(eventTypes)
+        setIsLoading(true); // Activar loader antes de obtener tipos de evento
+        try {
+            const eventTypes: EventCategory[] = await getEventTypes();
+            setEventTypes(eventTypes);
+        } catch (error) {
+            console.error("Error al obtener tipos de evento:", error);
+            // Manejo de errores si es necesario
+        } finally {
+            setIsLoading(false); // Desactivar loader
+        }
         setFilterStrategy(new EventsByType());
     }
 
@@ -60,11 +72,19 @@ export const EventFilter = (
     }
 
     const executeTitleSearch = async () => {
-        if (filterMode === 'title') {
+    if (filterMode === 'title') {
+        setIsLoading(true); // Activar loader antes de la búsqueda
+        try {
             const events: EventDto[] = await filterStrategy.getEvents(searchValue, eventCategory);
             eventSetter(events);
+        } catch (error) {
+            console.error("Error al buscar eventos por título:", error);
+            eventSetter([]); // O manejar el error como prefieras
+        } finally {
+            setIsLoading(false); // Desactivar loader
         }
-    };
+    }
+};
 
     const handleSearchIconClick = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -89,8 +109,16 @@ export const EventFilter = (
     };
 
     const getEvents = async () => {
-        const events: EventDto[] = await filterStrategy.getEvents("", eventCategory);
-        eventSetter(events);
+        setIsLoading(true); 
+        try {
+            const events: EventDto[] = await filterStrategy.getEvents(searchValue, eventCategory);
+            eventSetter(events);
+        } catch (error) {
+            console.error("Error al obtener eventos:", error);
+            eventSetter([]);
+        } finally {
+            setIsLoading(false); 
+        }
     };
 
     useEffect(() => {
