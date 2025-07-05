@@ -1,4 +1,4 @@
-import { Badge, Box, Typography } from "@mui/material";
+import { Badge, Box, Divider, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useToast } from "../../context/toast/useToast";
 import { NotificationDTO } from "../../domain/notification";
@@ -97,11 +97,11 @@ const handleClose = () => {
 		};
 	}, [openMenu]);
 	const style = {
-		position: "absolute",
 		display: 'flex',
 		flexDirection: 'column',
+		position: "absolute",
 		overflowY: 'scroll',
-		gap: 2,
+		// gap: 2,
 		width: 250,
 		height: 'auto',
 		maxHeight: '70vh',
@@ -111,20 +111,40 @@ const handleClose = () => {
 		border: 'none',
 		borderRadius: '0 0 0 1rem',
 		float: "right",
-		p: 4,
+		// p: 4,
 		zIndex: 9999,
 		boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2), -8px 0 16px 0 rgba(0,0,0,0.1), 8px 0 16px 0 rgba(0,0,0,0.1)',
-		opacity: 0.98,
+		// opacity: 0.98,
 	};
 
 	const style2 = {
-		height: 'auto',
-		bgcolor: '#5b6271',
-		border: '1px solid #000',
-		borderRadius: '1rem',
-		boxShadow: 10,
+		display: "flex",
+		flexDirection: "column",   // ← apilá los elementos en columna
+		gap: "0.5rem",             // opcional, separación
+		bgcolor: "#5b6271",
 		color: "#ffffff",
-		padding: '1rem',};
+		padding: "1rem",
+	  };
+
+	  const renderNotificationTitle = (title: string) => {
+		const prefixes = [
+			"Te invitaron al evento:",
+			"Informacion directiva recibida"
+		];
+	
+		const prefixFound = prefixes.find(prefix => title.startsWith(prefix));
+		if (prefixFound) {
+			const rest = title.slice(prefixFound.length).trim();
+			return (
+				<>
+					<span style={{ fontWeight: "bold" }}>{prefixFound}</span> {rest}
+				</>
+			);
+		}
+	
+		// fallback si no matchea ningún prefijo
+		return title;
+	};
 
 	return (
 		<>
@@ -158,14 +178,14 @@ const handleClose = () => {
 			{openMenu && (
 				<div>
 					<Box ref={menuRef} sx={style}>
-						<div className="butons">
+						{/* <div className="butons">
 							<button onClick={activateNotifications} className="notification activable inactive">
 								{activeNotifications ? "Desactivar" : "Activar"} notificaciones
 							</button>
 							<button onClick={handleActivate} className="notification toggle">
 								{onlyNew ? "Nuevas" : "Todas"}
 							</button>
-						</div>
+						</div> */}
 
 						{onlyNew ? (
 							newNotifications.length === 0 ? (
@@ -173,8 +193,8 @@ const handleClose = () => {
 							) : (
 								newNotifications.map((notification) => (
 									<Box key={notification.id} sx={style2}>
-										<Typography sx={{ textAlign: "left" }} variant="h6">{notification.title}</Typography>
 										<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										<Typography sx={{ textAlign: "left" }} variant="h6">{notification.title}</Typography>
 									</Box>
 								))
 							)
@@ -184,8 +204,11 @@ const handleClose = () => {
 							) : (
 								notifications.map((notification) => (
 									<Box key={notification.id} sx={style2}>
-										<Typography sx={{ textAlign: "left" }} variant="h6">{notification.title}</Typography>
-										<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										<Typography sx={{ textAlign: "left" }} variant="h6">
+											{renderNotificationTitle(notification.title)}
+										</Typography>
+										<Typography sx={{ mt: 1 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										<Divider sx={{ }} />
 									</Box>
 								))
 							)

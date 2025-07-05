@@ -19,13 +19,10 @@
 	
 .header-center {
 	position: absolute;
-	left: 50%; /* Mueve el borde izquierdo del hijo al 50% del ancho del padre */
-	transform: translateX(-50%); 
-	/* justify-self: center; */
+	left: 50%; 	transform: translateX(-50%); 
 }
 
 .header-title {
-	/* background-color: var(--header-nav); */
 	color: var(--fixed-text-color-light);
 	padding: 2.5rem 2rem;
 	font-size: 1.6rem;
