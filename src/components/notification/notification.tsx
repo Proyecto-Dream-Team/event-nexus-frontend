@@ -8,6 +8,7 @@ import './notification.css';
 import { max } from "@cloudinary/url-gen/actions/roundCorners";
 import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
 import { border } from "@cloudinary/url-gen/qualifiers/background";
+import { Padding } from "@mui/icons-material";
 
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -101,26 +102,23 @@ const handleClose = () => {
 		flexDirection: 'column',
 		position: "absolute",
 		overflowY: 'scroll',
-		// gap: 2,
 		width: 250,
-		height: 'auto',
+		height: '20rem',
 		maxHeight: '70vh',
 		top: '6rem',
 		right: 0,
-		bgcolor: 'var(--header-nav)',
-		border: 'none',
+		bgcolor: '#5b6271',
 		borderRadius: '0 0 0 1rem',
 		float: "right",
-		// p: 4,
 		zIndex: 9999,
+		padding: "1rem",
 		boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2), -8px 0 16px 0 rgba(0,0,0,0.1), 8px 0 16px 0 rgba(0,0,0,0.1)',
-		// opacity: 0.98,
 	};
 
 	const style2 = {
 		display: "flex",
-		flexDirection: "column",   // ← apilá los elementos en columna
-		gap: "0.5rem",             // opcional, separación
+		flexDirection: "column",   
+		gap: "0.5rem",             
 		bgcolor: "#5b6271",
 		color: "#ffffff",
 		padding: "1rem",
@@ -128,8 +126,8 @@ const handleClose = () => {
 
 	  const renderNotificationTitle = (title: string) => {
 		const prefixes = [
-			"Te invitaron al evento:",
-			"Informacion directiva recibida"
+			"Te invitaron al Evento",
+			"Informacion Directiva Recibida"
 		];
 	
 		const prefixFound = prefixes.find(prefix => title.startsWith(prefix));
@@ -137,12 +135,12 @@ const handleClose = () => {
 			const rest = title.slice(prefixFound.length).trim();
 			return (
 				<>
-					<span style={{ fontWeight: "bold" }}>{prefixFound}</span> {rest}
+					<span style={{ fontWeight: "700" }}>{prefixFound}</span>
+					<p style={{fontWeight: "100"}}>{rest}</p>
 				</>
 			);
 		}
 	
-		// fallback si no matchea ningún prefijo
 		return title;
 	};
 
@@ -189,7 +187,7 @@ const handleClose = () => {
 
 						{onlyNew ? (
 							newNotifications.length === 0 ? (
-								<Typography sx={{ mt: 2 }}>No tienes notificaciones nuevas.</Typography>
+								<Typography sx={{ margin: '0 auto' }}>No tienes notificaciones nuevas.</Typography>
 							) : (
 								newNotifications.map((notification) => (
 									<Box key={notification.id} sx={style2}>
