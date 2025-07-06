@@ -58,6 +58,7 @@ export const CreateEvent = () => {
         handleSubmit(create);
         nav('/module-events/events');
     }
+
     async function getAvaliableUsers() {
         const response = await serviceUser.search("");
         console.log(response);
@@ -195,7 +196,10 @@ export const CreateEvent = () => {
                         color="success"
                         aria-label="add"
                         type="submit"
-                        onSubmit={ (e) => {handleCreateEvent}}
+                        onClick={(e) => {
+                            // e.preventDefault(); // evita que se dispare el submit antes de tiempo
+                            handleCreateEvent();
+                        }}
                         sx={{ backgroundColor: 'forest' }}
                     >
                         <CheckIcon />

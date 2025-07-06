@@ -5,11 +5,11 @@ import { serviceUser } from '../../../services/serviceUser'
 import './directiveInfo.css'
 import { directiveInfoService } from '../../../services/directiveInfoService'
 import { Box, Button, Chip, TextField } from '@mui/material'
-import { StyledFloatingButton, StyledFloatingButtonRight } from '../../moduleEvents/events/eventFilter.style'
-import { Add } from '@mui/icons-material'
+import { StyledFloatingButtonRight } from '../../moduleEvents/events/eventFilter.style'
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import { useToast } from '../../../context/toast/useToast'
+
 export const DirectiveInfo = () => {
 
     const userId = Number(sessionStorage.getItem("userId"));
