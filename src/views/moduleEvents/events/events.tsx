@@ -18,6 +18,10 @@ export const Events = () => {
         setIsLoading(true);
     }, []);
 
+	const handleCardDeleted = (id: number) => {
+		setEvents(prev => prev.filter(ev => ev.id !== id));   // ⬅️  quita la tarjeta
+	  };
+
 	return <>
 		<div className="container__events">
 			<EventFilter eventSetter={setEvents} setIsLoading={setIsLoading}/>
@@ -33,6 +37,7 @@ export const Events = () => {
 							<EventCard
 								key={event.id}
 								eventDTO={event}
+								onDeleted={handleCardDeleted}
 							/>
 						</div>
 					))

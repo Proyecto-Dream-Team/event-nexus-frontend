@@ -13,7 +13,7 @@ import { PersonAdd } from "@mui/icons-material";
 import './event.css'
 import { SimpleDialog } from "./eventParticipantsDialog";
 
-export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
+export const EventCard = ({ eventDTO,onDeleted }: { eventDTO: EventDto, onDeleted: (id: number) => void;  }) => {
 	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(eventDTO.dateFinished.toString()));
 	const [event, setEvent] = useState<EventDto>(eventDTO);
 	const userId = Number(sessionStorage.getItem("userId"));
@@ -42,21 +42,15 @@ export const EventCard = ({ eventDTO }: { eventDTO: EventDto }) => {
 
 		}
 	}
-	async function handleDelete() {
+	async function handleDelete()  {
 		try {
-			const response = await deleteEvent(event.id);
-			console.log(response)
-			// setEvent((prevEvent) => ({
-			// 	...prevEvent,
-			// 	participants: response.responseBody,
-			// }));
-			open(response, 'success')
-
-		} catch (error: any) {
-			open(error, "error");
-
+		  	await deleteEvent(event.id);
+		  	open("Evento eliminado", "success");
+		 	onDeleted(event.id);             
+		} catch (err: any) {
+		  	open(err, "error");
 		}
-	}
+	  };
 
 	useEffect(() => {
 		const timer = setInterval(() => {
