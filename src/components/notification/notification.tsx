@@ -3,12 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { useToast } from "../../context/toast/useToast";
 import { NotificationDTO } from "../../domain/notification";
 import { getNotificationsByUserId, trySSE } from "../../services/notification.service";
-
 import './notification.css';
-import { max } from "@cloudinary/url-gen/actions/roundCorners";
-import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
-import { border } from "@cloudinary/url-gen/qualifiers/background";
-import { BorderLeft, Padding } from "@mui/icons-material";
+import { useLoader } from "../../context/loader/useLoader";
+import { URL_SERVIDOR_REST } from "../../utils/config";
 
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -17,26 +14,26 @@ export const NotificationComponent = () => {
 	const [newNotifications, setNewNotifications] = useState<NotificationDTO[]>([]);
 	const [unreadCount, setUnreadCount] = useState(0);
 	const [onlyNew, setOnlyNew] = useState(false);
-	const [activeNotifications, setActiveNotifications] = useState(false);
 	const id = Number(sessionStorage.getItem("userId"));
-	const eventSource: EventSource | null = null;
 	const menuRef = useRef<HTMLDivElement>(null);
+	const { setIsLoading } = useLoader();
+	const eventSourceRef = useRef<EventSource | null>(null);
 
-const handleOpen = async () => {
-    if (openMenu) {
-        handleClose();
-        return;
-    }
-    setOpenMenu(true);
-    const notifications = await getNotificationsByUserId(id);
-    setNotifications(notifications);
-    setUnreadCount(0);
-};
+	const handleOpen = async () => {
+		if (openMenu) {
+			handleClose();
+			return;
+		}
+		setOpenMenu(true);
+		const notifications = await getNotificationsByUserId(id);
+		setNotifications(notifications);
+		setUnreadCount(0);
+	};
 
-const handleClose = () => {
-    setOpenMenu(false);
-    setNewNotifications([]);
-};
+	const handleClose = () => {
+		setOpenMenu(false);
+		setNewNotifications([]);
+	};
 
 	const formatIsoToDdMmAaaa = (isoString: string) => {
 		const date = new Date(isoString);
@@ -46,26 +43,6 @@ const handleClose = () => {
 		return `${day}/${month}/${year}`;
 	};
 
-	async function activateNotifications() {
-		const button = document.querySelector('button.activable') as HTMLButtonElement;
-		if (button.classList.contains('active')) {
-			setActiveNotifications(false);
-			await trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource);
-			button.classList.remove('active');
-			button.classList.add('inactive');
-			open("Notificaciones desactivadas", "info");
-		} else {
-			setActiveNotifications(true);
-			button.classList.remove('inactive');
-			button.classList.add('active');
-			trySSE(setUnreadCount, setNewNotifications, id, activeNotifications, eventSource);
-			open("Notificaciones activadas", "info");
-		}
-	}
-
-	function handleActivate() {
-		setOnlyNew(!onlyNew);
-	}
 
 	useEffect(() => {
 		const fetchNotifications = async () => {
@@ -97,6 +74,21 @@ const handleClose = () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [openMenu]);
+
+	useEffect(() => {
+		setIsLoading(true);
+		const newEventSource = new EventSource(`${URL_SERVIDOR_REST}/notification?employeeId=${id}`)
+		eventSourceRef.current = newEventSource;
+		trySSE(setUnreadCount, setNewNotifications, newEventSource, open);
+		setIsLoading(false);
+		return () => {
+            if (eventSourceRef.current) {
+                eventSourceRef.current.close();
+                eventSourceRef.current = null; // Es importante limpiar la referencia
+                console.log('Conexión SSE cerrada durante la limpieza del componente.');
+            }
+        };
+	}, []);
 	const style = {
 		display: 'flex',
 		flexDirection: 'column',
@@ -178,14 +170,6 @@ const handleClose = () => {
 			{openMenu && (
 				<div>
 					<Box ref={menuRef} sx={style}>
-						{/* <div className="butons">
-							<button onClick={activateNotifications} className="notification activable inactive">
-								{activeNotifications ? "Desactivar" : "Activar"} notificaciones
-							</button>
-							<button onClick={handleActivate} className="notification toggle">
-								{onlyNew ? "Nuevas" : "Todas"}
-							</button>
-						</div> */}
 
 						{onlyNew ? (
 							newNotifications.length === 0 ? (
