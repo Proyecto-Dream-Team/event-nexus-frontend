@@ -8,7 +8,7 @@ import './notification.css';
 import { max } from "@cloudinary/url-gen/actions/roundCorners";
 import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
 import { border } from "@cloudinary/url-gen/qualifiers/background";
-import { Padding } from "@mui/icons-material";
+import { BorderLeft, Padding } from "@mui/icons-material";
 
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -121,8 +121,10 @@ const handleClose = () => {
 		gap: "0.5rem",             
 		bgcolor: "#5b6271",
 		color: "#ffffff",
-		padding: "1rem",
-	  };
+		borderLeft: "3px solid #ffffff",
+		paddingLeft: '1rem',
+		margin : "1rem 0"
+	};
 
 	  const renderNotificationTitle = (title: string) => {
 		const prefixes = [
@@ -201,12 +203,14 @@ const handleClose = () => {
 								<Typography sx={{ mt: 2 }}>No tienes notificaciones.</Typography>
 							) : (
 								notifications.map((notification) => (
-									<Box key={notification.id} sx={style2}>
-										<Typography sx={{ textAlign: "left" }} variant="h6">
-											{renderNotificationTitle(notification.title)}
-										</Typography>
-										<Typography sx={{ mt: 1 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
-										<Divider sx={{ }} />
+									<Box>
+										<Box key={notification.id} sx={style2}>
+											<Typography sx={{ textAlign: "left" }} variant="h6">
+												{renderNotificationTitle(notification.title)}
+											</Typography>
+											<Typography sx={{  }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										</Box>
+											<Divider sx={{  }} />
 									</Box>
 								))
 							)
