@@ -1,4 +1,4 @@
-import { Badge, Box, Typography } from "@mui/material";
+import { Badge, Box, Divider, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useToast } from "../../context/toast/useToast";
 import { NotificationDTO } from "../../domain/notification";
@@ -8,6 +8,7 @@ import './notification.css';
 import { max } from "@cloudinary/url-gen/actions/roundCorners";
 import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
 import { border } from "@cloudinary/url-gen/qualifiers/background";
+import { Padding } from "@mui/icons-material";
 
 export const NotificationComponent = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -97,34 +98,51 @@ const handleClose = () => {
 		};
 	}, [openMenu]);
 	const style = {
-		position: "absolute",
 		display: 'flex',
 		flexDirection: 'column',
+		position: "absolute",
 		overflowY: 'scroll',
-		gap: 2,
 		width: 250,
-		height: 'auto',
+		height: '20rem',
 		maxHeight: '70vh',
 		top: '6rem',
 		right: 0,
-		bgcolor: 'var(--header-nav)',
-		border: 'none',
+		bgcolor: '#5b6271',
 		borderRadius: '0 0 0 1rem',
 		float: "right",
-		p: 4,
 		zIndex: 9999,
+		padding: "1rem",
 		boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2), -8px 0 16px 0 rgba(0,0,0,0.1), 8px 0 16px 0 rgba(0,0,0,0.1)',
-		opacity: 0.98,
 	};
 
 	const style2 = {
-		height: 'auto',
-		bgcolor: '#5b6271',
-		border: '1px solid #000',
-		borderRadius: '1rem',
-		boxShadow: 10,
+		display: "flex",
+		flexDirection: "column",   
+		gap: "0.5rem",             
+		bgcolor: "#5b6271",
 		color: "#ffffff",
-		padding: '1rem',};
+		padding: "1rem",
+	  };
+
+	  const renderNotificationTitle = (title: string) => {
+		const prefixes = [
+			"Te invitaron al Evento",
+			"Informacion Directiva Recibida"
+		];
+	
+		const prefixFound = prefixes.find(prefix => title.startsWith(prefix));
+		if (prefixFound) {
+			const rest = title.slice(prefixFound.length).trim();
+			return (
+				<>
+					<span style={{ fontWeight: "700" }}>{prefixFound}</span>
+					<p style={{fontWeight: "100"}}>{rest}</p>
+				</>
+			);
+		}
+	
+		return title;
+	};
 
 	return (
 		<>
@@ -158,23 +176,23 @@ const handleClose = () => {
 			{openMenu && (
 				<div>
 					<Box ref={menuRef} sx={style}>
-						<div className="butons">
+						{/* <div className="butons">
 							<button onClick={activateNotifications} className="notification activable inactive">
 								{activeNotifications ? "Desactivar" : "Activar"} notificaciones
 							</button>
 							<button onClick={handleActivate} className="notification toggle">
 								{onlyNew ? "Nuevas" : "Todas"}
 							</button>
-						</div>
+						</div> */}
 
 						{onlyNew ? (
 							newNotifications.length === 0 ? (
-								<Typography sx={{ mt: 2 }}>No tienes notificaciones nuevas.</Typography>
+								<Typography sx={{ margin: '0 auto' }}>No tienes notificaciones nuevas.</Typography>
 							) : (
 								newNotifications.map((notification) => (
 									<Box key={notification.id} sx={style2}>
-										<Typography sx={{ textAlign: "left" }} variant="h6">{notification.title}</Typography>
 										<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										<Typography sx={{ textAlign: "left" }} variant="h6">{notification.title}</Typography>
 									</Box>
 								))
 							)
@@ -184,8 +202,11 @@ const handleClose = () => {
 							) : (
 								notifications.map((notification) => (
 									<Box key={notification.id} sx={style2}>
-										<Typography sx={{ textAlign: "left" }} variant="h6">{notification.title}</Typography>
-										<Typography sx={{ mt: 2 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										<Typography sx={{ textAlign: "left" }} variant="h6">
+											{renderNotificationTitle(notification.title)}
+										</Typography>
+										<Typography sx={{ mt: 1 }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
+										<Divider sx={{ }} />
 									</Box>
 								))
 							)
