@@ -9,11 +9,14 @@ import { StyledFloatingButton, StyledFloatingButtonRight } from '../../moduleEve
 import { Add } from '@mui/icons-material'
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
+import { useToast } from '../../../context/toast/useToast'
 export const DirectiveInfo = () => {
 
-    const [showCreate, setShowCreate] = useState(false);
+    const userId = Number(sessionStorage.getItem("userId"));
     
     const [directive, setDirective] = useState<DirectiveInfoData[]>([])
+    
+    const [showCreate, setShowCreate] = useState(false);
 
     const [canCreate, setCanCreate] = useState(false);
 
@@ -23,11 +26,12 @@ export const DirectiveInfo = () => {
 
     const [priority, setPriority] = useState<'URGENTE' | 'IMPORTANTE' | 'INFORMATIVO' | null>(null);
 
-    const userId = Number(sessionStorage.getItem("userId"));
+    const toast = useToast()
+
 
     const createDirective = async () => {
         if (!priority || !title || !description) {
-            alert("Completa todos los campos y selecciona una prioridad");
+            toast.open("Completar todos los campos","error")
             return;
         }
 
@@ -41,9 +45,10 @@ export const DirectiveInfo = () => {
         try {
             await directiveInfoService.createDirectiveInfo(newDirective);
             setShowCreate(false)
+            toast.open("Directiva creada con exito","success")
             resetValues()
         } catch (error: any) {
-            console.error("Error al crear directiva:", error.message);
+            toast.open(error.message, "error" );
         }
     };
 
@@ -59,7 +64,7 @@ export const DirectiveInfo = () => {
             const res = await directiveInfoService.fetchDirectives()
             setDirective(res)
         } catch (error: any) {
-            console.error("Error al obtener permisos: ", error.message);
+            toast.open(error.message, "error" );
         }
     }
 
