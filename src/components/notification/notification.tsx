@@ -204,13 +204,16 @@ const handleClose = () => {
 							) : (
 								notifications.map((notification) => (
 									<Box>
-										<Box key={notification.id} sx={style2}>
+										<Box 
+											key={notification.id} 
+											sx={style2}
+										>
 											<Typography sx={{ textAlign: "left" }} variant="h6">
 												{renderNotificationTitle(notification.title)}
 											</Typography>
 											<Typography sx={{  }}>{formatIsoToDdMmAaaa(notification.date)}</Typography>
 										</Box>
-											<Divider sx={{  }} />
+											<Divider />
 									</Box>
 								))
 							)
